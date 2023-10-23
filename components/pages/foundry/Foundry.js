@@ -63,7 +63,7 @@ export default function Foundry({ foundry }) {
 						<p>
 							Klim Type Foundry (Klim) was founded by Kris Sowersby in 2005 and
 							is based in Te Whanganui-a-Tara/Wellington, Aotearoa/New Zealand.
-							Klim's foundational ethos is “a thing well made”.
+							Klims foundational ethos is “a thing well made”.
 						</p>
 						<p>
 							Their typefaces combine historical knowledge with rigorous
@@ -73,17 +73,17 @@ export default function Foundry({ foundry }) {
 							them.
 						</p>
 						<p>
-							Klim's retail catalogue features fonts suitable for a complete
+							Klims retail catalogue features fonts suitable for a complete
 							range of use, from small and functional to large and decorative.
 							These can be licensed for use across physical and digital
-							applications. Their 'in use' section showcases the many, varied
+							applications. Theirin use section showcases the many, varied
 							examples of their fonts used by international brands,
 							institutions, and businesses of all sizes.
 						</p>
 						<p>
 							They have designed custom fonts for international clients such as
 							The Financial Times, PayPal, and National Geographic. Their fonts
-							are included in Apple’s operating system, from macOS Catalina
+							are included in Apples operating system, from macOS Catalina
 							10.15.4. Closer to home, they have created custom fonts for The
 							Bank of New Zealand, Trade Me, and Tourism New Zealand.
 						</p>
