@@ -12,11 +12,13 @@ import { interview } from "./schemas/interview";
 import { person } from "./schemas/person";
 import { country } from "./schemas/country";
 import { city } from "./schemas/city";
+import { seo } from "./schemas/objects/seo";
 
 export const schema = {
 	types: [
 		studio,
 		home,
+		post,
 		project,
 		foundry,
 		typeface,
@@ -26,5 +28,6 @@ export const schema = {
 		city,
 		settings,
 		blockContent,
+		// seo,
 	],
 };

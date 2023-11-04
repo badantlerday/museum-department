@@ -5,6 +5,17 @@ export const project = {
 	title: "Project",
 	type: "document",
 	icon: ImagesIcon,
+	groups: [
+		{
+			name: "content",
+			title: "Content",
+			default: true,
+		},
+		{
+			name: "seo",
+			title: "SEO",
+		},
+	],
 	fields: [
 		{
 			name: "title",
@@ -19,6 +30,16 @@ export const project = {
 				source: "title",
 				maxLength: 96,
 			},
+		},
+		{
+			name: "publishedAt",
+			title: "Published at",
+			type: "datetime",
+		},
+		{
+			name: "year",
+			title: "Year",
+			type: "number",
 		},
 		{
 			title: "Studio",

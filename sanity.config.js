@@ -1,11 +1,10 @@
 /**
- * This configuration is used to for the Sanity Studio that’s mounted on the `/pages/admin/[[...index]].jsx` route
+ * This configuration is used to for the Sanity Studio that’s mounted on the `/app/admin/[[...index]]/page.jsx` route
  */
 
 import { visionTool } from "@sanity/vision";
 import { defineConfig } from "sanity";
 import { deskTool } from "sanity/desk";
-import { media } from "sanity-plugin-media";
 
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
@@ -23,6 +22,6 @@ export default defineConfig({
 	plugins: [
 		deskTool({ structure, defaultDocumentNode }),
 		visionTool({ defaultApiVersion: apiVersion }),
-		media(),
+		// media(),
 	],
 });
