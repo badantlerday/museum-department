@@ -13,6 +13,17 @@ import TextCallout from "@/components/TextCallout";
 export default function Home() {
 	// const posts = await client.fetch(`*[_type == "project"]`);
 
+	const titleSell = "Sell with us";
+	const textSell = (
+		<p>
+			We're inviting creators to showcase their digital goods—mockups,
+			typefaces, framer portfolio templates—in our Shop / Type Foundry. Join us
+			and reach a dedicated audience passionate about design.
+		</p>
+	);
+
+	const titleExplore = "Explore";
+
 	return (
 		<>
 			<section className=" pt-48">
@@ -25,12 +36,13 @@ export default function Home() {
 				<OnDisplay />
 			</section>
 			<section className="pb-40">
-				<TextCallout />
+				<TextCallout title={titleSell} text={textSell} key={titleSell} />
 			</section>
 			<section className="space-y-40">
 				<LatestStudios />
 				<FontsInUse />
-				<LatestProjects />
+				{/* <LatestProjects /> */}
+				<TextCallout title={titleExplore} key={titleExplore} />
 			</section>
 		</>
 	);

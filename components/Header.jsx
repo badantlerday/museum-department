@@ -33,7 +33,7 @@ export default function Header() {
 					</Link>
 				</div>
 				<div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center">
-					<Link href="/fonts-in-use">About</Link>
+					<Link href="/about" className={`${pathname === '/about' ? ' text-slate-500' : ''}`}>About</Link>
 					<Link href="/fonts-in-use">Submit</Link>
 					<UserIcon className="h-5 w-5" aria-hidden="true" />
 					<BookmarkIcon className="h-5 w-5" aria-hidden="true" />
