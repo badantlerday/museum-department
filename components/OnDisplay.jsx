@@ -81,7 +81,7 @@ export default function OnDisplay() {
 			title: "Font in Use",
 			byline: "Another by Alias",
 			href: "#",
-			image: "/image7.jpg",
+			image: "/image2.jpg",
 			padding: "",
 			layout: "image",
 		},
