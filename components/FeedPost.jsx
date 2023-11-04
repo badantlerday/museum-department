@@ -17,7 +17,7 @@ export default function FeedPost({
 		case "image":
 			postContent = (
 				<div className={`${padding} mb-40`}>
-					{image && <img src={image} alt="" />}
+					{image && <Image src={image} alt="" width={1000} height={1000} />}
 					<div className="text-sm mt-2">
 						<h2 className="font-medium uppercase tracking-wide">{title} (2)</h2>
 						<div className="font-medium italic">{byline}</div>
@@ -37,7 +37,8 @@ export default function FeedPost({
 							<span className=" italic block">{byline}</span>
 						</h2>
 					</div>
-					{image && <img src={image} alt="" />}
+					{image && <Image src={image} alt="" width={1000} height={1000} />}
+					
 				</div>
 			);
 			break;
@@ -61,7 +62,7 @@ export default function FeedPost({
 			postContent = (
 				// Define the structure for the "image-font" layout
 				<div className={`${padding} mb-40`}>
-					{image && <img src={image} alt="" />}
+					{image && <Image src={image} alt="" width={1000} height={1000} />}
 					<div className="text-sm mt-2">
 						<h2 className="font-medium uppercase tracking-wide">{title}</h2>
 						<div className="italic">{byline}</div>

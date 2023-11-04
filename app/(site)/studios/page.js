@@ -11,9 +11,9 @@ export default async function Studios() {
 	const title = "Studios";
 	const text = (
 		<p>
-			There’s 268 fonts from 54 foundries on Museum Department. The most
-			featured font is LL Unica 77 (12) and the most featured foundry is Schick
-			Toikka.
+			There’s {studios.length} studios from 54 cities and 34 countries on Museum
+			Department. The most featured studio is Mouthwash (12) and the most views
+			projects is Kindling.
 		</p>
 	);
 
