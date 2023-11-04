@@ -16,9 +16,9 @@ export default function Home() {
 	const titleSell = "Sell with us";
 	const textSell = (
 		<p>
-			We're inviting creators to showcase their digital goods—mockups,
-			typefaces, framer portfolio templates—in our Shop / Type Foundry. Join us
-			and reach a dedicated audience passionate about design.
+			Were inviting creators to showcase their digital goods—mockups, typefaces,
+			framer portfolio templates—in our Shop / Type Foundry. Join us and reach a
+			dedicated audience passionate about design.
 		</p>
 	);
 
