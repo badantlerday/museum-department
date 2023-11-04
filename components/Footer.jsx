@@ -1,6 +1,6 @@
 export default function Footer() {
 	return (
-		<footer className="text-sm pt-40 pb-4 px-20">
+		<footer className="text-sm pt-80 pb-4 px-20">
 			<div className="grid grid-cols-6 gap-4 w-full font-medium">
 				<div className=" col-span-2">
 					<h2 className="uppercase tracking-wide">Museum Department</h2>

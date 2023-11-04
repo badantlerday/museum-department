@@ -27,7 +27,7 @@ export default function Home() {
 			<section className="pb-40">
 				<TextCallout />
 			</section>
-			<section className="space-y-40 pb-40">
+			<section className="space-y-40">
 				<LatestStudios />
 				<FontsInUse />
 				<LatestProjects />
