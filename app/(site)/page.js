@@ -2,6 +2,7 @@ import BecomeASupporter from "@/components/BecomeASupporter";
 import FontsInUse from "@/components/FontsInUse";
 import Header from "@/components/Header";
 import LatestProjects from "@/components/LatestProjects";
+import LatestStudios from "@/components/LatestStudios";
 import Manifest from "@/components/Manifest";
 import OnDisplay from "@/components/OnDisplay";
 import TextCallout from "@/components/TextCallout";
@@ -26,7 +27,8 @@ export default function Home() {
 			<section className="pb-40">
 				<TextCallout />
 			</section>
-			<section className="space-y-40">
+			<section className="space-y-40 pb-40">
+				<LatestStudios />
 				<FontsInUse />
 				<LatestProjects />
 			</section>
