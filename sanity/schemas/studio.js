@@ -20,6 +20,14 @@ export const studio = {
 			},
 		},
 		{
+			name: "mainImage",
+			title: "Main image",
+			type: "image",
+			options: {
+				hotspot: true,
+			},
+		},
+		{
 			title: "Location",
 			name: "location",
 			type: "array",

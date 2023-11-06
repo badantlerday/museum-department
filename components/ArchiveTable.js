@@ -2,8 +2,13 @@ import Link from "next/link";
 import { client } from "../sanity/lib/client";
 
 export default async function ArchiveTable() {
-	const projects =
-		await client.fetch(`*[_type == "project" && defined(fontsInUse)] {
+	// const projects =
+	// 	await client.fetch(`*[_type == "project" && defined(fontsInUse)] {
+	//     _id, title, slug, year, studio->{name,slug, location[]->{
+	// 			_id, name, country->{name}
+	// 		  }}, fontsInUse[]->{name,_id}
+	//   }`);
+	const projects = await client.fetch(`*[_type == "project"] {
         _id, title, slug, year, studio->{name,slug, location[]->{
 				_id, name, country->{name}
 			  }}, fontsInUse[]->{name,_id}
