@@ -6,14 +6,32 @@ import Link from "next/link";
 
 export default async function Studios() {
 	const studios = await client.fetch(`*[_type == "studio" ]{
-        _id, name, slug
+        _id, name, slug, location[]->{
+			_id, name, country->{name}
+		  }
       }`);
+
+	// Initialize Sets to store unique locations and countries
+	const uniqueLocations = new Set();
+	const uniqueCountries = new Set();
+
+	// Iterate over the array of studios using destructuring and optional chaining
+	studios.forEach(({ location }) => {
+		location?.forEach(({ name, country }) => {
+			uniqueLocations.add(name);
+			if (country?.name) uniqueCountries.add(country.name);
+		});
+	});
+
+	// The size of the Set is the count of unique elements
+	const uniqueLocationCount = uniqueLocations.size;
+	const uniqueCountryCount = uniqueCountries.size;
+
 	const title = "Studios";
 	const text = (
 		<p>
-			There’s {studios.length} studios from 54 cities and 34 countries on Museum
-			Department. The most featured studio is Mouthwash (12) and the most views
-			projects is Kindling.
+			There’s {studios.length} studios from {uniqueLocationCount} different
+			cities and {uniqueCountryCount} countries currently on Museum Department.
 		</p>
 	);
 

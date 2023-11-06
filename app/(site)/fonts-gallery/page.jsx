@@ -1,3 +1,4 @@
+// export const revalidate = 60;
 import FontsGalleryGrid from "@/components/FontsGalleryGrid";
 import Highlights from "@/components/Highlights";
 import TextCallout from "@/components/TextCallout";

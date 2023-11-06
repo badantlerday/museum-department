@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import localFont from "next/font/local";
 import "./globals.css";
 
