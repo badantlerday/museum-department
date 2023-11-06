@@ -9,14 +9,14 @@ export default async function FontsInUse() {
 
 	return (
 		<>
-			<div className="px-20 mx-auto grid grid-cols-1">
+			<div className="px-4 lg:px-20 mx-auto grid grid-cols-1">
 				<h2 className="text-2xl py-4 font-medium relative">
 					{sectionTitle}
 					<span className=" text-[12px] absolute mt-[-8px] ml-1">
 						{fontsinuse.length}
 					</span>
 				</h2>
-				<div className="grid grid-cols-5 gap-4">
+				<div className="grid grid-cols-2 lg:grid-cols-5 gap-4">
 					{fontsinuse?.map((project, index) => (
 						<Link key={project._id} href={`project/${project.slug.current}`}>
 							<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>

@@ -25,7 +25,7 @@ export default async function LatestProjects() {
 					key="project"
 					
 				> */}
-			<div className="px-10 lg:px-20 mx-auto">
+			<div className="px-4 lg:px-20 mx-auto">
 				<h2 className="text-2xl py-4 font-medium relative">
 					{sectionTitle}
 					<span className=" text-[12px] absolute mt-[-8px] ml-1">

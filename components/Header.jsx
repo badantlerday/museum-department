@@ -13,7 +13,7 @@ export default function Header() {
 	return (
 		<header className="_backdrop-blur-md bg-white/10_ fixed top-0 left-0 w-full z-50 _mix-blend-difference text-white_">
 			<nav
-				className="flex items-center justify-between py-6 lg:px-20"
+				className="flex items-center justify-between py-6 px-4 lg:px-20"
 				aria-label="Global"
 			>
 				<div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">

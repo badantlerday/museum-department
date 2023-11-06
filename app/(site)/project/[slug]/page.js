@@ -21,8 +21,10 @@ export default async function Page({ params }) {
 		slug,
 		fontsInUse[]->{
 			name,
+			slug,
 			foundry->{
-				name
+				name,
+				slug
 			}
 		},
 		studio->{
@@ -104,14 +106,14 @@ export default async function Page({ params }) {
 								{project.fontsInUse?.map((font, index) => (
 									<li key={index}>
 										<Link
-											href="/"
+											href={`/font/${font.slug.current}`}
 											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
 										>
 											{font.name}
 										</Link>{" "}
 										by{" "}
 										<Link
-											href="/"
+											href={`/foundry/${font.foundry.slug.current}`}
 											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
 										>
 											{font.foundry.name}

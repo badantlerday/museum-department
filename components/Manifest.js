@@ -14,7 +14,7 @@ export default function Manifest() {
 			viewport={{ once: true }}
 			key="manifest"
 		>
-			<div className="article font-medium text-2xl max-w-2xl mx-auto tracking-[0.5%] text-[#AAAAAA]">
+			<div className="article font-medium px-4 lg:px-0 text-xl lg:text-2xl max-w-2xl mx-auto tracking-[0.5%] text-[#AAAAAA]">
 				<p>MANIFESTO</p>
 				<p>
 					MUSEUM DEPARTMENT <br />

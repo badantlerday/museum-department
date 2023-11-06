@@ -53,7 +53,7 @@ export default function TextCallout({
 		// 	viewport={{ once: true }}
 		// 	key={title}
 		// >
-		<div className="article font-medium text-2xl max-w-2xl mx-auto tracking-[0.5%]">
+		<div className="px-4 lg:px-0 article font-medium text-xl lg:text-2xl max-w-2xl mx-auto tracking-[0.5%]">
 			{modifiedTextComposed}
 		</div>
 		// </motion.div>
