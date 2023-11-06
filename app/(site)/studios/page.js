@@ -1,14 +1,22 @@
 // https://www.sanity.io/plugins/next-sanity#cache-revalidation
 export const revalidate = 60;
+import Image from "next/image";
+import imageUrlBuilder from "@sanity/image-url";
 import TextCallout from "@/components/TextCallout";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 
+const builder = imageUrlBuilder(client);
+
 export default async function Studios() {
 	const studios = await client.fetch(`*[_type == "studio" ]{
-        _id, name, slug, location[]->{
+        _id,
+		name,
+		slug,
+		location[]->{
 			_id, name, country->{name}
-		  }
+		  },
+		  mainImage{crop,hotspot,asset->}
       }`);
 
 	// Initialize Sets to store unique locations and countries
@@ -49,7 +57,23 @@ export default async function Studios() {
 							passHref
 							className="py-1"
 						>
-							<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
+							{item?.mainImage ? (
+								<Image
+									className="aspect-[3/4] mb-2"
+									src={builder
+										.image(item.mainImage)
+										.width(500)
+										.height(500)
+										.url()}
+									width={500}
+									height={500}
+									blurDataURL={item.mainImage.asset.metadata.lqip}
+									placeholder="blur"
+									alt={item?.name}
+								/>
+							) : (
+								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
+							)}
 							<span className="">{item.name}</span>
 						</Link>
 					))}

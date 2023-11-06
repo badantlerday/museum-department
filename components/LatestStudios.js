@@ -13,7 +13,7 @@ export default async function LatestStudios() {
 
 	const studios =
 		await client.fetch(`*[_type == "studio" ] | order(_createdAt desc) {
-        _id, name, slug, mainImage
+        _id, name, slug, mainImage{crop,hotspot,asset->}
       }`);
 	const sectionTitle = studios.length === 1 ? `Studio` : `Studios`;
 
@@ -49,6 +49,8 @@ export default async function LatestStudios() {
 										.url()}
 									width={500}
 									height={500}
+									blurDataURL={item.mainImage.asset.metadata.lqip}
+									placeholder="blur"
 									alt={item?.name}
 								/>
 							) : (
