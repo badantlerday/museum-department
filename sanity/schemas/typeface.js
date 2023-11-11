@@ -29,6 +29,14 @@ export const typeface = {
 				disableNew: true,
 			},
 		},
+		{
+			name: "specimenPoster",
+			title: "Specimen Poster",
+			type: "image",
+			options: {
+				hotspot: true,
+			},
+		},
 	],
 	preview: {
 		select: {

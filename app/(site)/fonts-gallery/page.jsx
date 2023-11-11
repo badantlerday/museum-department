@@ -1,6 +1,6 @@
 // export const revalidate = 60;
 import FontsGalleryGrid from "@/components/FontsGalleryGrid";
-import Highlights from "@/components/Highlights";
+import HighlightsFonts from "@/components/HighlightsFonts";
 import TextCallout from "@/components/TextCallout";
 import TypeFoundries from "@/components/TypeFoundries";
 
@@ -13,7 +13,7 @@ export default function FontsGallery() {
 		<>
 			<section className="py-48 space-y-40">
 				<TextCallout title={title} text={text} />
-                <Highlights />
+                <HighlightsFonts />
 				<FontsGalleryGrid />
 				<TypeFoundries />
 			</section>

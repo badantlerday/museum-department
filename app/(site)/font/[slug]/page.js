@@ -1,5 +1,9 @@
 import { client } from "../../../../sanity/lib/client";
+import Image from "next/image";
+import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
+
+const builder = imageUrlBuilder(client);
 
 export default async function Foundry({ params }) {
 	const { slug } = params;
@@ -8,6 +12,11 @@ export default async function Foundry({ params }) {
     _id,
     name,
     slug,
+	specimenPoster{
+		crop,
+		hotspot,
+		asset->
+	},
     foundry->{
         name,
         slug
@@ -139,7 +148,19 @@ export default async function Foundry({ params }) {
 					</div>
 					<div className="article mb-10 md:mb-0 col-start-10 col-span-3">
 						<div>
-							<div className=" aspect-[3/4] bg-slate-200"></div>
+							{typeface?.specimenPoster ? (
+								<Image
+									className="_aspect-[3/4] mb-2 object-contain"
+									src={builder.image(typeface.specimenPoster).width(500).url()}
+									width={500}
+									height={500}
+									blurDataURL={typeface.specimenPoster.asset.metadata.lqip}
+									placeholder="blur"
+									alt={typeface?.name}
+								/>
+							) : (
+								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
+							)}
 							<div className="text-xs font-mono block text-left mt-2">
 								Specimen
 							</div>

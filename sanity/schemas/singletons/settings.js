@@ -10,34 +10,20 @@ export const settings = {
 			type: "string",
 			validation: (rule) => rule.required(),
 		},
-		// {
-		// 	name: "footer",
-		// 	description:
-		// 		"This is a block of text that will be displayed at the bottom of the page.",
-		// 	title: "Footer Info",
-		// 	type: "array",
-		// 	of: [
-		// 		{
-		// 			type: "block",
-		// 			marks: {
-		// 				annotations: [
-		// 					{
-		// 						name: "link",
-		// 						type: "object",
-		// 						title: "Link",
-		// 						fields: [
-		// 							{
-		// 								name: "href",
-		// 								type: "url",
-		// 								title: "Url",
-		// 							},
-		// 						],
-		// 					},
-		// 				],
-		// 			},
-		// 		},
-		// 	],
-		// },
+		{
+			name: "fontgallery",
+			title: "Font Gallery Highlights",
+			type: "array",
+			of: [
+				{
+					type: "reference",
+					to: [{ type: "typeface" }],
+					options: {
+						disableNew: true,
+					},
+				},
+			],
+		},
 	],
 	__experimental_omnisearch_visibility: false,
 	preview: {

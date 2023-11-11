@@ -5,6 +5,7 @@ import LatestProjects from "@/components/LatestProjects";
 import LatestStudios from "@/components/LatestStudios";
 import Manifest from "@/components/Manifest";
 import OnDisplay from "@/components/OnDisplay";
+import SponsorTakeover from "@/components/SponsorTakeover";
 import TextCallout from "@/components/TextCallout";
 
 // import { client } from "../sanity/lib/client";
@@ -44,6 +45,7 @@ export default function Home() {
 				{/* <LatestProjects /> */}
 				<TextCallout title={titleExplore} key={titleExplore} />
 			</section>
+			{/* <SponsorTakeover /> */}
 		</>
 	);
 }
