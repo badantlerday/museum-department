@@ -1,5 +1,11 @@
+import Image from "next/image";
+import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../../sanity/lib/client";
 import Link from "next/link";
+import StudioFeaturedWork from "@/components/StudioFeaturedWork";
+import StudioInterview from "@/components/StudioInterview";
+
+const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -20,6 +26,7 @@ export default async function Studio({ params }) {
 			_id,
             name,
             slug,
+			mainImage{crop,hotspot,asset->},
 			location[]->{
 				_id, name, country->{name}
 			  }
@@ -28,10 +35,22 @@ export default async function Studio({ params }) {
 
 	return (
 		<>
-			<section className="px-20 mx-auto mt-20">
-				<div className=" aspect-video bg-slate-200"></div>
+			<section className="px-20 mx-auto my-20">
+				{studio?.mainImage ? (
+					<Image
+						className="aspect-video mb-2 object-cover"
+						src={builder.image(studio.mainImage).width(1500).url()}
+						width={1500}
+						height={900}
+						blurDataURL={studio.mainImage.asset.metadata.lqip}
+						placeholder="blur"
+						alt={studio?.name}
+					/>
+				) : (
+					<div className=" aspect-video bg-slate-200"></div>
+				)}
 			</section>
-
+			{/* 
 			<section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
 				<h1 className="text-[28px] tracking-wide uppercase mb-1">
 					{studio?.name}
@@ -46,46 +65,103 @@ export default async function Studio({ params }) {
 						{studio.location[0].country.name}
 					</span>
 				</p>
-			</section>
+			</section> */}
 			<section className="pb-36">
-				<div className="px-6 md:px-20 grid md:grid-cols-6 md:gap-10 items-start">
-					<div className="col-span-4 space-y-4 order-2 md:order-none">
-						<div className=" aspect-video bg-slate-200"></div>
-						<div className=" aspect-video bg-slate-200"></div>
-						<div className="grid grid-cols-2 gap-4">
-							<div className=" aspect-[3/4] bg-slate-200"></div>
-							<div className=" aspect-[3/4] bg-slate-200"></div>
+				<div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
+					<div className="col-span-3">
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Classification
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>-</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Style
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>-</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Type Foundry
+							</h2>
 						</div>
 
-						<div className=" aspect-video bg-slate-200"></div>
-						<div className=" aspect-video bg-slate-200"></div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Release Date
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>-</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Designer
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>-</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Font Engieneering
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>-</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Buy
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>-</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Bookmark
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>-</li>
+							</ul>
+						</div>
 					</div>
-					<div className="col-span-2 article order-1 md:order-none mb-10 md:mb-0 _md:sticky _md:top-24">
+					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
 						<p>
-							Established in 1985, Sundance Film Festival is the largest and
-							longest-running independent film festival in the United States.
-							They’ve fostered new voices and risk-taking films, debuting iconic
-							titles of the indie canon: American Psycho to Love & Basketball,
-							Call Me by Your Name to CODA, Little Miss Sunshine to Fair Play.
+							Laborum ut fugiat in et occaecat ad est est amet proident enim
+							labore. Culpa tempor elit quis nisi sunt. Eu elit consequat sint
+							elit culpa labore qui reprehenderit non sint proident dolore sint
+							ea dolore. Qui est tempor veniam sit dolor sunt. Incididunt
+							exercitation anim excepteur non. Eiusmod commodo velit ut elit
+							elit ex pariatur duis. Ex enim ea eiusmod aliqua mollit deserunt
+							amet ullamco commodo deserunt sint sunt elit ullamco cupidatat.
 						</p>
 						<p>
-							Established in 1985, Sundance Film Festival is the largest and
-							longest-running independent film festival in the United States.
-							They’ve fostered new voices and risk-taking films, debuting iconic
-							titles of the indie canon: American Psycho to Love & Basketball,
-							Call Me by Your Name to CODA, Little Miss Sunshine to Fair Play.
+							Cillum deserunt irure ex officia amet. Reprehenderit tempor magna
+							proident. Velit eiusmod ad esse ea est reprehenderit velit id
+							magna. Eu sit eu do mollit culpa laborum tempor reprehenderit sunt
+							laboris. Labore ut amet id veniam aute eiusmod in aliquip fugiat
+							enim qui laboris nulla Lorem dolor. Velit mollit quis amet eu
+							aliquip dolore aliqua.
 						</p>
-
-						<p>
-							Established in 1985, Sundance Film Festival is the largest and
-							longest-running independent film festival in the United States.
-							They’ve fostered new voices and risk-taking films, debuting iconic
-							titles of the indie canon: American Psycho to Love & Basketball,
-							Call Me by Your Name to CODA, Little Miss Sunshine to Fair Play.
-						</p>
+					</div>
+					<div className="article mb-10 md:mb-0 col-start-10 col-span-3">
+						<div>
+							<div className="text-xs font-mono block text-left mt-2">
+								Specimen
+							</div>
+						</div>
 					</div>
 				</div>
 			</section>
+			<StudioFeaturedWork />
+			<StudioInterview />
 		</>
 	);
 }

@@ -41,12 +41,8 @@ export default async function LatestStudios() {
 						>
 							{item?.mainImage ? (
 								<Image
-									className="aspect-[3/4] mb-2"
-									src={builder
-										.image(item.mainImage)
-										.width(500)
-										.height(500)
-										.url()}
+									className="aspect-[3/4] mb-2 object-cover"
+									src={builder.image(item.mainImage).width(500).url()}
 									width={500}
 									height={500}
 									blurDataURL={item.mainImage.asset.metadata.lqip}
