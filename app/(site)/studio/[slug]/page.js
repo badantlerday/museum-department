@@ -28,6 +28,10 @@ export default async function Studio({ params }) {
 
 	return (
 		<>
+			<section className="px-20 mx-auto mt-20">
+				<div className=" aspect-video bg-slate-200"></div>
+			</section>
+
 			<section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
 				<h1 className="text-[28px] tracking-wide uppercase mb-1">
 					{studio?.name}
