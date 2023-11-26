@@ -16,7 +16,8 @@ export default async function Studios() {
 		location[]->{
 			_id, name, country->{name}
 		  },
-		  mainImage{crop,hotspot,asset->}
+		  mainImage{crop,hotspot,asset->},
+		  posterImage{crop,hotspot,asset->}
       }`);
 
 	// Initialize Sets to store unique locations and countries
@@ -57,24 +58,22 @@ export default async function Studios() {
 							passHref
 							className="py-1"
 						>
-							{item?.mainImage ? (
+							{item?.posterImage ? (
 								<Image
 									className="aspect-[3/4] mb-2"
-									src={builder
-										.image(item.mainImage)
-										.width(500)
-										.height(500)
-										.url()}
+									src={builder.image(item.posterImage).width(500).url()}
 									width={500}
-									height={500}
-									blurDataURL={item.mainImage.asset.metadata.lqip}
+									height={665}
+									blurDataURL={item.posterImage.asset.metadata.lqip}
 									placeholder="blur"
 									alt={item?.name}
 								/>
 							) : (
 								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 							)}
-							<span className="">{item.name}</span>
+							<span className=" text-sm font-medium tracking-wide">
+								{item.name}
+							</span>
 						</Link>
 					))}
 				</div>

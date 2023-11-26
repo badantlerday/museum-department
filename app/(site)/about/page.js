@@ -1,3 +1,4 @@
+import AnimatedLink from "@/components/AnimatedLink";
 import BecomeASupporter from "@/components/BecomeASupporter";
 import TextCallout from "@/components/TextCallout";
 
@@ -16,7 +17,8 @@ export default function About() {
 		<>
 			<section className="py-48 space-y-40">
 				<TextCallout title={title} text={text} />
-				<div className="article max-w-2xl mx-auto">
+				<div className="article font-medium max-w-2xl mx-auto">
+					<AnimatedLink text="Explore the archive" url="/archive" />
 					<p>
 						Fonts Gallery is a curated collection of typefaces from foundries
 						around the world. Our mission is to showcase the best typefaces from
@@ -29,9 +31,7 @@ export default function About() {
 						we`&apos;`re keenly focused on highlighting font foundries and the
 						innovative ways their typefaces feature in design projects.
 					</p>
-					<h2 className="mt-16 mb-4 uppercase font-medium tracking-wide">
-						Our mission
-					</h2>
+					<h2 className="mt-16 mb-4 uppercase">Our mission</h2>
 					<p>
 						In a world saturated with fleeting impressions and transient
 						aesthetics, Museum Department emerges as a beacon for enduring

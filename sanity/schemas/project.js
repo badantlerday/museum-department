@@ -32,6 +32,35 @@ export const project = {
 			},
 		},
 		{
+			title: "On Display",
+			name: "ondisplay",
+			type: "boolean",
+		},
+		{
+			name: "displaySettings",
+			title: "On Display Settings",
+			description:
+				"Set the start and end date for when the project is on display",
+			type: "object",
+			options: {
+				columns: 2, // Defines a grid for the fields and how many columns it should have
+			},
+			fields: [
+				{
+					name: "ondisplayStart",
+					title: "Start",
+					type: "datetime",
+					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
+				},
+				{
+					name: "ondisplayEnd",
+					title: "End",
+					type: "datetime",
+					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
+				},
+			],
+		},
+		{
 			name: "publishedAt",
 			title: "Published at",
 			type: "datetime",

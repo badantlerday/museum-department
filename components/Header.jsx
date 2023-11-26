@@ -7,6 +7,7 @@ import {
 } from "@heroicons/react/24/outline";
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
+import AnimatedLink from "./AnimatedLink";
 
 export default function Header() {
 	const pathname = usePathname()
@@ -25,12 +26,13 @@ export default function Header() {
 					<Link href="/archive" className={`${pathname === '/archive' ? ' text-slate-500' : ''}`}>Archive</Link>
 				</div>
 				<div className="hidden lg:flex lg:gap-x-12 text-sm uppercase font-medium tracking-wide">
-					<Link href="/" className="group py-1">
+					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
+					{/* <Link href="/" className="group py-1">
 						<span className="group-hover:hidden">Museum Department</span>
 						<span className="hidden group-hover:block">
 							Curating Contemporary Culture
 						</span>
-					</Link>
+					</Link> */}
 				</div>
 				<div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center">
 					<Link href="/about" className={`${pathname === '/about' ? ' text-slate-500' : ''}`}>About</Link>

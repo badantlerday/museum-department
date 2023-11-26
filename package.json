@@ -10,6 +10,7 @@
   },
   "dependencies": {
     "@heroicons/react": "^2.0.18",
+    "@portabletext/react": "^3.0.11",
     "@sanity/image-url": "^1.0.2",
     "@sanity/vision": "^3.18.1",
     "framer-motion": "^10.16.4",
@@ -17,7 +18,8 @@
     "next-sanity": "^4.3.3",
     "react": "^18",
     "react-dom": "^18",
-    "sanity": "^3.18.1",
+    "rxjs": "^7.8.1",
+    "sanity": "^3.20.1",
     "sanity-plugin-iframe-pane": "^2.6.0"
   },
   "devDependencies": {

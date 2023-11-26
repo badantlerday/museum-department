@@ -28,6 +28,20 @@ export const studio = {
 			},
 		},
 		{
+			name: "posterImage",
+			title: "Poster image",
+			type: "image",
+			options: {
+				hotspot: true,
+			},
+		},
+		{
+			title: "Description",
+			name: "description",
+			type: "array",
+			of: [{ type: "block", styles: [] }],
+		},
+		{
 			title: "Location",
 			name: "location",
 			type: "array",

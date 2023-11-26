@@ -18,7 +18,7 @@ export const schema = {
 	types: [
 		studio,
 		home,
-		// post,
+		post,
 		project,
 		foundry,
 		typeface,

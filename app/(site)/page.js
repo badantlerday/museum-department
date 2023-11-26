@@ -27,6 +27,7 @@ export default function Home() {
 
 	return (
 		<>
+			{/* <SponsorTakeover /> */}
 			<section className=" pt-48">
 				<Manifest />
 			</section>

@@ -4,6 +4,7 @@ import { client } from "../../../../sanity/lib/client";
 import Link from "next/link";
 import StudioFeaturedWork from "@/components/StudioFeaturedWork";
 import StudioInterview from "@/components/StudioInterview";
+import { PortableText } from "@portabletext/react";
 
 const builder = imageUrlBuilder(client);
 
@@ -27,25 +28,36 @@ export default async function Studio({ params }) {
             name,
             slug,
 			mainImage{crop,hotspot,asset->},
+			description,
 			location[]->{
 				_id, name, country->{name}
 			  }
 	  }`;
 	const studio = await client.fetch(query, { slug }); // Provide the value for $slug
+	// console.log(studio);
 
 	return (
 		<>
 			<section className="px-20 mx-auto my-20">
 				{studio?.mainImage ? (
-					<Image
-						className="aspect-video mb-2 object-cover"
-						src={builder.image(studio.mainImage).width(1500).url()}
-						width={1500}
-						height={900}
-						blurDataURL={studio.mainImage.asset.metadata.lqip}
-						placeholder="blur"
-						alt={studio?.name}
-					/>
+					<div className="aspect-video relative flex items-center">
+						<h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono text-white max-w-sm text-center">
+							{studio.name}
+						</h1>
+						<div className="absolute bottom-4 z-20 uppercase text-white text-center w-full font-mono text-md">
+							A Design Studio from {studio.location[0].name},{" "}
+							{studio.location[0].country.name}
+						</div>
+						<Image
+							className="aspect-video object-cover absolute z-10"
+							src={builder.image(studio.mainImage).width(1500).url()}
+							width={1500}
+							height={900}
+							blurDataURL={studio.mainImage.asset.metadata.lqip}
+							placeholder="blur"
+							alt={studio?.name}
+						/>
+					</div>
 				) : (
 					<div className=" aspect-video bg-slate-200"></div>
 				)}
@@ -133,23 +145,7 @@ export default async function Studio({ params }) {
 						</div>
 					</div>
 					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
-						<p>
-							Laborum ut fugiat in et occaecat ad est est amet proident enim
-							labore. Culpa tempor elit quis nisi sunt. Eu elit consequat sint
-							elit culpa labore qui reprehenderit non sint proident dolore sint
-							ea dolore. Qui est tempor veniam sit dolor sunt. Incididunt
-							exercitation anim excepteur non. Eiusmod commodo velit ut elit
-							elit ex pariatur duis. Ex enim ea eiusmod aliqua mollit deserunt
-							amet ullamco commodo deserunt sint sunt elit ullamco cupidatat.
-						</p>
-						<p>
-							Cillum deserunt irure ex officia amet. Reprehenderit tempor magna
-							proident. Velit eiusmod ad esse ea est reprehenderit velit id
-							magna. Eu sit eu do mollit culpa laborum tempor reprehenderit sunt
-							laboris. Labore ut amet id veniam aute eiusmod in aliquip fugiat
-							enim qui laboris nulla Lorem dolor. Velit mollit quis amet eu
-							aliquip dolore aliqua.
-						</p>
+						<PortableText value={studio.description} />
 					</div>
 					<div className="article mb-10 md:mb-0 col-start-10 col-span-3">
 						<div>
