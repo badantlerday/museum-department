@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const AnimatedLink = ({ text, hoverText, url }) => {
+	const displayHoverText = hoverText || text;
 	return (
 		<Link
 			href={url}
@@ -10,7 +11,7 @@ const AnimatedLink = ({ text, hoverText, url }) => {
 				{text}
 			</div>
 			<div className=" group-hover:-translate-y-[100%] transition-all duration-300 ">
-				{hoverText}
+				{displayHoverText}
 			</div>
 		</Link>
 	);

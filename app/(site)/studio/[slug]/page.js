@@ -5,6 +5,7 @@ import Link from "next/link";
 import StudioFeaturedWork from "@/components/StudioFeaturedWork";
 import StudioInterview from "@/components/StudioInterview";
 import { PortableText } from "@portabletext/react";
+import TextCallout from "@/components/TextCallout";
 
 const builder = imageUrlBuilder(client);
 
@@ -35,6 +36,16 @@ export default async function Studio({ params }) {
 	  }`;
 	const studio = await client.fetch(query, { slug }); // Provide the value for $slug
 	// console.log(studio);
+
+	const callOutTitleExplore = "Exploration Redefined";
+	const calloutTextExplore = (
+		<p>
+			At Museum Department, every element is intricately interwoven. Whether a
+			studio, foundry, or individual is linked to a project, typeface,
+			interview, or artifact, our sophisticated search mechanism ensures
+			effortless discovery.
+		</p>
+	);
 
 	return (
 		<>
@@ -83,7 +94,7 @@ export default async function Studio({ params }) {
 					<div className="col-span-3">
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Classification
+								Studio
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
 								<li>-</li>
@@ -91,7 +102,7 @@ export default async function Studio({ params }) {
 						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Style
+								Founded
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
 								<li>-</li>
@@ -99,13 +110,13 @@ export default async function Studio({ params }) {
 						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Type Foundry
+								Size
 							</h2>
 						</div>
 
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Release Date
+								Categories
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
 								<li>-</li>
@@ -113,23 +124,7 @@ export default async function Studio({ params }) {
 						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Designer
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
-							</ul>
-						</div>
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Font Engieneering
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
-							</ul>
-						</div>
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Buy
+								Visit
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
 								<li>-</li>
@@ -149,15 +144,18 @@ export default async function Studio({ params }) {
 					</div>
 					<div className="article mb-10 md:mb-0 col-start-10 col-span-3">
 						<div>
-							<div className="text-xs font-mono block text-left mt-2">
-								Specimen
-							</div>
+							<div className="text-xs font-mono block text-left mt-2"></div>
 						</div>
 					</div>
 				</div>
 			</section>
-			<StudioFeaturedWork />
+			<StudioFeaturedWork name={studio.name} />
 			<StudioInterview />
+			<TextCallout
+				title={callOutTitleExplore}
+				text={calloutTextExplore}
+				key={callOutTitleExplore}
+			/>
 		</>
 	);
 }
