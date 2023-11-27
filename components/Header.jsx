@@ -17,25 +17,19 @@ export default function Header() {
 				className="flex items-center justify-between py-6 px-4 lg:px-20"
 				aria-label="Global"
 			>
-				<div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">
-					<Link href="/" className={`${pathname === '/' ? ' text-[#999999]' : ''}`}>
+				<div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium text-[#999999]">
+					<Link href="/" className={`${pathname === '/' ? ' text-black' : ''}`}>
 						On Display
 					</Link>
-					<Link href="/fonts-gallery" className={`${pathname === '/fonts-gallery' ? ' text-slate-500' : ''}`}>Fonts Gallery</Link>
-					<Link href="/studios" className={`${pathname === '/studios' ? ' text-slate-500' : ''}`}>Studios</Link>
-					<Link href="/archive" className={`${pathname === '/archive' ? ' text-slate-500' : ''}`}>Archive</Link>
+					<Link href="/fonts-gallery" className={`${pathname === '/fonts-gallery' ? ' text-black' : ''}`}>Fonts Gallery</Link>
+					<Link href="/studios" className={`${pathname === '/studios' ? ' text-black' : ''}`}>Studios</Link>
+					<Link href="/archive" className={`${pathname === '/archive' ? ' text-black' : ''}`}>Archive</Link>
 				</div>
 				<div className="hidden lg:flex lg:gap-x-12 text-sm uppercase font-medium tracking-wide">
 					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
-					{/* <Link href="/" className="group py-1">
-						<span className="group-hover:hidden">Museum Department</span>
-						<span className="hidden group-hover:block">
-							Curating Contemporary Culture
-						</span>
-					</Link> */}
 				</div>
 				<div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center">
-					<Link href="/about" className={`${pathname === '/about' ? ' text-slate-500' : ''}`}>About</Link>
+					<Link href="/about" className={`${pathname === '/about' ? ' text-[#999999]' : ''}`}>About</Link>
 					<Link href="/fonts-in-use">Submit</Link>
 					<UserIcon className="h-5 w-5" aria-hidden="true" />
 					<BookmarkIcon className="h-5 w-5" aria-hidden="true" />

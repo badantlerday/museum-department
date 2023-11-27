@@ -1,7 +1,14 @@
-
 import FeedPost from "./FeedPost";
-export default function OnDisplay() {
+import { client } from "../sanity/lib/client";
+export default async function OnDisplay() {
 
+	const query = `*[_type == "project" && ondisplay == true]{
+		_id,
+		title,
+		slug,
+	  }`;
+	  const ondisplay = await client.fetch(query);
+	//   console.log(ondisplay);
 
 	const posts = [
 		{

@@ -7,9 +7,13 @@ export const project = {
 	icon: ImagesIcon,
 	groups: [
 		{
-			name: "content",
-			title: "Content",
+			name: "information",
+			title: "Information",
 			default: true,
+		},
+		{
+			name: "media",
+			title: "Media",
 		},
 		{
 			name: "seo",
@@ -21,11 +25,13 @@ export const project = {
 			name: "title",
 			title: "Title",
 			type: "string",
+			group: "information",
 		},
 		{
 			name: "slug",
 			title: "Slug",
 			type: "slug",
+			group: "information",
 			options: {
 				source: "title",
 				maxLength: 96,
@@ -35,6 +41,7 @@ export const project = {
 			title: "On Display",
 			name: "ondisplay",
 			type: "boolean",
+			group: "information",
 		},
 		{
 			name: "displaySettings",
@@ -42,6 +49,7 @@ export const project = {
 			description:
 				"Set the start and end date for when the project is on display",
 			type: "object",
+			group: "information",
 			options: {
 				columns: 2, // Defines a grid for the fields and how many columns it should have
 			},
@@ -64,16 +72,19 @@ export const project = {
 			name: "publishedAt",
 			title: "Published at",
 			type: "datetime",
+			group: "information",
 		},
 		{
 			name: "year",
 			title: "Year",
 			type: "number",
+			group: "information",
 		},
 		{
 			title: "Studio",
 			name: "studio",
 			type: "reference",
+			group: "information",
 			to: [{ type: "studio" }],
 			weak: true,
 			options: {
@@ -117,6 +128,7 @@ export const project = {
 			title: "Fonts in Use",
 			name: "fontsInUse",
 			type: "array",
+			group: "information",
 			of: [
 				{
 					type: "reference",
@@ -134,6 +146,7 @@ export const project = {
 			title: "Credits",
 			name: "credits",
 			type: "array",
+			group: "information",
 			of: [
 				{
 					type: "object",
@@ -155,6 +168,16 @@ export const project = {
 			],
 			options: {
 				layout: "list",
+			},
+		},
+		// MEDIA
+		{
+			name: "posterImage",
+			title: "Poster image",
+			type: "image",
+			group: "media",
+			options: {
+				hotspot: true,
 			},
 		},
 		// {

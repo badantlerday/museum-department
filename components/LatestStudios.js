@@ -23,13 +23,13 @@ export default async function LatestStudios() {
 				<div className="flex py-4">
 					<h2 className="text-2xl font-medium relative grow">
 						{sectionTitle}
-						<span className=" text-[12px] absolute mt-[-8px] ml-1">
+						<span className=" text-[12px] absolute mt-[-8px] ml-1 hidden">
 							{studios.length}
 						</span>
 					</h2>
-					<Link href="/studios" className=" self-end text-sm font-medium">
+					{/* <Link href="/studios" className=" self-end text-sm font-medium">
 						View all
-					</Link>
+					</Link> */}
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
 					{studios.slice(0, 8).map((item) => (

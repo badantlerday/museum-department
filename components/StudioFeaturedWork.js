@@ -1,3 +1,9 @@
+import Image from "next/image";
+import Link from "next/link";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "@/sanity/lib/client";
+const builder = imageUrlBuilder(client);
+
 export default function StudioFeaturedWork({ name, featuredWork }) {
 	return (
 		<section className="pb-36">
@@ -6,10 +12,33 @@ export default function StudioFeaturedWork({ name, featuredWork }) {
 					Featured Work by <span className="uppercase">{name}</span>
 				</h2>
 			</div>
+
 			<div className="grid grid-cols-3 px-20 mx-auto gap-10">
-				<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
-				<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
-				<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
+				{featuredWork?.map((work, index) => (
+					<Link
+						key={work._id}
+						href={`/project/${work.slug.current}`}
+						passHref
+						className="py-1"
+					>
+						{work?.posterImage ? (
+							<Image
+								className="aspect-[3/4] mb-2"
+								src={builder.image(work.posterImage).width(500).url()}
+								width={500}
+								height={665}
+								blurDataURL={work.posterImage.asset.metadata.lqip}
+								placeholder="blur"
+								alt={work?.name}
+							/>
+						) : (
+							<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
+						)}
+						<span className=" text-sm font-medium tracking-wide">
+							{work.title}
+						</span>
+					</Link>
+				))}
 			</div>
 		</section>
 	);

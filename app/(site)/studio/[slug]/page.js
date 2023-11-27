@@ -32,10 +32,16 @@ export default async function Studio({ params }) {
 			description,
 			location[]->{
 				_id, name, country->{name}
-			  }
+			  },
+			"works": *[_type == "project" && references(^._id)]{
+				_id,
+				slug,
+				title,
+				posterImage{crop,hotspot,asset->},
+			}
 	  }`;
+
 	const studio = await client.fetch(query, { slug }); // Provide the value for $slug
-	// console.log(studio);
 
 	const callOutTitleExplore = "Exploration Redefined";
 	const calloutTextExplore = (
@@ -149,7 +155,7 @@ export default async function Studio({ params }) {
 					</div>
 				</div>
 			</section>
-			<StudioFeaturedWork name={studio.name} />
+			<StudioFeaturedWork name={studio.name} featuredWork={studio.works} />
 			<StudioInterview />
 			<TextCallout
 				title={callOutTitleExplore}
