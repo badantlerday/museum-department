@@ -61,8 +61,8 @@ export default async function Studios() {
 							{item?.posterImage ? (
 								<Image
 									className="aspect-[3/4] mb-2"
-									src={builder.image(item.posterImage).width(500).url()}
-									width={500}
+									src={builder.image(item.posterImage).width(1000).url()}
+									width={800}
 									height={665}
 									blurDataURL={item.posterImage.asset.metadata.lqip}
 									placeholder="blur"

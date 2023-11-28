@@ -6,6 +6,8 @@ import StudioFeaturedWork from "@/components/StudioFeaturedWork";
 import StudioInterview from "@/components/StudioInterview";
 import { PortableText } from "@portabletext/react";
 import TextCallout from "@/components/TextCallout";
+import StudioSounds from "@/components/StudioSounds";
+import ExploreMore from "@/components/ExploreMore";
 
 const builder = imageUrlBuilder(client);
 
@@ -67,8 +69,8 @@ export default async function Studio({ params }) {
 						</div>
 						<Image
 							className="aspect-video object-cover absolute z-10"
-							src={builder.image(studio.mainImage).width(1500).url()}
-							width={1500}
+							src={builder.image(studio.mainImage).width(2400).url()}
+							width={3000}
 							height={900}
 							blurDataURL={studio.mainImage.asset.metadata.lqip}
 							placeholder="blur"
@@ -157,6 +159,8 @@ export default async function Studio({ params }) {
 			</section>
 			<StudioFeaturedWork name={studio.name} featuredWork={studio.works} />
 			<StudioInterview />
+			<StudioSounds />
+			<ExploreMore />
 			<TextCallout
 				title={callOutTitleExplore}
 				text={calloutTextExplore}
