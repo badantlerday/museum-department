@@ -12,7 +12,8 @@ import { interview } from "./schemas/interview";
 import { person } from "./schemas/person";
 import { country } from "./schemas/country";
 import { city } from "./schemas/city";
-import { seo } from "./schemas/objects/seo";
+// import  seo  from "./schemas/objects/seo";
+import gallery from "./schemas/objects/gallery";
 
 export const schema = {
 	types: [
@@ -28,6 +29,6 @@ export const schema = {
 		city,
 		settings,
 		blockContent,
-		// seo,
+		gallery,
 	],
 };

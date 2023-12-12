@@ -11,7 +11,7 @@ import { locate } from "/sanity/locate";
 // Go to https://www.sanity.io/docs/api-versioning to learn how API versioning works
 import { apiVersion, dataset, projectId } from "./sanity/env";
 import { structure } from "./sanity/desk/structure";
-import { defaultDocumentNode } from "./sanity/desk/defaultDocumentNode";
+// import { defaultDocumentNode } from "./sanity/desk/defaultDocumentNode";
 import { schema } from "./sanity/schema";
 
 // We recommend configuring the preview location base URL using
@@ -27,7 +27,7 @@ export default defineConfig({
 	// Add and edit the content schema in the './sanity/schema' folder
 	schema,
 	plugins: [
-		deskTool({ structure, defaultDocumentNode }),
+		deskTool({ structure }),
 		visionTool({ defaultApiVersion: apiVersion }),
 		presentationTool({
 			// Required: set the base URL to the preview location in the front end

@@ -6,6 +6,8 @@ export default async function OnDisplay() {
 		_id,
 		title,
 		slug,
+		posterImage{crop,hotspot,asset->},
+		displaySettings
 	  }`;
 	  const ondisplay = await client.fetch(query);
 	//   console.log(ondisplay);
@@ -109,14 +111,14 @@ export default async function OnDisplay() {
 			</div>
 			<div className="px-20 flex gap-12 lg:gap-24 w-full ">
 				<div className="w-full">
-					{posts.map((post, index) => {
+					{ondisplay.map((post, index) => {
 						if (index % 2 === 0) {
 							return (
 								<div
 									
-									key={post.id}
+									key={post._id}
 								>
-									<FeedPost
+									{/* <FeedPost
 										id={post.id}
 										title={post.title}
 										byline={post.byline}
@@ -124,6 +126,16 @@ export default async function OnDisplay() {
 										image={post.image}
 										padding={post.padding}
 										layout={post.layout}
+										animationDelay={0}
+									/> */}
+									<FeedPost
+										id={post._id}
+										title={post.title}
+										byline={post.displaySettings?.ondisplayByline}
+										href={post.slug}
+										image={post.posterImage}
+										// padding={post.padding}
+										// layout={post.layout}
 										animationDelay={0}
 									/>
 								</div>
@@ -133,14 +145,24 @@ export default async function OnDisplay() {
 					})}
 				</div>
 				<div className="w-full pt-48">
-					{posts.map((post, index) => {
+					{ondisplay.map((post, index) => {
 						if (index % 2 !== 0) {
 							return (
 								<div
 									
-									key={post.id}
+									key={post._id}
 								>
 									<FeedPost
+										id={post._id}
+										title={post.title}
+										byline={post.displaySettings?.ondisplayByline}
+										href={post.slug}
+										image={post.posterImage}
+										// padding={post.padding}
+										// layout={post.layout}
+										animationDelay={0}
+									/>
+									{/* <FeedPost
 										id={post.id}
 										title={post.title}
 										byline={post.byline}
@@ -149,7 +171,7 @@ export default async function OnDisplay() {
 										padding={post.padding}
 										layout={post.layout}
 										animationDelay={0.35}
-									/>
+									/> */}
 								</div>
 							);
 						}

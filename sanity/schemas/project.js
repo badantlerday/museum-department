@@ -16,6 +16,10 @@ export const project = {
 			title: "Media",
 		},
 		{
+			name: "ondisplay",
+			title: "On Display",
+		},
+		{
 			name: "seo",
 			title: "SEO",
 		},
@@ -41,7 +45,7 @@ export const project = {
 			title: "On Display",
 			name: "ondisplay",
 			type: "boolean",
-			group: "information",
+			group: "ondisplay",
 		},
 		{
 			name: "displaySettings",
@@ -49,11 +53,17 @@ export const project = {
 			description:
 				"Set the start and end date for when the project is on display",
 			type: "object",
-			group: "information",
+			group: "ondisplay",
 			options: {
-				columns: 2, // Defines a grid for the fields and how many columns it should have
+				columns: 1, // Defines a grid for the fields and how many columns it should have
 			},
 			fields: [
+				{
+					name: "ondisplayByline",
+					title: "Byline",
+					type: "string",
+					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
+				},
 				{
 					name: "ondisplayStart",
 					title: "Start",
@@ -78,6 +88,12 @@ export const project = {
 			name: "year",
 			title: "Year",
 			type: "number",
+			group: "information",
+		},
+		{
+			name: "information",
+			title: "Information",
+			type: "blockContent",
 			group: "information",
 		},
 		{
@@ -179,6 +195,12 @@ export const project = {
 			options: {
 				hotspot: true,
 			},
+		},
+		{
+			title: "Gallery",
+			name: "gallery",
+			type: "gallery",
+			group: "media",
 		},
 		// {
 		// 	name: "people",

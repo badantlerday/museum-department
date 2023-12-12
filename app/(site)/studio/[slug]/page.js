@@ -8,6 +8,7 @@ import { PortableText } from "@portabletext/react";
 import TextCallout from "@/components/TextCallout";
 import StudioSounds from "@/components/StudioSounds";
 import ExploreMore from "@/components/ExploreMore";
+import { loadQuery } from "@/sanity/store";
 
 const builder = imageUrlBuilder(client);
 
@@ -44,6 +45,7 @@ export default async function Studio({ params }) {
 	  }`;
 
 	const studio = await client.fetch(query, { slug }); // Provide the value for $slug
+	// const studio = await loadQuery(query, { slug });
 
 	const callOutTitleExplore = "Exploration Redefined";
 	const calloutTextExplore = (

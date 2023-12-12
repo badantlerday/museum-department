@@ -1,27 +1,38 @@
 'use client'
 import Image from "next/image";
+import imageUrlBuilder from "@sanity/image-url";
+import { client } from "../sanity/lib/client";
 import { motion } from "framer-motion";
+import Link from "next/link";
+const builder = imageUrlBuilder(client);
 export default function FeedPost({
 	id,
 	title,
-	byline,
+	byline = "Byline",
 	href,
-	image,
-	padding,
-	layout,
+	image = "/image1.jpg",
+	padding = "lg:mx-16",
+	layout = "image",
 	animationDelay
 }) {
+	// console.log(image);
 	let postContent;
 
 	switch (layout) {
 		case "image":
 			postContent = (
 				<div className={`${padding} mb-40`}>
-					{image && <Image src={image} alt="" width={1000} height={1000} />}
+				<Link
+				
+				href={`/project/${href.current}`}
+				passHref
+			>
+					{image && <Image src={builder.image(image).width(500).url()} alt="" width={1000} height={1000} />}
 					<div className="text-sm mt-2">
-						<h2 className="font-medium uppercase tracking-wide">{title} (2)</h2>
+						<h2 className="font-medium uppercase tracking-wide">{title}</h2>
 						<div className="font-medium italic">{byline}</div>
 					</div>
+				</Link>
 				</div>
 			);
 			break;
