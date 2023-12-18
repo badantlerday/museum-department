@@ -31,7 +31,7 @@ export default async function LatestStudios() {
 						View all
 					</Link> */}
 				</div>
-				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-4">
+				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
 					{studios.slice(0, 8).map((item) => (
 						<Link
 							key={item._id}
