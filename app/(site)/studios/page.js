@@ -17,7 +17,11 @@ export default async function Studios() {
 			_id, name, country->{name}
 		  },
 		  mainImage{crop,hotspot,asset->},
-		  posterImage{crop,hotspot,asset->}
+		  posterImage{crop,hotspot,asset->},
+		  "projects": *[_type == "project" && references(^._id)]{
+			name,
+			posterImage{crop,hotspot,asset->},
+		},
       }`);
 
 	// Initialize Sets to store unique locations and countries
@@ -58,15 +62,21 @@ export default async function Studios() {
 							passHref
 							className="py-1"
 						>
-							{item?.posterImage ? (
+							{item.projects?.[0]?.posterImage || item.posterImage ? (
 								<Image
-									className="aspect-[3/4] mb-2"
-									src={builder.image(item.posterImage).width(1000).url()}
+									className="aspect-[3/4] mb-2 object-cover"
+									src={builder
+										.image(item.projects?.[0]?.posterImage || item.posterImage)
+										.width(1000)
+										.url()}
 									width={800}
 									height={665}
-									blurDataURL={item.posterImage.asset.metadata.lqip}
+									blurDataURL={
+										(item.projects?.[0]?.posterImage || item.posterImage).asset
+											.metadata.lqip
+									}
 									placeholder="blur"
-									alt={item?.name}
+									alt={item.name}
 								/>
 							) : (
 								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>

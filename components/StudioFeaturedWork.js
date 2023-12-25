@@ -23,7 +23,7 @@ export default function StudioFeaturedWork({ name, featuredWork }) {
 					>
 						{work?.posterImage ? (
 							<Image
-								className="aspect-[3/4] mb-2"
+								className="aspect-[3/4] mb-2 object-cover"
 								src={builder.image(work.posterImage).width(500).url()}
 								width={500}
 								height={665}

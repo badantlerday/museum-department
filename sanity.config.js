@@ -29,11 +29,11 @@ export default defineConfig({
 	plugins: [
 		deskTool({ structure }),
 		visionTool({ defaultApiVersion: apiVersion }),
-		presentationTool({
-			// Required: set the base URL to the preview location in the front end
-			previewUrl: SANITY_STUDIO_PREVIEW_URL,
-			locate,
-		}),
+		// presentationTool({
+		// 	// Required: set the base URL to the preview location in the front end
+		// 	previewUrl: SANITY_STUDIO_PREVIEW_URL,
+		// 	locate,
+		// }),
 		// media(),
 	],
 });
