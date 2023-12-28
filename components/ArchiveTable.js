@@ -40,7 +40,7 @@ export default async function ArchiveTable() {
 				<tbody>
 					{projects?.map((project, index) => (
 						<tr key={project._id}>
-							<td className="py-1 font-mono text-sm uppercase">
+							<td className="py-1 font-mono text-sm uppercase text-[#999]">
 								Md-00{index + 1}-CAT-00{index + 1}
 							</td>
 							<td>
@@ -51,14 +51,21 @@ export default async function ArchiveTable() {
 									{project.title}
 								</Link>
 							</td>
-							<td>{project.studio.name}</td>
+							<td className="font-medium ">
+								<Link
+									href={`/studio/${project.studio.slug.current}`}
+									className="font-medium hover:italic"
+								>
+									{project.studio.name}
+								</Link>
+							</td>
 
-							<td>Category</td>
-							<td>
+							<td className="text-sm text-[#999] font-mono">Category</td>
+							<td className="text-sm text-[#999] font-mono">
 								{project.studio.location[0].name},{" "}
 								{project.studio.location[0].country?.name}
 							</td>
-							<td>{project.year}</td>
+							<td className="text-sm text-[#999] font-mono">{project.year}</td>
 						</tr>
 					))}
 				</tbody>
