@@ -227,13 +227,15 @@ export const project = {
 		select: {
 			title: "title",
 			studioName: "studio.name",
+			posterImage: "posterImage",
 		},
 		prepare(selection) {
 			// Customize the preview title to include the category name
-			const { title, studioName } = selection;
+			const { title, studioName, posterImage } = selection;
 			return {
 				title: title,
 				subtitle: studioName ? `${studioName}` : "No studio connected",
+				media: posterImage,
 			};
 		},
 	},

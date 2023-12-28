@@ -52,11 +52,9 @@ export default async function Page({ params }) {
 	// console.log(project);
 	return (
 		<>
-			<section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
-				<h1 className="text-[28px] tracking-wide uppercase mb-1">
-					{project?.title}
-				</h1>
-				<p className="font-serif light text-3xl">
+			<section className="px-20 mx-auto text-center justify-center flex flex-col h-[600px] text-2xl font-medium tracking-[0.0075]">
+				<h1 className="uppercase mb-1">{project?.title}</h1>
+				<p className="">
 					Designed by{" "}
 					<Link
 						href={`/studio/${project.studio.slug.current}`}

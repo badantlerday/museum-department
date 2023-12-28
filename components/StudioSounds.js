@@ -40,7 +40,7 @@ export default function StudioSounds() {
 							</Link>
 						</div>
 					</div>
-					<div className="  aspect-square">
+					<div className="  aspect-square COVER">
 						<div className="w-full aspect-square bg-slate-100 mb-2"></div>
 					</div>
 				</div>

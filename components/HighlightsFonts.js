@@ -2,6 +2,7 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import { client } from "../sanity/lib/client";
+import SectionHeader from "./SectionHeader";
 
 const builder = imageUrlBuilder(client);
 
@@ -16,10 +17,10 @@ export default async function HighlightsFonts() {
 	return (
 		<>
 			<section className="px-20 mx-auto">
-				<div className="grid grid-cols-6 gap-4">
-					<h2 className="text-2xl font-medium relative col-span-4 col-start-2">
-						Highlights
-					</h2>
+				<div className="grid grid-cols-6">
+					<div className="col-span-4 col-start-2 ">
+						<SectionHeader title="Highlights" />
+					</div>
 					<div className="col-span-4 col-start-2 grid grid-cols-2 gap-4">
 						{fonthighlights?.slice(0, 2).map((item, index) => (
 							<Link key={index} href={`/font/${item.slug.current}`} passHref>
@@ -36,7 +37,9 @@ export default async function HighlightsFonts() {
 								) : (
 									<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 								)}
-								<h3 className=" text-sm">{item.name}</h3>
+								<h3 className=" text-sm font-medium tracking-[0.0075rem]">
+									{item.name}
+								</h3>
 							</Link>
 						))}
 					</div>

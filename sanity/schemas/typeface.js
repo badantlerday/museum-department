@@ -42,13 +42,15 @@ export const typeface = {
 		select: {
 			title: "name",
 			foundryName: "foundry.name",
+			media: "specimenPoster",
 		},
 		prepare(selection) {
 			// Customize the preview title to include the category name
-			const { title, foundryName } = selection;
+			const { title, foundryName, media } = selection;
 			return {
 				title: title,
 				subtitle: foundryName ? `${foundryName}` : "No foundry connected",
+				media,
 			};
 		},
 	},

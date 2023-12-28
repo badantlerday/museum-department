@@ -1,5 +1,6 @@
 import FeedPost from "./FeedPost";
 import { client } from "../sanity/lib/client";
+import SectionHeader from "./SectionHeader";
 export default async function OnDisplay() {
 
 	const query = `*[_type == "project" && ondisplay == true]{
@@ -107,7 +108,7 @@ export default async function OnDisplay() {
 	return (
 		<>
 			<div className="px-20">
-				<h2 className=" text-2xl font-medium mb-10">On Display</h2>
+				<SectionHeader title="On Display" />
 			</div>
 			<div className="px-20 flex gap-12 lg:gap-24 w-full ">
 				<div className="w-full">
