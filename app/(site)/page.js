@@ -23,7 +23,22 @@ export default function Home() {
 		</p>
 	);
 
-	const titleExplore = "Explore";
+	const titleExplore = "Exploration Redefined";
+	const textExplore = (
+		<>
+			<p>
+				At Museum Department, every element is intricately interwoven. Whether a
+				studio, foundry, or individual is linked to a project, typeface,
+				interview, or artifact, our sophisticated search mechanism ensures
+				effortless discovery.
+			</p>
+			<p>
+				Delve into categories, probe free text, or trace individuals, and
+				navigate the rich network of connections and narratives that our
+				platform offers.
+			</p>
+		</>
+	);
 
 	return (
 		<>
@@ -38,13 +53,27 @@ export default function Home() {
 				<OnDisplay />
 			</section>
 			<section className="pb-40">
-				<TextCallout title={titleSell} text={textSell} key={titleSell} />
+				<TextCallout
+					title={titleSell}
+					text={textSell}
+					button={true}
+					buttonText="Email us"
+					buttonLink="mailto:collaboration@museumdepartment.com"
+					key={titleSell}
+				/>
 			</section>
 			<section className="space-y-40">
 				<LatestStudios />
 				<FontsInUse />
 				{/* <LatestProjects /> */}
-				<TextCallout title={titleExplore} key={titleExplore} />
+				<TextCallout
+					title={titleExplore}
+					text={textExplore}
+					button={true}
+					buttonText="Search"
+					buttonLink="/search"
+					key={titleExplore}
+				/>
 			</section>
 			{/* <SponsorTakeover /> */}
 		</>

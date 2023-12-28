@@ -5,6 +5,8 @@ import imageUrlBuilder from "@sanity/image-url";
 import TextCallout from "@/components/TextCallout";
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
+import { Studio } from "sanity";
+import StudioImageSlideshow from "@/components/StudioImageSlideshow";
 
 const builder = imageUrlBuilder(client);
 
@@ -62,6 +64,26 @@ export default async function Studios() {
 							passHref
 							className="py-1"
 						>
+							{item.projects && item.projects.length > 0 ? (
+								<StudioImageSlideshow
+									images={item.projects.map((p) => p.posterImage)}
+									alt={item.name}
+								/>
+							) : (
+								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
+							)}
+							<span className="text-sm font-medium tracking-wide">
+								{item.name}
+							</span>
+						</Link>
+					))}
+					{/* {studios.map((item) => (
+						<Link
+							key={item._id}
+							href={`/studio/${item.slug.current}`}
+							passHref
+							className="py-1"
+						>
 							{item.projects?.[0]?.posterImage || item.posterImage ? (
 								<Image
 									className="aspect-[3/4] mb-2 object-cover"
@@ -85,7 +107,7 @@ export default async function Studios() {
 								{item.name}
 							</span>
 						</Link>
-					))}
+					))} */}
 				</div>
 			</div>
 		</>
