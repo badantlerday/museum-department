@@ -2,6 +2,7 @@ import { client } from "../../../../sanity/lib/client";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
+import SectionHeader from "@/components/SectionHeader";
 
 const builder = imageUrlBuilder(client);
 
@@ -29,8 +30,8 @@ export default async function Foundry({ params }) {
     _id, 
     title, 
     slug, 
-    studio->{name}, 
-    fontsInUse[]->{name,_id}
+    studio->{name,slug}, 
+    fontsInUse[]->{name,_id,slug}
   }`;
 	const fontinuse = await client.fetch(fontinuseQuery, {
 		typefaceId: typeface._id,
@@ -45,7 +46,7 @@ export default async function Foundry({ params }) {
 			</section>
 			<section className="pb-36">
 				<div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
-					<div className="col-span-2">
+					<div className="col-span-3">
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Font
@@ -127,7 +128,7 @@ export default async function Foundry({ params }) {
 							</ul>
 						</div>
 					</div>
-					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-serif">
+					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
 						<p>
 							Laborum ut fugiat in et occaecat ad est est amet proident enim
 							labore. Culpa tempor elit quis nisi sunt. Eu elit consequat sint
@@ -170,22 +171,24 @@ export default async function Foundry({ params }) {
 			</section>
 			<section>
 				<div className="px-6 md:px-20 mx-auto">
-					<div className="border-t border-[#E6E6E6] mb-10"></div>
-					<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-						{typeface.name} in use
-					</h2>
-					<ul className=" space-x-2 font-mono text-sm flex">
-						<li>All</li>
-						<li>Curated</li>
-					</ul>
+					<div className="border-t border-[#E6E6E6] mb-4"></div>
+					<div className="flex items-center">
+						<div className="grow">
+							<SectionHeader title={`${typeface.name} in use`} />
+						</div>
+						<ul className=" space-x-2 font-medium text-lg flex">
+							<li>All</li>
+							<li>Curated</li>
+						</ul>
+					</div>
 				</div>
-				<div className="px-20 mx-auto grid grid-cols-1 mt-10">
+				<div className="px-20 mx-auto grid grid-cols-1 mt-4">
 					<div className="grid grid-cols-4 gap-4">
 						{fontinuse?.map((project, index) => (
-							<Link key={project._id} href={`project/${project.slug.current}`}>
+							<Link key={project._id} href={`/project/${project.slug.current}`}>
 								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 								<div className="text-sm">
-									<h3 className="">
+									<h3 className="font-medium tracking-[0.0075rem]">
 										{project.title} by {project.studio.name}
 									</h3>
 								</div>

@@ -46,7 +46,7 @@ export default async function Page({ params }) {
 				_id, name, country->{name}
 			  }
 		},
-		credits[]{title,people[]->{_id,name}},
+		credits[]{title,people[]->{_id,name,slug}},
 	  }`;
 	const project = await client.fetch(query, { slug }); // Provide the value for $slug
 	// console.log(project);
@@ -159,7 +159,7 @@ export default async function Page({ params }) {
 									{credit.people?.map((person, index) => (
 										<li key={person._id}>
 											<Link
-												href="/"
+												href={`/person/${person.slug.current}`}
 												className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
 											>
 												{person.name}

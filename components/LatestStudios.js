@@ -53,7 +53,11 @@ export default async function LatestStudios() {
 							</Link>
 							{index === 3 && (
 								// Add your additional link JSX here
-								<Link key="studio-sponsor" href="/your-additional-link">
+								<Link
+									key="studio-sponsor"
+									href="/your-additional-link"
+									className=" order-last lg:order-none"
+								>
 									<div className="w-full aspect-[3/4] bg-stone-100 mb-2 relative">
 										<div className="absolute inset-0 flex items-center justify-center">
 											<p className="text-sm font-medium tracking-[0.0075rem] flex flex-col">

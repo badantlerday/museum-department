@@ -62,15 +62,16 @@ export default async function Studio({ params }) {
 			<section className="px-20 mx-auto my-20">
 				{studio?.mainImage ? (
 					<div className="aspect-video relative flex items-center">
-						<h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono text-white max-w-sm text-center">
+						<h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono text-white max-w-xl text-center">
 							{studio.name}
 						</h1>
 						<div className="absolute bottom-4 z-20 uppercase text-white text-center w-full font-mono text-md">
 							A Design Studio from {studio.location[0].name},{" "}
 							{studio.location[0].country.name}
 						</div>
+						<div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-[0.15] z-10"></div>
 						<Image
-							className="aspect-video object-cover absolute z-10"
+							className="aspect-video object-cover absolute z-0"
 							src={builder.image(studio.mainImage).width(2400).url()}
 							width={3000}
 							height={900}
@@ -80,7 +81,15 @@ export default async function Studio({ params }) {
 						/>
 					</div>
 				) : (
-					<div className=" aspect-video bg-slate-200"></div>
+					<div className="aspect-video relative flex items-center bg-[#FAFBF7]">
+						<h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono max-w-xl text-center">
+							{studio.name}
+						</h1>
+						<div className="absolute bottom-4 z-20 uppercase  text-center w-full font-mono text-md">
+							A Design Studio from {studio.location[0].name},{" "}
+							{studio.location[0].country.name}
+						</div>
+					</div>
 				)}
 			</section>
 			{/* 
