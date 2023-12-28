@@ -37,7 +37,7 @@ export default async function FontsInUse() {
 						)}
 							
 							{project.fontsInUse?.map((typeface, index) => (
-								<h3 key={`fontinuse-${index}-${typeface._id}`} className=" text-sm">
+								<h3 key={`fontinuse-${index}-${typeface._id}`} className=" text-sm font-medium tracking-[0.0075rem]">
 									{typeface.name}
 								</h3>
 							))}
