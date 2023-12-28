@@ -21,8 +21,10 @@ export default async function LatestStudios() {
 
 	return (
 		<>
-			<div className="px-4 lg:px-20 mx-auto">
-				<SectionHeader title="Studios" />
+			<div className="px-4 lg:px-20 mx-auto relative">
+				<div className=" _sticky _top-[50px]">
+					<SectionHeader title="Studios" />
+				</div>
 
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
 					{studios.slice(0, 9).map((item, index) => (
