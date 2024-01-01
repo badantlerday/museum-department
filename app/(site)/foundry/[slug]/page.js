@@ -29,7 +29,7 @@ export default async function Foundry({ params }) {
 		information,
 		mainImage{crop,hotspot,asset->},
 		location[]->{
-			_id, name, country->{name}
+			_id, name, country->{name,slug},slug
 		  },
 		staff[]{title,people[]->{_id,name,slug}},
 		"typefaces": *[_type == "typeface" && references(^._id)]{
@@ -42,6 +42,9 @@ export default async function Foundry({ params }) {
 			slug,
 			title,
 			name,
+			posterImage{crop,hotspot,asset->},
+			studio->{name},
+			fontsInUse[]->{name,_id}
 		}
 	  }`;
 	const foundry = await client.fetch(query, { slug });
@@ -99,7 +102,19 @@ export default async function Foundry({ params }) {
 							<ul className=" space-y-1 font-mono text-sm">
 								{foundry.location?.map((item, index) => (
 									<li key={item._id}>
-										{item?.name}, {item?.country.name}
+										<Link
+											href={`/city/${item?.slug.current}`}
+											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+										>
+											{item?.name}
+										</Link>
+										,{" "}
+										<Link
+											href={`/country/${item?.country.slug.current}`}
+											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+										>
+											{item?.country.name}
+										</Link>
 									</li>
 								))}
 							</ul>

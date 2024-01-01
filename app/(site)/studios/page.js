@@ -73,7 +73,7 @@ export default async function Studios() {
 								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 							)}
 							<span className="text-sm font-medium tracking-wide">
-								{item.name}
+								{item.name} ({item.projects.length})
 							</span>
 						</Link>
 					))}
