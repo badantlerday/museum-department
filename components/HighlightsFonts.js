@@ -9,7 +9,7 @@ const builder = imageUrlBuilder(client);
 export default async function HighlightsFonts() {
 	const fonthighlights = await client.fetch(
 		`*[_type == "settings"][0].fontgallery[]->{
-			_id,name, slug, specimenPoster{crop,hotspot,asset->}
+			_id,name, slug, specimenPoster{crop,hotspot,asset->},foundry->{name,slug}
 		
 		}`
 	);
@@ -38,7 +38,7 @@ export default async function HighlightsFonts() {
 									<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 								)}
 								<h3 className=" text-sm font-medium tracking-[0.0075rem]">
-									{item.name}
+									{item.name} by {item.foundry.name}
 								</h3>
 							</Link>
 						))}

@@ -12,7 +12,7 @@ export default function FontsGallery() {
 	return (
 		<>
 			<section className="py-48 space-y-40">
-				<TextCallout title={title} text={text} />
+				<TextCallout title={title} text={text} button={true} buttonLink="/" buttonText="SUBMIT A TYPE PROJECT" />
                 <HighlightsFonts />
 				<FontsGalleryGrid />
 				<TypeFoundries />

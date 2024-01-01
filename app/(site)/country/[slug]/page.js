@@ -51,7 +51,7 @@ export default async function Country({ params }) {
 									{reference.title && <span>{reference.title}</span>}
 									{reference.name && <span>{reference.name}</span>}
 								</h3>
-								<span className=" font-mono text-xs capitalize">
+								<span className="  capitalize text-sm font-medium tracking-[0.0075rem] text-[#aaa]">
 									{reference._type}
 								</span>
 							</Link>

@@ -9,7 +9,11 @@ export default function FontsInUseBy({ name, projects }) {
 		<>
 			<div className="px-20 mx-auto">
 				<SectionHeader title={`Fonts in use by ${name}`} border={true} />
-				<ul className="space-y-1 text-sm grid grid-flow-col grid-rows-6 grid-cols-6">
+				<ul
+					className={`space-y-1 text-sm grid ${
+						projects.length < 6 ? "grid-cols-4" : "grid-cols-6"
+					}`}
+				>
 					{projects?.map((project, index) => (
 						<li key={project._id}>
 							<Link href={`/project/${project?.slug.current}`}>
