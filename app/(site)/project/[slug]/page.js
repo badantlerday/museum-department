@@ -43,7 +43,7 @@ export default async function Page({ params }) {
 		studio->{
 			_id, name, slug,
 			location[]->{
-				_id, name, country->{name}
+				_id, name, country->{name,slug},slug
 			  }
 		},
 		credits[]{title,people[]->{_id,name,slug}},
@@ -63,13 +63,19 @@ export default async function Page({ params }) {
 						{project.studio.name}
 					</Link>{" "}
 					from{" "}
-					<span className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors">
+					<Link
+						href={`/city/${project.studio.location[0].slug.current}`}
+						className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+					>
 						{project.studio.location[0].name}
-					</span>
+					</Link>
 					,{" "}
-					<span className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors">
+					<Link
+						href={`/country/${project.studio.location[0].country.slug.current}`}
+						className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+					>
 						{project.studio.location[0].country.name}
-					</span>
+					</Link>
 				</p>
 			</section>
 			<section className="pb-36">

@@ -20,6 +20,11 @@ export const typeface = {
 			},
 		},
 		{
+			name: "realaseYear",
+			title: "Release Year",
+			type: "number",
+		},
+		{
 			title: "Foundry",
 			name: "foundry",
 			type: "reference",

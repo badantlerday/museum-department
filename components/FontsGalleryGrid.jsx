@@ -20,11 +20,12 @@ export default async function FontsGalleryGrid() {
 									{typeface.name}
 								</h3>
 							))}
-							{/* <div className="text-xs mt-1 opacity-70">
-								<h4 className="">
-									{project.title} by {project.studio.name}
+							<div className="text-xs mt-1 opacity-70 font-mono">
+								<h4>
+									{project.title}
+									{/* by {project.studio.name} */}
 								</h4>
-							</div> */}
+							</div>
 						</Link>
 					))}
 				</div>

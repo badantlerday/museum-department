@@ -1,6 +1,11 @@
+import Image from "next/image";
+import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../../sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
+import TypefaceBy from "@/components/TypefaceBy";
+import FontsInUseBy from "@/components/FontsInUseBy";
+const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
 // export async function generateMetadata({ params, searchParams }, parent) {
@@ -27,15 +32,38 @@ export default async function Foundry({ params }) {
 			_id, name, country->{name}
 		  },
 		staff[]{title,people[]->{_id,name,slug}},
+		"typefaces": *[_type == "typeface" && references(^._id)]{
+			_id,
+			slug,
+			name,
+		},
+		"projects": *[_type == "project" && fontsInUse[]->foundry->_id match ^._id]{
+			_id,
+			slug,
+			title,
+			name,
+		}
 	  }`;
-	const foundry = await client.fetch(query, { slug }); // Provide the value for $slug
+	const foundry = await client.fetch(query, { slug });
 
 	return (
 		<>
 			<section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
-				<h1 className="text-[28px] tracking-wide uppercase mb-1">
-					{foundry?.name}
-				</h1>
+				{foundry?.mainImage ? (
+					<Image
+						className=""
+						src={builder.image(foundry.mainImage).width(2400).url()}
+						width={3000}
+						height={900}
+						blurDataURL={foundry.mainImage.asset.metadata.lqip}
+						placeholder="blur"
+						alt={foundry?.name}
+					/>
+				) : (
+					<h1 className="text-[28px] tracking-wide uppercase mb-1">
+						{foundry?.name}
+					</h1>
+				)}
 			</section>
 			<section className="pb-36">
 				<div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
@@ -111,6 +139,8 @@ export default async function Foundry({ params }) {
 					</div>
 				</div>
 			</section>
+			<TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
+			<FontsInUseBy name={foundry?.name} projects={foundry?.projects} />
 		</>
 	);
 }
