@@ -2,6 +2,7 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../../sanity/lib/client";
 import Link from "next/link";
+import ReferenceListItem from "@/components/ReferenceListItem";
 
 const builder = imageUrlBuilder(client);
 
@@ -48,16 +49,7 @@ export default async function Studio({ params }) {
 				<ul className="grid grid-cols-6 gap-4">
 					{person?.references?.map((reference) => (
 						<li key={reference._id}>
-							<Link href={`/${reference._type}/${reference.slug.current}`}>
-								<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
-								<h3 className=" text-sm font-medium tracking-[0.0075rem]">
-									{reference.title && <span>{reference.title}</span>}
-									{reference.name && <span>{reference.name}</span>}
-								</h3>
-								<span className=" font-mono text-xs capitalize">
-									{reference._type}
-								</span>
-							</Link>
+							<ReferenceListItem data={reference} />
 						</li>
 					))}
 				</ul>

@@ -3,6 +3,7 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
+import TypefacesByFoundry from "@/components/TypefacesByFoundry";
 
 const builder = imageUrlBuilder(client);
 
@@ -19,9 +20,15 @@ export default async function Foundry({ params }) {
 		asset->
 	},
     foundry->{
+		_id,
         name,
         slug
-    }
+    },
+	"foundryTypfaces": *[_type in ["typeface"] && foundry->_id == ^.foundry->_id]{
+		_id,
+		name,
+		slug,
+	  },
   }`;
 	const typeface = await client.fetch(typefaceQuery, { slug }); // Provide the value for $slug
 
@@ -197,6 +204,10 @@ export default async function Foundry({ params }) {
 					</div>
 				</div>
 			</section>
+			<TypefacesByFoundry
+				name={`Fonts by ${typeface?.foundry.name.toUpperCase()}`}
+				typefaces={typeface.foundryTypfaces}
+			/>
 		</>
 	);
 }

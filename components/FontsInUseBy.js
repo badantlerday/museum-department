@@ -8,9 +8,12 @@ export default function FontsInUseBy({ name, projects }) {
 	return (
 		<>
 			<div className="px-20 mx-auto">
-				<SectionHeader title={`Fonts in use by ${name}`} border={true} />
+				<SectionHeader
+					title={`Fonts in use by ${name.toUpperCase()}`}
+					border={true}
+				/>
 				<ul
-					className={`space-y-1 text-sm grid ${
+					className={` text-sm grid gap-4 mt-2 ${
 						projects.length < 6 ? "grid-cols-4" : "grid-cols-6"
 					}`}
 				>
@@ -38,7 +41,7 @@ export default function FontsInUseBy({ name, projects }) {
 										{typeface.name}
 									</h3>
 								))}
-								<div className="text-sm font-medium mt-1 text-[#AAA] tracking-[0.0075rem]">
+								<div className="text-sm font-medium text-[#AAA] tracking-[0.0075rem]">
 									<h4 className="">
 										{project.title} by {project.studio.name}
 									</h4>
