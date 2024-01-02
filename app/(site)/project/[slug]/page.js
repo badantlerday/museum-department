@@ -107,7 +107,7 @@ export default async function Page({ params }) {
 						<div className=" aspect-video bg-slate-200"></div>
 						<div className=" aspect-video bg-slate-200"></div> */}
 					</div>
-					<div className="col-span-2 article order-1 md:order-none mb-10 md:mb-0 _md:sticky _md:top-24">
+					<div className="col-span-2 article order-1 md:order-none mb-10 md:mb-0 _md:sticky _md:top-24 font-medium">
 						<PortableText value={project?.information} />
 						{/* <p>
 							Established in 1985, Sundance Film Festival is the largest and
@@ -134,7 +134,7 @@ export default async function Page({ params }) {
 
 						<div className=" py-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Fonts
+								Fonts in use
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
 								{project.fontsInUse?.map((font, index) => (

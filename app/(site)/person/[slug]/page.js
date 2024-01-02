@@ -31,7 +31,8 @@ export default async function Studio({ params }) {
 				name,
 				_type,
 				slug,
-				
+				posterImage{crop,hotspot,asset->},
+				mainImage{crop,hotspot,asset->}
 			  }
 	  }`;
 
