@@ -21,15 +21,13 @@ export default function ReferenceListItem({ data }) {
 		return null;
 	};
 
-	const hasImages = data?.posterImage || data?.mainImage;
+	// Prioritize posterImage over mainImage
+	const imageToRender = data?.posterImage || data?.mainImage;
 
 	return (
 		<Link href={`/${data._type}/${data.slug.current}`}>
-			{hasImages ? (
-				<>
-					{renderImage(data?.posterImage)}
-					{renderImage(data?.mainImage)}
-				</>
+			{imageToRender ? (
+				renderImage(imageToRender)
 			) : (
 				<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 			)}
