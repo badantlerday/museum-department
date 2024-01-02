@@ -28,12 +28,12 @@ export default function Header() {
 				<div className="hidden lg:flex lg:gap-x-12 text-sm uppercase font-medium tracking-wide">
 					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
 				</div>
-				<div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center">
-					<Link href="/about" className={`${pathname === '/about' ? ' text-[#999999]' : ''}`}>About</Link>
-					<Link href="/fonts-in-use">Submit</Link>
-					<UserIcon className="h-5 w-5" aria-hidden="true" />
-					<BookmarkIcon className="h-5 w-5" aria-hidden="true" />
-					<MagnifyingGlassIcon className="h-5 w-5" aria-hidden="true" />
+				<div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
+				<Link href="/about" className={`${pathname === '/about' ? ' text-black' : ''}`}>About</Link>
+				<Link href="/submit" className={`${pathname === '/submit' ? ' text-black' : ''}`}>Submit</Link>
+					<UserIcon className="h-5 w-5 text-black" aria-hidden="true" />
+					<BookmarkIcon className="h-5 w-5 text-black" aria-hidden="true" />
+					<MagnifyingGlassIcon className="h-5 w-5 text-black" aria-hidden="true" />
 				</div>
 			</nav>
 		</header>
