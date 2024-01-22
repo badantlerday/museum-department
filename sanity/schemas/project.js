@@ -12,6 +12,10 @@ export const project = {
 			default: true,
 		},
 		{
+			name: "content",
+			title: "Content",
+		},
+		{
 			name: "media",
 			title: "Media",
 		},
@@ -19,6 +23,7 @@ export const project = {
 			name: "ondisplay",
 			title: "On Display",
 		},
+
 		{
 			name: "seo",
 			title: "SEO",
@@ -191,16 +196,23 @@ export const project = {
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",
-			group: "media",
+			group: "information",
 			options: {
 				hotspot: true,
 			},
 		},
 		{
+			title: "Page Blocks",
+			name: "pageBlocks",
+			type: "array",
+			group: "content",
+			of: [{ type: "gallery" }, { type: "quote" }],
+		},
+		{
 			title: "Gallery",
 			name: "gallery",
 			type: "gallery",
-			group: "media",
+			group: "information",
 		},
 		// {
 		// 	name: "people",

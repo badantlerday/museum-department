@@ -1,3 +1,4 @@
+import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "../../../../sanity/lib/client";
@@ -5,6 +6,7 @@ import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import TypefaceBy from "@/components/TypefaceBy";
 import FontsInUseBy from "@/components/FontsInUseBy";
+import TextCallout from "@/components/TextCallout";
 const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
@@ -48,6 +50,23 @@ export default async function Foundry({ params }) {
 		}
 	  }`;
 	const foundry = await client.fetch(query, { slug });
+
+	const titleExplore = "Exploration Redefined";
+	const textExplore = (
+		<>
+			<p>
+				At Museum Department, every element is intricately interwoven. Whether a
+				studio, foundry, or individual is linked to a project, typeface,
+				interview, or artifact, our sophisticated search mechanism ensures
+				effortless discovery.
+			</p>
+			<p>
+				Delve into categories, probe free text, or trace individuals, and
+				navigate the rich network of connections and narratives that our
+				platform offers.
+			</p>
+		</>
+	);
 
 	return (
 		<>
@@ -139,6 +158,28 @@ export default async function Foundry({ params }) {
 								</ul>
 							</div>
 						))}
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Buy Fonts
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li className="flex items-center">
+									[LINK]{" "}
+									<ArrowTopRightOnSquareIcon
+										className="h-4 w-4 text-black"
+										aria-hidden="true"
+									/>
+								</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Bookmark Foundry
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>[LINK] </li>
+							</ul>
+						</div>
 					</div>
 
 					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
@@ -156,6 +197,16 @@ export default async function Foundry({ params }) {
 			</section>
 			<TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
 			<FontsInUseBy name={foundry?.name} projects={foundry?.projects} />
+			<section className="mt-48">
+				<TextCallout
+					title={titleExplore}
+					text={textExplore}
+					button={true}
+					buttonText="Search"
+					buttonLink="/search"
+					key={titleExplore}
+				/>
+			</section>
 		</>
 	);
 }

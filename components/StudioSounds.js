@@ -2,6 +2,24 @@ import Image from "next/image";
 import Link from "next/link";
 
 export default function StudioSounds() {
+	async function getPlaylist(playlistId, accessToken) {
+		const response = await fetch(
+			`https://api.spotify.com/v1/playlists/${playlistId}`,
+			{
+				headers: {
+					Authorization: `Bearer ${accessToken}`,
+				},
+			}
+		);
+
+		if (!response.ok) {
+			throw new Error(`HTTP error! status: ${response.status}`);
+		}
+
+		const playlist = await response.json();
+		return playlist;
+	}
+
 	return (
 		<>
 			<section className="px-4 lg:px-20 mx-auto mb-32">
@@ -11,7 +29,7 @@ export default function StudioSounds() {
 							<h2 className="">Studio Sounds</h2>
 							<div className="italic">Daniel Carlsten, Vol I</div>
 						</div>
-						<div className="    justify-self-end">
+						<div className="justify-self-end">
 							<ul className="mb-6 text-xl space-y-1 font-medium italic">
 								<li>Pale Saints - Blue Flower</li>
 								<li>George Riley - Time</li>

@@ -1,6 +1,27 @@
 "use client";
 import { motion } from "framer-motion";
+// import { useEffect } from "react";
+// import { animate, inView } from "motion";
 export default function Manifest() {
+	// useEffect(() => {
+	// 	let wrapper = document.querySelector(".motion-manifest-section");
+	// 	if (wrapper) {
+	// 		wrapper.style.opacity = "0";
+	// 		wrapper.style.margin = "30px 0 0 0";
+	// 	}
+	// 	inView(
+	// 		".motion-manifest-section",
+	// 		(info) => {
+	// 			animate(
+	// 				info.target,
+	// 				{ opacity: 1, margin: "0px 0px 0px 0px" },
+	// 				{ delay: 0.3, duration: 0.75 }
+	// 			);
+	// 		},
+	// 		{ amount: 0.25 }
+	// 	);
+	// }, []);
+
 	return (
 		<motion.div
 			initial={{ opacity: 0, y: 30 }}
@@ -14,7 +35,8 @@ export default function Manifest() {
 			viewport={{ once: true }}
 			key="manifest"
 		>
-			<div className="article font-medium px-4 lg:px-0 text-xl lg:text-2xl max-w-2xl mx-auto tracking-[0.5%] text-[#AAAAAA]">
+			{/* <div className="motion-manifest-section" key="manifest"> */}
+			<div className=" article font-medium px-4 lg:px-0 text-xl lg:text-2xl max-w-2xl mx-auto tracking-[0.5%] text-[#AAAAAA]">
 				<p>MANIFESTO</p>
 				<p>
 					MUSEUM DEPARTMENT <br />
@@ -42,6 +64,7 @@ export default function Manifest() {
 					platform offers.
 				</p>
 			</div>
+			{/* </div> */}
 		</motion.div>
 	);
 }

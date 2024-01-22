@@ -51,6 +51,7 @@ export default async function Studio({ params }) {
 					{person?.references?.map((reference) => (
 						<li key={reference._id}>
 							<ReferenceListItem data={reference} />
+							{reference.staff?.title}
 						</li>
 					))}
 				</ul>
