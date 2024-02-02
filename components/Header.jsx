@@ -8,9 +8,34 @@ import {
 import Link from "next/link";
 import { usePathname } from 'next/navigation'
 import AnimatedLink from "./AnimatedLink";
+import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
+import {LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 
 export default function Header() {
 	const pathname = usePathname()
+	const {
+        permissions,
+        isLoading,
+        user,
+        accessToken,
+        organization,
+        userOrganizations,
+        getPermission,
+        getBooleanFlag,
+        getIntegerFlag,
+        getFlag,
+        getStringFlag,
+        getClaim,
+        getAccessToken,
+        getToken,
+        getIdToken,
+        getOrganization,
+        getPermissions,
+        getUserOrganizations
+    } = useKindeBrowserClient();
+
+	
+
 	return (
 		<header className="_backdrop-blur-md bg-white/10_ fixed top-0 left-0 w-full z-50 _mix-blend-difference text-white_">
 			<nav
@@ -31,7 +56,14 @@ export default function Header() {
 				<div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
 				<Link href="/about" className={`${pathname === '/about' ? ' text-black' : ''}`}>About</Link>
 				<Link href="/submit" className={`${pathname === '/submit' ? ' text-black' : ''}`}>Submit</Link>
-					<UserIcon className="h-5 w-5 text-black" aria-hidden="true" />
+				
+				{user ? (
+					<Link href="/dashboard" className={`${pathname === '/dashboard' ? ' text-black' : ''}`}>Dashboard</Link>
+				) : (
+					<LoginLink postLoginRedirectURL="/dashboard">Login</LoginLink>
+				)}
+				
+					{/* <UserIcon className="h-5 w-5 text-black" aria-hidden="true" /> */}
 					<BookmarkIcon className="h-5 w-5 text-black" aria-hidden="true" />
 					<MagnifyingGlassIcon className="h-5 w-5 text-black" aria-hidden="true" />
 				</div>

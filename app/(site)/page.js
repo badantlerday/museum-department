@@ -7,6 +7,10 @@ import Manifest from "@/components/Manifest";
 import OnDisplay from "@/components/OnDisplay";
 import SponsorTakeover from "@/components/SponsorTakeover";
 import TextCallout from "@/components/TextCallout";
+import {
+	RegisterLink,
+	LoginLink,
+} from "@kinde-oss/kinde-auth-nextjs/components";
 
 // import { client } from "../sanity/lib/client";
 // import { motion } from "framer-motion";
@@ -43,6 +47,7 @@ export default function Home() {
 	return (
 		<>
 			{/* <SponsorTakeover /> */}
+
 			<section className=" pt-48">
 				<Manifest />
 			</section>
