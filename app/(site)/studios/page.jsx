@@ -3,6 +3,7 @@ import TextCallout from "@/components/TextCallout";
 import { client } from "@/lib/sanity.client";
 import Link from "next/link";
 import StudioImageSlideshow from "@/components/StudioImageSlideshow";
+import Counter from "@/components/Counter"
 
 
 export default async function Studios() {
@@ -40,8 +41,8 @@ export default async function Studios() {
 	const title = "Studios";
 	const text = (
 		<p>
-			There’s {studios.length} studios from {uniqueLocationCount} different
-			cities and {uniqueCountryCount} countries currently on Museum Department.
+			There’s <Counter number={studios.length} /> studios from <Counter number={uniqueLocationCount} /> different
+			cities and <Counter number={uniqueCountryCount} /> countries currently on Museum Department.
 		</p>
 	);
 

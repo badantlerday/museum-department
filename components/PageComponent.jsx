@@ -5,6 +5,7 @@ export const query = `{
 
 import { PortableText } from "@portabletext/react"
 import Blocks from "@/components/Blocks"
+import Counter from "@/components/Counter"
 
 export default function PageComponent({ data }) {
   const { page } = data || {}
@@ -12,10 +13,10 @@ export default function PageComponent({ data }) {
   if (page?.isTextPage) {
     // Page is text page
     return (
-      <main>
-        {page?.title ? <h1>{page?.title}</h1> : null}
+      <main className="pt-48 mx-auto max-w-3xl">
+        {page?.title ? <h1 className="text-3xl mb-4">{page?.title}</h1> : null}
         {page?.body ? (
-          <div className="tailwind-text-styles">
+          <div className="article">
             <PortableText value={page?.body} />
           </div>
         ) : null}

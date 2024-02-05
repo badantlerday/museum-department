@@ -11,7 +11,7 @@ export default function customLink({ data = {} }) {
       </Link>
     )
   } else if (data?.type == "relative") {
-    return <Link href={data?.relative} className={`${pathname === data?.relative ? ' text-black' : 'text-slate-400'}`}>{data?.text ? data?.text : data?.relative}</Link>
+    return <Link href={data?.relative} className={`${pathname === data?.relative ? ' text-black' : 'text-[#999999]'}`}>{data?.text ? data?.text : data?.relative}</Link>
   } else {
     return (
       <a href={data?.external} target="_blank">

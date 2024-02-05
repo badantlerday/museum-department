@@ -1,3 +1,19 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+body {
+    font-family: var(--font-sans);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+}
+
+.article h2 {
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.article p {
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}
