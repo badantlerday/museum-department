@@ -1,7 +1,6 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
 	images: {
-		dangerouslyAllowSVG: true,
 		remotePatterns: [
 			{
 				protocol: "https",
@@ -9,6 +8,15 @@ const nextConfig = {
 			},
 		],
 	},
+	experimental: {
+		taint: true,
+	},
+	// logging: {
+	// 	fetches: {
+	// 		fullUrl: true,
+	// 	},
+	// },
+	// ...other config settings
 };
 
 module.exports = nextConfig;
