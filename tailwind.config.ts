@@ -1,3 +1,4 @@
+const defaultTheme = require("tailwindcss/defaultTheme");
 import type { Config } from 'tailwindcss'
 
 const config: Config = {
@@ -7,8 +8,14 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-    extend: {},
-  },
+		...defaultTheme,
+		// Overriding fontFamily to use @next/font loaded families
+		fontFamily: {
+			sans: "var(--font-sans)",
+			mono: "var(--font-mono)",
+			serif: "var(--font-serif)",
+		},
+	},
   plugins: [require('@tailwindcss/typography')({ className: 'tailwind-text-styles',})],
 }
 export default config
