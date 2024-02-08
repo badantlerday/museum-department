@@ -2,7 +2,7 @@
 import Link from "next/link"
 import { usePathname } from 'next/navigation'
 
-export default function customLink({ data = {} }) {
+export default function CustomLink({ data = {} }) {
   const pathname = usePathname()
   if (data?.type == "internal") {
     return (

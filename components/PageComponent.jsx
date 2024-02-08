@@ -5,7 +5,6 @@ export const query = `{
 
 import { PortableText } from "@portabletext/react"
 import Blocks from "@/components/Blocks"
-import Counter from "@/components/Counter"
 
 export default function PageComponent({ data }) {
   const { page } = data || {}

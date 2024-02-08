@@ -17,5 +17,13 @@ export default defineType({
 			name: "ondisplay",
 			type: "ondisplay",
 		}),
+		defineArrayMember({
+			name: "manifest",
+			type: "manifest",
+		}),
+		defineArrayMember({
+			name: "exploremore",
+			type: "exploremore",
+		}),
 	],
 });

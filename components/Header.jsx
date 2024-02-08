@@ -38,6 +38,7 @@ export default async function Header() {
 const data = await sanityFetch({ query, tags: ["settings"] })
 // const data = await client.fetch(query, { cache: 'no-store' });
 const { headerMenu } = data || {}
+const user = await getUser();
 
 return (
   <header className="fixed top-0 left-0 w-full z-50">
@@ -56,7 +57,7 @@ return (
 					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
 			</div>
       <div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
-        {isAuthenticated ? (
+        {user ? (
           <div className="space-x-4">
           <Link href="/dashboard">Dashboard</Link>
           <LogoutLink>Log out</LogoutLink>

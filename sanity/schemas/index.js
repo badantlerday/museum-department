@@ -24,6 +24,8 @@ import menuItems from "./arrays/menuItems";
 import hero from "./blocks/hero";
 import split from "./blocks/split";
 import ondisplay from "./blocks/ondisplay";
+import manifest from "./blocks/manifest";
+import exploremore from "./blocks/exploremore";
 
 export const schemaTypes = [
 	// Documents
@@ -42,11 +44,13 @@ export const schemaTypes = [
 	siteSeo,
 	blockContent,
 	link,
-	ondisplay,
 	// Arrays
 	blocks,
 	menuItems,
 	// Blocks
 	hero,
 	split,
+	ondisplay,
+	manifest,
+	exploremore,
 ];

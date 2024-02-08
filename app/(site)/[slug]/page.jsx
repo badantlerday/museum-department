@@ -1,6 +1,7 @@
 import { draftMode } from "next/headers"
 import { LiveQuery } from "next-sanity/preview/live-query"
 import { sanityFetch } from "@/lib/sanity.fetch"
+import { notFound } from 'next/navigation'
 
 import { formatMetaData } from "@/lib/utilities"
 
@@ -17,6 +18,10 @@ export async function generateMetadata({ params }) {
 
 export default async function IndexPage({ params }) {
   const data = await sanityFetch({ query, params, tags: ["page"] })
+
+  if (!data.page) {
+    notFound()
+  }
 
   return (
     <LiveQuery

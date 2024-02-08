@@ -1,6 +1,8 @@
 import Hero from "./blocks/Hero"
 import Split from "./blocks/Split"
 import OnDisplay from "./blocks/OnDisplay"
+import Manifest from "./blocks/Manifest"
+import ExploreMore from "./blocks/ExploreMore"
 
 export default function Blocks({ data = [] }) {
   return (
@@ -13,6 +15,10 @@ export default function Blocks({ data = [] }) {
             return <Split key={`section-${key}`} data={block} />
           case "ondisplay":
               return <OnDisplay key={`section-${key}`} data={block} />
+          case "manifest":
+              return <Manifest key={`section-${key}`} data={block} />
+          case "exploremore":
+              return <ExploreMore key={`section-${key}`} data={block} />
         }
       })}
     </>

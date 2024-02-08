@@ -88,5 +88,10 @@ export default defineType({
 		select: {
 			title: "name",
 		},
+		prepare({ title }) {
+			return {
+				title: title,
+			};
+		},
 	},
 });

@@ -150,8 +150,22 @@ export const defaultDocumentNode = (S, props) => {
         .component(Iframe)
         .options({
           url: (doc) => doc?.slug?.current !== 'home'
-            ? `http://localhost:3000/api/preview?page=${doc.slug.current}`
-            : `http://localhost:3000/api/preview`,
+            ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview?page=${doc.slug.current}`
+            : `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview`,
+        })
+        .title('Preview'),
+    ]);
+  }
+
+  if (schemaType === "studio") {
+    return S.document().views([
+      S.view.form(),
+      S.view
+        .component(Iframe)
+        .options({
+          url: (doc) => doc?.slug?.current !== 'home'
+            ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview?page=studio/${doc.slug.current}`
+            : `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview`,
         })
         .title('Preview'),
     ]);

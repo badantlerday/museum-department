@@ -10,6 +10,7 @@ export const formatMetaData = (siteSeo, pageSeo) => {
     let title = `${pageSeo?.metaTitle} ${siteSeo?.separator} ${siteSeo?.title}`
 
     return {
+        metadataBase: new URL('https://museumdepartment.com'),
         title: title,
         description: pageSeo?.metaDesc ? pageSeo.metaDesc : (siteSeo?.description ? siteSeo.description : ''),
         openGraph: {
