@@ -3,6 +3,8 @@ import Split from "./blocks/Split"
 import OnDisplay from "./blocks/OnDisplay"
 import Manifest from "./blocks/Manifest"
 import ExploreMore from "./blocks/ExploreMore"
+import CallOut from "./blocks/CallOut"
+import BecomeASupporter from "./blocks/BecomeASupporter"
 
 export default function Blocks({ data = [] }) {
   return (
@@ -19,6 +21,10 @@ export default function Blocks({ data = [] }) {
               return <Manifest key={`section-${key}`} data={block} />
           case "exploremore":
               return <ExploreMore key={`section-${key}`} data={block} />
+          case "callout":
+              return <CallOut key={`section-${key}`} data={block} />
+          case "becomeasupporter":
+              return <BecomeASupporter key={`section-${key}`} data={block} />
         }
       })}
     </>

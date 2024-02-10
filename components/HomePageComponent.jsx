@@ -8,5 +8,5 @@ import Blocks from "@/components/Blocks"
 export default function HomePageComponent({ data }) {
   const { page } = data || {}
 
-  return <main className="pt-48">{page?.blocks ? <Blocks data={page?.blocks} /> : null}</main>
+  return <main className="pt-28">{page?.blocks ? <Blocks data={page?.blocks} /> : null}</main>
 }

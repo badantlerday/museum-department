@@ -19,6 +19,7 @@ import { sanityFetch } from "@/lib/sanity.fetch"
 import CustomLink from "@/components/CustomLink"
 import AnimatedLink from "@/components/AnimatedLink"
 import Link from "next/link";
+import {SearchIcon,HeartIcon} from '@sanity/icons'
 
 export default async function Header() {
   const {
@@ -57,16 +58,19 @@ return (
 					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
 			</div>
       <div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
+      
+      <Link href="/dashboard">Search</Link>
         {user ? (
           <div className="space-x-4">
           <Link href="/dashboard">Dashboard</Link>
-          <LogoutLink>Log out</LogoutLink>
+          {/* <LogoutLink>Log out</LogoutLink> */}
           </div>
         ) : (
           <LoginLink>Sign in</LoginLink>
         )
         }
-      
+        
+					
       </div>
     </nav>
   </header>

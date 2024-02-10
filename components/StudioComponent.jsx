@@ -26,6 +26,7 @@ import { PortableText } from "@portabletext/react";
 import TextCallout from "@/components/TextCallout";
 import StudioSounds from "@/components/StudioSounds";
 import ExploreMore from "@/components/ExploreMore";
+import BookmarkButton from "@/components/BookmarkButton";
 const builder = imageUrlBuilder(client);
 
   export default function StudioComponent({ data }) {
@@ -118,11 +119,14 @@ const builder = imageUrlBuilder(client);
 							</ul>
 						</div>
 						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+						<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Bookmark
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+								<li>
+									
+									<BookmarkButton documentId={studio._id} />
+								</li>
 							</ul>
 						</div>
 					</div>

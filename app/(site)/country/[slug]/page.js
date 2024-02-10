@@ -25,6 +25,11 @@ export default async function Country({ params }) {
 			_id,
             name,
             slug,
+			"cities": *[_type == "city" && country->_id match ^._id]{
+				_id,
+				name,
+				slug,
+			},
 			"references": *[_type in ["studio","foundry"] && location[]->country->_id match ^._id || _type in ["project"] && studio->location[]->country->_id match ^._id]{
 				_id,
 				title,
@@ -33,7 +38,7 @@ export default async function Country({ params }) {
 				slug,
 				posterImage{crop,hotspot,asset->},
 				mainImage{crop,hotspot,asset->}
-			  },
+			},
 	  }`;
 
 	const country = await client.fetch(query, { slug }); // Provide the value for $slug
@@ -43,6 +48,18 @@ export default async function Country({ params }) {
 			<section className="px-20 mx-auto text-center justify-center flex flex-col h-[600px] font-medium text-2xl tracking-[0.015rem]">
 				<h1 className="  uppercase mb-1">{country?.name}</h1>
 				<p className="">Everything that comes from {country?.name}</p>
+				<ul className="flex mx-auto gap-2 mt-2">
+					{country?.cities?.map((city) => (
+						<li key={city._id}>
+							<Link
+								href={`/city/${city.slug.current}`}
+								className="text-xs bg-slate-200 p-2 rounded"
+							>
+								{city.name}
+							</Link>
+						</li>
+					))}
+				</ul>
 			</section>
 			<div className="px-20 mx-auto">
 				<ul className="grid grid-cols-6 gap-4">

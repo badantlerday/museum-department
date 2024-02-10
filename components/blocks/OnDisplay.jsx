@@ -108,7 +108,7 @@ export default async function OnDisplay() {
 		},
 	];
 	return (
-		<>
+		<section className="py-20">
 			<div className="px-20">
 				
 				<SectionHeader title="On Display" />
@@ -183,6 +183,6 @@ export default async function OnDisplay() {
 					})}
 				</div>
 			</div>
-		</>
+		</section>
 	);
 }

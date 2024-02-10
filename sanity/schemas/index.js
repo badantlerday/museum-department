@@ -26,6 +26,8 @@ import split from "./blocks/split";
 import ondisplay from "./blocks/ondisplay";
 import manifest from "./blocks/manifest";
 import exploremore from "./blocks/exploremore";
+import callout from "./blocks/callout";
+import becomeasupporter from "./blocks/becomeasupporter";
 
 export const schemaTypes = [
 	// Documents
@@ -53,4 +55,6 @@ export const schemaTypes = [
 	ondisplay,
 	manifest,
 	exploremore,
+	callout,
+	becomeasupporter,
 ];

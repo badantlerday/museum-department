@@ -25,5 +25,13 @@ export default defineType({
 			name: "exploremore",
 			type: "exploremore",
 		}),
+		defineArrayMember({
+			name: "callout",
+			type: "callout",
+		}),
+		defineArrayMember({
+			name: "becomeasupporter",
+			type: "becomeasupporter",
+		}),
 	],
 });
