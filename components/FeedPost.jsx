@@ -1,7 +1,7 @@
 "use client";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
-import { client } from "../sanity/lib/client";
+import { client } from "@/lib/sanity.client";
 import { motion } from "framer-motion";
 import Link from "next/link";
 const builder = imageUrlBuilder(client);

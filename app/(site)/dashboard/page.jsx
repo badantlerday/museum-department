@@ -2,6 +2,8 @@ import { Suspense } from "react";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import TextCallout from "@/components/TextCallout";
 import UserBookmarks from "@/components/UserBookmarks";
+import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+
 
 export default async function Dashboard() {
     const {
@@ -21,9 +23,14 @@ export default async function Dashboard() {
     const user = await getUser();
 	const title = user ? `${user.given_name}` : "Welcome to Museum Department";
 	const text = (
-		<p>
-			Here are all of your bookmarks.
-		</p>
+	
+			<p>
+				Here are all of your bookmarks.
+				<span className="mt-4 block">
+				<LogoutLink className="inline-block border border-black p-3 text-xs uppercase tracking-wide hover:bg-black hover:text-white transition-all">Log out</LogoutLink>
+				</span>
+			</p>
+			
 	);
 
 	return (

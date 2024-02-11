@@ -1,7 +1,7 @@
 import Image from "next/image";
 import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
-import { client } from "@/sanity/lib/client";
+import { client } from "@/lib/sanity.client";
 const builder = imageUrlBuilder(client);
 
 export default function StudioFeaturedWork({ name, featuredWork }) {

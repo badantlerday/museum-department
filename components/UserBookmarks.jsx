@@ -1,6 +1,6 @@
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { createClient } from '@supabase/supabase-js'
-import { client } from "../sanity/lib/client";
+import { client } from "@/lib/sanity.client";
 
 export default async function UserBookmarks({ params }) {
   const {getUser,isAuthenticated} = getKindeServerSession();

@@ -3,22 +3,17 @@
 @tailwind utilities;
 
 body {
-  font-family: var(--font-sans);
-    text-rendering: optimizeLegibility;
-    -webkit-font-smoothing: antialiased;
-    /* background-color: #fff; */
-      /* color: var(--color-index-70); */
-  }
-  /* .font-sans {
-      font-family: "Unica77", var(--font-fallback);
-  } */
-  /* .font-serif {
-    font-family: "Plantin", var(--font-fallback);
-  } */
-  /* .font-mono {
-    font-family: "Prestige", var(--font-fallback);
-  } */
+    font-family: var(--font-sans);
+      text-rendering: optimizeLegibility;
+      -webkit-font-smoothing: antialiased;
+}
 
-  .article p {
-    margin-bottom: 1.5rem;
-  }
+.article h2 {
+  text-transform: uppercase;
+  font-weight: 500;
+  margin-bottom: 1rem;
+}
+.article p {
+  margin-bottom: 1.5rem;
+  font-weight: 500;
+}

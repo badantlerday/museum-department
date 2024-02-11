@@ -1,73 +1,78 @@
-'use client'
-import {
-	Bars3Icon,
-	BookmarkIcon,
-	MagnifyingGlassIcon,
-	UserIcon,
-} from "@heroicons/react/24/outline";
+export const query = `*[_type == "settings"][0]{
+  headerMenu->{
+      title,
+      menuItems[] {
+          ...,
+          internal->{
+              title,
+              "type": _type,
+              "slug": slug.current
+          }
+      }
+  },
+}`
+
+import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
+import {LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import { sanityFetch } from "@/lib/sanity.fetch"
+// import { client } from "@/lib/sanity.client";
+import CustomLink from "@/components/CustomLink"
+import AnimatedLink from "@/components/AnimatedLink"
 import Link from "next/link";
-import { usePathname } from 'next/navigation'
-import AnimatedLink from "./AnimatedLink";
-import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
-import {LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import {SearchIcon,HeartIcon} from '@sanity/icons'
 
-export default function Header() {
-	const pathname = usePathname()
-	const {
-        permissions,
-        isLoading,
-        user,
-        accessToken,
-        organization,
-        userOrganizations,
-        getPermission,
-        getBooleanFlag,
-        getIntegerFlag,
-        getFlag,
-        getStringFlag,
-        getClaim,
-        getAccessToken,
-        getToken,
-        getIdToken,
-        getOrganization,
-        getPermissions,
-        getUserOrganizations
-    } = useKindeBrowserClient();
+export default async function Header() {
+  const {
+    getAccessToken,
+    getBooleanFlag,
+    getFlag,
+    getIdToken,
+    getIntegerFlag,
+    getOrganization,
+    getPermission,
+    getPermissions,
+    getStringFlag,
+    getUser,
+    getUserOrganizations,
+    isAuthenticated
+} = getKindeServerSession();
+const data = await sanityFetch({ query, tags: ["settings"] })
+// const data = await client.fetch(query, { cache: 'no-store' });
+const { headerMenu } = data || {}
+const user = await getUser();
 
-	
-
-	return (
-		<header className="_backdrop-blur-md bg-white/10_ fixed top-0 left-0 w-full z-50 _mix-blend-difference text-white_">
-			<nav
+return (
+  <header className="fixed top-0 left-0 w-full z-50">
+    <nav
 				className="flex items-center justify-between py-6 px-4 lg:px-20"
 				aria-label="Global"
 			>
-				<div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium text-[#999999]">
-					<Link href="/" className={`${pathname === '/' ? ' text-black' : ''}`}>
-						On Display
-					</Link>
-					<Link href="/fonts-gallery" className={`${pathname === '/fonts-gallery' ? ' text-black' : ''}`}>Fonts Gallery</Link>
-					<Link href="/studios" className={`${pathname === '/studios' ? ' text-black' : ''}`}>Studios</Link>
-					<Link href="/archive" className={`${pathname === '/archive' ? ' text-black' : ''}`}>Archive</Link>
-				</div>
-				<div className="hidden lg:flex lg:gap-x-12 text-sm uppercase font-medium tracking-wide">
+    {headerMenu?.menuItems && (
+      <div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">
+        {headerMenu?.menuItems.map((menuItem, key) => {
+          return <CustomLink key={`menu-item-${key}`} data={menuItem} />
+        })}
+      </div>
+    )}
+      <div className="hidden lg:flex lg:gap-x-12 text-sm uppercase font-medium tracking-wide">
 					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
-				</div>
-				<div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
-				<Link href="/about" className={`${pathname === '/about' ? ' text-black' : ''}`}>About</Link>
-				<Link href="/submit" className={`${pathname === '/submit' ? ' text-black' : ''}`}>Submit</Link>
-				
-				{user ? (
-					<Link href="/dashboard" className={`${pathname === '/dashboard' ? ' text-black' : ''}`}>Dashboard</Link>
-				) : (
-					<LoginLink postLoginRedirectURL="/dashboard">Login</LoginLink>
-				)}
-				
-					{/* <UserIcon className="h-5 w-5 text-black" aria-hidden="true" /> */}
-					<BookmarkIcon className="h-5 w-5 text-black" aria-hidden="true" />
-					<MagnifyingGlassIcon className="h-5 w-5 text-black" aria-hidden="true" />
-				</div>
-			</nav>
-		</header>
-	);
+			</div>
+      <div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
+      
+      <Link href="/dashboard">Search</Link>
+        {user ? (
+          <div className="space-x-4">
+          <Link href="/dashboard">Dashboard</Link>
+          {/* <LogoutLink>Log out</LogoutLink> */}
+          </div>
+        ) : (
+          <LoginLink>Sign in</LoginLink>
+        )
+        }
+        
+					
+      </div>
+    </nav>
+  </header>
+)
 }

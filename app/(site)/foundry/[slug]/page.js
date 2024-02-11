@@ -1,7 +1,7 @@
-import { ArrowTopRightOnSquareIcon } from "@heroicons/react/16/solid";
+import { LaunchIcon } from "@sanity/icons";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
-import { client } from "../../../../sanity/lib/client";
+import { client } from "@/lib/sanity.client";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import TypefaceBy from "@/components/TypefaceBy";
@@ -165,7 +165,7 @@ export default async function Foundry({ params }) {
 							<ul className=" space-y-2 font-mono text-sm">
 								<li className="flex items-center">
 									[LINK]{" "}
-									<ArrowTopRightOnSquareIcon
+									<LaunchIcon
 										className="h-4 w-4 text-black"
 										aria-hidden="true"
 									/>

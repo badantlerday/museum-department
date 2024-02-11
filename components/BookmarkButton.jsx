@@ -1,12 +1,16 @@
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { createClient } from '@supabase/supabase-js'
-import { client } from "../sanity/lib/client";
 import AddBookmarkLink from "./AddBookmarkLink";
 import RemoveBookmarkLink from "./RemoveBookmarkLink";
 
 export default async function BookmarkButton({ documentId }) {
-    const {getUser,isAuthenticated} = getKindeServerSession();
+    const {getUser} = getKindeServerSession();
     const user = await getUser();
+
+    // Early return if user is not authenticated, prompting them to log in
+    if (!user) {
+        return <div>Sign to bookmark</div>;
+    }
 
     // Create a single supabase client for interacting with your database
 	const supabase = createClient(process.env.SUPABASE_URL, process.env.SUPABASE_PUBLIC_KEY)

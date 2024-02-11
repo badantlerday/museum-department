@@ -1,6 +1,26 @@
-export default function Footer() {
-	return (
-		<footer className="text-sm pt-80 pb-4 px-4 lg:px-20">
+export const query = `*[_type == "settings"][0]{
+    footerMenu->{
+        title,
+        menuItems[] {
+            ...,
+            internal->{
+                title,
+                "type": _type,
+                "slug": slug.current
+            }
+        }
+    },
+}`
+
+import { sanityFetch } from "@/lib/sanity.fetch"
+import CustomLink from "@/components/CustomLink"
+
+export default async function Footer() {
+  const data = await sanityFetch({ query, tags: ["settings"] })
+  const { footerMenu } = data || {}
+
+  return (
+    <footer className="text-sm pt-80 pb-4 px-4 lg:px-20">
 			<div className="grid grid-cols-2 gap-y-8 lg:grid-cols-6 gap-4 w-full font-medium">
 				<div className=" col-span-2 lg:col-span-2">
 					<h2 className="uppercase tracking-wide">Museum Department</h2>
@@ -13,6 +33,13 @@ export default function Footer() {
 						<li>Advertisment</li>
 						<li>Brand Partnership</li>
 					</ul>
+          {footerMenu?.menuItems && (
+            <div className="flex gap-4">
+              {footerMenu?.menuItems.map((menuItem, key) => {
+                return <CustomLink key={`menu-item-${key}`} data={menuItem} />
+              })}
+            </div>
+          )}
 				</div>
 				<div>
 					<h2 className="uppercase tracking-wide">Submit</h2>
@@ -46,5 +73,5 @@ export default function Footer() {
 				Legal Terms.
 			</div>
 		</footer>
-	);
+  )
 }
