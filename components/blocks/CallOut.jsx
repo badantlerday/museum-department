@@ -1,3 +1,5 @@
+"use client";
+import { motion } from "framer-motion";
 import React from "react";
 
 // {
@@ -20,7 +22,19 @@ const {
 
 
 	return (
-	<section className="py-20">
+		<motion.div
+		initial={{ opacity: 0, y: 30 }}
+		whileInView={{ opacity: 1, y: 0 }}
+		transition={{
+			duration: 0.75,
+			delay: 0,
+			// bounce: 0.4,
+			// type: "spring",
+		}}
+		viewport={{ once: true }}
+		key="manifest"
+		className="py-20"
+	>
 		<div className="px-4 lg:px-0 article font-medium text-xl lg:text-2xl max-w-2xl mx-auto tracking-[0.5%]">
 			<div>
 				<span className="uppercase">{title} — </span>
@@ -35,6 +49,6 @@ const {
 				</a>
 			)}
 		</div>
-		</section>
+		</motion.div>
 	);
 }
