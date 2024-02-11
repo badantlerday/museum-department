@@ -23,13 +23,13 @@ export default async function LatestProjects() {
 							key={project._id}
 							href={`/project/${project.slug.current}`}
 							passHref
-							className="py-1"
+							className="py-1 font-medium"
 						>
 							<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 							<span className="">{project.title}</span>
-							<span className="text-xs  tracking-wider block">
+							<span className="text-xs tracking-wider block text-slate-400">
 								{" "}
-								From {project.studio.name}
+								{project.studio.name}
 							</span>
 						</Link>
 					))}
