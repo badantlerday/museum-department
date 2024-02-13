@@ -27,7 +27,7 @@ export default async function Dashboard() {
 			<p>
 				Here are all of your bookmarks.
 				<span className="mt-4 block">
-				<LogoutLink className="inline-block border border-black p-3 text-xs uppercase tracking-wide hover:bg-black hover:text-white transition-all">Log out</LogoutLink>
+				{user ? <LogoutLink className="inline-block border border-black p-3 text-xs uppercase tracking-wide hover:bg-black hover:text-white transition-all">Log out</LogoutLink> :	"Login" }
 				</span>
 			</p>
 			
