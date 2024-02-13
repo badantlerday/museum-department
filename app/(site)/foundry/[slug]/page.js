@@ -80,6 +80,7 @@ export default async function Foundry({ params }) {
 						blurDataURL={foundry.mainImage.asset.metadata.lqip}
 						placeholder="blur"
 						alt={foundry?.name}
+						unoptimized
 					/>
 				) : (
 					<h1 className="text-[28px] tracking-wide uppercase mb-1">
