@@ -202,6 +202,12 @@ export default defineType({
 				hotspot: true,
 			},
 		},
+		defineField({
+			title: "SEO / Share Settings",
+			name: "seo",
+			type: "seo",
+			group: "seo",
+		}),
 		// {
 		// 	title: "Page Blocks",
 		// 	name: "pageBlocks",
