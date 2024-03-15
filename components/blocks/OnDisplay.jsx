@@ -37,7 +37,7 @@ export default async function OnDisplay() {
 										href={post.slug}
 										image={post.posterImage}
 										// padding={post.padding}
-										// layout={post.layout}
+										layout={post.displaySettings?.ondisplayAlignment}
 										animationDelay={0}
 									/>
 								</div>
@@ -46,7 +46,7 @@ export default async function OnDisplay() {
 						return null; // Odd posts go to the next column
 					})}
 				</div>
-				<div className="w-full pt-48">
+				<div className="w-full pt-40">
 					{ondisplay.map((post, index) => {
 						if (index % 2 !== 0) {
 							return (
@@ -60,7 +60,7 @@ export default async function OnDisplay() {
 										href={post.slug}
 										image={post.posterImage}
 										// padding={post.padding}
-										// layout={post.layout}
+										layout={post.displaySettings?.ondisplayAlignment}
 										animationDelay={0}
 									/>									
 								</div>

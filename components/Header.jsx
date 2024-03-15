@@ -54,7 +54,7 @@ return (
         })}
       </div>
     )}
-      <div className="hidden lg:flex lg:gap-x-12 text-sm uppercase font-medium tracking-wide">
+      <div className="hidden lg:flex lg:gap-x-12 text-sm">
 					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
 			</div>
       <div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">

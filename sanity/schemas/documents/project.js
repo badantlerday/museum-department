@@ -65,6 +65,22 @@ export default defineType({
 			},
 			fields: [
 				{
+					name: "ondisplayAlignment",
+					title: "Alignment",
+					type: "string",
+					options: {
+						list: [
+							{ title: "Left", value: "left" },
+							{ title: "Center", value: "center" },
+							{ title: "Right", value: "right" },
+							{ title: "Full", value: "full" },
+						],
+						direction: "horizontal",
+						layout: "radio",
+					},
+					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
+				},
+				{
 					name: "ondisplayByline",
 					title: "Byline",
 					type: "string",

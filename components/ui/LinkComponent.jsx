@@ -1,7 +1,7 @@
 import Link from 'next/link'
 
 export default function LinkComponent({ data }) {
-    console.log(data)
+    // console.log(data)
     if(data.type == 'fragment') {
         return <a href={data.fragment ? data.fragment : ''}>{data.text ? data.text : ''}</a>
     } 

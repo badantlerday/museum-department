@@ -8,8 +8,7 @@ import React, { Fragment } from "react";
 const builder = imageUrlBuilder(client);
 
 export default async function ExploreMore() {
-	const explore =
-		await client.fetch(`*[_type == "studio" ] | order(_createdAt desc) {
+	const explore = await client.fetch(`*[_type == "studio" ] | order(_createdAt desc) {
 	_id, name, slug, mainImage{crop,hotspot,asset->}
   }`);
 

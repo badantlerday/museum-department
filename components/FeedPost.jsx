@@ -11,17 +11,34 @@ export default function FeedPost({
 	byline = "Byline",
 	href,
 	image = "/image1.jpg",
-	padding = "lg:mx-16",
-	layout = "image",
+	padding = "",
+	layout = "center",
 	animationDelay
 }) {
 	// console.log(image);
 	let postContent;
 
 	switch (layout) {
-		case "image":
+		case "left":
 			postContent = (
-				<div className={`${padding} mb-40`}>
+				<div className={`${padding} mb-40 col-span-10 col-start-1`}>
+				<Link
+				
+				href={`/project/${href.current}`}
+				passHref
+			>
+					{image && <Image src={builder.image(image).width(500).url()} alt="" width={1000} height={1000} />}
+					<div className="text-sm mt-2">
+						<h2 className="font-medium uppercase tracking-wide">{title}</h2>
+						<div className="font-medium italic">{byline}</div>
+					</div>
+				</Link>
+				</div>
+			);
+			break;
+		case "center":
+			postContent = (
+				<div className={`${padding} mb-40 col-span-10 col-start-2`}>
 				<Link
 				
 				href={`/project/${href.current}`}
@@ -37,50 +54,41 @@ export default function FeedPost({
 			);
 			break;
 
-		case "image-text":
-			postContent = (
-				// Define the structure for the "image-text" layout
-
-				<div className={`${padding} mb-40`}>
-					<div className="font-medium uppercase text-2xl text-center tracking-wide mb-6">
-						<h2>
-							{title}
-							<span className=" italic block">{byline}</span>
-						</h2>
-					</div>
-					{image && <Image src={image} alt="" width={1000} height={1000} />}
+			case "right":
+				postContent = (
+					<div className={`${padding} mb-40 col-span-10 col-start-3`}>
+					<Link
 					
-				</div>
-			);
-			break;
-
-		case "text":
-			postContent = (
-				// Define the structure for the "text" layout
-				<div className={`${padding} mb-40`}>
-					<div className=" bg-[#F0EDEA] rounded-lg py-6 text-center">
-						<div className=" font-medium tracking-wide uppercase text-sm relative">
-							{title}
-							<span className="text-[9px] mt-[-5px] absolute ml-1">( 1 )</span>
+					href={`/project/${href.current}`}
+					passHref
+				>
+						{image && <Image src={builder.image(image).width(500).url()} alt="" width={1000} height={1000} />}
+						<div className="text-sm mt-2">
+							<h2 className="font-medium uppercase tracking-wide">{title}</h2>
+							<div className="font-medium italic">{byline}</div>
 						</div>
-						<div className=" font-serif font-thin">{byline}</div>
+					</Link>
 					</div>
-				</div>
-			);
-			break;
+				);
+				break;
 
-		case "image-font":
-			postContent = (
-				// Define the structure for the "image-font" layout
-				<div className={`${padding} mb-40`}>
-					{image && <Image src={image} alt="" width={1000} height={1000} />}
-					<div className="text-sm mt-2">
-						<h2 className="font-medium uppercase tracking-wide">{title}</h2>
-						<div className="italic">{byline}</div>
-					</div>
-				</div>
-			);
-			break;
+				case "full":
+					postContent = (
+						<div className={`${padding} mb-40 col-span-12`}>
+						<Link
+						
+						href={`/project/${href.current}`}
+						passHref
+					>
+							{image && <Image src={builder.image(image).width(500).url()} alt="" width={1000} height={1000} />}
+							<div className="text-sm mt-2">
+								<h2 className="font-medium uppercase tracking-wide">{title}</h2>
+								<div className="font-medium italic">{byline}</div>
+							</div>
+						</Link>
+						</div>
+					);
+					break;
 
 		default:
 			postContent = null; // Handle unknown layouts or provide a default
@@ -88,6 +96,7 @@ export default function FeedPost({
 
 	return <motion.div
 	initial={{ opacity: 0, y: 30 }}
+	className="grid grid-cols-12"
 	whileInView={{ opacity: 1, y: 0 }}
 	transition={{
 		duration: 0.75,

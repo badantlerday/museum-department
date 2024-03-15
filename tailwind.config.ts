@@ -15,6 +15,14 @@ const config: Config = {
 			mono: "var(--font-mono)",
 			serif: "var(--font-serif)",
 		},
+		  extend: {
+			colors: {
+				'md-grey-100': '#FAFBF7',
+				'md-grey-200': '#E6E6E6',
+				'md-grey-300': '#AAAAAA',
+				'md-black': '#1B1B1B',
+			  },
+		  },
 	},
   plugins: [require('@tailwindcss/typography')({ className: 'tailwind-text-styles',})],
 }

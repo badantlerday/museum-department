@@ -5,8 +5,9 @@ import { dataset, projectId } from "@/sanity/env"
 
 const builder = imageUrlBuilder({ projectId, dataset })
 
-export default function Split({ data = {} }) {
-  const { title, text, image, imageAlignment } = data || {}
+export default function Split({ data }) {
+  const { title, text, image, imageAlignment } = data ?? {}
+  // const { title, text, image, imageAlignment } = data || {}
 
   return (
     <div className="grid grid-cols-12">

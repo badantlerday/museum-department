@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision';
 import { structure } from './sanity/config/structure';
 import { defaultDocumentNode } from './sanity/config/structure';
 import {media} from 'sanity-plugin-media'
+import { assist } from '@sanity/assist'
 
 const requiredDocuments = ['settings'];
 
@@ -43,6 +44,7 @@ export default defineConfig({
       defaultDocumentNode,
     }),
     media(),
+    assist(),
     visionTool(),
   ],
 })

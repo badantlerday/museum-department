@@ -6,8 +6,8 @@ import LinkComponent from "@/components/ui/LinkComponent"
 
 const builder = imageUrlBuilder({ projectId, dataset })
 
-export default function Hero({ data = {} }) {
-  const { text, image, link } = data || {}
+export default function Hero({ data }) {
+  const { text, image, link } = data ?? {}
   return (
     <div className="relative min-h-svh max-h-svh min-w-full max-w-full flex items-center justify-center">
       <div className="absolute top-0 right-0 bottom-0 left-0">

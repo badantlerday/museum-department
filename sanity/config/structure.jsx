@@ -11,6 +11,7 @@ import {
 	CogIcon,
   UsersIcon,
 	UlistIcon,
+  TagsIcon,
 } from '@sanity/icons';
 
 export const structure = (S, _context) =>
@@ -26,6 +27,7 @@ export const structure = (S, _context) =>
       PersonsItem(S),
       CountriesItem(S),
       CitysItem(S),
+      CategoriesItem(S),
       S.divider(),
       PagesItem(S),
       MenusItem(S),
@@ -138,6 +140,16 @@ const MenusItem = (S) =>
     .child(
       S.documentTypeList('menu')
         .title('Menus')
+    );
+  
+    const CategoriesItem = (S) =>
+  S.listItem()
+    .title('Categories')
+    .icon(TagsIcon)
+    .id('categories')
+    .child(
+      S.documentTypeList('category')
+        .title('Categories')
     );
 
 export const defaultDocumentNode = (S, props) => {

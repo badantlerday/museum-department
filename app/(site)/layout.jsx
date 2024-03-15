@@ -42,6 +42,11 @@ const sans = localFont({
 			weight: "500",
 			style: "normal",
 		},
+		{
+			path: "../../public/fonts/Unica77/Unica77LL-Black.woff2",
+			weight: "900",
+			style: "normal",
+		},
 	],
 	display: "swap",
 	variable: "--font-sans",

@@ -7,7 +7,8 @@ import { PortableText } from "@portabletext/react"
 import Blocks from "@/components/Blocks"
 
 export default function PageComponent({ data }) {
-  const { page } = data || {}
+  // Default to an empty object to allow previews on non-existent documents
+  const { page } = data ?? {}
 
   if (page?.isTextPage) {
     // Page is text page

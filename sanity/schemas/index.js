@@ -9,6 +9,7 @@ import project from "./documents/project";
 import typeface from "./documents/typeface";
 import foundry from "./documents/foundry";
 import menu from "./documents/menu";
+import category from "./documents/category";
 
 // Objects
 import seo from "./objects/seo";
@@ -41,6 +42,7 @@ export const schemaTypes = [
 	project,
 	settings,
 	menu,
+	category,
 	// Objects
 	seo,
 	siteSeo,

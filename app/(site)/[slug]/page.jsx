@@ -1,4 +1,4 @@
-export const revalidate = 0
+// export const revalidate = 0
 import { draftMode } from "next/headers"
 import { LiveQuery } from "next-sanity/preview/live-query"
 import { sanityFetch } from "@/lib/sanity.fetch"
