@@ -9,6 +9,7 @@ import Image from "next/image";
 import FeaturedStudiosHeroSlider from "@/components/FeaturedStudiosHeroSlider";
 const builder = imageUrlBuilder(client);
 import TableStudios from "@/components/TableStudios";
+import NewStudios from "@/components/NewStudios";
 
 export default async function Studios() {
 	const studios = await client.fetch(`*[_type == "studio" ]{
@@ -114,32 +115,10 @@ export default async function Studios() {
 	return (
 		<>
 			<section className="p-20 h-screen mb-40">
-				{/* <div className="px-10 lg:px-20 mx-auto"> */}
-						<FeaturedStudiosHeroSlider data={studios} />
-				{/* </div> */}
+				<FeaturedStudiosHeroSlider data={studios} />
 			</section>
 
-			<section className="py-20 mb-40">
-				<div className="px-10 lg:px-20 mx-auto">
-				<h3 className=" text-2xl font-medium mb-4 ">New studios</h3>
-				<div className="grid grid-cols-2 gap-x-4 ">
-				{newStudios.slice(0, 2).map((item) => (
-					<div key={`new-studio-${item._id}`}>
-						<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2 relative" >
-							<div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider">New studio</div>
-						</div>
-						<span className="text-xs font-medium tracking-wide block uppercase">
-							{item.name} ({item.projects.length})
-						</span>
-						<span className="text-xs font-medium italic block">
-								{item.location[0].name}, {item.location[0].country?.name}
-						</span>
-					</div>
-				))}
-
-				</div>
-				</div>
-			</section>
+			<NewStudios />
 
 			<div className="px-10 lg:px-20 mx-auto mb-40 ">
 				<div className="flex gap-10 border-t border-md-grey-200 pt-6">
