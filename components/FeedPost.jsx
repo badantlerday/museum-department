@@ -100,7 +100,7 @@ export default function FeedPost({
 	whileInView={{ opacity: 1, y: 0 }}
 	transition={{
 		duration: 0.75,
-		delay: animationDelay,
+		delay: 0,
 		// bounce: 0.4,
 		// type: "spring",
 	}}

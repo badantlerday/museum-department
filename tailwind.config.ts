@@ -1,5 +1,47 @@
+import type { Config } from 'tailwindcss';
+
 const defaultTheme = require("tailwindcss/defaultTheme");
-import type { Config } from 'tailwindcss'
+
+interface GridObject {
+  [key: string]: string;
+}
+
+interface TemplateObject {
+  [key: number]: string;
+}
+
+const generateGrid = (size: number) => {
+  const gridColumn: GridObject = {};
+  const gridTemplateColumns: TemplateObject = {};
+  const gridRow: GridObject = {};
+  const gridTemplateRows: TemplateObject = {};
+  const gridRowStart: TemplateObject = {};
+  const gridRowEnd: TemplateObject = {};
+  const gridColumnStart: TemplateObject = {};
+  const gridColumnEnd: TemplateObject = {};
+  
+  for (let i = 1; i <= size; i++) {
+    const spanKey = `span-${i}`;
+    gridColumn[spanKey] = `span ${i} / span ${i}`;
+    gridTemplateColumns[i] = `repeat(${i}, minmax(0, 1fr))`;
+    gridTemplateRows[i] = `repeat(${i}, minmax(0, 1fr))`;
+    gridRowStart[i] = `${i}`;
+    gridRowEnd[i] = `${i}`;
+    gridColumnStart[i] = `${i}`;
+    gridColumnEnd[i] = `${i}`;
+  }
+  
+  return {
+    gridColumn,
+    gridTemplateColumns,
+    gridRow,
+    gridTemplateRows,
+    gridRowStart,
+    gridRowEnd,
+    gridColumnStart,
+    gridColumnEnd,
+  };
+};
 
 const config: Config = {
   content: [
@@ -8,22 +50,24 @@ const config: Config = {
     './app/**/*.{js,ts,jsx,tsx,mdx}',
   ],
   theme: {
-		...defaultTheme,
-		// Overriding fontFamily to use @next/font loaded families
-		fontFamily: {
-			sans: "var(--font-sans)",
-			mono: "var(--font-mono)",
-			serif: "var(--font-serif)",
-		},
-		  extend: {
-			colors: {
-				'md-grey-100': '#FAFBF7',
-				'md-grey-200': '#E6E6E6',
-				'md-grey-300': '#AAAAAA',
-				'md-black': '#1B1B1B',
-			  },
-		  },
-	},
-  plugins: [require('@tailwindcss/typography')({ className: 'tailwind-text-styles',})],
-}
-export default config
+    ...defaultTheme,
+    // Overriding fontFamily to use @next/font loaded families
+    fontFamily: {
+      sans: "var(--font-sans)",
+      mono: "var(--font-mono)",
+      serif: "var(--font-serif)",
+    },
+    extend: {
+      ...generateGrid(24),
+      colors: {
+        'md-grey-100': '#FAFBF7',
+        'md-grey-200': '#E6E6E6',
+        'md-grey-300': '#AAAAAA',
+        'md-black': '#1B1B1B',
+      },
+    },
+  },
+  plugins: [require('@tailwindcss/typography')({ className: 'tailwind-text-styles' })],
+};
+
+export default config;

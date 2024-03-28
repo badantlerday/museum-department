@@ -3,7 +3,7 @@
 @tailwind utilities;
 
 body {
-  background-color: #FAFBF7;
+  background-color: #FFFFFF;
     font-family: var(--font-sans);
       text-rendering: optimizeLegibility;
       -webkit-font-smoothing: antialiased;
@@ -19,6 +19,11 @@ body {
   font-weight: 500;
 }
 
+.md-grid {
+  display: grid;
+  grid-template-columns: repeat(24, 1fr);
+  grid-gap: 1rem;
+}
 
 .dots {
   left: 0;

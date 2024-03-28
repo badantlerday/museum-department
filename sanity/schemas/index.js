@@ -16,6 +16,7 @@ import seo from "./objects/seo";
 import siteSeo from "./objects/siteSeo";
 import blockContent from "./objects/blockContent";
 import link from "./objects/link";
+import customUrl from "./objects/customUrl";
 
 // Arrays
 import blocks from "./arrays/blocks";

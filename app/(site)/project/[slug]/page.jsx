@@ -25,6 +25,7 @@ export default async function Page({ params }) {
 		title,
 		slug,
 		information,
+    mainImage{crop,hotspot,asset->},
 		fontsInUse[]->{
 			name,
 			slug,
@@ -50,8 +51,67 @@ export default async function Page({ params }) {
 	  }`;
   const project = await sanityFetch({ query, params, tags: ["project"] });
 
+//   <section>
+//   <div className="mx-auto px-16 pb-48">
+//     <div className="grid grid-cols-24 gap-4">
+//     <h2 className="text-xl font-medium col-span-full col-start-3">New Fonts Gallery</h2>
+//       <div className="col-start-3 col-end-12">
+//         <div className="bg-slate-200 aspect-[3/4] mb-2"></div>
+//         <span className="text-xs font-medium tracking-wide block uppercase">
+//           Foundry
+//         </span>
+//         <span className="text-xs font-medium italic block">
+//             country and city
+//         </span>
+//       </div>
+//       <div className="bg-slate-200 col-start-14 col-end-23 aspect-[3/4]"></div>					
+//     </div>
+//   </div>
+// </section>
+// <div className="grid grid-cols-24 gap-4">
+// <div className=" col-start-5 col-span-13 bg-slate-600 ">sd</div>
+// {project?.mainImage &&
+//         <div className=" col-start-5 col-span-15 bg-slate-200 ">
+//           sdsd
+//           {/* <Image
+//             className=""
+//             src={builder.image(project.mainImage).width(1500).quality(100).url()}
+//             width={1500}
+//             height={1500}
+//             alt={project.mainImage?.alt || ""}
+//           /> */}
+//         </div>
+         
+//       }
+// </div>
+
+
   return (
     <>
+    <section className="pt-40">
+			<div className="mx-auto px-16 pb-48">
+				<div className="grid grid-cols-24 gap-4">
+					
+						<div className="bg-slate-200 col-start-5 col-span-16 mb-2">
+            {project?.mainImage &&
+        <div className=" col-start-5 col-span-15 bg-slate-200 ">
+          <Image
+            className=""
+            src={builder.image(project.mainImage).width(1500).quality(100).url()}
+            width={1500}
+            height={1500}
+            alt={project.mainImage?.alt || ""}
+          />
+        </div>
+         
+      }
+            </div>
+
+            
+							
+				</div>
+			</div>
+		</section>
       <section className="mx-auto flex h-[600px] flex-col justify-center px-20 text-center text-2xl font-medium tracking-[0.0075]">
         <h1 className="mb-1 uppercase">{project?.title}</h1>
         <p className="">

@@ -100,12 +100,18 @@ export default defineType({
 				},
 			],
 		},
-		{
+		defineField({
+			title: "Published At",
 			name: "publishedAt",
-			title: "Published at",
 			type: "datetime",
 			group: "information",
-		},
+		}),
+		defineField({
+			title: "Updated At",
+			name: "updatedAt",
+			type: "datetime",
+			group: "information",
+		}),
 		{
 			name: "year",
 			title: "Year",
@@ -210,6 +216,15 @@ export default defineType({
 		},
 		// MEDIA
 		{
+			name: "mainImage",
+			title: "Main image",
+			type: "image",
+			group: "content",
+			options: {
+				hotspot: true,
+			},
+		},
+		{
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",
@@ -263,13 +278,16 @@ export default defineType({
 			title: "title",
 			studioName: "studio.name",
 			posterImage: "posterImage",
+			onDisplay: "displaySettings.ondisplayAlignment",
 		},
 		prepare(selection) {
 			// Customize the preview title to include the category name
-			const { title, studioName, posterImage } = selection;
+			const { title, studioName, posterImage, onDisplay } = selection;
 			return {
 				title: title,
-				subtitle: studioName ? `${studioName}` : "No studio connected",
+				subtitle: studioName
+					? `${studioName} - (${onDisplay})`
+					: "No studio connected",
 				media: posterImage,
 			};
 		},

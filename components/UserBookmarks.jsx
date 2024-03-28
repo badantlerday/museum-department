@@ -1,6 +1,7 @@
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { createClient } from '@supabase/supabase-js'
 import { client } from "@/lib/sanity.client";
+import Link from "next/link";
 
 export default async function UserBookmarks({ params }) {
   const {getUser,isAuthenticated} = getKindeServerSession();
@@ -20,7 +21,7 @@ export default async function UserBookmarks({ params }) {
 
 	const bookmarkDocuments = await client.fetch(
 		`*[_id in $documentIds] {
-		  _id, title, name, slug
+		  _id, title, name, slug, _type
 		}`,
 		{ documentIds } // Passing the array as a parameter
 	  );
@@ -28,7 +29,11 @@ export default async function UserBookmarks({ params }) {
   return (
     <ul className="space-y-2">
     {bookmarkDocuments.map((bookmark) => (
-      <li key={bookmark._id}>{bookmark.name}{bookmark.title}</li>
+      <li key={bookmark._id}>
+        <Link href={`/${bookmark._type}/${bookmark.slug.current}`}>
+        {bookmark.name}{bookmark.title} ({bookmark._type})
+        </Link>
+        </li>
     ))}
     </ul>
   );

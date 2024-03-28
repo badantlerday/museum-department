@@ -59,14 +59,14 @@ return (
 			</div>
       <div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
       
-      <Link href="/dashboard">Search</Link>
+      <Link href="/search">Search</Link>
         {user ? (
           <div className="space-x-4">
-          <Link href="/dashboard">Dashboard</Link>
+          <Link href="/dashboard">My profile</Link>
           {/* <LogoutLink>Log out</LogoutLink> */}
           </div>
         ) : (
-          <LoginLink>Sign in</LoginLink>
+          <LoginLink>My profile</LoginLink>
         )
         }
         

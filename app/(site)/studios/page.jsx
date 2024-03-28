@@ -8,6 +8,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import FeaturedStudiosHeroSlider from "@/components/FeaturedStudiosHeroSlider";
 const builder = imageUrlBuilder(client);
+import TableStudios from "@/components/TableStudios";
 
 export default async function Studios() {
 	const studios = await client.fetch(`*[_type == "studio" ]{
@@ -26,7 +27,7 @@ export default async function Studios() {
 		},
       }`);
 
-	  const recentlyUpdatedProjects = await client.fetch(`*[_type == "project" ] | order(_updatedAt desc){
+	  const recentlyUpdatedProjects = await client.fetch(`*[_type == "project" ] | order(updatedAt desc){
         _id,
 		title,
 		slug,
@@ -124,7 +125,7 @@ export default async function Studios() {
 				<div className="grid grid-cols-2 gap-x-4 ">
 				{newStudios.slice(0, 2).map((item) => (
 					<div key={`new-studio-${item._id}`}>
-						<div className="w-full aspect-[4/3] bg-md-grey-200 mb-2 relative" >
+						<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2 relative" >
 							<div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider">New studio</div>
 						</div>
 						<span className="text-xs font-medium tracking-wide block uppercase">
@@ -245,62 +246,9 @@ export default async function Studios() {
 				<TextCallout title={title} text={text} />
 			</section>
 			<section className="py-20">
-				<div className="px-10 lg:px-20 mx-auto">
-			<table className="w-full">
-				<thead>
-					<tr className="font-mono">
-						<th className="text-left font-normal text-sm uppercase pb-4">Id</th>
-						<th className="text-left font-normal text-sm uppercase pb-4">
-							Project
-						</th>
-						<th className="text-left font-normal text-sm uppercase pb-4">
-							Made by
-						</th>
-						<th className="text-left font-normal text-sm uppercase pb-4">
-							Category
-						</th>
-						<th className="text-left font-normal text-sm uppercase pb-4">
-							Location
-						</th>
-						<th className="text-left font-normal text-sm uppercase pb-4">
-							Year
-						</th>
-					</tr>
-				</thead>
-				<tbody>
-					{studios?.map((item, index) => (
-						<tr key={item._id}>
-							<td className="py-1 font-mono text-sm uppercase text-[#999]">
-								Md-00{index + 1}-CAT-00{index + 1}
-							</td>
-							<td>
-								<Link
-									href={`/project/${item.slug.current}`}
-									className="font-medium hover:italic"
-								>
-									{item.title}
-								</Link>
-							</td>
-							<td className="font-medium ">
-								<Link
-									href={`/studio/${item.studio?.slug.current}`}
-									className="font-medium hover:italic"
-								>
-									{item.studio?.name}
-								</Link>
-							</td>
-
-							<td className="text-sm text-[#999] font-mono">Category</td>
-							<td className="text-sm text-[#999] font-mono">
-								{/* {item.studio.location[0].name},{" "}
-								{item.studio.location[0].country?.name} */}
-							</td>
-							<td className="text-sm text-[#999] font-mono">{item.year}</td>
-						</tr>
-					))}
-				</tbody>
-			</table>
-			</div>
+			<div className="px-10 lg:px-20 mx-auto ">
+				<TableStudios />
+				</div>
 			</section>
 		</>
 	);

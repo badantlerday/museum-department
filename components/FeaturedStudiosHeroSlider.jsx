@@ -73,21 +73,32 @@ export default function FeaturedStudiosHeroSlider({data}) {
       <div className=" h-full relative">
         
       <div ref={sliderRef} className="keen-slider h-full">
-        {studios.slice(0, 6).map((item) => (
+        {studios.slice(0, 4).map((item) => (
         <div className="keen-slider__slide h-full" key={item._id}>
-          <div className="relative bg-md-grey-200 h-full">
-          
-            {item.mainImage &&
-            <div className="absolute top-0 right-0 bottom-0 left-0">
-              <Image
-                className="absolute object-cover top-0 right-0 bottom-0 h-full w-full"
-                src={builder.image(item.mainImage).width(1500).quality(100).url()}
-                width={1500}
-                height={1500}
-                alt={item.mainImage?.alt || ""}
-              />
+          <div className="relative bg-md-grey-100 h-full">
+            <div className="absolute top-0 right-0 bottom-0 left-0 flex items-center">
+				
+						<h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono text-white max-w-xl text-center">
+							{item.name}
+						</h1>
+						<div className="absolute bottom-4 z-20 uppercase text-white text-center w-full font-mono text-md">
+							A Design Studio from {item.location[0].name},{" "}
+							{item.location[0].country.name}
+						</div>
+						<div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-[0.15] z-10"></div>
+						{item.mainImage &&
+						<Image
+							className="aspect-video object-cover absolute z-0"
+							src={builder.image(item.mainImage).width(2400).url()}
+							width={3000}
+							height={900}
+							blurDataURL={item.mainImage.asset.metadata.lqip}
+							placeholder="blur"
+							alt={item?.name}
+						/>
+					}
             </div>
-          }
+          
           </div>
         </div>
         ))}

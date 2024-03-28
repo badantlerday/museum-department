@@ -7,10 +7,13 @@ import React, { Fragment } from "react";
 
 const builder = imageUrlBuilder(client);
 
-export default async function ExploreMore() {
+export default async function ExploreMore({data}) {
+
+	console.log(data);
+
 	const explore =
-		await client.fetch(`*[_type == "studio" ] | order(_createdAt desc) {
-	_id, name, slug, mainImage{crop,hotspot,asset->}
+		await client.fetch(`*[_type == "${data.documentTypes}" && "${data.country[0].name}" in location[]->country->name ] | order(_createdAt desc) {
+	_id, name, title, slug, mainImage{crop,hotspot,asset->}
   }`);
 
 	//Getting a list of studios from the UK
@@ -19,10 +22,12 @@ export default async function ExploreMore() {
 	//Getting a list of studios from a city
 	//&& "Stockholm" in location[]->name
 
+	console.log(explore);
+
 	return (
 		<section className="pb-36">
 			<div className="px-20 mx-auto">
-				<SectionHeader title="Explore more studios from" border={true} />
+				<SectionHeader title={`Explore more ${data.documentTypes} from ${data.country[0].name}`} border={true} />
 
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
 					{explore.slice(0, 10).map((item, index) => (
@@ -48,7 +53,7 @@ export default async function ExploreMore() {
 								)}
 
 								<h3 className="text-sm font-medium tracking-[0.0075rem]">
-									{item.name}
+									{item.name} {item.title}
 								</h3>
 							</Link>
 						</Fragment>

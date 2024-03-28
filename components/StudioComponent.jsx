@@ -5,6 +5,7 @@ export const query = `{
 		slug,
 		description,
 		mainImage{crop,hotspot,asset->},
+		exploreMore{documentTypes,city[]->{_id},country[]->{_id,name},category[]->{_id}},
 		location[]->{
 			_id, name, country->{name}
 		  },
@@ -31,6 +32,7 @@ const builder = imageUrlBuilder(client);
 
   export default function StudioComponent({ data }) {
     const { studio } = data || {}
+
 
     const callOutTitleExplore = "Exploration Redefined";
 	const calloutTextExplore = (
@@ -143,7 +145,7 @@ const builder = imageUrlBuilder(client);
 			<StudioFeaturedWork name={studio.name} featuredWork={studio.works} />
 			<StudioInterview />
 			<StudioSounds />
-			<ExploreMore />
+			<ExploreMore data={studio.exploreMore} />
 			<TextCallout
 				title={callOutTitleExplore}
 				text={calloutTextExplore}

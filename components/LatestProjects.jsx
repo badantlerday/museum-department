@@ -25,12 +25,13 @@ export default async function LatestProjects() {
 							passHref
 							className="py-1 font-medium"
 						>
-							<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
-							<span className="">{project.title}</span>
-							<span className="text-xs tracking-wider block text-slate-400">
-								{" "}
-								{project.studio.name}
-							</span>
+							<div className="w-full aspect-[3/4] bg-md-grey-100 mb-2"></div>
+							<span className="text-xs font-medium tracking-wide block uppercase">
+							{project.title}
+						</span>
+						<span className="text-xs font-medium italic block">
+						{project.studio.name}
+						</span>
 						</Link>
 					))}
 				</div>

@@ -6,6 +6,15 @@ import { structure } from './sanity/config/structure';
 import { defaultDocumentNode } from './sanity/config/structure';
 import {media} from 'sanity-plugin-media'
 import { assist } from '@sanity/assist'
+import {presentationTool} from 'sanity/presentation'
+import "./sanity/custom.css";
+
+// We recommend configuring the preview location base URL using
+// environment variables to support multiple environments
+const SANITY_STUDIO_PREVIEW_URL = (
+	process.env.SANITY_STUDIO_PREVIEW_URL
+	|| 'http://localhost:3000'
+)
 
 const requiredDocuments = ['settings'];
 
@@ -44,8 +53,12 @@ export default defineConfig({
       defaultDocumentNode,
     }),
     media(),
-    assist(),
+    // assist(),
     visionTool(),
+    presentationTool({
+      // Required: set the base URL to the preview location in the front end
+      previewUrl: SANITY_STUDIO_PREVIEW_URL,
+    }),
   ],
 })
 
