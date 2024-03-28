@@ -8,7 +8,7 @@ export default async function TableStudios() {
 	// 			_id, name, country->{name}
 	// 		  }}, fontsInUse[]->{name,_id}
 	//   }`);
-	const studios = await client.fetch(`*[_type == "studio"] {
+	const studios = await client.fetch(`*[_type == "studio"] | order(name asc) {
         _id,
         idNumber,
         name,
@@ -47,8 +47,8 @@ export default async function TableStudios() {
 				</thead>
 				<tbody>
 					{studios?.map((item, index) => (
-						<tr key={item._id}>
-							<td className="py-1 font-mono text-sm uppercase text-[#999]">
+						<tr key={item._id} className="text-xs">
+							<td className="py-1 font-mono uppercase text-md-grey-300">
 								MD-DS-{String(item.idNumber).padStart(3, '0')}
 							</td>
 							<td>
@@ -64,9 +64,9 @@ export default async function TableStudios() {
 								{item.location[0].country?.name}
 							</td>
 
-							<td className="text-sm text-[#999] font-mono">{item.founded}</td>
-							<td className="text-sm text-[#999] font-mono">{item.size}</td>
-							<td className="text-sm text-[#999] font-mono">
+							<td className=" text-md-grey-300 font-mono">{item.founded}</td>
+							<td className=" text-md-grey-300 font-mono">{item.size}</td>
+							<td className=" text-md-grey-300 font-mono">
 								{item.category?.map((c) => c.title).join(", ")}
 							</td>
 							

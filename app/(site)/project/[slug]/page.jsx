@@ -89,30 +89,52 @@ export default async function Page({ params }) {
   return (
     <>
     <section className="pt-40">
-			<div className="mx-auto px-16 pb-48">
+			<div className="mx-auto px-16">
 				<div className="grid grid-cols-24 gap-4">
 					
 						<div className="bg-slate-200 col-start-5 col-span-16 mb-2">
             {project?.mainImage &&
-        <div className=" col-start-5 col-span-15 bg-slate-200 ">
-          <Image
-            className=""
-            src={builder.image(project.mainImage).width(1500).quality(100).url()}
-            width={1500}
-            height={1500}
-            alt={project.mainImage?.alt || ""}
-          />
-        </div>
-         
-      }
+              <div className=" col-start-5 col-span-15 bg-slate-200 ">
+                <Image
+                  className=""
+                  src={builder.image(project.mainImage).width(1500).quality(100).url()}
+                  width={1500}
+                  height={1500}
+                  alt={project.mainImage?.alt || ""}
+                />
+              </div>
+              
+            }
             </div>
-
-            
-							
 				</div>
 			</div>
 		</section>
-      <section className="mx-auto flex h-[600px] flex-col justify-center px-20 text-center text-2xl font-medium tracking-[0.0075]">
+    <section className="mx-auto px-16 ">
+    <h1 className="text-center text-[56px]/[50px] font-black mx-auto flex flex-col my-20 uppercase tracking-tight px-28">
+          <span>{project?.title}</span><span>
+          <Link
+            href={`/studio/${project.studio.slug.current}`}
+            className="transition-colors hover:text-md-grey-300"
+          >
+            {project.studio.name}
+          </Link>{" "}
+          </span><span><Link
+            href={`/city/${project.studio.location[0].slug.current}`}
+            className="transition-colors hover:text-md-grey-300"
+          >
+            {project.studio.location[0].name}
+          </Link>
+          ,{" "}
+          <Link
+            href={`/country/${project.studio.location[0].country.slug.current}`}
+            className="transition-colors hover:text-md-grey-300"
+          >
+            {project.studio.location[0].country.name}
+          </Link>
+          </span>
+        </h1>
+    </section>
+      {/* <section className="mx-auto flex h-[600px] flex-col justify-center px-20 text-center text-2xl font-medium tracking-[0.0075]">
         <h1 className="mb-1 uppercase">{project?.title}</h1>
         <p className="">
           Designed by{" "}
@@ -137,66 +159,17 @@ export default async function Page({ params }) {
             {project.studio.location[0].country.name}
           </Link>
         </p>
-      </section>
-      <section className="pb-36">
-        <div className="grid items-start px-6 md:grid-cols-6 md:gap-10 md:px-20">
-          <div className="_space-y-4 order-2 col-span-4 grid grid-cols-2 gap-4 md:order-none">
-            {project.gallery?.images?.map((item, index) => (
-              <Image
-                key={item._key}
-                className={` object-cover ${
-                  item.display === "2col"
-                    ? "col-span-2 aspect-[4/3]"
-                    : "aspect-[3/4]"
-                }`}
-                src={builder.image(item).width(2000).url()}
-                width={2000}
-                height={1500}
-                blurDataURL={item.asset.metadata.lqip}
-                placeholder="blur"
-                alt="alt"
-              />
-            ))}
-            {/* <div className=" aspect-video bg-slate-200"></div>
-						<div className=" aspect-video bg-slate-200"></div>
-						<div className="grid grid-cols-2 gap-4">
-							<div className=" aspect-[3/4] bg-slate-200"></div>
-							<div className=" aspect-[3/4] bg-slate-200"></div>
-						</div>
-
-						<div className=" aspect-video bg-slate-200"></div>
-						<div className=" aspect-video bg-slate-200"></div> */}
-          </div>
-          <div className="article _md:sticky _md:top-24 order-1 col-span-2 mb-10 font-medium md:order-none md:mb-0">
-            <PortableText value={project?.information} />
-            {/* <p>
-							Established in 1985, Sundance Film Festival is the largest and
-							longest-running independent film festival in the United States.
-							They’ve fostered new voices and risk-taking films, debuting iconic
-							titles of the indie canon: American Psycho to Love & Basketball,
-							Call Me by Your Name to CODA, Little Miss Sunshine to Fair Play.
-						</p>
-						<p>
-							Established in 1985, Sundance Film Festival is the largest and
-							longest-running independent film festival in the United States.
-							They’ve fostered new voices and risk-taking films, debuting iconic
-							titles of the indie canon: American Psycho to Love & Basketball,
-							Call Me by Your Name to CODA, Little Miss Sunshine to Fair Play.
-						</p>
-
-						<p>
-							Established in 1985, Sundance Film Festival is the largest and
-							longest-running independent film festival in the United States.
-							They’ve fostered new voices and risk-taking films, debuting iconic
-							titles of the indie canon: American Psycho to Love & Basketball,
-							Call Me by Your Name to CODA, Little Miss Sunshine to Fair Play.
-						</p> */}
-
-            <div className=" py-5">
-              <h2 className=" mb-2 text-xs font-medium uppercase tracking-wide">
-                Fonts in use
-              </h2>
-              <ul className=" space-y-2 font-mono text-sm">
+      </section> */}
+  <section className="mb-40">
+    <div className="px-10 lg:px-20 mx-auto">
+    <div className="grid grid-cols-24 gap-4">
+      <div className="col-start-3 col-span-4">
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Published</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Bookmark</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Categories</h2>
+        <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Fonts in use</h2>
+              <ul className=" space-y-2 font-mono text-xs">
                 {project.fontsInUse?.map((font, index) => (
                   <li key={index}>
                     <Link
@@ -215,13 +188,14 @@ export default async function Page({ params }) {
                   </li>
                 ))}
               </ul>
-            </div>
-            {project.credits?.map((credit, index) => (
-              <div key={index} className=" py-5">
+      </div>
+      <div className=" col-span-4">
+      {project.credits?.map((credit, index) => (
+              <div key={index} className=" pb-5">
                 <h2 className=" mb-2 text-xs font-medium uppercase tracking-wide">
                   {credit.title}
                 </h2>
-                <ul className=" space-y-1 font-mono text-sm">
+                <ul className=" space-y-1 font-mono text-xs mb-4">
                   {credit.people?.map((person, index) => (
                     <li key={person._id}>
                       <Link
@@ -235,9 +209,38 @@ export default async function Page({ params }) {
                 </ul>
               </div>
             ))}
-          </div>
-        </div>
-      </section>
+
+      </div>
+      <div className=" col-start-13 col-span-10 font-medium ">
+      <PortableText value={project?.information} />
+      </div>
+    </div>
+    </div>
+  </section>
+
+  <section className="mx-auto px-16">
+    <div className=" order-2 col-span-4 grid grid-cols-2 gap-4 md:order-none">
+    {project.gallery?.images?.map((item, index) => (
+              <Image
+                key={item._key}
+                className={` object-cover ${
+                  item.display === "2col"
+                    ? "col-span-2 aspect-[4/3]"
+                    : "aspect-[3/4]"
+                }`}
+                src={builder.image(item).width(2000).url()}
+                width={2000}
+                height={1500}
+                blurDataURL={item.asset.metadata.lqip}
+                placeholder="blur"
+                alt="alt"
+              />
+            ))}
+    </div>
+ 
+  </section>
+
+
     </>
   );
 }
