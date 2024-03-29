@@ -39,6 +39,11 @@ export default defineType({
 			},
 		},
 		{
+			name: "mainFontImage",
+			title: "Main Font image",
+			type: "image",
+		},
+		{
 			title: "Location",
 			name: "location",
 			type: "array",

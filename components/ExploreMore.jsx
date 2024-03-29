@@ -9,7 +9,11 @@ const builder = imageUrlBuilder(client);
 
 export default async function ExploreMore({data}) {
 
-	console.log(data);
+	// console.log(data);
+
+	if (!data) {
+		return null;
+	}
 
 	const explore =
 		await client.fetch(`*[_type == "${data.documentTypes}" && "${data.country[0].name}" in location[]->country->name ] | order(_createdAt desc) {

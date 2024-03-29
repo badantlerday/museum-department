@@ -1,11 +1,17 @@
 import { client } from "@/lib/sanity.client";
 import Link from "next/link";
 import SectionHeader from "./SectionHeader";
+import imageUrlBuilder from "@sanity/image-url";
+import Image from "next/image";
+const builder = imageUrlBuilder(client);
 
 
 export async function NewTypeFoundries() {
 	const foundries = await client.fetch(`*[_type == "foundry"]{
-    _id, name, slug
+    _id,
+	name,
+	slug,
+	mainImage{crop,hotspot,asset->},
   }`);
 
 	return (
@@ -17,7 +23,26 @@ export async function NewTypeFoundries() {
 				<div className="grid grid-cols-2 gap-4" >
 				{foundries.slice(0, 2).map((item) => (
 					<div key={item._id}>
-					<div className="bg-md-grey-100 aspect-[4/3] mb-2"></div>
+					{item.mainImage || item.mainImage ? (
+								
+								<Image
+								className="aspect-[4/3] mb-2 object-cover"
+								src={builder
+									.image(item.mainImage || item.mainImage)
+									.width(1000)
+									.url()}
+								width={800}
+								height={665}
+								blurDataURL={
+									(item.mainImage || item.mainImage).asset
+										.metadata.lqip
+								}
+								placeholder="blur"
+								alt={item.name}
+							/>
+							) : (
+								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
+							)}
 					<span className="text-xs font-medium tracking-wide block uppercase">
 					{item.name}
 						</span>
@@ -34,15 +59,40 @@ export async function NewTypeFoundries() {
 			<div className="mx-auto px-16 py-10">
 				<div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
 				{foundries.slice(2, 6).map((item) => (
-					<div key={item._id}>
-					<div className="bg-md-grey-100 aspect-[4/3] mb-2"></div>
+					
+						<Link
+							key={item._id}
+							href={`/foundry/${item.slug.current}`}
+							passHref
+							className="py-1 font-medium"
+						>
+					{item.mainImage || item.mainImage ? (
+								
+								<Image
+								className="aspect-[4/3] mb-2 object-cover"
+								src={builder
+									.image(item.mainImage || item.mainImage)
+									.width(500)
+									.url()}
+								width={800}
+								height={665}
+								blurDataURL={
+									(item.mainImage || item.mainImage).asset
+										.metadata.lqip
+								}
+								placeholder="blur"
+								alt={item.name}
+							/>
+							) : (
+								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
+							)}
 					<span className="text-xs font-medium tracking-wide block uppercase">
 					{item.name}
 						</span>
 						<span className="text-xs font-medium italic block">
 								country and city
 						</span>
-					</div>
+					</Link>
 					))}
 				</div>
 			</div>

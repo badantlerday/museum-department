@@ -13,7 +13,7 @@ export default function StudioFeaturedWork({ name, featuredWork }) {
 				</h2>
 			</div>
 
-			<div className="grid grid-cols-3 px-20 mx-auto gap-10">
+			<div className="grid grid-cols-3 px-20 mx-auto gap-4">
 				{featuredWork?.map((work, index) => (
 					<Link
 						key={work._id}
@@ -24,8 +24,8 @@ export default function StudioFeaturedWork({ name, featuredWork }) {
 						{work?.posterImage ? (
 							<Image
 								className="aspect-[3/4] mb-2 object-cover"
-								src={builder.image(work.posterImage).width(500).url()}
-								width={500}
+								src={builder.image(work.posterImage).width(1000).url()}
+								width={1000}
 								height={665}
 								blurDataURL={work.posterImage.asset.metadata.lqip}
 								placeholder="blur"

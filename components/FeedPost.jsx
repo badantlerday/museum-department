@@ -27,7 +27,7 @@ export default function FeedPost({
 				href={`/project/${href.current}`}
 				passHref
 			>
-					{image && <Image src={builder.image(image).width(500).url()} alt="" width={1000} height={1000} />}
+					{image && <Image src={builder.image(image).width(1000).url()} alt="" width={1000} height={1000} />}
 					<div className="text-sm mt-2">
 						<h2 className="font-medium uppercase tracking-wide">{title}</h2>
 						<div className="font-medium italic">{byline}</div>
@@ -44,7 +44,7 @@ export default function FeedPost({
 				href={`/project/${href.current}`}
 				passHref
 			>
-					{image && <Image src={builder.image(image).width(500).url()} alt="" width={1000} height={1000} />}
+					{image && <Image src={builder.image(image).width(1000).url()} alt="" width={1000} height={1000} />}
 					<div className="text-sm mt-2">
 						<h2 className="font-medium uppercase tracking-wide">{title}</h2>
 						<div className="font-medium italic">{byline}</div>

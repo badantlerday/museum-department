@@ -5,7 +5,7 @@ import SectionHeader from "@/components/SectionHeader";
 
 export default async function OnDisplay() {
 
-	const query = `*[_type == "project" && ondisplay == true]{
+	const query = `*[_type == "project" && ondisplay == true] | order(_createdAt desc){
 		_id,
 		title,
 		slug,

@@ -30,6 +30,7 @@ export default async function Foundry({ params }) {
 		founded,
 		information,
 		mainImage{crop,hotspot,asset->},
+		mainFontImage{asset->},
 		location[]->{
 			_id, name, country->{name,slug},slug
 		  },
@@ -71,13 +72,13 @@ export default async function Foundry({ params }) {
 	return (
 		<>
 			<section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
-				{foundry?.mainImage ? (
+				{foundry?.mainFontImage ? (
 					<Image
 						className=""
-						src={builder.image(foundry.mainImage).width(2400).url()}
+						src={builder.image(foundry.mainFontImage).width(2400).url()}
 						width={3000}
 						height={900}
-						blurDataURL={foundry.mainImage.asset.metadata.lqip}
+						blurDataURL={foundry.mainFontImage.asset.metadata.lqip}
 						placeholder="blur"
 						alt={foundry?.name}
 						unoptimized
@@ -119,7 +120,7 @@ export default async function Foundry({ params }) {
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Location
 							</h2>
-							<ul className=" space-y-1 font-mono text-sm">
+							{/* <ul className=" space-y-1 font-mono text-sm">
 								{foundry.location?.map((item, index) => (
 									<li key={item._id}>
 										<Link
@@ -137,7 +138,7 @@ export default async function Foundry({ params }) {
 										</Link>
 									</li>
 								))}
-							</ul>
+							</ul> */}
 						</div>
 
 						{foundry.staff?.map((item, index) => (

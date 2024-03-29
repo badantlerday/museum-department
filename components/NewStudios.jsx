@@ -28,7 +28,13 @@ export default async function NewStudios() {
 				<h3 className=" text-2xl font-medium mb-4 ">New Studios</h3>
 				<div className="grid grid-cols-2 gap-x-4 ">
 				{newStudios.slice(0, 2).map((item) => (
-					<div key={`new-studio-${item._id}`}>
+					
+                    <Link
+							key={item._id}
+							href={`/studio/${item.slug.current}`}
+							passHref
+							className="_relative group"
+						>    
 						<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2 relative" >
 							<div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider">New studio</div>
                             {item.mainImage || item.mainImage ? (
@@ -58,7 +64,7 @@ export default async function NewStudios() {
 						<span className="text-xs font-medium italic block">
 								{item.location[0].name}, {item.location[0].country?.name}
 						</span>
-					</div>
+                        </Link>
 				))}
 
 				</div>
