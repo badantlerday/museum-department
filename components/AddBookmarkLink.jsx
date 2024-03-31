@@ -26,7 +26,7 @@ const AddBookmarkLink = ({ documentId }) => {
         throw error;
       }
 
-      console.log('Bookmark added successfully:', data);
+      // console.log('Bookmark added successfully:', data);
       setMessage('Bookmark added successfully.');
     } catch (error) {
       console.error('Error adding bookmark:', error);

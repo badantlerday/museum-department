@@ -92,10 +92,16 @@ export default defineType({
 	preview: {
 		select: {
 			title: "name",
+			cityName: "location.0.name",
+			// mainImage: "mainImage",
 		},
-		prepare({ title }) {
+		prepare(selection) {
+			// Customize the preview title to include the category name
+			const { title, cityName, mainImage } = selection;
 			return {
 				title: title,
+				subtitle: cityName ? `${cityName}` : "No city connected",
+				// media: mainImage,
 			};
 		},
 	},

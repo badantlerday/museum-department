@@ -124,6 +124,24 @@ export default defineType({
 			type: "blockContent",
 			group: "information",
 		},
+		defineField({
+			title: "Category",
+			name: "category",
+			type: "array",
+			group: "content",
+			of: [
+				{
+					type: "reference",
+					to: [{ type: "category" }],
+					options: {
+						disableNew: false,
+					},
+				},
+			],
+			options: {
+				layout: "list",
+			},
+		}),
 		{
 			title: "Studio",
 			name: "studio",

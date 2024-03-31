@@ -26,7 +26,7 @@ const RemoveBookmarkLink = ({ documentId }) => {
         throw error;
       }
 
-      console.log('Bookmark removed successfully:', data);
+      // console.log('Bookmark removed successfully:', data);
       setMessage('Bookmark removed successfully.');
     } catch (error) {
       console.error('Error removing bookmark:', error);

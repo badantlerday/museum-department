@@ -5,6 +5,7 @@ import Link from "next/link";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
+import { format } from 'date-fns';
 
 const builder = imageUrlBuilder(client);
 
@@ -25,6 +26,8 @@ export default async function Page({ params }) {
 		title,
 		slug,
 		information,
+    publishedAt,
+    category[]->,
     mainImage{crop,hotspot,asset->},
 		fontsInUse[]->{
 			name,
@@ -50,41 +53,7 @@ export default async function Page({ params }) {
 		credits[]{title,people[]->{_id,name,slug}},
 	  }`;
   const project = await sanityFetch({ query, params, tags: ["project"] });
-
-//   <section>
-//   <div className="mx-auto px-16 pb-48">
-//     <div className="grid grid-cols-24 gap-4">
-//     <h2 className="text-xl font-medium col-span-full col-start-3">New Fonts Gallery</h2>
-//       <div className="col-start-3 col-end-12">
-//         <div className="bg-slate-200 aspect-[3/4] mb-2"></div>
-//         <span className="text-xs font-medium tracking-wide block uppercase">
-//           Foundry
-//         </span>
-//         <span className="text-xs font-medium italic block">
-//             country and city
-//         </span>
-//       </div>
-//       <div className="bg-slate-200 col-start-14 col-end-23 aspect-[3/4]"></div>					
-//     </div>
-//   </div>
-// </section>
-// <div className="grid grid-cols-24 gap-4">
-// <div className=" col-start-5 col-span-13 bg-slate-600 ">sd</div>
-// {project?.mainImage &&
-//         <div className=" col-start-5 col-span-15 bg-slate-200 ">
-//           sdsd
-//           {/* <Image
-//             className=""
-//             src={builder.image(project.mainImage).width(1500).quality(100).url()}
-//             width={1500}
-//             height={1500}
-//             alt={project.mainImage?.alt || ""}
-//           /> */}
-//         </div>
-         
-//       }
-// </div>
-
+  const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
 
   return (
     <>
@@ -165,9 +134,28 @@ export default async function Page({ params }) {
     <div className="grid grid-cols-24 gap-4">
       <div className="col-start-3 col-span-4">
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Published</h2>
+        <ul className=" space-y-2 font-mono text-xs mb-4">               
+        <li>{publishedAt}</li>
+        </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Bookmark</h2>
+      <ul className=" space-y-1 font-mono text-xs mb-4">               
+        <li>Bookmark</li>
+        </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
+      <ul className=" space-y-1 font-mono text-xs mb-4">               
+        <li>{project.studio.name}</li>
+        </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Categories</h2>
+      <ul className=" space-y-1 font-mono text-xs mb-4">
+                {project.category?.map((cat, index) => (
+                  <li key={index}>
+
+                      {cat.title}
+                   
+
+                  </li>
+                ))}
+              </ul>
         <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Fonts in use</h2>
               <ul className=" space-y-2 font-mono text-xs">
                 {project.fontsInUse?.map((font, index) => (
@@ -192,7 +180,7 @@ export default async function Page({ params }) {
       <div className=" col-span-4">
       {project.credits?.map((credit, index) => (
               <div key={index} className=" pb-5">
-                <h2 className=" mb-2 text-xs font-medium uppercase tracking-wide">
+                <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">
                   {credit.title}
                 </h2>
                 <ul className=" space-y-1 font-mono text-xs mb-4">

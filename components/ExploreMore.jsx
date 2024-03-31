@@ -26,7 +26,7 @@ export default async function ExploreMore({data}) {
 	//Getting a list of studios from a city
 	//&& "Stockholm" in location[]->name
 
-	console.log(explore);
+	// console.log(explore);
 
 	return (
 		<section className="pb-36">
