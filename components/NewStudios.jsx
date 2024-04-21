@@ -25,7 +25,7 @@ export default async function NewStudios() {
 	return (
 		<section className="mb-40">
 				<div className="px-10 lg:px-16 mx-auto">
-				<h3 className=" text-2xl font-medium mb-4 ">New Studios</h3>
+				<h3 className=" text-xl font-medium mb-4 ">New Studios</h3>
 				<div className="grid grid-cols-2 gap-x-4 ">
 				{newStudios.slice(0, 2).map((item) => (
 					
@@ -36,7 +36,7 @@ export default async function NewStudios() {
 							className="_relative group"
 						>    
 						<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2 relative" >
-							<div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider">New studio</div>
+							{/* <div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider">New studio</div> */}
                             {item.mainImage || item.mainImage ? (
 								
 								<Image
