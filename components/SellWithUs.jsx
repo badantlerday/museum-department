@@ -1,7 +1,7 @@
 export default function SellWithUs() {
 	return (
         <section className="py-20">
-            <div className="px-4 lg:px-20 mx-auto">
+            <div className="px-4 lg:px-16 mx-auto">
                 <div className="grid grid-cols-2 lg:grid-cols-2 gap-4 border-t border-md-grey-200 pt-6">
                     <div className="article font-medium pr-28">
                         <h2 className="mb-4 uppercase">Sell With Us</h2>

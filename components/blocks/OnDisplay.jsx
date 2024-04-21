@@ -21,7 +21,7 @@ export default async function OnDisplay() {
 			{/* <div className="px-20">
 				<SectionHeader title="On Display" />
 			</div> */}
-			<div className="px-8 md:px-20 flex gap-12 lg:gap-24 w-full ">
+			<div className="px-8 md:px-16 flex gap-12 lg:gap-24 w-full ">
 				<div className="w-full">
 					{ondisplay.map((post, index) => {
 						if (index % 2 === 0) {
