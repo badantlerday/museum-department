@@ -123,9 +123,9 @@ export default async function Studios() {
 			</section>
 
 			<div className="px-10 lg:px-16 mx-auto mb-40 ">
-				<div className="flex gap-10 border-t border-md-grey-200 pt-6">
-				<h3 className=" text-2xl font-medium mb-4">Recently updated</h3>
-				<h3 className=" text-2xl font-medium mb-4 text-md-grey-300">Shuffle</h3>
+				<div className="flex gap-10 border-t border-md-grey-200 pt-4">
+				<h3 className=" text-xl font-medium mb-4">Recently updated</h3>
+				<h3 className=" text-xl font-medium mb-4 text-md-grey-300">Shuffle</h3>
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8">
 					{uniqueProjects.slice(0,18).map((item) => (
