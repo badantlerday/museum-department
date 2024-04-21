@@ -122,7 +122,7 @@ export default async function Studios() {
 			<NewStudios />
 			</section>
 
-			<div className="px-10 lg:px-20 mx-auto mb-40 ">
+			<div className="px-10 lg:px-16 mx-auto mb-40 ">
 				<div className="flex gap-10 border-t border-md-grey-200 pt-6">
 				<h3 className=" text-2xl font-medium mb-4">Recently updated</h3>
 				<h3 className=" text-2xl font-medium mb-4 text-md-grey-300">Shuffle</h3>

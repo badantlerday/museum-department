@@ -5,7 +5,7 @@ const AnimatedLink = ({ text, hoverText, url }) => {
 	return (
 		<Link
 			href={url}
-			className=" inline-block overflow-hidden cursor-pointer group h-[20px] text-sm _uppercase font-medium tracking-[1%] text-center"
+			className=" inline-block overflow-hidden cursor-pointer group h-[20px] text-sm uppercase font-medium tracking-[1%] text-center"
 		>
 			<div className=" group-hover:-translate-y-[100%] transition-all duration-300">
 				{text}
