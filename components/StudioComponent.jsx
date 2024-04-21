@@ -4,7 +4,19 @@ export const query = `{
 		name,
 		slug,
 		description,
+		founded,
+		size,
 		mainImage{crop,hotspot,asset->},
+		studioSoundsPlaylist,
+		interview->{
+			_id,
+			title,
+			slug,
+			posterImage{crop,hotspot,asset->},
+		},
+		website,
+		instagram,
+		category[]->,
 		exploreMore{documentTypes,city[]->{_id},country[]->{_id,name},category[]->{_id}},
 		location[]->{
 			_id, name, country->{name}
@@ -17,7 +29,7 @@ export const query = `{
 		},
 	}
   }`
-
+import { Suspense } from "react";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/lib/sanity.client";
@@ -28,11 +40,15 @@ import TextCallout from "@/components/TextCallout";
 import StudioSounds from "@/components/StudioSounds";
 import ExploreMore from "@/components/ExploreMore";
 import BookmarkButton from "@/components/BookmarkButton";
+import Link from "@/sanity/schemas/objects/link";
 const builder = imageUrlBuilder(client);
 
-  export default function StudioComponent({ data }) {
+export default async function StudioComponent({ data }) {
     const { studio } = data || {}
 
+	// console.log(studio.interview);
+	// const playlistData = await getPlaylist(playlistUrl);
+	// const { name, images, tracks } = await playlistData.json();
 
     const callOutTitleExplore = "Exploration Redefined";
 	const calloutTextExplore = (
@@ -87,7 +103,7 @@ const builder = imageUrlBuilder(client);
 								Studio
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+								<li>{studio.name}</li>
 							</ul>
 						</div>
 						<div className="mb-5">
@@ -95,13 +111,16 @@ const builder = imageUrlBuilder(client);
 								Founded
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+								<li>{studio.founded}</li>
 							</ul>
 						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Size
 							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>{studio.size}</li>
+							</ul>
 						</div>
 
 						<div className="mb-5">
@@ -109,15 +128,28 @@ const builder = imageUrlBuilder(client);
 								Categories
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+							{studio.category?.map((cat, index) => (
+                  <li key={index}>
+
+                      {cat.title}
+                   
+
+                  </li>
+                ))}
 							</ul>
 						</div>
+						
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Visit
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+								<li>
+									<a href={studio.website} target="_blank">Website</a>
+								</li>
+								<li>
+									<a href={studio.instagram} target="_blank">Instagram</a>
+								</li>
 							</ul>
 						</div>
 						<div className="mb-5">
@@ -135,16 +167,17 @@ const builder = imageUrlBuilder(client);
 					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
 						<PortableText value={studio.description} />
 					</div>
-					<div className="article mb-10 md:mb-0 col-start-10 col-span-3">
-						<div>
-							<div className="text-xs font-mono block text-left mt-2"></div>
-						</div>
-					</div>
 				</div>
 			</section>
 			<StudioFeaturedWork name={studio.name} featuredWork={studio.works} />
-			<StudioInterview />
-			<StudioSounds />
+			{studio.interview && (
+			<StudioInterview data={studio} />
+			)}
+			{studio.studioSoundsPlaylist && (
+			<Suspense fallback={<div>Loading...</div>}>
+				<StudioSounds playlistUrl={studio.studioSoundsPlaylist} />
+			</Suspense>
+			)}
 			<ExploreMore data={studio.exploreMore} />
 			<TextCallout
 				title={callOutTitleExplore}

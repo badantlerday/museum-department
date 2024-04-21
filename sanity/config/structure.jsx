@@ -12,6 +12,8 @@ import {
   UsersIcon,
 	UlistIcon,
   TagsIcon,
+  CommentIcon,
+  CalendarIcon
 } from '@sanity/icons';
 
 export const structure = (S, _context) =>
@@ -24,10 +26,12 @@ export const structure = (S, _context) =>
       ProjectsItem(S),
       FoundriesItem(S),
       TypefacesItem(S),
+      InterviewsItem(S),
       PersonsItem(S),
       CountriesItem(S),
       CitysItem(S),
       CategoriesItem(S),
+      AdrvertiseItem(S),
       S.divider(),
       PagesItem(S),
       MenusItem(S),
@@ -51,6 +55,27 @@ export const structure = (S, _context) =>
     .child(
       S.document().id('settings').schemaType('settings').documentId('settings').title('Site Settings')
     );
+
+    const InterviewsItem = (S) =>
+    S.listItem()
+      .title('Interviews')
+      .icon(CommentIcon)
+      .id('interviews')
+      .child(
+        S.documentTypeList('interview')
+          .title('Interviews')
+      );
+
+
+      const AdrvertiseItem = (S) =>
+      S.listItem()
+        .title('Advertise')
+        .icon(CalendarIcon)
+        .id('advertise')
+        .child(
+          S.documentTypeList('advertise')
+            .title('Advertise')
+        );
 
 const CitysItem = (S) =>
   S.listItem()
@@ -152,36 +177,36 @@ const MenusItem = (S) =>
         .title('Categories')
     );
 
-export const defaultDocumentNode = (S, props) => {
-  const { schemaType } = props;
+// export const defaultDocumentNode = (S, props) => {
+//   const { schemaType } = props;
 
-  if (schemaType === "page") {
-    return S.document().views([
-      S.view.form(),
-      S.view
-        .component(Iframe)
-        .options({
-          url: (doc) => doc?.slug?.current !== 'home'
-            ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview?page=${doc.slug.current}`
-            : `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview`,
-        })
-        .title('Preview'),
-    ]);
-  }
+//   if (schemaType === "page") {
+//     return S.document().views([
+//       S.view.form(),
+//       S.view
+//         .component(Iframe)
+//         .options({
+//           url: (doc) => doc?.slug?.current !== 'home'
+//             ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview?page=${doc.slug.current}`
+//             : `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview`,
+//         })
+//         .title('Preview'),
+//     ]);
+//   }
 
-  if (schemaType === "studio") {
-    return S.document().views([
-      S.view.form(),
-      S.view
-        .component(Iframe)
-        .options({
-          url: (doc) => doc?.slug?.current !== 'home'
-            ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview?page=studio/${doc.slug.current}`
-            : `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview`,
-        })
-        .title('Preview'),
-    ]);
-  }
+//   if (schemaType === "studio") {
+//     return S.document().views([
+//       S.view.form(),
+//       S.view
+//         .component(Iframe)
+//         .options({
+//           url: (doc) => doc?.slug?.current !== 'home'
+//             ? `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview?page=studio/${doc.slug.current}`
+//             : `${process.env.NEXT_PUBLIC_SITE_URL}/api/preview`,
+//         })
+//         .title('Preview'),
+//     ]);
+//   }
 
-  return S.document().views([S.view.form()]);
-};
+//   return S.document().views([S.view.form()]);
+// };

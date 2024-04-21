@@ -55,6 +55,10 @@ export default async function Page({ params }) {
   const project = await sanityFetch({ query, params, tags: ["project"] });
   const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
 
+
+    const layoutSplit = "col-span-12";
+
+
   return (
     <>
     <section className="pt-40">
@@ -199,11 +203,28 @@ export default async function Page({ params }) {
             ))}
 
       </div>
-      <div className=" col-start-13 col-span-10 font-medium ">
+      <div className="article col-start-13 col-span-10 font-medium ">
       <PortableText value={project?.information} />
       </div>
     </div>
     </div>
+  </section>
+
+  <section className="mx-auto px-16">
+
+  <div className="grid grid-cols-24 gap-4">
+
+    <div className=" bg-md-grey-300 aspect-[4/3] col-span-full my-10"></div>
+    <div className=" bg-md-grey-300 aspect-[3/4] col-span-12 my-10"></div>
+    <div className={`bg-md-grey-300 aspect-[3/4] my-10 ${layoutSplit}`}></div>
+    
+    <div className="bg-md-grey-100 col-start-3 col-end-12 aspect-[3/4] my-12"></div>
+    <div className="bg-md-grey-100 col-start-14 col-end-23 aspect-[3/4] my-12"></div>
+
+    <div className="bg-slate-200 col-start-5 col-span-16 aspect-[3/4]"></div>	
+
+  </div>
+
   </section>
 
   <section className="mx-auto px-16">

@@ -42,9 +42,9 @@ const { headerMenu } = data || {}
 const user = await getUser();
 
 return (
-  <header className="fixed top-0 left-0 w-full z-50">
+  <header className="fixed top-0 left-0 w-full z-50 bg-white">
     <nav
-				className="flex items-center justify-between py-6 px-4 lg:px-20"
+				className="flex items-center justify-between py-6 px-4 lg:px-16"
 				aria-label="Global"
 			>
     {headerMenu?.menuItems && (

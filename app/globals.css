@@ -13,10 +13,13 @@ body {
   text-transform: uppercase;
   font-weight: 500;
   margin-bottom: 1rem;
+  line-height: 1.2;
 }
 .article p {
   margin-bottom: 1.5rem;
   font-weight: 500;
+  line-height: 1.2;
+  font-size: 1rem;
 }
 
 .md-grid {

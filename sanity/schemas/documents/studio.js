@@ -153,6 +153,25 @@ export default defineType({
 			},
 		},
 		defineField({
+			title: "Studio Sounds",
+			name: "studioSoundsPlaylist",
+			type: "string",
+			description: "Spotify Playlist URI",
+			group: "content",
+		}),
+		defineField({
+			title: "Studio Interview",
+			name: "interview",
+			type: "reference",
+			description: "Connect an interview to this Studio",
+			group: "content",
+			to: [{ type: "interview" }],
+			weak: false,
+			options: {
+				disableNew: true,
+			},
+		}),
+		defineField({
 			title: "Explore More",
 			name: "exploreMore",
 			type: "object",

@@ -10,6 +10,8 @@ import typeface from "./documents/typeface";
 import foundry from "./documents/foundry";
 import menu from "./documents/menu";
 import category from "./documents/category";
+import interview from "./documents/interview";
+import advertise from "./documents/advertise";
 
 // Objects
 import seo from "./objects/seo";
@@ -17,6 +19,7 @@ import siteSeo from "./objects/siteSeo";
 import blockContent from "./objects/blockContent";
 import link from "./objects/link";
 import customUrl from "./objects/customUrl";
+import gallery from "./objects/gallery";
 
 // Arrays
 import blocks from "./arrays/blocks";
@@ -30,6 +33,7 @@ import manifest from "./blocks/manifest";
 import exploremore from "./blocks/exploremore";
 import callout from "./blocks/callout";
 import becomeasupporter from "./blocks/becomeasupporter";
+import media from "./blocks/media";
 
 export const schemaTypes = [
 	// Documents
@@ -41,14 +45,18 @@ export const schemaTypes = [
 	typeface,
 	foundry,
 	project,
+	interview,
 	settings,
 	menu,
 	category,
+	advertise,
 	// Objects
 	seo,
+	gallery,
 	siteSeo,
 	blockContent,
 	link,
+	media,
 	// Arrays
 	blocks,
 	menuItems,

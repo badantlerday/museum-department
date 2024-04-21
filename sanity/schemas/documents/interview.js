@@ -1,5 +1,6 @@
+import { defineField, defineType } from "sanity";
 import { CommentIcon } from "@sanity/icons";
-export const interview = {
+export default defineType({
 	name: "interview",
 	title: "Interview",
 	type: "document",
@@ -35,6 +36,14 @@ export const interview = {
 			type: "text",
 		},
 		{
+			name: "posterImage",
+			title: "Poster image",
+			type: "image",
+			options: {
+				hotspot: true,
+			},
+		},
+		{
 			name: "body",
 			title: "Body",
 			type: "blockContent",
@@ -44,6 +53,15 @@ export const interview = {
 	preview: {
 		select: {
 			title: "title",
+			studioName: "studio.name",
+		},
+		prepare(selection) {
+			// Customize the preview title to include the category name
+			const { title, studioName } = selection;
+			return {
+				title: title,
+				subtitle: studioName ? `${studioName}` : "No studio connected",
+			};
 		},
 	},
-};
+});

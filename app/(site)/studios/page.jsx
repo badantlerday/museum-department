@@ -113,12 +113,14 @@ export default async function Studios() {
 	);
 
 	return (
-		<>
-			<section className="p-20 h-screen mb-40">
+		<main className="mt-48">
+			{/* <section className="p-20 h-screen mb-40">
 				<FeaturedStudiosHeroSlider data={studios} />
-			</section>
+			</section> */}
 
+			<section className="pb-20">
 			<NewStudios />
+			</section>
 
 			<div className="px-10 lg:px-20 mx-auto mb-40 ">
 				<div className="flex gap-10 border-t border-md-grey-200 pt-6">
@@ -229,6 +231,6 @@ export default async function Studios() {
 				<TableStudios />
 				</div>
 			</section>
-		</>
+		</main>
 	);
 }

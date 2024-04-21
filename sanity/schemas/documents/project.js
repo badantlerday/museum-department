@@ -257,6 +257,12 @@ export default defineType({
 			type: "seo",
 			group: "seo",
 		}),
+		defineField({
+			title: "Media",
+			name: "content",
+			type: "media",
+			group: "content",
+		}),
 		// {
 		// 	title: "Page Blocks",
 		// 	name: "pageBlocks",
@@ -264,12 +270,12 @@ export default defineType({
 		// 	group: "content",
 		// 	of: [{ type: "gallery" }, { type: "quote" }],
 		// },
-		// {
-		// 	title: "Gallery",
-		// 	name: "gallery",
-		// 	type: "gallery",
-		// 	group: "information",
-		// },
+		{
+			title: "Gallery",
+			name: "gallery",
+			type: "gallery",
+			group: "information",
+		},
 		// {
 		// 	name: "people",
 		// 	title: "People",

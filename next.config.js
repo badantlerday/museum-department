@@ -7,6 +7,14 @@ const nextConfig = {
 				protocol: "https",
 				hostname: "cdn.sanity.io",
 			},
+			{
+				protocol: "https",
+				hostname: "**.scdn.co",
+			},
+			{
+				protocol: "https",
+				hostname: "**.spotifycdn.com",
+			},
 		],
 	},
 	experimental: {

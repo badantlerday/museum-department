@@ -1,9 +1,10 @@
 
-import dynamic from 'next/dynamic'
-import {draftMode} from 'next/headers'
-import {token} from '@/lib/sanity.fetch'
+// import dynamic from 'next/dynamic'
+// import {draftMode} from 'next/headers'
+// import {token} from '@/lib/sanity.fetch'
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+// import { VisualEditing } from "next-sanity";
 
 import localFont from "next/font/local";
 import '../globals.css'
@@ -52,20 +53,16 @@ const sans = localFont({
 	variable: "--font-sans",
 });
 
-const PreviewProvider = dynamic(() => import('@/components/PreviewProvider'))
 
-export default async function RootLayout({children}) {
-  return (
-    <html lang="en">
-      <body className={`${sans.variable} ${mono.variable} ${serif.variable}`}>
-        <Header />
-        {draftMode().isEnabled ? (
-          <PreviewProvider token={token}>{children}</PreviewProvider>
-        ) : (
-          children
-        )}
-        <Footer />
-      </body>
-    </html>
-  )
-}
+export default function RootLayout({children}) {
+	return (
+	  <html lang="en">
+		<body className={`${sans.variable} ${mono.variable} ${serif.variable}`}>
+		  <Header />
+			{children}
+		  <Footer />
+		  {/* {draftMode().isEnabled && <VisualEditing />} */}
+		</body>
+	  </html>
+	)
+  }

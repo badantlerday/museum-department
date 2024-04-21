@@ -14,6 +14,7 @@ export const query = `*[_type == "settings"][0]{
 
 import { sanityFetch } from "@/lib/sanity.fetch"
 import CustomLink from "@/components/CustomLink"
+import Link from "next/link"
 
 export default async function Footer() {
   const data = await sanityFetch({ query, tags: ["settings"] })
@@ -30,16 +31,16 @@ export default async function Footer() {
 					<h2 className="uppercase tracking-wide">Contact</h2>
 					<ul>
 						<li>General Inquiries</li>
-						<li>Advertisment</li>
+						<li><Link href="/advertise" >Advertisment</Link></li>
 						<li>Brand Partnership</li>
 					</ul>
-          {footerMenu?.menuItems && (
-            <div className="flex gap-4">
-              {footerMenu?.menuItems.map((menuItem, key) => {
-                return <CustomLink key={`menu-item-${key}`} data={menuItem} />
-              })}
-            </div>
-          )}
+				{footerMenu?.menuItems && (
+					<div className="flex gap-4">
+					{footerMenu?.menuItems.map((menuItem, key) => {
+						return <CustomLink key={`menu-item-${key}`} data={menuItem} />
+					})}
+					</div>
+				)}
 				</div>
 				<div>
 					<h2 className="uppercase tracking-wide">Submit</h2>

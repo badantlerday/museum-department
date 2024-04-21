@@ -3,20 +3,20 @@ import { structureTool } from 'sanity/structure';
 import { schemaTypes } from './sanity/schemas';
 import { visionTool } from '@sanity/vision';
 import { structure } from './sanity/config/structure';
-import { defaultDocumentNode } from './sanity/config/structure';
+// import { defaultDocumentNode } from './sanity/config/structure';
 import {media} from 'sanity-plugin-media'
-import { assist } from '@sanity/assist'
+// import { assist } from '@sanity/assist'
 import {presentationTool} from 'sanity/presentation'
+import { locate } from "@/sanity/plugins/locate";
 import "./sanity/custom.css";
 
 // We recommend configuring the preview location base URL using
 // environment variables to support multiple environments
-const SANITY_STUDIO_PREVIEW_URL = (
-	process.env.SANITY_STUDIO_PREVIEW_URL
-	|| 'http://localhost:3000'
-)
+// const SANITY_STUDIO_PREVIEW_URL = (
+// 	process.env.SANITY_STUDIO_PREVIEW_URL
+// 	|| 'http://localhost:3000'
+// )
 
-const requiredDocuments = ['settings'];
 
 export default defineConfig({
   basePath: '/admin',
@@ -27,38 +27,22 @@ export default defineConfig({
   schema: {
 		types: schemaTypes,
 	},
-  document: {
-    newDocumentOptions: (prev, { creationContext }) => {
-      if (creationContext.type === 'global') {
-        return prev.filter(
-          (templateItem) =>
-            !requiredDocuments.includes(templateItem.templateId)
-        );
-      }
-      return prev;
-    },
-    actions: (prev, { schemaType }) => {
-      if (requiredDocuments.includes(schemaType)) {
-        return prev.filter(
-          ({ action }) =>
-            !['unpublish', 'delete', 'duplicate'].includes(action)
-        );
-      }
-      return prev;
-    },
-  },
   plugins: [
     structureTool({
       structure,
-      defaultDocumentNode,
+      // defaultDocumentNode,
     }),
     media(),
     // assist(),
     visionTool(),
     presentationTool({
-      // Required: set the base URL to the preview location in the front end
-      previewUrl: SANITY_STUDIO_PREVIEW_URL,
+      locate,
+      previewUrl: { previewMode: { enable: "/api/draft" } },
     }),
+    // presentationTool({
+    //   // Required: set the base URL to the preview location in the front end
+    //   previewUrl: SANITY_STUDIO_PREVIEW_URL,
+    // }),
   ],
 })
 
