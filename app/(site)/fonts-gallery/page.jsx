@@ -39,7 +39,16 @@ export default function FontsGallery() {
 		
 		<section>
 			<div className="mx-auto px-16 py-10">
-				<div className="grid grid-cols-6 gap-4">			
+				<div className="grid grid-cols-6 gap-4 gap-y-10">
+					<div>
+						<div className="bg-md-grey-100 aspect-[3/4]"></div>
+						<span className="text-xs font-medium tracking-wide block uppercase">
+								Typeface
+						</span>
+						<span className="text-xs font-medium italic block">
+							Type / Foundry / Specimen
+						</span>
+					</div>			
 					<div className="bg-md-grey-100 aspect-[3/4]"></div>
 					<div className="bg-md-grey-100 aspect-[3/4]"></div>
 					<div className="bg-md-grey-100 aspect-[3/4]"></div>
