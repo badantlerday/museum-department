@@ -19,7 +19,7 @@ export default function FontsGallery() {
 		<section className=" py-60">
 			<TextCallout title={title} text={text} button={true} buttonLink="/" buttonText="SUBMIT A TYPE PROJECT" />
 		</section>
-		<section>
+		{/* <section>
 			<div className="mx-auto px-16 pb-48">
 				<div className="grid grid-cols-24 gap-4">
 				<h2 className="text-xl font-medium col-span-full col-start-3">New Fonts Gallery</h2>
@@ -35,10 +35,11 @@ export default function FontsGallery() {
 					<div className="bg-md-grey-100 col-start-14 col-end-23 aspect-[3/4]"></div>					
 				</div>
 			</div>
-		</section>
+		</section> */}
 		
 		<section>
-			<div className="mx-auto px-16 py-10">
+		<FontsGalleryGrid />
+			{/* <div className="mx-auto px-16 py-10">
 				<div className="grid grid-cols-6 gap-4 gap-y-10">
 					<div>
 						<div className="bg-md-grey-100 aspect-[3/4]"></div>
@@ -62,13 +63,12 @@ export default function FontsGallery() {
 					<div className="bg-md-grey-100 aspect-[3/4]"></div>
 					<div className="bg-md-grey-100 aspect-[3/4]"></div>
 				</div>
-			</div>
+			</div> */}
 		</section>
-			{/* <section className="py-48 space-y-40">
-                <HighlightsFonts />
-				<FontsGalleryGrid />
+			{/* <section className="py-48 space-y-40"> */}
+                {/* <HighlightsFonts /> */}
 				
-			</section> */}
+			{/* </section> */}
 		</>
 	);
 }
