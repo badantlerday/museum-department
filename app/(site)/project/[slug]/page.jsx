@@ -44,6 +44,12 @@ export default async function Page({ params }) {
 				asset->
 			}
 		},
+    content[]{
+      image[]{
+        _key,
+				asset->
+      }
+    },
 		studio->{
 			_id, name, slug,
 			location[]->{
@@ -54,6 +60,7 @@ export default async function Page({ params }) {
 	  }`;
   const project = await sanityFetch({ query, params, tags: ["project"] });
   const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
+  console.log(project);
 
 
     const layoutSplit = "col-span-12";
@@ -209,8 +216,31 @@ export default async function Page({ params }) {
     </div>
     </div>
   </section>
+  <section>
+    <div className="mx-auto px-16">
+    {project.content?.map((item, index) => (
+      // console.log(item.image)
+      <div>
+        {console.log(item.image.asset)}sd
+      </div>
 
-  <section className="mx-auto px-16">
+
+              // <Image
+              //   key={item._key}
+              //   className=" object-cover aspect-[4/3]"
+              //   src={builder.image(item.image.asset).width(2000).url()}
+              //   width={2000}
+              //   height={1500}
+              //   blurDataURL={item.image.asset.metadata.lqip}
+              //   placeholder="blur"
+              //   alt="alt"
+              // />
+            ))}
+
+    </div>
+  </section>
+
+  {/* <section className="mx-auto px-16">
 
   <div className="grid grid-cols-24 gap-4">
 
@@ -225,7 +255,7 @@ export default async function Page({ params }) {
 
   </div>
 
-  </section>
+  </section> */}
 
   <section className="mx-auto px-16">
     <div className=" order-2 col-span-4 grid grid-cols-2 gap-4 md:order-none">
