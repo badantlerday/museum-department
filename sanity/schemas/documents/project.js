@@ -310,7 +310,8 @@ export default defineType({
 			return {
 				title: title,
 				subtitle: studioName
-					? `${studioName} - (${onDisplay})`
+					? // ? `${studioName} - (${onDisplay})`
+					  `${studioName}`
 					: "No studio connected",
 				media: posterImage,
 			};

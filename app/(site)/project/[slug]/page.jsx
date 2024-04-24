@@ -229,6 +229,7 @@ export default async function Page({ params }) {
               blurDataURL={image.asset.metadata.lqip}
               placeholder="blur"
               alt="alt"
+              
             />
           </div>
         ))}
