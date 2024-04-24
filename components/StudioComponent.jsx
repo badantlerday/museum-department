@@ -179,11 +179,11 @@ export default async function StudioComponent({ data }) {
 			</Suspense>
 			)}
 			<ExploreMore data={studio.exploreMore} />
-			<TextCallout
+			{/* <TextCallout
 				title={callOutTitleExplore}
 				text={calloutTextExplore}
 				key={callOutTitleExplore}
-			/>
+			/> */}
 		</>
     )
   }

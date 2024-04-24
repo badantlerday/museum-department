@@ -125,7 +125,7 @@ export default async function Studios() {
 			<div className="px-10 lg:px-16 mx-auto mb-40 ">
 				<div className="flex gap-10 border-t border-md-grey-200 pt-4">
 				<h3 className=" text-xl font-medium mb-4">Recently updated</h3>
-				<h3 className=" text-xl font-medium mb-4 text-md-grey-300">Shuffle</h3>
+				{/* <h3 className=" text-xl font-medium mb-4 text-md-grey-300">Shuffle</h3> */}
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8">
 					{uniqueProjects.slice(0,18).map((item) => (
@@ -135,7 +135,7 @@ export default async function Studios() {
 							passHref
 							className="relative group"
 						>
-							<div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider opacity-0 group-hover:opacity-100">{item.title}</div>
+							{/* <div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider opacity-0 group-hover:opacity-100">{item.title}</div> */}
 							{item.posterImage || item.posterImage ? (
 								
 								<Image
@@ -159,12 +159,24 @@ export default async function Studios() {
 							) : (
 								<div className="w-full aspect-[3/4] bg-md-grey-200 mb-2"></div>
 							)}
-							<span className="text-xs font-medium tracking-wide block uppercase">
-								{item.studio.name} ({item.studio.countProjects})
-							</span>
-							<span className="text-xs font-medium italic block">
-							{item.studio.location[0].name}, {item.studio.location[0].country?.name}
-							</span>
+							<div className="flex">
+								<div className=" grow">
+									<span className="text-xs font-medium tracking-wide block uppercase">
+										{item.studio.name} ({item.studio.countProjects})
+									</span>
+									<span className="text-xs font-medium italic block">
+										{item.studio.location[0].name}, {item.studio.location[0].country?.name}
+									</span>
+								</div>
+								<div>
+									<Image
+										src="/icon-bookmark.svg"
+										width={10}
+										height={15}
+										alt="Cover"
+									/>
+								</div>
+							</div>
 						</Link>
 					))}
 					{/* {studios.map((item) => (
