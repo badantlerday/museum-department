@@ -220,7 +220,7 @@ export default async function Page({ params }) {
     <div className="mx-auto px-16">
     {project.content?.map((item, index) => (
       // console.log(item.image)
-      <div>
+      <div key={index}>
         {console.log(item.image.asset)}sd
       </div>
 
