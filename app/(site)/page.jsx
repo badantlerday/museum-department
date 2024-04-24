@@ -33,8 +33,8 @@ export default function IndexPage() {
     <>
     <SiteTitleHeader />
     <OnDisplay />
-    <BecomeAPatron />
-    <SellWithUs />
+    {/* <BecomeAPatron /> */}
+    {/* <SellWithUs /> */}
     </>
     // <HomePageComponent data={data} />
 
