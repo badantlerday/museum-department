@@ -270,12 +270,12 @@ export default defineType({
 		// 	group: "content",
 		// 	of: [{ type: "gallery" }, { type: "quote" }],
 		// },
-		{
-			title: "Gallery",
-			name: "gallery",
-			type: "gallery",
-			group: "information",
-		},
+		// {
+		// 	title: "Gallery",
+		// 	name: "gallery",
+		// 	type: "gallery",
+		// 	group: "information",
+		// },
 		// {
 		// 	name: "people",
 		// 	title: "People",

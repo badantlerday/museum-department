@@ -60,7 +60,7 @@ export default async function Page({ params }) {
 	  }`;
   const project = await sanityFetch({ query, params, tags: ["project"] });
   const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
-  console.log(project);
+  // console.log(project.content);
 
 
     const layoutSplit = "col-span-12";
@@ -217,12 +217,36 @@ export default async function Page({ params }) {
     </div>
   </section>
   <section>
-    <div className="mx-auto px-16">
-    {project.content?.map((item, index) => (
-      // console.log(item.image)
-      <div key={index}>
-        {console.log(item.image.asset)}sd
+    <div className="mx-auto px-16 space-y-20">
+    {project.content?.map((item, outerIndex) => (
+      <div key={outerIndex} className={`grid ${item.image && item.image.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
+        {item.image?.map((image, innerIndex) => (
+          <div key={image._key}>
+            <Image
+              src={builder.image(image).width(2000).url()}
+              width={2000}
+              height={1500}
+              blurDataURL={image.asset.metadata.lqip}
+              placeholder="blur"
+              alt="alt"
+            />
+          </div>
+        ))}
       </div>
+    ))}
+
+    </div>
+  </section>
+
+
+
+
+  {/* <section className="mx-auto px-16">
+
+        // <div key={index}>
+      //   sds
+      //   {console.log(item.image)}
+      // </div>
 
 
               // <Image
@@ -235,12 +259,6 @@ export default async function Page({ params }) {
               //   placeholder="blur"
               //   alt="alt"
               // />
-            ))}
-
-    </div>
-  </section>
-
-  {/* <section className="mx-auto px-16">
 
   <div className="grid grid-cols-24 gap-4">
 

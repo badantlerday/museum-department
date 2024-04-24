@@ -30,14 +30,14 @@ export default defineType({
 			],
 			preview: {
 				select: {
-					image0: "image.0.item",
+					image0: "item.0.image.",
 				},
 				prepare(selection) {
 					// Customize the preview title to include the category name
 					const { image0 } = selection;
 
 					return {
-						title: "Images",
+						title: "Image Block",
 						media: image0,
 					};
 				},
