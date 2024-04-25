@@ -9,6 +9,7 @@ import OnDisplay from "@/components/blocks/OnDisplay"
 import SiteTitleHeader from "@/components/SiteTitleHeader"
 import BecomeAPatron from "../../components/BecomeAPatron"
 import SellWithUs from "../../components/SellWithUs"
+import ItemsRow from "@/components/ItemsRow"
 
 export async function generateMetadata({ params }) {
   const query = `{
@@ -33,6 +34,18 @@ export default function IndexPage() {
     <>
     <SiteTitleHeader />
     <OnDisplay />
+    <section className="px-16 mx-auto">
+      <ItemsRow title="Fonts Gallery" />
+    </section>
+    <section className="px-16 mx-auto grid-cols-2 gap-32">
+      <div>
+        dsdsd
+      </div>
+      <div>
+        asdasd
+      </div>
+
+    </section>
     {/* <BecomeAPatron /> */}
     {/* <SellWithUs /> */}
     </>

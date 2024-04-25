@@ -40,7 +40,6 @@ import TextCallout from "@/components/TextCallout";
 import StudioSounds from "@/components/StudioSounds";
 import ExploreMore from "@/components/ExploreMore";
 import BookmarkButton from "@/components/BookmarkButton";
-import Link from "@/sanity/schemas/objects/link";
 const builder = imageUrlBuilder(client);
 
 export default async function StudioComponent({ data }) {
