@@ -32,7 +32,7 @@ export default async function Footer() {
 				className="w-full h-auto"
 				alt="Cover"
 			/>
-			<ItemsRow />
+			<ItemsRow title="Store Items" />
 			
 			{/* <div className="grid grid-cols-2 gap-y-8 lg:grid-cols-6 gap-4 w-full font-medium">
 				<div className=" col-span-2 lg:col-span-2">
