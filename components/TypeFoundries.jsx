@@ -12,7 +12,12 @@ export async function NewTypeFoundries() {
 	name,
 	slug,
 	mainImage{crop,hotspot,asset->},
+	location[]->{
+		_id, name, country->{name}
+	},
   }`);
+
+  console.log(foundries)
 
 	return (
 		<>
@@ -43,12 +48,14 @@ export async function NewTypeFoundries() {
 							) : (
 								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
 							)}
-					<span className="text-xs font-medium tracking-wide block uppercase">
-					{item.name}
+						<span className="text-xs font-medium tracking-wide block uppercase">
+						{item.name}
 						</span>
+						{item.location && (
 						<span className="text-xs font-medium italic block">
-								country and city
+							{item.location[0].name}, {item.location[0].country?.name}
 						</span>
+						)}
 					</div>
 					))}
 				</div>
@@ -89,9 +96,11 @@ export async function NewTypeFoundries() {
 					<span className="text-xs font-medium tracking-wide block uppercase">
 					{item.name}
 						</span>
+						{item.location && (
 						<span className="text-xs font-medium italic block">
-								country and city
+							{item.location[0].name}, {item.location[0].country?.name}
 						</span>
+						)}
 					</Link>
 					))}
 				</div>
@@ -113,7 +122,7 @@ export async function TypeFoundries() {
 					title={`${foundries.length} Font Foundries`}
 					border={true}
 				/>
-				<ul className="space-y-1 text-sm grid grid-flow-col grid-rows-6 grid-cols-6 font-mono">
+				<ul className="space-y-1 text-xs grid grid-flow-col grid-rows-6 grid-cols-6 font-mono">
 					{foundries?.map((foundry, index) => (
 						<li key={foundry._id}>
 							<Link href={`foundry/${foundry?.slug.current}`}>
