@@ -17,7 +17,7 @@ export async function NewTypeFoundries() {
 	},
   }`);
 
-  console.log(foundries)
+//   console.log(foundries)
 
 	return (
 		<>
@@ -27,9 +27,12 @@ export async function NewTypeFoundries() {
 				
 				<div className="grid grid-cols-2 gap-4" >
 				{foundries.slice(0, 2).map((item) => (
-					<div key={item._id}>
-					{item.mainImage || item.mainImage ? (
-								
+					<Link
+					key={item._id}
+					href={`/foundry/${item.slug.current}`}
+					
+				>
+					{item.mainImage || item.mainImage ? (							
 								<Image
 								className="aspect-[4/3] mb-2 object-cover"
 								src={builder
@@ -56,7 +59,7 @@ export async function NewTypeFoundries() {
 							{item.location[0].name}, {item.location[0].country?.name}
 						</span>
 						)}
-					</div>
+					</Link>
 					))}
 				</div>
 				
@@ -70,7 +73,7 @@ export async function NewTypeFoundries() {
 						<Link
 							key={item._id}
 							href={`/foundry/${item.slug.current}`}
-							passHref
+						
 							className="py-1 font-medium"
 						>
 					{item.mainImage || item.mainImage ? (
