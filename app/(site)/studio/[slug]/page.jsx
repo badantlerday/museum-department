@@ -13,6 +13,16 @@ export async function generateMetadata({ params, searchParams }, parent) {
   };
 }
 
+//  (SSG) prerendered as static HTML
+export async function generateStaticParams() {
+  const queryAllStudios = `*[_type == "studio" ]`
+  const studios = await client.fetch(queryAllStudios);
+ 
+  return studios.map((studio) => ({
+    slug: studio.slug.current,
+  }))
+}
+
 export default async function Studio({ params }) {
   const { slug } = params;
   const data = await client.fetch(query, { slug }); // Provide the value for $slug
