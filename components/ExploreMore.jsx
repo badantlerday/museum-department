@@ -17,7 +17,14 @@ export default async function ExploreMore({data}) {
 
 	const explore =
 		await client.fetch(`*[_type == "${data.documentTypes}" && "${data.country[0].name}" in location[]->country->name ] | order(_createdAt desc) {
-	_id, name, title, slug, mainImage{crop,hotspot,asset->}
+	_id,
+	name,
+	title,
+	slug,
+	mainImage{crop,hotspot,asset->},
+	location[]->{
+		_id, name, country->{name}
+	},
   }`);
 
 	//Getting a list of studios from the UK
@@ -33,7 +40,7 @@ export default async function ExploreMore({data}) {
 			<div className="px-20 mx-auto">
 				<SectionHeader title={`Explore more ${data.documentTypes} from ${data.country[0].name}`} border={true} />
 
-				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-5 gap-4">
+				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-4">
 					{explore.slice(0, 10).map((item, index) => (
 						<Fragment key={item._id}>
 							<Link
@@ -56,9 +63,12 @@ export default async function ExploreMore({data}) {
 									<div className="w-full aspect-[3/4] bg-slate-100 mb-2"></div>
 								)}
 
-								<h3 className="text-sm font-medium tracking-[0.0075rem]">
+								<h3 className="text-xs font-medium tracking-[0.0075rem] uppercase">
 									{item.name} {item.title}
 								</h3>
+								<span className="text-xs font-medium italic block">
+								{item.location[0].name}, {item.location[0].country?.name}
+								</span>
 							</Link>
 						</Fragment>
 					))}

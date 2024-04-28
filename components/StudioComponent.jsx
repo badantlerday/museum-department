@@ -19,7 +19,7 @@ export const query = `{
 		category[]->,
 		exploreMore{documentTypes,city[]->{_id},country[]->{_id,name},category[]->{_id}},
 		location[]->{
-			_id, name, country->{name}
+			_id, name,slug, country->{name,slug}
 		  },
 		  "works": *[_type == "project" && references(^._id)]{
 			_id,
@@ -40,12 +40,13 @@ import TextCallout from "@/components/TextCallout";
 import StudioSounds from "@/components/StudioSounds";
 import ExploreMore from "@/components/ExploreMore";
 import BookmarkButton from "@/components/BookmarkButton";
+import Link from "next/link";
 const builder = imageUrlBuilder(client);
 
 export default async function StudioComponent({ data }) {
     const { studio } = data || {}
 
-	// console.log(studio.interview);
+	// console.log(studio);
 	// const playlistData = await getPlaylist(playlistUrl);
 	// const { name, images, tracks } = await playlistData.json();
 
@@ -101,7 +102,7 @@ export default async function StudioComponent({ data }) {
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Studio
 							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
+							<ul className=" space-y-2 font-mono text-xs">
 								<li>{studio.name}</li>
 							</ul>
 						</div>
@@ -109,7 +110,7 @@ export default async function StudioComponent({ data }) {
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Founded
 							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
+							<ul className=" space-y-2 font-mono text-xs">
 								<li>{studio.founded}</li>
 							</ul>
 						</div>
@@ -117,8 +118,32 @@ export default async function StudioComponent({ data }) {
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Size
 							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
+							<ul className=" space-y-2 font-mono text-xs">
 								<li>{studio.size}</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+						<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Location
+							</h2>
+							<ul className=" space-y-1 font-mono text-xs">
+								{studio.location?.map((item, index) => (
+									<li key={item._id} className=" text-[#444444]">
+										<Link
+											href={`/city/${item?.slug.current}`}
+											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+										>
+											{item?.name}
+										</Link>
+										,{" "}
+										<Link
+											href={`/country/${item?.country.slug.current}`}
+											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+										>
+											{item?.country.name}
+										</Link>
+									</li>
+								))}
 							</ul>
 						</div>
 
@@ -126,7 +151,7 @@ export default async function StudioComponent({ data }) {
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Categories
 							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
+							<ul className=" space-y-2 font-mono text-xs">
 							{studio.category?.map((cat, index) => (
                   <li key={index}>
 
@@ -142,7 +167,7 @@ export default async function StudioComponent({ data }) {
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Visit
 							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
+							<ul className=" space-y-2 font-mono text-xs">
 								<li>
 									<a href={studio.website} target="_blank">Website</a>
 								</li>
@@ -155,9 +180,8 @@ export default async function StudioComponent({ data }) {
 						<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Bookmark
 							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>
-									
+							<ul className=" space-y-2 font-mono text-xs">
+								<li>	
 									<BookmarkButton documentId={studio._id} />
 								</li>
 							</ul>
@@ -178,11 +202,6 @@ export default async function StudioComponent({ data }) {
 			</Suspense>
 			)}
 			<ExploreMore data={studio.exploreMore} />
-			{/* <TextCallout
-				title={callOutTitleExplore}
-				text={calloutTextExplore}
-				key={callOutTitleExplore}
-			/> */}
 		</>
     )
   }
