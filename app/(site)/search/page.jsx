@@ -1,9 +1,3 @@
-// import Image from "next/image";
-// import imageUrlBuilder from "@sanity/image-url";
-// import { client } from "@/lib/sanity.client";
-// import Link from "next/link";
-
-// const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
 export async function generateMetadata({ params, searchParams }, parent) {

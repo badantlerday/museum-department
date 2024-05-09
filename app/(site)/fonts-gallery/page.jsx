@@ -11,14 +11,15 @@ export default function FontsGallery() {
 
 	return (
 		<>
-		<NewTypeFoundries />
+		<FontsGalleryGrid />	
 		<section className="pt-10">
 			<TypeFoundries />	
 		</section>
 		<section className=" py-60">
 			<TextCallout title={title} text={text} button={true} buttonLink="/" buttonText="SUBMIT A TYPE PROJECT" />
 		</section>
-		<FontsGalleryGrid />	
+		<NewTypeFoundries />
+		
 		{/* <HighlightsFonts /> */}
 		</>
 	);

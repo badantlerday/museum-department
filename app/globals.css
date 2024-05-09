@@ -76,3 +76,45 @@ body {
   width: 100%;
   }
 }
+
+.masonry-grid {
+  display: flex;
+  margin-left: 0px; /* gutter size offset */
+  width: auto;
+}
+.masonry-grid--column {
+  padding-left: 0px; /* gutter size */
+  background-clip: padding-box;
+}
+.masonry-grid--item {
+  padding-top:25vh;
+  margin-bottom: 5vw;
+  padding: 32px 64px;
+}
+.masonry-grid--column:last-of-type .masonry-grid--item{
+  padding-top: 160px;
+}
+
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  /* background: grey; */
+  /* margin-bottom: 30px; */
+}
+
+.masonry-item-left {
+  /* justify-content: flex-start; */
+  
+}
+.masonry-item-right {
+  /* justify-content: flex-end; */
+}
+
+.img--portrait {
+
+}
+.img--square {
+
+}
+.img--landscape {
+
+}

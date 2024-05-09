@@ -1,3 +1,4 @@
+export const revalidate = 60;
 // import { draftMode } from "next/headers"
 // import { LiveQuery } from "next-sanity/preview/live-query"
 import { sanityFetch } from "@/lib/sanity.fetch"

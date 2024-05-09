@@ -4,6 +4,6 @@ export default function SectionHeader({
 	title = "Section Header Title",
 	border = false,
 }) {
-	const borderClasses = border ? "border-t border-[#E6E6E6] pt-6" : "py-4";
+	const borderClasses = border ? "border-t border-[#E6E6E6] pt-4" : "py-4";
 	return <h2 className={`text-xl font-medium mb-4 ${borderClasses}`}>{title}</h2>;
 }

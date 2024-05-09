@@ -12,9 +12,11 @@ export default async function FontsGalleryGrid() {
 	
 	return (
 		<>
-			<div className="mx-auto px-16 pb-48">
-				<div className="grid grid-cols-24 gap-4">
-				<h2 className="text-xl font-medium col-span-full col-start-3">New Fonts Gallery</h2>
+		
+			<div className="mx-auto px-16 pb-20 mt-40">
+			<SectionHeader title="New Fonts Gallery" />
+				<div className="grid grid-cols-24 gap-4 mt-14">
+				{/* <h2 className="text-xl font-medium col-span-full col-start-3">New Fonts Gallery</h2> */}
 
 				{fontsinuse?.slice(0, 2).map((project, index) => (
 				<div key={project._id} className={index === 0 ? "col-start-3 col-end-12" : "col-start-14 col-end-23"}>

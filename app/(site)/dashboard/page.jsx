@@ -32,7 +32,17 @@ export default async function Dashboard() {
 
 	return (
 		<>
-			<section className="py-48 space-y-40">
+		<section className="mx-auto mt-56 ">
+    	<h1 className="text-center text-[56px]/[50px] font-black mx-auto flex flex-col my-20 uppercase tracking-tight px-28">Bookmarks</h1>
+		</section>
+		<section className="py-20 space-y-40">
+			<div className="px-8 md:px-16 mx-auto">
+				<Suspense fallback={<div>Loading...</div>}>
+					<UserBookmarks />
+				</Suspense>
+			</div>
+		</section>
+			{/* <section className="py-48 space-y-40">
 				<TextCallout title={title} text={text} />
 				<div className="article font-medium max-w-2xl mx-auto">
 					<h2 className="mt-16 mb-4 uppercase">Bookmarks</h2>
@@ -40,7 +50,7 @@ export default async function Dashboard() {
 					<UserBookmarks />
 					</Suspense>
 				</div>
-			</section>
+			</section> */}
 		</>
 	);
 }

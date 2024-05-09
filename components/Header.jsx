@@ -62,11 +62,11 @@ return (
       <Link href="/search">Search</Link>
         {user ? (
           <div className="space-x-4">
-          <Link href="/dashboard">My profile</Link>
+          <Link href="/dashboard">My Account</Link>
           {/* <LogoutLink>Log out</LogoutLink> */}
           </div>
         ) : (
-          <LoginLink>My profile</LoginLink>
+          <LoginLink>Sign In</LoginLink>
         )
         }
         
