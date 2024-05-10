@@ -31,7 +31,7 @@ export default async function NewStudios() {
 					
                     <Link
 							key={item._id}
-							href={`/studio/${item.slug.current}`}
+							href={`/studio/${item.slug?.current}`}
 							passHref
 							className="_relative group"
 						>    

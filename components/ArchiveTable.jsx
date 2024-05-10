@@ -45,7 +45,7 @@ export default async function ArchiveTable() {
 							</td>
 							<td>
 								<Link
-									href={`/project/${project.slug.current}`}
+									href={`/project/${project.slug?.current}`}
 									className="font-medium hover:italic"
 								>
 									{project.title}
@@ -53,7 +53,7 @@ export default async function ArchiveTable() {
 							</td>
 							<td className="font-medium ">
 								<Link
-									href={`/studio/${project.studio.slug.current}`}
+									href={`/studio/${project.studio.slug?.current}`}
 									className="font-medium hover:italic"
 								>
 									{project.studio.name}
