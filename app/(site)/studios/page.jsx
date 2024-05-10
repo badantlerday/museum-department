@@ -28,7 +28,7 @@ export default async function Studios() {
 		},
       }`);
 
-	  const recentlyUpdatedProjects = await client.fetch(`*[_type == "project" ] | order(updatedAt desc){
+	  const recentlyUpdatedProjects = await client.fetch(`*[_type == "project" ] | order(updatedAt asc){
         _id,
 		title,
 		slug,

@@ -153,6 +153,12 @@ export default function MasonryGrid({data}) {
 				className="masonry-grid"
 				columnClassName="masonry-grid--column">
         {jsxItems}
+        <div className='masonry-grid--item '>
+          <div className='bg-[#F6F5F3] p-28'>
+          <h2 className='uppercase font-medium'>JOIN OUR COMMUNITY</h2>
+          <p>Receive our weekly curated roundup newsletter. Get news about interviews, fonts, new products, and new features.</p>
+          </div>
+        </div>
 		    </Masonry>
         // </div>
 	);

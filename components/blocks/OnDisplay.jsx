@@ -19,14 +19,12 @@ export default async function OnDisplay() {
 	//   console.log(ondisplay);
 	
 	return (
-		<section className="_py-10">
-
+		<section>
 			<MasonryGrid data={ondisplay} />
-
 			{/* <div className="px-20">
 				<SectionHeader title="On Display" />
 			</div> */}
-			<div className="px-8 md:px-16 flex gap-12 lg:gap-24 w-full hidden ">
+			{/* <div className="px-8 md:px-16 flex gap-12 lg:gap-24 w-full ">
 				<div className="w-full">
 					{ondisplay.map((post, index) => {
 						if (index % 2 === 0) {
@@ -74,7 +72,7 @@ export default async function OnDisplay() {
 						return null; // Even posts go to the previous column
 					})}
 				</div>
-			</div>
+			</div> */}
 		</section>
 	);
 }
