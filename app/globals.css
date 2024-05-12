@@ -21,7 +21,21 @@ body {
   line-height: 1.2;
   /* font-size: 1rem; */
 }
-
+.article--footer h2 {
+  text-transform: uppercase;
+  font-weight: 300;
+  margin-bottom: 4px;
+}
+.article--footer p {
+  margin-bottom: 1.5rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
+.article--footer li {
+  margin-bottom: 0.25rem;
+  font-weight: 300;
+  line-height: 1.5;
+}
 .md-grid {
   display: grid;
   grid-template-columns: repeat(24, 1fr);
