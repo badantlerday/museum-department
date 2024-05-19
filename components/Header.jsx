@@ -47,16 +47,29 @@ return (
 				className="flex items-center justify-between py-6 px-4 lg:px-16"
 				aria-label="Global"
 			>
-    {headerMenu?.menuItems && (
-      <div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">
-        {headerMenu?.menuItems.map((menuItem, key) => {
-          return <CustomLink key={`menu-item-${key}`} data={menuItem} />
-        })}
+      {/* Left */}
+      <div className="lg:flex-1">
+      <AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
       </div>
-    )}
+      {/* {headerMenu?.menuItems && (
+        <div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">
+          {headerMenu?.menuItems.map((menuItem, key) => {
+            return <CustomLink key={`menu-item-${key}`} data={menuItem} />
+          })}
+        </div>
+      )} */}
+      {/* Center */}
       <div className="hidden lg:flex lg:gap-x-12 text-sm">
-					<AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
+					{/* <AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" /> */}
+          {headerMenu?.menuItems && (
+        <div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">
+          {headerMenu?.menuItems.map((menuItem, key) => {
+            return <CustomLink key={`menu-item-${key}`} data={menuItem} />
+          })}
+        </div>
+      )}
 			</div>
+      {/* Right */}
       <div className="hidden lg:flex lg:flex-1 text-sm lg:justify-end text-s space-x-4 font-medium items-center text-[#999999]">
       
       <Link href="/search">Search</Link>

@@ -108,7 +108,9 @@ body {
 .masonry-grid--column:last-of-type .masonry-grid--item:first-child{
   padding-top: 160px;
 }
-
+.masonry-grid--column:first-of-type .masonry-grid--item:first-child{
+  padding-top: 0px;
+}
 /* Style your items */
 .my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
   /* background: grey; */
