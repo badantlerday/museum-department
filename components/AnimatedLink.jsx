@@ -1,6 +1,7 @@
 import Link from "next/link";
 
 const AnimatedLink = ({ text, hoverText, url }) => {
+	
 	const displayHoverText = hoverText || text;
 	return (
 		<Link

@@ -6,31 +6,28 @@ import Image from "next/image";
 const builder = imageUrlBuilder(client);
 
 
-export async function NewTypeFoundries() {
-	const foundries = await client.fetch(`*[_type == "foundry"]{
+export default async function NewFonts() {
+	const fonts = await client.fetch(`*[_type == "typeface"]{
     _id,
 	name,
 	slug,
 	mainImage{crop,hotspot,asset->},
-	location[]->{
-		_id, name, country->{name}
-	},
+    foundry->{name},
   }`);
 
-//   console.log(foundries)
+//   console.log(fonts)
 
 	return (
 		<>
 			<section>
 			<div className="mx-auto px-16 pt-48 pb-10 ">
-				<h2 className="text-xl font-medium mb-4">Type Foundries</h2>
+				<h2 className="text-xl font-medium mb-4">Fonts</h2>
 				
 				<div className="grid grid-cols-2 gap-4" >
-				{foundries.slice(0, 2).map((item) => (
+				{fonts.slice(0, 2).map((item) => (
 					<Link
 					key={item._id}
-					href={`/foundry/${item.slug.current}`}
-					
+					href={`/font/${item.slug.current}`}
 				>
 					{item.mainImage || item.mainImage ? (							
 								<Image
@@ -54,9 +51,9 @@ export async function NewTypeFoundries() {
 						<span className="text-xs font-medium tracking-wide block uppercase">
 						{item.name}
 						</span>
-						{item.location && (
+						{item.foundry && (
 						<span className="text-xs font-medium italic block">
-							{item.location[0].name}, {item.location[0].country?.name}
+							{item.foundry.name}
 						</span>
 						)}
 					</Link>
@@ -68,11 +65,11 @@ export async function NewTypeFoundries() {
 		<section>
 			<div className="mx-auto px-16 py-10">
 				<div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-				{foundries.slice(2, 6).map((item) => (
+				{fonts.slice(2, 6).map((item) => (
 					
 						<Link
 							key={item._id}
-							href={`/foundry/${item.slug.current}`}
+							href={`/font/${item.slug.current}`}
 						
 							className="py-1 font-medium"
 						>
@@ -99,9 +96,9 @@ export async function NewTypeFoundries() {
 					<span className="text-xs font-medium tracking-wide block uppercase">
 					{item.name}
 						</span>
-						{item.location && (
+						{item.foundry && (
 						<span className="text-xs font-medium italic block">
-							{item.location[0].name}, {item.location[0].country?.name}
+							{item.foundry.name}
 						</span>
 						)}
 					</Link>
@@ -113,28 +110,28 @@ export async function NewTypeFoundries() {
 	);
 }
 
-export async function TypeFoundries() {
-	const foundries = await client.fetch(`*[_type == "foundry"]{
-    _id, name, slug
-  }`);
+// export async function TypeFoundries() {
+// 	const foundries = await client.fetch(`*[_type == "foundry"]{
+//     _id, name, slug
+//   }`);
 
-	return (
-		<>
-			<div className="px-20 mx-auto">
-				<SectionHeader
-					title={`${foundries.length} Font Foundries`}
-					border={true}
-				/>
-				<ul className="space-y-1 text-xs grid grid-flow-col grid-rows-6 grid-cols-6 font-mono">
-					{foundries?.map((foundry, index) => (
-						<li key={foundry._id}>
-							<Link href={`foundry/${foundry?.slug.current}`}>
-								{foundry.name}
-							</Link>
-						</li>
-					))}
-				</ul>
-			</div>
-		</>
-	);
-}
+// 	return (
+// 		<>
+// 			<div className="px-20 mx-auto">
+// 				<SectionHeader
+// 					title={`${foundries.length} Font Foundries`}
+// 					border={true}
+// 				/>
+// 				<ul className="space-y-1 text-xs grid grid-flow-col grid-rows-6 grid-cols-6 font-mono">
+// 					{foundries?.map((foundry, index) => (
+// 						<li key={foundry._id}>
+// 							<Link href={`foundry/${foundry?.slug.current}`}>
+// 								{foundry.name}
+// 							</Link>
+// 						</li>
+// 					))}
+// 				</ul>
+// 			</div>
+// 		</>
+// 	);
+// }

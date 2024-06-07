@@ -24,6 +24,13 @@ export default defineConfig({
   dataset: process.env.NEXT_PUBLIC_SANITY_DATASET,
   title: 'Museum Department',
   icon: CustomLogo,
+  scheduledPublishing: {enabled: false,},
+  tasks: { enabled: false },
+  document: {
+    comments: {
+      enabled: false,
+    },
+  },
   schema: {
 		types: schemaTypes,
 	},
@@ -35,10 +42,10 @@ export default defineConfig({
     media(),
     // assist(),
     visionTool(),
-    presentationTool({
-      locate,
-      previewUrl: { previewMode: { enable: "/api/draft" } },
-    }),
+    // presentationTool({
+    //   locate,
+    //   previewUrl: { previewMode: { enable: "/api/draft" } },
+    // }),
     // presentationTool({
     //   // Required: set the base URL to the preview location in the front end
     //   previewUrl: SANITY_STUDIO_PREVIEW_URL,
