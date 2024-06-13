@@ -25,7 +25,7 @@ export default async function Footer() {
   return (
     <footer className="text-sm pt-80 pb-4 px-4 lg:px-20">			
 
-			<ItemsRow title="Store Items" />
+			
 			<div className="grid grid-cols-24 mt-80 gap-4 text-xs border-t border-md-grey-200 pt-6">
 				<div className="col-span-5 article--footer">
 				<h2>SELL WITH US</h2>
