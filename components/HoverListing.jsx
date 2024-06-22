@@ -4,6 +4,7 @@ import { useState } from "react";
 import { client } from "@/lib/sanity.client";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
+import Link from "next/link";
 
 const builder = imageUrlBuilder(client);
 
@@ -108,7 +109,7 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                                         alt="Sign in to bookmark"
                                     />
                                 </div>
-                                {item.name}
+                                <Link href={`/studio/${item.slug.current}`}>{item.name}</Link>
                             </div>
                             <div>{item.location[0].name}, {item.location[0].country?.name}</div>
                         </div>
