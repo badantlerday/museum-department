@@ -10,11 +10,13 @@ import FeaturedStudiosHeroSlider from "@/components/FeaturedStudiosHeroSlider";
 const builder = imageUrlBuilder(client);
 import TableStudios from "@/components/TableStudios";
 import NewStudios from "@/components/NewStudios";
+import HoverListing from "@/components/HoverListing";
 
 export default async function Studios() {
-	const studios = await client.fetch(`*[_type == "studio" ]{
+	const studios = await client.fetch(`*[_type == "studio" ] | order(name asc){
         _id,
 		_createdAt,
+		_type,
 		name,
 		slug,
 		location[]->{
@@ -235,14 +237,15 @@ export default async function Studios() {
 					))} */}
 				</div>
 			</div>
-			<section className="py-48 space-y-40">
+			{/* <section className="py-48 space-y-40">
 				<TextCallout title={title} text={text} />
-			</section>
-			<section className="py-20">
+			</section> */}
+			{/* <section className="py-20">
 			<div className="px-10 lg:px-20 mx-auto ">
 				<TableStudios />
 				</div>
-			</section>
+			</section> */}
+			<HoverListing data={studios} sectionHeader="Design Studios" />
 		</main>
 	);
 }

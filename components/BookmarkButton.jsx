@@ -2,6 +2,7 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { createClient } from '@supabase/supabase-js'
 import AddBookmarkLink from "./AddBookmarkLink";
 import RemoveBookmarkLink from "./RemoveBookmarkLink";
+import Image from "next/image";
 
 export default async function BookmarkButton({ documentId }) {
     const {getUser} = getKindeServerSession();
@@ -9,7 +10,15 @@ export default async function BookmarkButton({ documentId }) {
 
     // Early return if user is not authenticated, prompting them to log in
     if (!user) {
-        return <div>Sign to bookmark</div>;
+        return <div>
+            						<Image
+										src="/icon-bookmark.svg"
+										width={10}
+										height={15}
+										alt="Sign in to bookmark"
+									/>
+            {/* Sign to bookmark */}
+            </div>;
     }
 
     // Create a single supabase client for interacting with your database

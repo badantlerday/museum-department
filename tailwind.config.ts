@@ -65,6 +65,15 @@ const config: Config = {
         'md-grey-300': '#AAAAAA',
         'md-black': '#1B1B1B',
       },
+      keyframes: {
+				fadeIn: {
+					"0%": { opacity: "0" },
+					"100%": { opacity: "100%" },
+				},
+			},
+			animation: {
+				fadeIn: "fadeIn 0.25s ease forwards",
+			},
     },
   },
   plugins: [require('@tailwindcss/typography')({ className: 'tailwind-text-styles' })],
