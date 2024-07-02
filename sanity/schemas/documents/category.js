@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { DocumentIcon } from "@sanity/icons";
+import { DocumentIcon, TagIcon } from "@sanity/icons";
 
 export default defineType({
 	name: "category",
 	title: "Category",
 	type: "document",
-	icon: DocumentIcon,
+	icon: TagIcon,
 	groups: [
 		{ title: "Content", name: "content", default: true },
 		{ title: "SEO", name: "seo" },
@@ -27,6 +27,21 @@ export default defineType({
 				maxLength: 96,
 			},
 			validation: (Rule) => Rule.required(),
+		}),
+		defineField({
+			name: "connection",
+			title: "Connect category to",
+			description: "For a better seperation of categories here in the backend",
+			type: "array",
+			group: "content",
+			of: [{ type: "string" }],
+			options: {
+				layout: "grid",
+				list: [
+					{ title: "Studio", value: "studio" },
+					{ title: "Project", value: "project" },
+				],
+			},
 		}),
 		defineField({
 			title: "SEO / Share Settings",

@@ -14,6 +14,10 @@ export default defineType({
 			type: "split",
 		}),
 		defineArrayMember({
+			name: "casemedia",
+			type: "casemedia",
+		}),
+		defineArrayMember({
 			name: "ondisplay",
 			type: "ondisplay",
 		}),

@@ -10,15 +10,18 @@ export default async function BookmarkButton({ documentId }) {
 
     // Early return if user is not authenticated, prompting them to log in
     if (!user) {
-        return <div>
-            						<Image
-										src="/icon-bookmark.svg"
-										width={10}
-										height={15}
-										alt="Sign in to bookmark"
-									/>
+        return (
+            <div className="flex gap-2">
+                <Image
+                    src="/icon-bookmark.svg"
+                    width={10}
+                    height={15}
+                    alt="Sign in to bookmark"
+                />
+                Sign in to bookmark
             {/* Sign to bookmark */}
-            </div>;
+         </div>
+        )
     }
 
     // Create a single supabase client for interacting with your database

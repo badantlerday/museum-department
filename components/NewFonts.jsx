@@ -6,7 +6,7 @@ import Image from "next/image";
 const builder = imageUrlBuilder(client);
 
 
-export default async function NewFonts() {
+export default async function NewFonts({firstrow = true, secondrow = true, title = "Fonts"}) {
 	const fonts = await client.fetch(`*[_type == "typeface"]{
     _id,
 	name,
@@ -19,9 +19,10 @@ export default async function NewFonts() {
 
 	return (
 		<>
+		{firstrow && (
 			<section>
-			<div className="mx-auto px-16 pt-48 pb-10 ">
-				<h2 className="text-xl font-medium mb-4">Fonts</h2>
+			<div className="mx-auto px-18 pt-48 pb-10 ">
+				<h2 className="text-xl font-medium mb-4">{title}</h2>
 				
 				<div className="grid grid-cols-2 gap-4" >
 				{fonts.slice(0, 2).map((item) => (
@@ -62,7 +63,9 @@ export default async function NewFonts() {
 				
 			</div>
 		</section>
-		<section>
+		)}
+		{secondrow && (
+			<section>
 			<div className="mx-auto px-16 py-10">
 				<div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
 				{fonts.slice(2, 6).map((item) => (
@@ -106,6 +109,8 @@ export default async function NewFonts() {
 				</div>
 			</div>
 		</section>
+		)}
+		
 		</>
 	);
 }

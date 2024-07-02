@@ -13,7 +13,8 @@ import {
 	UlistIcon,
   TagsIcon,
   CommentIcon,
-  CalendarIcon
+  CalendarIcon,
+  ProjectsIcon
 } from '@sanity/icons';
 
 export const structure = (S, _context) =>
@@ -130,7 +131,7 @@ const PagesItem = (S) =>
 const ProjectsItem = (S) =>
     S.listItem()
       .title('Projects')
-      .icon(ImagesIcon)
+      .icon(ProjectsIcon)
       .id('projects')
       .child(
         S.documentTypeList('project')

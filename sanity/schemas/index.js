@@ -17,6 +17,7 @@ import advertise from "./documents/advertise";
 import seo from "./objects/seo";
 import siteSeo from "./objects/siteSeo";
 import blockContent from "./objects/blockContent";
+import blockContentSmall from "./objects/blockContentSmall";
 import link from "./objects/link";
 import customUrl from "./objects/customUrl";
 import gallery from "./objects/gallery";
@@ -34,6 +35,7 @@ import exploremore from "./blocks/exploremore";
 import callout from "./blocks/callout";
 import becomeasupporter from "./blocks/becomeasupporter";
 import media from "./blocks/media";
+import casemedia from "./blocks/casemedia";
 
 export const schemaTypes = [
 	// Documents
@@ -55,6 +57,7 @@ export const schemaTypes = [
 	gallery,
 	siteSeo,
 	blockContent,
+	blockContentSmall,
 	link,
 	media,
 	// Arrays
@@ -68,4 +71,5 @@ export const schemaTypes = [
 	exploremore,
 	callout,
 	becomeasupporter,
+	casemedia,
 ];

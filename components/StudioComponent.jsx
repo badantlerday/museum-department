@@ -36,7 +36,7 @@ import { client } from "@/lib/sanity.client";
 import StudioFeaturedWork from "@/components/StudioFeaturedWork";
 import StudioInterview from "@/components/StudioInterview";
 import { PortableText } from "@portabletext/react";
-import TextCallout from "@/components/TextCallout";
+// import TextCallout from "@/components/TextCallout";
 import StudioSounds from "@/components/StudioSounds";
 import ExploreMore from "@/components/ExploreMore";
 import BookmarkButton from "@/components/BookmarkButton";
@@ -61,8 +61,8 @@ export default async function StudioComponent({ data }) {
 	);
 
     return (
-<>
-			<section className="px-20 mx-auto my-20">
+	<>
+			<section className=" px-18 mx-auto my-20">
 				{studio?.mainImage ? (
 					<div className="aspect-video relative flex items-center">
 						<h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono text-white max-w-xl text-center">
@@ -98,6 +98,16 @@ export default async function StudioComponent({ data }) {
 			<section className="pb-36">
 				<div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
 					<div className="col-span-3">
+						<div className="mb-5">
+						<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Bookmark studio
+							</h2>
+							<ul className=" space-y-2 font-mono text-xs">
+								<li>	
+									<BookmarkButton documentId={studio._id} />
+								</li>
+							</ul>
+						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Studio
@@ -176,16 +186,7 @@ export default async function StudioComponent({ data }) {
 								</li>
 							</ul>
 						</div>
-						<div className="mb-5">
-						<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Bookmark
-							</h2>
-							<ul className=" space-y-2 font-mono text-xs">
-								<li>	
-									<BookmarkButton documentId={studio._id} />
-								</li>
-							</ul>
-						</div>
+
 					</div>
 					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
 						<PortableText value={studio.description} />

@@ -16,7 +16,7 @@ export default async function FontsInUseListing() {
     }`);
 
 return (
-<div className="px-10 lg:px-16 mx-auto mb-40">
+<div className="px-10 lg:px-18 mx-auto mb-40">
         <div className="flex gap-10 border-b border-md-grey-200 mb-[10px]">
             <h3 className=" text-xl font-medium mb-2">In Use</h3>
         </div>

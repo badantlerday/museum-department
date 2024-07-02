@@ -11,19 +11,19 @@ export default defineType({
 		{ title: "SEO", name: "seo" },
 	],
 	fields: [
-		{
+		defineField({
 			name: "name",
 			title: "Name",
 			type: "string",
 			group: "content",
-		},
-		{
-			name: "idNumber",
-			title: "ID Number",
-			type: "number",
-			group: "content",
-		},
-		{
+		}),
+		// defineField({
+		// 	name: "idNumber",
+		// 	title: "ID Number",
+		// 	type: "number",
+		// 	group: "content",
+		// }),
+		defineField({
 			name: "slug",
 			title: "Slug",
 			type: "slug",
@@ -32,45 +32,9 @@ export default defineType({
 				source: "name",
 				maxLength: 96,
 			},
-		},
-		defineField({
-			title: "Category",
-			name: "category",
-			type: "array",
-			group: "content",
-			of: [
-				{
-					type: "reference",
-					to: [{ type: "category" }],
-					options: {
-						disableNew: false,
-					},
-				},
-			],
-			options: {
-				layout: "list",
-			},
 		}),
+
 		defineField({
-			title: "Favourite",
-			name: "favourite",
-			type: "boolean",
-			description: "Is this a Museum Department Favourite?",
-			group: "content",
-		}),
-		defineField({
-			title: "Published At",
-			name: "publishedAt",
-			type: "datetime",
-			group: "content",
-		}),
-		defineField({
-			title: "Updated At",
-			name: "updatedAt",
-			type: "datetime",
-			group: "content",
-		}),
-		{
 			name: "mainImage",
 			title: "Main image",
 			type: "image",
@@ -78,8 +42,8 @@ export default defineType({
 			options: {
 				hotspot: true,
 			},
-		},
-		{
+		}),
+		defineField({
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",
@@ -87,8 +51,14 @@ export default defineType({
 			options: {
 				hotspot: true,
 			},
-		},
-
+		}),
+		defineField({
+			title: "Description",
+			name: "description",
+			type: "array",
+			group: "content",
+			of: [{ type: "block", styles: [] }],
+		}),
 		// defineField({
 		// 	title: "Featured",
 		// 	name: "featured",
@@ -97,24 +67,13 @@ export default defineType({
 		// 	group: "content",
 		// }),
 
-		defineField({
-			title: "Hype",
-			name: "hype",
-			type: "number",
-			group: "content",
-		}),
-		defineField({
-			title: "Website",
-			name: "website",
-			type: "url",
-			group: "content",
-		}),
-		defineField({
-			title: "Instagram",
-			name: "instagram",
-			type: "url",
-			group: "content",
-		}),
+		// defineField({
+		// 	title: "Hype",
+		// 	name: "hype",
+		// 	type: "number",
+		// 	group: "content",
+		// }),
+
 		defineField({
 			title: "Founded",
 			name: "founded",
@@ -127,14 +86,7 @@ export default defineType({
 			type: "number",
 			group: "content",
 		}),
-		{
-			title: "Description",
-			name: "description",
-			type: "array",
-			group: "content",
-			of: [{ type: "block", styles: [] }],
-		},
-		{
+		defineField({
 			title: "Location",
 			name: "location",
 			type: "array",
@@ -151,7 +103,40 @@ export default defineType({
 			options: {
 				layout: "list",
 			},
-		},
+		}),
+		defineField({
+			title: "Category",
+			name: "category",
+			type: "array",
+			group: "content",
+			of: [
+				{
+					type: "reference",
+					to: [{ type: "category" }],
+					options: {
+						disableNew: false,
+						filter: `"studio" in connection`,
+						sort: [{ field: "title", direction: "asc" }],
+					},
+				},
+			],
+			options: {
+				layout: "list",
+			},
+		}),
+
+		defineField({
+			title: "Website",
+			name: "website",
+			type: "url",
+			group: "content",
+		}),
+		defineField({
+			title: "Instagram",
+			name: "instagram",
+			type: "url",
+			group: "content",
+		}),
 		defineField({
 			title: "Studio Sounds",
 			name: "studioSoundsPlaylist",
@@ -172,12 +157,32 @@ export default defineType({
 			},
 		}),
 		defineField({
+			title: "Published At",
+			name: "publishedAt",
+			type: "datetime",
+			group: "content",
+		}),
+		defineField({
+			title: "Updated At",
+			name: "updatedAt",
+			type: "datetime",
+			group: "content",
+		}),
+		defineField({
+			title: "Favourite",
+			name: "favourite",
+			type: "boolean",
+			description: "Is this a Museum Department feature?",
+			group: "content",
+		}),
+		defineField({
 			title: "Explore More",
 			name: "exploreMore",
 			type: "object",
 			group: "content",
 			options: {
 				collapsible: true,
+				collapsed: true,
 			},
 			fields: [
 				defineField({

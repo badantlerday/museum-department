@@ -11,6 +11,7 @@ const builder = imageUrlBuilder(client);
 import TableStudios from "@/components/TableStudios";
 import NewStudios from "@/components/NewStudios";
 import HoverListing from "@/components/HoverListing";
+import SummaryCallout from "@/components/SummaryCallout";
 
 export default async function Studios() {
 	const studios = await client.fetch(`*[_type == "studio" ] | order(name asc){
@@ -124,7 +125,7 @@ export default async function Studios() {
 			<NewStudios />
 			</section>
 
-			<div className="px-10 lg:px-16 mx-auto mb-40 ">
+			<div className="px-10 lg:px-18 mx-auto mb-40 ">
 				<div className="flex gap-10 border-t border-md-grey-200 pt-4">
 				<h3 className=" text-xl font-medium mb-4">Recently updated</h3>
 				{/* <h3 className=" text-xl font-medium mb-4 text-md-grey-300">Shuffle</h3> */}
@@ -245,6 +246,7 @@ export default async function Studios() {
 				<TableStudios />
 				</div>
 			</section> */}
+			<SummaryCallout />
 			<HoverListing data={studios} sectionHeader="Design Studios" />
 		</main>
 	);

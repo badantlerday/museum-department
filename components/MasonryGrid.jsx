@@ -150,7 +150,7 @@ export default function MasonryGrid({data}) {
         // <div className='mx-auto bg-slate-300'>
         <Masonry
 				breakpointCols={2}
-				className="masonry-grid px-10"
+				className="masonry-grid px-10 _px-2"
 				columnClassName="masonry-grid--column">
         {jsxItems}
         <div className='masonry-grid--item '>

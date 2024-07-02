@@ -6,6 +6,8 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
 import { format } from 'date-fns';
+import Blocks from "@/components/Blocks"
+import BookmarkButton from "@/components/BookmarkButton";
 
 const builder = imageUrlBuilder(client);
 
@@ -23,10 +25,12 @@ export async function generateMetadata({ params, searchParams }, parent) {
 
 export default async function Page({ params }) {
   const query = `*[_type == "project" && slug.current == $slug][0]{
+    _id,
 		title,
 		slug,
 		information,
     publishedAt,
+    pageBlocks,
     category[]->,
     mainImage{crop,hotspot,asset->},
 		fontsInUse[]->{
@@ -56,11 +60,11 @@ export default async function Page({ params }) {
 				_id, name, country->{name,slug},slug
 			  }
 		},
-		credits[]{title,people[]->{_id,name,slug}},
+		credits[]{category->{title},title,people[]->{_id,name,slug}},
 	  }`;
   const project = await sanityFetch({ query, params, tags: ["project"] });
   const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
-  // console.log(project.content);
+  console.log(project.credits);
 
 
     const layoutSplit = "col-span-12";
@@ -68,13 +72,11 @@ export default async function Page({ params }) {
 
   return (
     <>
-    <section className="pt-40">
-			<div className="mx-auto px-16">
+    <section className="pt-20">
+			<div className="mx-auto px-18">
 				<div className="grid grid-cols-24 gap-4">
-					
-						<div className="bg-slate-200 col-start-5 col-span-16 mb-2">
+						<div className="bg-slate-200 col-start-3 col-span-20 mb-2">
             {project?.mainImage &&
-              <div className=" col-start-5 col-span-15 bg-slate-200 ">
                 <Image
                   className=""
                   src={builder.image(project.mainImage).width(1500).quality(100).url()}
@@ -82,8 +84,6 @@ export default async function Page({ params }) {
                   height={1500}
                   alt={project.mainImage?.alt || ""}
                 />
-              </div>
-              
             }
             </div>
 				</div>
@@ -148,9 +148,9 @@ export default async function Page({ params }) {
         <ul className=" space-y-2 font-mono text-xs mb-4">               
         <li>{publishedAt}</li>
         </ul>
-      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Bookmark</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Bookmark Project</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
-        <li>Bookmark</li>
+        <li><BookmarkButton documentId={project._id} /></li>
         </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
@@ -160,10 +160,7 @@ export default async function Page({ params }) {
       <ul className=" space-y-1 font-mono text-xs mb-4">
                 {project.category?.map((cat, index) => (
                   <li key={index}>
-
                       {cat.title}
-                   
-
                   </li>
                 ))}
               </ul>
@@ -192,7 +189,8 @@ export default async function Page({ params }) {
       {project.credits?.map((credit, index) => (
               <div key={index} className=" pb-5">
                 <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">
-                  {credit.title}
+                  {credit.category?.title}
+                  {/* {credit.title} */}
                 </h2>
                 <ul className=" space-y-1 font-mono text-xs mb-4">
                   {credit.people?.map((person, index) => (
@@ -214,6 +212,36 @@ export default async function Page({ params }) {
       <PortableText value={project?.information} />
       </div>
     </div>
+    </div>
+  </section>
+  <section>
+    <div className="px-18 mx-auto grid grid-cols-2 gap-y-20">
+        {project?.pageBlocks ? <Blocks data={project?.pageBlocks} /> : null}
+        {/* <div className=" pr-2">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" />
+        </div>
+        <div className="pl-2">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" />
+        </div>
+        <div className=" col-span-2 ">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" className="aspect-video object-cover" />
+        </div>
+        <div className="">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" />
+        </div>
+        <div className="">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" />
+        </div>
+        <div className="">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" />
+        </div>
+        <div></div>
+        <div className="">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" />
+        </div>
+        <div className="">
+          <img src="http://localhost:3000/_next/image?url=https%3A%2F%2Fcdn.sanity.io%2Fimages%2Fzr8y06dn%2Fproduction%2F4b6379baf6c91ad263f5e4fc9d9ac86016e55604-896x1192.jpg%3Fw%3D2000&w=3840&q=75" alt="" />
+        </div> */}
     </div>
   </section>
   <section>

@@ -55,12 +55,12 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
 
     return (
         <section>
-            <div className="px-16 mx-auto">
+            <div className="px-18 mx-auto">
                 <h3 className="text-xl font-medium mb-4 border-b border-[#E6E6E6] pb-4">{sectionHeader}</h3>
             </div>
-            <div className="grid grid-cols-12 px-16 mx-auto">
-                <div className="col-span-4">
-                    <div className=" sticky top-0">
+            <div className="grid grid-cols-12 gap-4 px-18 mx-auto">
+                <div className="col-span-4 ">
+                    <div className="sticky top-0">
                         <div className="col-span-4 text-xs uppercase mb-10 opacity-0">
                             Filter
                         </div>
@@ -80,8 +80,8 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                     </div>
                 </div>
             {items[0]._type === 'studio' && (
-                <div className="col-span-8">
-                    <div className="grid grid-cols-4 text-xs uppercase mb-10">
+                <div className="col-span-8 pl-6">
+                    <div className="grid grid-cols-4 text-xs uppercase mb-10 sticky top-0 bg-white z-10">
                         <div></div>
                         <div></div>
                         <div className="cursor-pointer" onClick={() => sortBy('name')}>
@@ -94,7 +94,7 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                     {items.map((item) => (
                         <div
                             key={item._id}
-                            className="group grid grid-cols-4 text-xs text-md-grey-300 hover:text-black _mb-1 py-[3px] _hover:bg-md-grey-100"
+                            className="group grid grid-cols-4 text-xs text-md-grey-300 hover:text-black _mb-6 py-[3px] _hover:bg-md-grey-100"
                             onMouseEnter={() => handleMouseEnter(item.mainImage)}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -112,6 +112,8 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                                 <Link href={`/studio/${item.slug.current}`}>{item.name}</Link>
                             </div>
                             <div>{item.location[0].name}, {item.location[0].country?.name}</div>
+                            {/* <div>{item.location[0].name}, {item.location[0].country?.name}</div>
+                            <div className=" col-span-1">{item.location[0].name}, {item.location[0].country?.name}</div> */}
                         </div>
                     ))}
                 </div>

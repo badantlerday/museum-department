@@ -23,7 +23,7 @@ export default async function Footer() {
   const { footerMenu } = data || {}
 
   return (
-    <footer className="text-sm pt-80 pb-4 px-4 lg:px-20">			
+    <footer className="text-sm pt-80 pb-4 px-4 lg:px-18">			
 
 			
 			<div className="grid grid-cols-24 mt-80 gap-4 text-xs border-t border-md-grey-200 pt-6">

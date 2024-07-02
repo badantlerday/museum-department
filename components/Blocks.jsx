@@ -5,6 +5,7 @@ import Manifest from "./blocks/Manifest"
 import ExploreMore from "./blocks/ExploreMore"
 import CallOut from "./blocks/CallOut"
 import BecomeASupporter from "./blocks/BecomeASupporter"
+import CaseMedia from "./blocks/CaseMedia"
 
 export default function Blocks({ data = [] }) {
   return (
@@ -25,6 +26,8 @@ export default function Blocks({ data = [] }) {
               return <CallOut key={`section-${key}`} data={block} />
           case "becomeasupporter":
               return <BecomeASupporter key={`section-${key}`} data={block} />
+          case "casemedia":
+              return <CaseMedia key={`section-${key}`} data={block} />
         }
       })}
     </>

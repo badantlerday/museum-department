@@ -1,11 +1,11 @@
 import { defineField, defineType } from "sanity";
-import { ImagesIcon } from "@sanity/icons";
+import { ImagesIcon, UsersIcon, ProjectsIcon } from "@sanity/icons";
 
 export default defineType({
 	name: "project",
 	title: "Project",
 	type: "document",
-	icon: ImagesIcon,
+	icon: ProjectsIcon,
 	groups: [
 		{
 			name: "information",
@@ -14,7 +14,7 @@ export default defineType({
 		},
 		{
 			name: "content",
-			title: "Content",
+			title: "Media",
 		},
 		{
 			name: "media",
@@ -113,28 +113,30 @@ export default defineType({
 			group: "information",
 		}),
 		{
-			name: "year",
-			title: "Year",
-			type: "number",
-			group: "information",
-		},
-		{
 			name: "information",
 			title: "Information",
 			type: "blockContent",
 			group: "information",
 		},
+		// {
+		// 	name: "year",
+		// 	title: "Year",
+		// 	type: "number",
+		// 	group: "information",
+		// },
 		defineField({
 			title: "Category",
 			name: "category",
 			type: "array",
-			group: "content",
+			group: "information",
 			of: [
 				{
 					type: "reference",
 					to: [{ type: "category" }],
 					options: {
 						disableNew: false,
+						filter: `"project" in connection`,
+						sort: [{ field: "title", direction: "asc" }],
 					},
 				},
 			],
@@ -153,39 +155,6 @@ export default defineType({
 				disableNew: true,
 			},
 		},
-		// {
-		// 	title: "Fonts in Use",
-		// 	name: "fontsInUse",
-		// 	type: "array",
-		// 	of: [
-		// 		{
-		// 			type: "object",
-		// 			fields: [
-		// 				{
-		// 					title: "Image",
-		// 					name: "image",
-		// 					type: "image", // Assuming you want to store an image.
-		// 					options: {
-		// 						hotspot: true, // You can configure image options as needed.
-		// 					},
-		// 				},
-		// 				{
-		// 					title: "Typeface",
-		// 					name: "typeface",
-		// 					type: "reference",
-		// 					to: [{ type: "typeface" }],
-		// 					options: {
-		// 						disableNew: true,
-		// 					},
-		// 				},
-		// 			],
-		// 		},
-		// 	],
-		// 	options: {
-		// 		layout: "list",
-		// 	},
-		// },
-
 		{
 			title: "Fonts in Use",
 			name: "fontsInUse",
@@ -214,6 +183,15 @@ export default defineType({
 					type: "object",
 					fields: [
 						{
+							title: "Title Category",
+							name: "category",
+							type: "reference",
+							to: [{ type: "category" }],
+							options: {
+								disableNew: true,
+							},
+						},
+						{
 							name: "title",
 							title: "Title",
 							type: "string",
@@ -226,6 +204,31 @@ export default defineType({
 							of: [{ type: "reference", to: [{ type: "person" }] }], // Reference to the 'Person' type
 						},
 					],
+					preview: {
+						select: {
+							title: "category.title",
+							credit0: "people.0.name", // <- authors.0 is a reference to author, and the preview component will automatically resolve the reference and return the name
+							credit1: "people.1.name",
+							credit2: "people.2.name",
+							credit3: "people.3.name",
+						},
+						prepare(selection) {
+							const { title, credit0, credit1, credit2, credit3 } = selection;
+							const credits = [credit0, credit1, credit2].filter(Boolean);
+							const subtitle =
+								credits.length > 0 ? `by ${credits.join(", ")}` : "";
+							const hasMoreAuthors = Boolean(credit3);
+
+							return {
+								title: title,
+								subtitle: hasMoreAuthors ? `${subtitle}…` : subtitle,
+								media: UsersIcon,
+								// subtitle: people
+								// 	? people.map((person) => person.name).join(", ")
+								// 	: "No people connected",
+							};
+						},
+					},
 				},
 			],
 			options: {
@@ -246,7 +249,7 @@ export default defineType({
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",
-			group: "information",
+			group: "content",
 			options: {
 				hotspot: true,
 			},
@@ -257,19 +260,22 @@ export default defineType({
 			type: "seo",
 			group: "seo",
 		}),
-		defineField({
-			title: "Media",
-			name: "content",
-			type: "media",
-			group: "content",
-		}),
-		// {
-		// 	title: "Page Blocks",
-		// 	name: "pageBlocks",
-		// 	type: "array",
+		// defineField({
+		// 	title: "Media",
+		// 	name: "content",
+		// 	type: "media",
 		// 	group: "content",
-		// 	of: [{ type: "gallery" }, { type: "quote" }],
-		// },
+		// }),
+		{
+			title: "Page Blocks",
+			name: "pageBlocks",
+			type: "array",
+			group: "content",
+			// options: {
+			// 	layout: "grid",
+			// },
+			of: [{ type: "casemedia" }],
+		},
 		// {
 		// 	title: "Gallery",
 		// 	name: "gallery",
@@ -311,7 +317,7 @@ export default defineType({
 				title: title,
 				subtitle: studioName
 					? // ? `${studioName} - (${onDisplay})`
-					  `${studioName}`
+						`${studioName}`
 					: "No studio connected",
 				media: posterImage,
 			};

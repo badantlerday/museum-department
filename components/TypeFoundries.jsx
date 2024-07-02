@@ -22,7 +22,7 @@ export async function NewTypeFoundries() {
 	return (
 		<>
 			<section>
-			<div className="mx-auto px-16 pt-48 pb-10 ">
+			<div className="mx-auto px-18 pt-48 pb-10 ">
 				<h2 className="text-xl font-medium mb-4">Type Foundries</h2>
 				
 				<div className="grid grid-cols-2 gap-4" >

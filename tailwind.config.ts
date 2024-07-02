@@ -63,7 +63,13 @@ const config: Config = {
         'md-grey-100': '#FAFBF7',
         'md-grey-200': '#E6E6E6',
         'md-grey-300': '#AAAAAA',
+        'md-grey-400': '#666666',
         'md-black': '#1B1B1B',
+      },
+      spacing: {
+        '17': '4.25rem',
+        '18': '4.5rem',
+        '19': '4.75rem',
       },
       keyframes: {
 				fadeIn: {

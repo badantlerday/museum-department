@@ -7,12 +7,12 @@ export default function Counter({ number = 50 }) {
   const rounded = useTransform(count, Math.round);
 
   useEffect(() => {
-    const animation = animate(count, number, { duration: 2 });
+    const animation = animate(count, number, { duration: 10 });
 
     return () => animation.stop();
   }, [count, number]);
 
   return (
-    <motion.span className="w-5 text-center inline-block">{rounded}</motion.span>
+    <motion.span className="text-center inline-block">{rounded}</motion.span>
   );
 }

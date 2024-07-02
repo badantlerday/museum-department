@@ -24,7 +24,7 @@ export default async function NewStudios() {
 
 	return (
 		<section className="mb-40">
-				<div className="px-10 lg:px-16 mx-auto">
+				<div className="px-10 lg:px-18 mx-auto">
 				<h3 className=" text-xl font-medium mb-4 ">New Studios</h3>
 				<div className="grid grid-cols-2 gap-x-4 ">
 				{newStudios.slice(0, 2).map((item) => (
