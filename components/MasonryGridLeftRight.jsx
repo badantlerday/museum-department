@@ -12,7 +12,8 @@ export default function MasonryGridLeftRight({ data }) {
   const items = data;
 
   const jsxItems = items.map((item, index) => {
-    const isLeft = index % 2 === 0; // Alternate between left and right
+    const isLeft = (index % 4 === 0 || index % 4 === 1); // Left for indices 0, 1, 4, 5, 8, 9, ...
+    // const isLeft = index % 2 === 0; // Alternate between left and right
     const justifyClass = isLeft ? 'justify-start' : 'justify-end';
 
     const content = (

@@ -20,6 +20,7 @@ import CustomLink from "@/components/CustomLink"
 import AnimatedLink from "@/components/AnimatedLink"
 import Link from "next/link";
 import Image from "next/image";
+import MenuSidebar from "@/components/MenuSidebar";
 import {SearchIcon,HeartIcon} from '@sanity/icons'
 
 export default async function Header() {
@@ -74,10 +75,10 @@ return (
       <div className="hidden lg:flex lg:flex-1 lg:justify-end text-[13px] space-x-3 _font-medium items-center text-[#999999]">
       
       {/* <Link href="/search">Search</Link> */}
-      {headerMenu?.menuItems.map((menuItem, key) => {
+      {/* {headerMenu?.menuItems.map((menuItem, key) => {
             return <CustomLink key={`menu-item-${key}`} data={menuItem} />
         }
-      )}
+      )} */}
       {user ? (
         <div className="space-x-4">
         <Link href="/dashboard">
@@ -117,12 +118,7 @@ return (
 				alt="Search"
 			/>
       </Link> */}
-      <Image
-				src="/icon-menu.svg"
-				width={24}
-				height={24}
-				alt="Search"
-			/>
+      <MenuSidebar />
       </div>
     </nav>
   </header>
