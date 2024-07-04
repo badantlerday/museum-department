@@ -6,6 +6,7 @@ import Link from "next/link";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import SectionHeader from "@/components/SectionHeader";
+// import BecomeAPatron from "@/components/BecomeAPatron";
 const builder = imageUrlBuilder(client);
 
 export default async function UserBookmarks({ params }) {

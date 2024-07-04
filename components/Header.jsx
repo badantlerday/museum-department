@@ -16,12 +16,13 @@ import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import { sanityFetch } from "@/lib/sanity.fetch"
 // import { client } from "@/lib/sanity.client";
-import CustomLink from "@/components/CustomLink"
+// import CustomLink from "@/components/CustomLink"
 import AnimatedLink from "@/components/AnimatedLink"
 import Link from "next/link";
 import Image from "next/image";
 import MenuSidebar from "@/components/MenuSidebar";
-import {SearchIcon,HeartIcon} from '@sanity/icons'
+import CurrentPageHeader from "@/components/CurrentPageHeader";
+// import {SearchIcon,HeartIcon} from '@sanity/icons'
 
 export default async function Header() {
   const {
@@ -68,6 +69,7 @@ return (
           {/* {headerMenu?.menuItems.map((menuItem, key) => {
             return <CustomLink key={`menu-item-${key}`} data={menuItem} />
           })} */}
+          <CurrentPageHeader />
         </div>
       )}
 			</div>
