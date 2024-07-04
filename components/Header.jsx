@@ -80,11 +80,25 @@ return (
       )}
       {user ? (
         <div className="space-x-4">
-        <Link href="/dashboard">My Account</Link>
+        <Link href="/dashboard">
+        <Image
+				src="/icon-bookmark-menu.svg"
+				width={24}
+				height={24}
+				alt="Search"
+			/>
+      </Link>
         {/* <LogoutLink>Log out</LogoutLink> */}
         </div>
         ) : (
-          <LoginLink>Sign In</LoginLink>
+          <LoginLink>
+              <Image
+				src="/icon-bookmark-menu.svg"
+				width={24}
+				height={24}
+				alt="Search"
+			/>
+          </LoginLink>
         )
       }
       <Link href="/search">
@@ -95,14 +109,20 @@ return (
 				alt="Search"
 			/>
       </Link>
-      <Link href="/search">
+      {/* <Link href="/search">
       <Image
 				src="/icon-bookmark-menu.svg"
 				width={24}
 				height={24}
 				alt="Search"
 			/>
-      </Link>
+      </Link> */}
+      <Image
+				src="/icon-menu.svg"
+				width={24}
+				height={24}
+				alt="Search"
+			/>
       </div>
     </nav>
   </header>

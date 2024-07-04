@@ -154,7 +154,9 @@ export default async function Page({ params }) {
         </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
-        <li>{project.studio.name}</li>
+        {/* <li>{project.studio.name}</li> */}
+        <li><Link href={`/studio/${project.studio.slug.current}`} className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600">{project.studio.name}</Link></li>
+        
         </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Categories</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">

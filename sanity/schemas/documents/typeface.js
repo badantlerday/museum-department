@@ -25,6 +25,19 @@ export default defineType({
 			title: "Release Year",
 			type: "number",
 		},
+		defineField({
+			title: "Style",
+			name: "style",
+			type: "string",
+			options: {
+				list: [
+					{ title: "Sans Serif", value: "Sans Serif" },
+					{ title: "Serif", value: "Serif" },
+				],
+				layout: "radio", // <-- defaults to 'dropdown'
+				direction: "horizontal", // <-- defaults to 'vertical'
+			},
+		}),
 		{
 			title: "Foundry",
 			name: "foundry",

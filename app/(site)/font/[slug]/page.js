@@ -4,6 +4,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 import TypefacesByFoundry from "@/components/TypefacesByFoundry";
+import BookmarkButton from "@/components/BookmarkButton";
 
 const builder = imageUrlBuilder(client);
 
@@ -131,7 +132,9 @@ export default async function Foundry({ params }) {
 								Bookmark
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+								<li>
+									<BookmarkButton documentId={typeface._id} />
+								</li>
 							</ul>
 						</div>
 					</div>

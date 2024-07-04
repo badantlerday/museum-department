@@ -1,6 +1,6 @@
 import { client } from "@/lib/sanity.client";
-import FeedPost from "@/components/FeedPost";
-import SectionHeader from "@/components/SectionHeader";
+// import FeedPost from "@/components/FeedPost";
+// import SectionHeader from "@/components/SectionHeader";
 import MasonryGrid from "@/components/MasonryGrid";
 
 
@@ -8,6 +8,7 @@ export default async function OnDisplay() {
 
 	const query = `*[_type == "project" && ondisplay == true] | order(publishedAt desc){
 		_id,
+		_type,
 		title,
 		slug,
 		posterImage{crop,hotspot,asset->},
@@ -16,12 +17,18 @@ export default async function OnDisplay() {
 		studio->{name}
 	  }`;
 	  const ondisplay = await client.fetch(query);
-	//   console.log(ondisplay);
 	
 	return (
 		<section>
 			<MasonryGrid data={ondisplay} />
-			{/* <div className="px-20">
+		</section>
+	);
+}
+
+
+
+
+{/* <div className="px-20">
 				<SectionHeader title="On Display" />
 			</div> */}
 			{/* <div className="px-8 md:px-16 flex gap-12 lg:gap-24 w-full ">
@@ -73,6 +80,3 @@ export default async function OnDisplay() {
 					})}
 				</div>
 			</div> */}
-		</section>
-	);
-}

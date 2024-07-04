@@ -1,11 +1,41 @@
 export const revalidate = 60;
+import { client } from "@/lib/sanity.client";
 import FontsGalleryGrid from "@/components/FontsGalleryGrid";
 import HighlightsFonts from "@/components/HighlightsFonts";
 import TextCallout from "@/components/TextCallout";
 import {TypeFoundries, NewTypeFoundries} from "@/components/TypeFoundries";
 import NewFonts from "@/components/NewFonts";
+import HoverListing from "@/components/HoverListing";
+import MasonryGridLeftRight from "@/components/MasonryGridLeftRight";
+import SectionHeader from "@/components/SectionHeader";
 
-export default function FontsGallery() {
+export default async function FontsGallery() {
+
+	const fontsinuse = await client.fetch(`*[_type == "project" && defined(fontsInUse)] {
+        _id, 
+        title, 
+        slug,
+		publishedAt, 
+        studio->{name,slug}, 
+        fontsInUse[]->{name,_id,slug},
+        posterImage{crop,hotspot,asset->},
+    }`);
+
+	const typefaces = await client.fetch(`*[_type == "typeface" ] | order(name asc){
+        _id,
+		_type,
+		name,
+		slug,
+		realaseYear,
+		style,
+		foundry->{
+			_id,
+			name,
+			slug,
+			country->{name}
+		},
+		specimenPoster{crop,hotspot,asset->},
+      }`);
 
 	const title = 'Fonts Gallery'
 	const text = <p>Explore the dynamic interplay between typefaces and real-world design. Our archive shines a spotlight on the nuances and bold choices in typography today. As we progressively expand our archive, we`&apos;`re keenly focused on highlighting font foundries and the innovative ways their typefaces feature in design projects.</p>
@@ -14,7 +44,11 @@ export default function FontsGallery() {
 		<>
 		<NewFonts />
 		<section className=" py-60">
-			<div className="mx-auto px-16 text-2xl bg-md-grey-200 py-10 text-center">IN USE</div>
+			{/* <div className="mx-auto px-16 text-2xl bg-md-grey-200 py-10 text-center">IN USE</div> */}
+			<div className="px-18 mx-auto">
+			<SectionHeader title="Fonts in Use" border={false} />
+			</div>
+			<MasonryGridLeftRight data={fontsinuse} />
 		</section>
 		<NewTypeFoundries />
 		{/* <FontsGalleryGrid />	 */}
@@ -23,10 +57,8 @@ export default function FontsGallery() {
 		</section> */}
 		<section className=" py-60">
 			<TextCallout title={title} text={text} button={true} buttonLink="/" buttonText="SUBMIT A TYPE PROJECT" />
-		</section>
-		<section className=" py-60">
-			<div className="mx-auto px-16 text-2xl bg-md-grey-200 py-10 text-center">Fonts and Foundries Archive</div>
-		</section>
+		</section>		
+		<HoverListing data={typefaces} sectionHeader="Fonts and Foundries" />
 		
 		
 		{/* <HighlightsFonts /> */}

@@ -7,6 +7,7 @@ import Link from "next/link";
 import TypefaceBy from "@/components/TypefaceBy";
 import FontsInUseBy from "@/components/FontsInUseBy";
 import TextCallout from "@/components/TextCallout";
+import BookmarkButton from "@/components/BookmarkButton";
 const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
@@ -25,6 +26,7 @@ const builder = imageUrlBuilder(client);
 export default async function Foundry({ params }) {
 	const { slug } = params;
 	const query = `*[_type == "foundry" && slug.current == $slug][0]{
+		_id,
 		name,
 		slug,
 		founded,
@@ -179,7 +181,9 @@ export default async function Foundry({ params }) {
 								Bookmark Foundry
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>[LINK] </li>
+								<li>
+									<BookmarkButton documentId={foundry._id} />
+								</li>
 							</ul>
 						</div>
 					</div>

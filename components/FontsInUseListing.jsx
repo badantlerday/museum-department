@@ -1,30 +1,70 @@
+"use client"
+import { useState } from "react";
 import Link from "next/link";
 import { client } from "@/lib/sanity.client";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 const builder = imageUrlBuilder(client);
 
-export default async function FontsInUseListing() {
+function getNestedValue(obj, path) {
+    return path.split('.').reduce((acc, part) => acc && acc[part], obj);
+}
 
-    const fonts = await client.fetch(`*[_type == "project" && defined(fontsInUse)] {
-        _id, 
-        title, 
-        slug, 
-        studio->{name,slug}, 
-        fontsInUse[]->{name,_id,slug},
-        posterImage{crop,hotspot,asset->},
-    }`);
+export default function FontsInUseListing({data}) {
+    const [items, setItems] = useState(data);
+    const [sortConfig, setSortConfig] = useState({ key: 'publishedAt', direction: 'asc' });
+
+    const sortBy = (key) => {
+        let direction = 'asc';
+        if (sortConfig.key === key && sortConfig.direction === 'asc') {
+            direction = 'desc';
+        }
+        setSortConfig({ key, direction });
+
+        const sortedData = [...items].sort((a, b) => {
+            const aValue = getNestedValue(a, key);
+            const bValue = getNestedValue(b, key);
+
+            if (aValue < bValue) {
+                return direction === 'asc' ? -1 : 1;
+            }
+            if (aValue > bValue) {
+                return direction === 'asc' ? 1 : -1;
+            }
+            return 0;
+        });
+        setItems(sortedData);
+    };
 
 return (
 <div className="px-10 lg:px-18 mx-auto mb-40">
-        <div className="flex gap-10 border-b border-md-grey-200 mb-[10px]">
+        <div className="flex gap-10">
             <h3 className=" text-xl font-medium mb-2">In Use</h3>
         </div>
-        <div className="mb-10 text-xs uppercase">
-            Filter
-        </div>
+		<div className=" sticky top-0 bg-white pb-2 z-10 mb-10">
+			<nav className="border-t border-md-grey-200 flex">
+				<div className=" flex-1">
+					<ul className="flex text-xs uppercase tracking-wider text-md-grey-300 *:pt-2 mt-[-1px]">
+						
+						<li>Filter</li>
+					</ul>
+				</div>
+				<div>
+					<ul className="flex text-xs uppercase tracking-wider text-md-grey-300 *:pt-2 space-x-4 mt-[-1px]">
+						{/* <li className="text-md-black border-t border-md-black">Date added</li> */}
+                        <li className={`cursor-pointer border-t ${sortConfig.key === 'publishedAt' ? 'text-md-black border-md-black' : 'border-md-grey-300'}`} onClick={() => sortBy('publishedAt')}>
+                            Date added {sortConfig.key === 'publishedAt' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                        </li>
+                        <li className={`cursor-pointer border-t ${sortConfig.key === 'title' ? 'text-md-black border-md-black' : ' border-md-grey-300'}`} onClick={() => sortBy('title')}>
+                        Project {sortConfig.key === 'title' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                        </li>
+						
+					</ul>
+				</div>
+			</nav>
+		</div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8">
-            {fonts.slice(0,18).map((item) => (
+            {items.slice(0,18).map((item) => (
                 <Link
                     key={item._id}
                     href={`/project/${item.slug.current}`}

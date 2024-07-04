@@ -21,6 +21,8 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
     const [items, setItems] = useState(data);
     const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'asc' });
 
+    // console.log(items);
+
     const handleMouseEnter = (imageHoverAsset) => {
         if (imageHoverAsset) {
             setHoveredImage(imageHoverAsset);
@@ -114,6 +116,47 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                             <div>{item.location[0].name}, {item.location[0].country?.name}</div>
                             {/* <div>{item.location[0].name}, {item.location[0].country?.name}</div>
                             <div className=" col-span-1">{item.location[0].name}, {item.location[0].country?.name}</div> */}
+                        </div>
+                    ))}
+                </div>
+            )}
+            {items[0]._type === 'typeface' && (
+                <div className="col-span-8 pl-6">
+                    <div className="grid grid-cols-12 text-xs uppercase mb-10 sticky top-0 bg-white z-10">
+                        <div className="cursor-pointer col-start-3 col-span-3" onClick={() => sortBy('name')}>
+                            Name {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                        </div>
+                        <div className="cursor-pointer col-span-3" onClick={() => sortBy('foundry.name')}>
+                            Foundry {sortConfig.key === 'foundry.name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                        </div>
+                        <div className="cursor-pointer col-span-3" onClick={() => sortBy('style')}>
+                            Style {sortConfig.key === 'style' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                        </div>
+                        <div className="cursor-pointer col-span-1" onClick={() => sortBy('realaseYear')}>
+                            Year {sortConfig.key === 'realaseYear' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
+                        </div>
+                    </div>
+                    {items.map((item) => (
+                        <div
+                            key={item._id}
+                            className="group grid grid-cols-12 text-xs text-md-grey-300 hover:text-black _mb-6 py-[3px] _hover:bg-md-grey-100"
+                            onMouseEnter={() => handleMouseEnter(item.specimenPoster)}
+                            onMouseLeave={handleMouseLeave}
+                        >
+                            <div className="relative col-start-3 col-span-3">
+                                <div className="absolute -left-6 top-[1.5px] hidden group-hover:block">
+                                    <Image
+                                        src="/icon-bookmark.svg"
+                                        width={10}
+                                        height={15}
+                                        alt="Sign in to bookmark"
+                                    />
+                                </div>
+                                <Link href={`/studio/${item.slug.current}`}>{item.name}</Link>
+                            </div>
+                            <div className="col-span-3">{item.foundry.name}</div>
+                            <div className="col-span-3">{item.style}</div>
+                            <div className="col-span-1">{item.realaseYear}</div>
                         </div>
                     ))}
                 </div>

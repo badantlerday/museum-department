@@ -8,16 +8,7 @@ import { motion } from "framer-motion";
 const builder = imageUrlBuilder(client);
 
 export default function MasonryGrid({data}) {
-
-    // const items = [
-    //     {id: 1, name: 'My First Item'},
-    //     {id: 2, name: 'Another item'},
-    //     {id: 3, name: 'Third Item'},
-    //     {id: 4, name: 'Here is the Fourth'},
-    //     {id: 5, name: 'High Five'}
-    //   ];
   
-
     const items = data;
     // Convert array to JSX items
     const jsxItems = items.map(item => {
@@ -28,11 +19,11 @@ export default function MasonryGrid({data}) {
         switch (item.displaySettings.ondisplayAlignment) {
           case "left":
             content = (
-              <div className='flex bg-green-400_ justify-start'>
+              <div className='flex justify-start'>
               <Link
                 href={`/project/${item.slug.current}`}
                 passHref
-                className="w-3/4 _lg:w-2/3 bg-red-400_"
+                className="w-3/4"
               >
               
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
@@ -47,11 +38,11 @@ export default function MasonryGrid({data}) {
             break;
           case "right":
             content = (
-              <div className='flex bg-green-400_ justify-end'>
+              <div className='flex justify-end'>
                 <Link
                   href={`/project/${item.slug.current}`}
                   passHref
-                  className="w-3/4 _lg:w-2/3 bg-red-400_"
+                  className="w-3/4"
                 >
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
                 <div className="text-sm mt-2">
@@ -68,7 +59,7 @@ export default function MasonryGrid({data}) {
               <Link
                 href={`/project/${item.slug.current}`}
                 passHref
-                className="w-3/4 _lg:w-2/3 bg-red-400_"
+                className="w-3/4"
               >
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
                 <div className="text-sm mt-2">
@@ -147,7 +138,6 @@ export default function MasonryGrid({data}) {
     
 
 	return (
-        // <div className='mx-auto bg-slate-300'>
         <Masonry
 				breakpointCols={2}
 				className="masonry-grid px-10 _px-2"
@@ -160,6 +150,5 @@ export default function MasonryGrid({data}) {
           </div>
         </div>
 		    </Masonry>
-        // </div>
 	);
 }

@@ -6,9 +6,10 @@ const builder = imageUrlBuilder(client);
 
 export default async function NewStudios() {
 
-    const newStudios = await client.fetch(`*[_type == "studio"] | order(_createdAt desc){
+    const newStudios = await client.fetch(`*[_type == "studio"] | order(publishedAt desc){
         _id,
 		_createdAt,
+		publishedAt,
 		name,
 		slug,
 		location[]->{
