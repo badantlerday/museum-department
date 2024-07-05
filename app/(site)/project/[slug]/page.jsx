@@ -91,26 +91,25 @@ export default async function Page({ params }) {
 		</section>
     <section className="mx-auto px-16 ">
     <h1 className="text-center text-[56px]/[50px] font-black mx-auto flex flex-col my-20 uppercase tracking-tight px-28">
-          <span>{project?.title}</span><span>
-          <Link
+          <span>{project?.title}</span><span>by <Link
             href={`/studio/${project.studio.slug.current}`}
             className="transition-colors hover:text-md-grey-300"
           >
             {project.studio.name}
           </Link>{" "}
-          </span><span><Link
+          </span><span>from <Link
             href={`/city/${project.studio.location[0].slug.current}`}
             className="transition-colors hover:text-md-grey-300"
           >
-            {project.studio.location[0].name}
+             {project.studio.location[0].name}
           </Link>
-          ,{" "}
+          {/* ,{" "}
           <Link
             href={`/country/${project.studio.location[0].country.slug.current}`}
             className="transition-colors hover:text-md-grey-300"
           >
             {project.studio.location[0].country.name}
-          </Link>
+          </Link> */}
           </span>
         </h1>
     </section>

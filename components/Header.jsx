@@ -44,6 +44,16 @@ const data = await sanityFetch({ query, tags: ["settings"] })
 const { headerMenu } = data || {}
 const user = await getUser();
 
+
+const queryPageTitles = `*[_type in ["project","studio","typeface","foundry"]]{
+    _type,
+		title,
+    name,
+		slug,
+	  }`;
+const allPageTitles = await sanityFetch({ query: queryPageTitles, tags: ["project"] })
+// console.log(allPageTitles)
+
 return (
   <header className="_fixed top-0 left-0 w-full z-50 bg-white">
     <nav
@@ -51,7 +61,7 @@ return (
 				aria-label="Global"
 			>
       {/* Left */}
-      <div className="lg:flex-1">
+      <div className="lg:flex-1 items-center">
       <AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
       </div>
       {/* {headerMenu?.menuItems && (
@@ -65,11 +75,8 @@ return (
       <div className="hidden lg:flex lg:gap-x-12 text-sm">
 					{/* <AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" /> */}
           {headerMenu?.menuItems && (
-        <div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">
-          {/* {headerMenu?.menuItems.map((menuItem, key) => {
-            return <CustomLink key={`menu-item-${key}`} data={menuItem} />
-          })} */}
-          <CurrentPageHeader />
+        <div className="flex lg:flex-1 space-x-4 items-center">
+          <CurrentPageHeader data={allPageTitles} />
         </div>
       )}
 			</div>
