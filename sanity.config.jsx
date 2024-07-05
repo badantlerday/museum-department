@@ -5,6 +5,7 @@ import { visionTool } from '@sanity/vision';
 import { structure } from './sanity/config/structure';
 // import { defaultDocumentNode } from './sanity/config/structure';
 import {media} from 'sanity-plugin-media'
+import {cloudinarySchemaPlugin} from 'sanity-plugin-cloudinary'
 // import { assist } from '@sanity/assist'
 // import {presentationTool} from 'sanity/presentation'
 // import { locate } from "@/sanity/plugins/locate";
@@ -40,6 +41,7 @@ export default defineConfig({
       // defaultDocumentNode,
     }),
     media(),
+    cloudinarySchemaPlugin(),
     // assist(),
     visionTool(),
     // presentationTool({

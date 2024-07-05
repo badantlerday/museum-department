@@ -64,7 +64,7 @@ export default async function Page({ params }) {
 	  }`;
   const project = await sanityFetch({ query, params, tags: ["project"] });
   const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
-  console.log(project.credits);
+  // console.log(project.credits);
 
 
     const layoutSplit = "col-span-12";

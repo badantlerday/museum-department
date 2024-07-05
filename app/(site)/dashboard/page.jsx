@@ -4,6 +4,7 @@ import TextCallout from "@/components/TextCallout";
 import UserBookmarks from "@/components/UserBookmarks";
 import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import BecomeAPatron from "@/components/BecomeAPatron";
+import Counter from "@/components/Counter";
 
 export default async function Dashboard() {
     const {

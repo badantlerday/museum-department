@@ -14,7 +14,19 @@ export default defineType({
 				hotspot: true,
 			},
 		}),
-
+		defineField({
+			title: "Video",
+			type: "cloudinary.asset",
+			name: "video",
+			description: "This asset is served from Cloudinary",
+		}),
+		defineField({
+			name: "sticky",
+			title: "Make sticky",
+			type: "boolean",
+			description:
+				"If checked, the media will be sticky to the top of the page.",
+		}),
 		defineField({
 			title: "Layout Options",
 			name: "layoutoptions",
