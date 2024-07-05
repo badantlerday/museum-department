@@ -41,13 +41,13 @@ export default async function NewStudios() {
                             {item.mainImage || item.mainImage ? (
 								
 								<Image
-								className="aspect-[4/3] mb-2 object-cover"
+								className="aspect-[4/3] mb-2 object-cover w-full"
 								src={builder
 									.image(item.mainImage || item.mainImage)
-									.width(1000)
+									.width(2000)
 									.url()}
-								width={800}
-								height={665}
+								width={1200}
+								height={1200}
 								blurDataURL={
 									(item.mainImage || item.mainImage).asset
 										.metadata.lqip

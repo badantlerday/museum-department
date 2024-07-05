@@ -26,7 +26,7 @@ export default function MasonryGrid({data}) {
                 className="w-3/4"
               >
               
-                {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
+                {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
                 <div className="text-sm mt-2">
                     <h2 className="font-medium uppercase tracking-wide">{item.studio?.name}</h2>
                     <div className="font-medium italic">{item.title}</div>
@@ -44,7 +44,7 @@ export default function MasonryGrid({data}) {
                   passHref
                   className="w-3/4"
                 >
-                {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
+                {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
                 <div className="text-sm mt-2">
                     <h2 className="font-medium uppercase tracking-wide">{item.studio?.name}</h2>
                     <div className="font-medium italic">{item.title}</div>
@@ -61,7 +61,7 @@ export default function MasonryGrid({data}) {
                 passHref
                 className="w-3/4"
               >
-                {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
+                {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
                 <div className="text-sm mt-2">
                   <h2 className="font-medium uppercase tracking-wide">{item.studio?.name}</h2>
                   <div className="font-medium italic">{item.title}</div>
@@ -80,18 +80,18 @@ export default function MasonryGrid({data}) {
                 >
                 {item.mainImage ? (
                   <Image
-                    src={builder.image(item.mainImage).width(1000).url()}
+                    src={builder.image(item.mainImage).width(1500).url()}
                     alt=""
-                    width={1000}
-                    height={1000}
+                    width={1500}
+                    height={1500}
                   />
                 ) : (
                   item.posterImage && (
                     <Image
-                      src={builder.image(item.posterImage).width(1000).url()}
+                      src={builder.image(item.posterImage).width(1500).url()}
                       alt=""
-                      width={1000}
-                      height={1000}
+                      width={1500}
+                      height={1500}
                     />
                   )
                 )}                  
@@ -106,7 +106,7 @@ export default function MasonryGrid({data}) {
           default:
             content = (
               <>
-                {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
+                {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
                 <div className="text-sm mt-2">
                     <h2 className="font-medium uppercase tracking-wide">{item.studio?.name}</h2>
                     <div className="font-medium italic">{item.title}</div>

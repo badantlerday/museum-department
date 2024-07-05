@@ -34,10 +34,10 @@ export default function CaseMedia({ data }) {
             )}
             {image && (
                 <Image
-                className=" object-cover"
-                src={builder.image(image).width(1500).quality(75).url()}
-                width={1500}
-                height={1500}
+                className="w-full object-cover"
+                src={builder.image(image).width(2000).quality(80).url()}
+                width={2000}
+                height={2000}
                 alt={image?.alt || ""}
                 />
             )}

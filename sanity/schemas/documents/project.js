@@ -246,6 +246,12 @@ export default defineType({
 			},
 		},
 		{
+			name: "mainVideo",
+			title: "Main Video",
+			type: "cloudinary.asset",
+			group: "content",
+		},
+		{
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",

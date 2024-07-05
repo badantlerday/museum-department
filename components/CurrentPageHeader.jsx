@@ -46,6 +46,6 @@ export default function CurrentPageHeader({ data }) {
     }, [pathname, items]);
 
     return (
-        <div className='animate-fadeIn font-medium tracking-[1%]' key={pathname}>{currentHeader}</div>
+        <div className='animate-fadeIn font-medium text-base tracking-[1%]' key={pathname}>{currentHeader}</div>
     );
 }

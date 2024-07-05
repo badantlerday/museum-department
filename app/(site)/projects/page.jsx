@@ -19,8 +19,14 @@ export default async function Projects() {
 
 	return (
 		<>
-			<section className="py-48 space-y-40">
-				<TextCallout title={title} text={text} />
+			<section className="py-48 _space-y-40">
+			<h1 className="text-center text-7xl font-black mx-auto flex flex-col mb-10 tracking-[-1%] leading-[68px] uppercase">
+          <span>Projects</span>
+        </h1>
+		<div className="px-4 lg:px-0 article font-medium text-xl lg:text-2xl max-w-4xl mx-auto tracking-[0.5%]">
+		<p>{text}</p>
+		</div>
+				{/* <TextCallout title={title} text={text} /> */}
 			</section>
 			<LatestProjects />
 		</>
