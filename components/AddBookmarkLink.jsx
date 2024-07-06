@@ -3,6 +3,7 @@
 import {useKindeBrowserClient} from "@kinde-oss/kinde-auth-nextjs";
 import { useState } from 'react';
 import { addBookmark } from '@/app/actions'
+import { toast } from 'sonner';
 // adjust the import path as needed
 
 const AddBookmarkLink = ({ documentId }) => {
@@ -27,7 +28,8 @@ const AddBookmarkLink = ({ documentId }) => {
       }
 
       // console.log('Bookmark added successfully:', data);
-      setMessage('Bookmark added successfully.');
+      // setMessage('Bookmark added successfully.');
+      toast('Bookmark added successfully.');
     } catch (error) {
       console.error('Error adding bookmark:', error);
       setMessage(`Error: ${error.message}`);
@@ -41,7 +43,8 @@ const AddBookmarkLink = ({ documentId }) => {
       <button onClick={addBookmarkButton} disabled={isLoading}>
         {isLoading ? 'Adding...' : 'Add Bookmark'}
       </button>
-      {message && <p>{message}</p>}
+      {/* <button onClick={() => toast('This is a sonner toast')}>Render my toast</button> */}
+      {/* {message && <p>{message}</p>} */}
     </div>
   );
 };

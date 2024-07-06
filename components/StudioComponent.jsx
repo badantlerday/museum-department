@@ -103,9 +103,8 @@ export default async function StudioComponent({ data }) {
 								Bookmark studio
 							</h2>
 							<ul className=" space-y-2 font-mono text-xs">
-								<li>	
-									<BookmarkButton documentId={studio._id} />
-								</li>
+							<li><BookmarkButton documentId={studio._id} variant="icon" /></li>
+
 							</ul>
 						</div>
 						<div className="mb-5">

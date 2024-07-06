@@ -12,6 +12,8 @@ import TableStudios from "@/components/TableStudios";
 import NewStudios from "@/components/NewStudios";
 import HoverListing from "@/components/HoverListing";
 import SummaryCallout from "@/components/SummaryCallout";
+import { Book } from "lucide-react";
+import BookmarkButton from "@/components/BookmarkButton";
 
 export default async function Studios() {
 	const studios = await client.fetch(`*[_type == "studio" ] | order(name asc){
@@ -132,11 +134,9 @@ export default async function Studios() {
 				</div>
 				<div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8">
 					{uniqueProjects.slice(0,18).map((item) => (
+						<div key={item._id} className="relative group">
 						<Link
-							key={item._id}
 							href={`/studio/${item.studio.slug.current}`}
-							passHref
-							className="relative group"
 						>
 							{/* <div className="uppercase text-[8px] font-medium bg-white absolute top-4 left-4 py-1 px-2 tracking-wider opacity-0 group-hover:opacity-100">{item.title}</div> */}
 							{item.posterImage || item.posterImage ? (
@@ -156,31 +156,26 @@ export default async function Studios() {
 								placeholder="blur"
 								alt={item.name}
 							/>
-								
-							
-	
 							) : (
 								<div className="w-full aspect-[3/4] bg-md-grey-200 mb-2"></div>
 							)}
+							</Link>
 							<div className="flex">
-								<div className=" grow">
+								<Link
+							href={`/studio/${item.studio.slug.current}`} className=" flex-1">
 									<span className="text-xs font-medium tracking-wide block uppercase">
 										{item.studio.name} ({item.studio.countProjects})
 									</span>
 									<span className="text-xs font-medium italic block">
 										{item.studio.location[0].name}, {item.studio.location[0].country?.name}
 									</span>
-								</div>
+								</Link>
 								<div>
-									<Image
-										src="/icon-bookmark.svg"
-										width={10}
-										height={15}
-										alt="Cover"
-									/>
+									<BookmarkButton documentId={item._id} variant="icon" />
 								</div>
 							</div>
-						</Link>
+						
+						</div>
 					))}
 					{/* {studios.map((item) => (
 						<Link

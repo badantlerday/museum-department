@@ -4,6 +4,7 @@
 // import {token} from '@/lib/sanity.fetch'
 import Footer from "@/components/Footer";
 import Header from "@/components/Header";
+import { Toaster } from 'sonner';
 // import { VisualEditing } from "next-sanity";
 
 import localFont from "next/font/local";
@@ -66,6 +67,10 @@ export default function RootLayout({children}) {
 		  <Header />
 			{children}
 		  <Footer />
+		  <Toaster
+		  toastOptions={{
+		  }}
+		  />
 		  {/* {draftMode().isEnabled && <VisualEditing />} */}
 		</body>
 	  </html>

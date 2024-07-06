@@ -149,7 +149,7 @@ export default async function Page({ params }) {
         </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Bookmark Project</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
-        <li><BookmarkButton documentId={project._id} /></li>
+        <li><BookmarkButton documentId={project._id} variant="icon" /></li>
         </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               

@@ -1,26 +1,28 @@
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { createClient } from '@supabase/supabase-js'
-import AddBookmarkLink from "./AddBookmarkLink";
-import RemoveBookmarkLink from "./RemoveBookmarkLink";
+// import AddBookmarkLink from "./AddBookmarkLink";
+// import RemoveBookmarkLink from "./RemoveBookmarkLink";
 import Image from "next/image";
+import Bookmark from "./Bookmark";
+import Link from "next/link";
 
-export default async function BookmarkButton({ documentId }) {
+export default async function BookmarkButton({ documentId,variant="text" }) {
     const {getUser} = getKindeServerSession();
     const user = await getUser();
 
     // Early return if user is not authenticated, prompting them to log in
     if (!user) {
         return (
-            <div className="flex gap-2">
+            <Link src="/become-a-patron" className="flex gap-2">
                 <Image
                     src="/icon-bookmark.svg"
                     width={10}
                     height={15}
-                    alt="Sign in to bookmark"
+                    alt="Become a patron to bookmark"
                 />
-                Sign in to bookmark
+                {/* Sign in to bookmark */}
             {/* Sign to bookmark */}
-         </div>
+         </Link>
         )
     }
 
@@ -32,13 +34,7 @@ export default async function BookmarkButton({ documentId }) {
     // console.log(bookmark.data)
 
 return (
-    <div>
-        {isBookmarked ? (
-            <RemoveBookmarkLink documentId={documentId} />
-        ) : (
-            <AddBookmarkLink documentId={documentId} />
-        )}
-    </div>
+        <Bookmark documentId={documentId} isBookmarked={isBookmarked} userid={user.id} variant={variant} />
   );
 
 }
