@@ -13,7 +13,7 @@ export default async function BookmarkButton({ documentId,variant="text" }) {
     // Early return if user is not authenticated, prompting them to log in
     if (!user) {
         return (
-            <Link src="/become-a-patron" className="flex gap-2">
+            <Link href="/become-a-patron" className="flex gap-2">
                 <Image
                     src="/icon-bookmark.svg"
                     width={10}

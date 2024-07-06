@@ -2,7 +2,7 @@ import { Suspense } from "react";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import TextCallout from "@/components/TextCallout";
 import UserBookmarks from "@/components/UserBookmarks";
-import {LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
+import {LogoutLink,LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import BecomeAPatron from "@/components/BecomeAPatron";
 import Counter from "@/components/Counter";
 
@@ -68,7 +68,11 @@ export default async function Dashboard() {
 			</div>
 		</section>
 		:
-		<BecomeAPatron />
+		<div>
+			{/* <LoginLink /> */}
+			<BecomeAPatron />
+		</div>
+		
 		}
 		</>
 	);
