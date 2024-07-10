@@ -103,7 +103,7 @@ export default async function StudioComponent({ data }) {
 								Bookmark studio
 							</h2>
 							<ul className=" space-y-2 font-mono text-xs">
-							<li><BookmarkButton documentId={studio._id} variant="icon" /></li>
+							<li><BookmarkButton documentId={studio._id} variant="icon" message={`${studio?.name}`} /></li>
 
 							</ul>
 						</div>
@@ -137,17 +137,17 @@ export default async function StudioComponent({ data }) {
 							</h2>
 							<ul className=" space-y-1 font-mono text-xs">
 								{studio.location?.map((item, index) => (
-									<li key={item._id} className=" text-[#444444]">
+									<li key={item._id} className="">
 										<Link
 											href={`/city/${item?.slug.current}`}
-											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+											className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
 										>
 											{item?.name}
 										</Link>
 										,{" "}
 										<Link
 											href={`/country/${item?.country.slug.current}`}
-											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+											className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
 										>
 											{item?.country.name}
 										</Link>
@@ -163,8 +163,11 @@ export default async function StudioComponent({ data }) {
 							<ul className=" space-y-2 font-mono text-xs">
 							{studio.category?.map((cat, index) => (
                   <li key={index}>
+					<Link href={`/category/${cat.slug.current}`} className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors">
 
                       {cat.title}
+						
+						</Link>
                    
 
                   </li>
@@ -178,10 +181,10 @@ export default async function StudioComponent({ data }) {
 							</h2>
 							<ul className=" space-y-2 font-mono text-xs">
 								<li>
-									<a href={studio.website} target="_blank">Website</a>
+									<a href={studio.website} target="_blank" className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors">Website</a>
 								</li>
 								<li>
-									<a href={studio.instagram} target="_blank">Instagram</a>
+									<a href={studio.instagram} target="_blank" className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors">Instagram</a>
 								</li>
 							</ul>
 						</div>

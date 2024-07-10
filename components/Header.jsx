@@ -45,7 +45,7 @@ const { headerMenu } = data || {}
 const user = await getUser();
 
 
-const queryPageTitles = `*[_type in ["project","studio","typeface","foundry"]]{
+const queryPageTitles = `*[_type in ["project","studio","typeface","foundry","interview"]]{
     _type,
 		title,
     name,
@@ -62,7 +62,9 @@ return (
 			>
       {/* Left */}
       <div className="lg:flex-1 items-center">
-      <AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
+        <div className="flex">
+         <AnimatedLink text="Museum Department" hoverText="Curating Contemporary Culture" url="/" />
+        </div>
       </div>
       {/* {headerMenu?.menuItems && (
         <div className="flex lg:flex-1 text-sm space-x-4 items-center font-medium">

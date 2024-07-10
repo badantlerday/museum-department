@@ -87,6 +87,15 @@ export default defineType({
 					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
 				},
 				{
+					name: "ondisplayImage",
+					title: "Image",
+					type: "image",
+					options: {
+						hotspot: true,
+					},
+					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
+				},
+				{
 					name: "ondisplayStart",
 					title: "Start",
 					type: "datetime",
@@ -236,7 +245,7 @@ export default defineType({
 			},
 		},
 		// MEDIA
-		{
+		defineField({
 			name: "mainImage",
 			title: "Main image",
 			type: "image",
@@ -244,7 +253,27 @@ export default defineType({
 			options: {
 				hotspot: true,
 			},
-		},
+			fields: [
+				defineField({
+					title: "Size",
+					name: "size",
+					type: "string",
+					options: {
+						list: [
+							{ title: "X-Large", value: "xl" },
+							{ title: "Large", value: "lg" },
+							{ title: "Medium", value: "md" },
+							{ title: "Small", value: "sm" },
+						],
+						layout: "radio", // <-- defaults to 'dropdown'
+						direction: "horizontal", // <-- defaults to 'vertical'
+					},
+				}),
+			],
+			initialValue: {
+				size: "lg",
+			},
+		}),
 		{
 			name: "mainVideo",
 			title: "Main Video",

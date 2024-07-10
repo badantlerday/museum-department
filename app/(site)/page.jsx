@@ -9,10 +9,10 @@ import { formatMetaData } from "@/lib/utilities"
 import OnDisplay from "@/components/blocks/OnDisplay"
 import SiteTitleHeader from "@/components/SiteTitleHeader"
 import BecomeAPatron from "../../components/BecomeAPatron"
-import SellWithUs from "../../components/SellWithUs"
+// import SellWithUs from "../../components/SellWithUs"
 import ItemsRow from "@/components/ItemsRow"
 import NewFonts from "@/components/NewFonts";
-import Image from "next/image";
+// import Image from "next/image";
 
 export async function generateMetadata({ params }) {
   const query = `{
@@ -37,9 +37,7 @@ export default function IndexPage() {
     <>
     <SiteTitleHeader />
     <OnDisplay />
-
     <NewFonts secondrow={false} title="New fonts" />
-
     <section className="px-18 mt-40 mx-auto">
       <ItemsRow title="Fonts Gallery" />
     </section>

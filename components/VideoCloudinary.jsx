@@ -37,7 +37,7 @@ const VideoCloudinary = ({
 				loop
 				playsInline
 				muted
-				className="h-full w-full animate-fadeIn object-cover"
+				className="h-full w-full animate-in fade-in duration-1000 object-cover"
 				key={blockref}
 			>
 				<source

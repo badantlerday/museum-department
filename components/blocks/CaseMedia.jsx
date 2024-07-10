@@ -23,14 +23,12 @@ export default function CaseMedia({ data }) {
         `}>
         <div className={`${sticky ? 'sticky top-0' : ''}`}>
             {video && (
-                <div>
-                    <VideoCloudinary
-                    data={video}
-                    transformation="video-project"
-                    autoPlay={true}
-                    blockref={_key}
-                    />
-                </div>
+                <VideoCloudinary
+                data={video}
+                transformation="video-project"
+                autoPlay={true}
+                blockref={_key}
+                />
             )}
             {image && (
                 <Image

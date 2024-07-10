@@ -8,7 +8,15 @@ export default function CurrentPageHeader({ data }) {
 
     // Extract slugs, names, and types from data with proper prefixing
     const items = data.map(item => {
-        const prefix = item._type === 'typeface' ? 'font' : item._type;
+        // const prefix = item._type === 'typeface' ? 'font' : item._type;
+        let prefix;
+        if (item._type === 'typeface') {
+            prefix = 'font';
+        } else if (item._type === 'interview') {
+            prefix = 'interviews';
+        } else {
+            prefix = item._type;
+        }
         return {
             type: item._type,
             name: item.name || item.title,
@@ -19,6 +27,9 @@ export default function CurrentPageHeader({ data }) {
     useEffect(() => {
         if (pathname === '/') {
             setCurrentHeader('On Display');
+        }
+        else if (pathname === '/become-a-patron') {
+            setCurrentHeader('Become a Patron');
         }
         else if (pathname === '/studios') {
             setCurrentHeader('Design Studios');

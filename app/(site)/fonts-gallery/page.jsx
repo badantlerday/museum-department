@@ -1,9 +1,9 @@
 export const revalidate = 60;
 import { client } from "@/lib/sanity.client";
-import FontsGalleryGrid from "@/components/FontsGalleryGrid";
-import HighlightsFonts from "@/components/HighlightsFonts";
+// import FontsGalleryGrid from "@/components/FontsGalleryGrid";
+// import HighlightsFonts from "@/components/HighlightsFonts";
 import TextCallout from "@/components/TextCallout";
-import {TypeFoundries, NewTypeFoundries} from "@/components/TypeFoundries";
+import { NewTypeFoundries} from "@/components/TypeFoundries";
 import NewFonts from "@/components/NewFonts";
 import HoverListing from "@/components/HoverListing";
 import MasonryGridLeftRight from "@/components/MasonryGridLeftRight";
@@ -43,25 +43,17 @@ export default async function FontsGallery() {
 	return (
 		<>
 		<NewFonts />
-		<section className=" py-60">
-			{/* <div className="mx-auto px-16 text-2xl bg-md-grey-200 py-10 text-center">IN USE</div> */}
+		<section className="py-60">
 			<div className="px-18 mx-auto">
-			<SectionHeader title="Fonts in Use" border={false} />
+				<SectionHeader title="Fonts in Use" border={false} />
 			</div>
 			<MasonryGridLeftRight data={fontsinuse} />
 		</section>
 		<NewTypeFoundries />
-		{/* <FontsGalleryGrid />	 */}
-		{/* <section className="pt-10">
-			<TypeFoundries />	
-		</section> */}
 		<section className=" py-60">
 			<TextCallout title={title} text={text} button={true} buttonLink="/" buttonText="SUBMIT A TYPE PROJECT" />
 		</section>		
 		<HoverListing data={typefaces} sectionHeader="Fonts and Foundries" />
-		
-		
-		{/* <HighlightsFonts /> */}
 		</>
 	);
 }

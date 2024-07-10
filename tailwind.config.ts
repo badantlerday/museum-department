@@ -78,11 +78,11 @@ const config: Config = {
 				},
 			},
 			animation: {
-				fadeIn: "fadeIn 0.25s ease forwards",
+				fadeIn: "fadeIn 0.5s ease forwards",
 			},
     },
   },
-  plugins: [require('@tailwindcss/typography')({ className: 'tailwind-text-styles' })],
+  plugins: [require('@tailwindcss/typography')({ className: 'tailwind-text-styles' }),require("tailwindcss-animate"),],
 };
 
 export default config;

@@ -7,7 +7,9 @@ export default defineType({
 	type: "document",
 	icon: CaseIcon,
 	groups: [
-		{ title: "Content", name: "content", default: true },
+		{ title: "Information", name: "information", default: true },
+		{ title: "Media", name: "media" },
+		{ title: "Explore More", name: "explore" },
 		{ title: "SEO", name: "seo" },
 	],
 	fields: [
@@ -15,7 +17,7 @@ export default defineType({
 			name: "name",
 			title: "Name",
 			type: "string",
-			group: "content",
+			group: "information",
 		}),
 		// defineField({
 		// 	name: "idNumber",
@@ -27,27 +29,44 @@ export default defineType({
 			name: "slug",
 			title: "Slug",
 			type: "slug",
-			group: "content",
+			group: "information",
 			options: {
 				source: "name",
 				maxLength: 96,
 			},
 		}),
-
+		defineField({
+			title: "Published At",
+			name: "publishedAt",
+			type: "datetime",
+			group: "information",
+		}),
+		defineField({
+			title: "Updated At",
+			name: "updatedAt",
+			type: "datetime",
+			group: "information",
+		}),
 		defineField({
 			name: "mainImage",
 			title: "Main image",
 			type: "image",
-			group: "content",
+			group: "media",
 			options: {
 				hotspot: true,
 			},
 		}),
 		defineField({
+			name: "mainVideo",
+			title: "Main Video",
+			type: "cloudinary.asset",
+			group: "media",
+		}),
+		defineField({
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",
-			group: "content",
+			group: "media",
 			options: {
 				hotspot: true,
 			},
@@ -56,8 +75,28 @@ export default defineType({
 			title: "Description",
 			name: "description",
 			type: "array",
-			group: "content",
+			group: "information",
 			of: [{ type: "block", styles: [] }],
+		}),
+		defineField({
+			title: "Category",
+			name: "category",
+			type: "array",
+			group: "information",
+			of: [
+				{
+					type: "reference",
+					to: [{ type: "category" }],
+					options: {
+						disableNew: false,
+						filter: `"studio" in connection`,
+						sort: [{ field: "title", direction: "asc" }],
+					},
+				},
+			],
+			options: {
+				layout: "list",
+			},
 		}),
 		// defineField({
 		// 	title: "Featured",
@@ -78,19 +117,19 @@ export default defineType({
 			title: "Founded",
 			name: "founded",
 			type: "number",
-			group: "content",
+			group: "information",
 		}),
 		defineField({
 			title: "Size",
 			name: "size",
 			type: "number",
-			group: "content",
+			group: "information",
 		}),
 		defineField({
 			title: "Location",
 			name: "location",
 			type: "array",
-			group: "content",
+			group: "information",
 			of: [
 				{
 					type: "reference",
@@ -104,85 +143,54 @@ export default defineType({
 				layout: "list",
 			},
 		}),
-		defineField({
-			title: "Category",
-			name: "category",
-			type: "array",
-			group: "content",
-			of: [
-				{
-					type: "reference",
-					to: [{ type: "category" }],
-					options: {
-						disableNew: false,
-						filter: `"studio" in connection`,
-						sort: [{ field: "title", direction: "asc" }],
-					},
-				},
-			],
-			options: {
-				layout: "list",
-			},
-		}),
 
 		defineField({
 			title: "Website",
 			name: "website",
 			type: "url",
-			group: "content",
+			group: "information",
 		}),
 		defineField({
 			title: "Instagram",
 			name: "instagram",
 			type: "url",
-			group: "content",
+			group: "information",
 		}),
 		defineField({
 			title: "Studio Sounds",
 			name: "studioSoundsPlaylist",
 			type: "string",
 			description: "Spotify Playlist URI",
-			group: "content",
+			group: "information",
 		}),
 		defineField({
 			title: "Studio Interview",
 			name: "interview",
 			type: "reference",
 			description: "Connect an interview to this Studio",
-			group: "content",
+			group: "information",
 			to: [{ type: "interview" }],
 			weak: false,
 			options: {
 				disableNew: true,
 			},
 		}),
-		defineField({
-			title: "Published At",
-			name: "publishedAt",
-			type: "datetime",
-			group: "content",
-		}),
-		defineField({
-			title: "Updated At",
-			name: "updatedAt",
-			type: "datetime",
-			group: "content",
-		}),
+
 		defineField({
 			title: "Favourite",
 			name: "favourite",
 			type: "boolean",
 			description: "Is this a Museum Department feature?",
-			group: "content",
+			group: "information",
 		}),
 		defineField({
 			title: "Explore More",
 			name: "exploreMore",
 			type: "object",
-			group: "content",
+			group: "explore",
 			options: {
 				collapsible: true,
-				collapsed: true,
+				collapsed: false,
 			},
 			fields: [
 				defineField({

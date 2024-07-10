@@ -1,4 +1,6 @@
 import { defineType, defineArrayMember } from "sanity";
+import { HashIcon } from "@sanity/icons";
+import footnote from "../blocks/footnote";
 
 /**
  * This is the schema type for block content used in the post document type
@@ -33,9 +35,7 @@ export default defineType({
 				{ title: "H6", value: "h6" },
 				{ title: "Quote", value: "blockquote" },
 			],
-			lists: [
-				// { title: "Bullet", value: "bullet" }
-			],
+			lists: [{ title: "Bullet", value: "bullet" }],
 			// Marks let you mark up inline text in the Portable Text Editor
 			marks: {
 				// Decorators usually describe a single property – e.g. a typographic
@@ -58,9 +58,29 @@ export default defineType({
 							},
 						],
 					},
+					{
+						title: "Footnote",
+						name: "footnote",
+						type: "object",
+						icon: HashIcon,
+						fields: [
+							{
+								title: "Title",
+								name: "title",
+								type: "string",
+							},
+							{
+								title: "Text",
+								name: "text",
+								type: "string",
+							},
+						],
+					},
 				],
 			},
 		}),
+		// defineArrayMember(footnote),
+
 		// You can add additional types here. Note that you can't use
 		// primitive types such as 'string' and 'number' in the same array
 		// as a block type.

@@ -5,16 +5,23 @@ export default defineType({
 	title: "Interview",
 	type: "document",
 	icon: CommentIcon,
+	groups: [
+		{ title: "Information", name: "information", default: true },
+		{ title: "Media", name: "media" },
+		{ title: "Index", name: "index" },
+	],
 	fields: [
 		{
 			name: "title",
 			title: "Title",
 			type: "string",
+			group: "information",
 		},
 		{
 			name: "slug",
 			title: "Slug",
 			type: "slug",
+			group: "information",
 			options: {
 				source: "title",
 				maxLength: 96,
@@ -24,6 +31,7 @@ export default defineType({
 			title: "Studio",
 			name: "studio",
 			type: "reference",
+			group: "information",
 			to: [{ type: "studio" }],
 			weak: false,
 			options: {
@@ -34,11 +42,13 @@ export default defineType({
 			title: "Excerpt",
 			name: "excerpt",
 			type: "text",
+			group: "information",
 		},
 		{
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",
+			group: "media",
 			options: {
 				hotspot: true,
 			},
@@ -47,7 +57,27 @@ export default defineType({
 			name: "body",
 			title: "Body",
 			type: "blockContent",
+			group: "information",
 		},
+		defineField({
+			title: "Index",
+			name: "index",
+			type: "array",
+			group: "index",
+			of: [
+				{
+					title: "Refrence",
+					type: "object",
+					fields: [
+						{
+							title: "Text",
+							name: "text",
+							type: "string",
+						},
+					],
+				},
+			],
+		}),
 	],
 
 	preview: {

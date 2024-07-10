@@ -6,9 +6,10 @@ import Image from "next/image";
 import Bookmark from "./Bookmark";
 import Link from "next/link";
 
-export default async function BookmarkButton({ documentId,variant="text" }) {
+export default async function BookmarkButton({ documentId,variant="text",message }) {
     const {getUser} = getKindeServerSession();
     const user = await getUser();
+    // console.log(message)
 
     // Early return if user is not authenticated, prompting them to log in
     if (!user) {
@@ -34,7 +35,7 @@ export default async function BookmarkButton({ documentId,variant="text" }) {
     // console.log(bookmark.data)
 
 return (
-        <Bookmark documentId={documentId} isBookmarked={isBookmarked} userid={user.id} variant={variant} />
+        <Bookmark documentId={documentId} isBookmarked={isBookmarked} userid={user.id} variant={variant} message={message} />
   );
 
 }

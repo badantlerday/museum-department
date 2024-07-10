@@ -4,7 +4,7 @@ import { addBookmark, removeBookmark } from '@/app/actions'
 import { toast } from 'sonner';
 import Image from 'next/image'; // Make sure this import is correct based on your setup
 
-const Bookmark = ({ documentId, isBookmarked: initialIsBookmarked, userid, variant = "text" }) => {
+const Bookmark = ({ documentId, isBookmarked: initialIsBookmarked, userid, variant = "text", message }) => {
   const [isBookmarked, setIsBookmarked] = useState(initialIsBookmarked);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +20,7 @@ const Bookmark = ({ documentId, isBookmarked: initialIsBookmarked, userid, varia
         }
 
         console.log('Bookmark removed successfully:', data);
-        toast('Bookmark removed successfully.');
+        toast(`${message} removed successfully`);
       } else {
         const { data, error } = await addBookmark({ userid, docid: documentId });
 
@@ -29,7 +29,7 @@ const Bookmark = ({ documentId, isBookmarked: initialIsBookmarked, userid, varia
         }
 
         console.log('Bookmark added successfully:', data);
-        toast('Bookmark added successfully.');
+        toast(`${message} added successfully`);
       }
 
       setIsBookmarked(!isBookmarked);

@@ -1,6 +1,7 @@
 // import { client } from "../../../../sanity/lib/client";
 import { client } from "@/lib/sanity.client";
 import { sanityFetch } from "@/lib/sanity.fetch";
+import * as queries from "@/lib/sanity.queries";
 import Link from "next/link";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
@@ -8,6 +9,7 @@ import { PortableText } from "@portabletext/react";
 import { format } from 'date-fns';
 import Blocks from "@/components/Blocks"
 import BookmarkButton from "@/components/BookmarkButton";
+import VideoCloudinary from "@/components/VideoCloudinary";
 
 const builder = imageUrlBuilder(client);
 
@@ -41,7 +43,10 @@ export default async function Page({ params }) {
     publishedAt,
     pageBlocks,
     category[]->,
-    mainImage{crop,hotspot,asset->},
+    mainImage{
+      ${queries.imageMeta}
+    },
+    mainVideo,
 		fontsInUse[]->{
 			name,
 			slug,
@@ -77,24 +82,60 @@ export default async function Page({ params }) {
 
 
     const layoutSplit = "col-span-12";
+    const getImageClasses = (size) => {
+      switch (size) {
+        case 'xl':
+          return 'col-span-24';
+        case 'lg':
+          return 'col-start-3 col-span-20';
+        case 'md':
+          return 'col-start-7 col-span-12';
+        case 'sm':
+          return 'col-start-6 col-span-14';
+        default:
+          return 'col-start-3 col-span-20'; // Default to xl if size is not recognized
+      }
+    };
+    const imageClasses = project?.mainImage?.size ? getImageClasses(project.mainImage.size) : 'col-start-3 col-span-20';
 
+
+    // Hero
+    let dominantColor = "#FAFBF7";
+    if (project.mainImage?.dominant) {
+      dominantColor = project.mainImage?.dominant;
+    }
+    const dominantBgStyle = {
+      backgroundColor: dominantColor,
+    };
 
   return (
     <>
     <section className="pt-20">
 			<div className="mx-auto px-18">
 				<div className="grid grid-cols-24 gap-4">
-						<div className="bg-slate-200 col-start-3 col-span-20 mb-2">
-            {project?.mainImage &&
+            {project?.mainImage && !project?.mainVideo &&
+            <div className={`animate-in fade-in duration-1000 ${imageClasses} mb-2 aspect-video`} style={dominantBgStyle}>
                 <Image
                   className=""
                   src={builder.image(project.mainImage).width(1500).quality(100).url()}
                   width={1500}
                   height={1500}
+                  blurDataURL={project.mainImage.lqip}
+								  placeholder="blur"
                   alt={project.mainImage?.alt || ""}
                 />
-            }
             </div>
+            }
+            {project?.mainVideo &&
+            <div className={`mb-2 col-span-24`}>
+                    <VideoCloudinary
+                    data={project.mainVideo}
+                    transformation="video-project"
+                    autoPlay={true}
+                    blockref={project._id}
+                    />
+            </div>
+            }
 				</div>
 			</div>
 		</section>
