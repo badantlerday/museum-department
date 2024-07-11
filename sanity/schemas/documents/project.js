@@ -12,10 +12,10 @@ export default defineType({
 			title: "Information",
 			default: true,
 		},
-		{
-			name: "content",
-			title: "Media",
-		},
+		// {
+		// 	name: "content",
+		// 	title: "Media",
+		// },
 		{
 			name: "media",
 			title: "Media",
@@ -93,6 +93,12 @@ export default defineType({
 					options: {
 						hotspot: true,
 					},
+					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
+				},
+				{
+					name: "ondisplayVideo",
+					title: "Video (Not Implemented in frontend yet)",
+					type: "cloudinary.asset",
 					hidden: ({ document }) => !document.ondisplay, // Hide when 'ondisplay' is false
 				},
 				{
@@ -249,7 +255,7 @@ export default defineType({
 			name: "mainImage",
 			title: "Main image",
 			type: "image",
-			group: "content",
+			group: "media",
 			options: {
 				hotspot: true,
 			},
@@ -278,13 +284,13 @@ export default defineType({
 			name: "mainVideo",
 			title: "Main Video",
 			type: "cloudinary.asset",
-			group: "content",
+			group: "media",
 		},
 		{
 			name: "posterImage",
 			title: "Poster image",
 			type: "image",
-			group: "content",
+			group: "media",
 			options: {
 				hotspot: true,
 			},
@@ -305,7 +311,7 @@ export default defineType({
 			title: "Page Blocks",
 			name: "pageBlocks",
 			type: "array",
-			group: "content",
+			group: "media",
 			// options: {
 			// 	layout: "grid",
 			// },
@@ -346,13 +352,32 @@ export default defineType({
 			onDisplay: "displaySettings.ondisplayAlignment",
 		},
 		prepare(selection) {
-			// Customize the preview title to include the category name
 			const { title, studioName, posterImage, onDisplay } = selection;
+			let displayLabel = "";
+
+			if (onDisplay) {
+				switch (onDisplay) {
+					case "left":
+						displayLabel = "(L)";
+						break;
+					case "center":
+						displayLabel = "(C)";
+						break;
+					case "right":
+						displayLabel = "(R)";
+						break;
+					case "full":
+						displayLabel = "(F)";
+						break;
+					default:
+						displayLabel = `(${onDisplay})`; // Fallback for unexpected values
+				}
+			}
+
 			return {
 				title: title,
 				subtitle: studioName
-					? // ? `${studioName} - (${onDisplay})`
-						`${studioName}`
+					? `${studioName} ${displayLabel}`
 					: "No studio connected",
 				media: posterImage,
 			};

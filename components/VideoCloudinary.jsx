@@ -27,7 +27,7 @@ const VideoCloudinary = ({
 		<InView
 			as="div"
 			onChange={(inView, entry) => setPlayVideo(inView)}
-			className={`h-full w-full ${hasMobile ? "hidden sm:block" : "block"}`}
+			className={`_h-full _w-full ${hasMobile ? "hidden sm:block" : "block"}`}
 			rootMargin="100px 0px 100px 0px"
 			threshold={0.0} // Adjust this value to set how much of the video needs to be visible to start playing
 		>
@@ -37,7 +37,7 @@ const VideoCloudinary = ({
 				loop
 				playsInline
 				muted
-				className="h-full w-full animate-in fade-in duration-1000 object-cover"
+				className="_h-full _w-full animate-in fade-in duration-1000 object-cover"
 				key={blockref}
 			>
 				<source

@@ -5,16 +5,29 @@ export default defineType({
 	title: "Typeface",
 	type: "document",
 	icon: BlockContentIcon,
+	groups: [
+		{
+			name: "information",
+			title: "Information",
+			default: true,
+		},
+		{
+			name: "media",
+			title: "Media",
+		},
+	],
 	fields: [
 		{
 			name: "name",
 			title: "Name",
 			type: "string",
+			group: "information",
 		},
 		{
 			name: "slug",
 			title: "Slug",
 			type: "slug",
+			group: "information",
 			options: {
 				source: "name",
 				maxLength: 96,
@@ -24,11 +37,13 @@ export default defineType({
 			name: "realaseYear",
 			title: "Release Year",
 			type: "number",
+			group: "information",
 		},
 		defineField({
 			title: "Style",
 			name: "style",
 			type: "string",
+			group: "information",
 			options: {
 				list: [
 					{ title: "Sans Serif", value: "Sans Serif" },
@@ -42,16 +57,36 @@ export default defineType({
 			title: "Foundry",
 			name: "foundry",
 			type: "reference",
+			group: "information",
 			to: [{ type: "foundry" }],
 			weak: true,
 			options: {
 				disableNew: true,
 			},
 		},
+		defineField({
+			name: "mainImage",
+			title: "Main image",
+			type: "image",
+			group: "media",
+			options: {
+				hotspot: true,
+			},
+		}),
+		{
+			name: "posterImage",
+			title: "Poster image",
+			type: "image",
+			group: "media",
+			options: {
+				hotspot: true,
+			},
+		},
 		{
 			name: "specimenPoster",
-			title: "Specimen Poster",
+			title: "Specimen",
 			type: "image",
+			group: "media",
 			options: {
 				hotspot: true,
 			},

@@ -5,16 +5,29 @@ export default defineType({
 	title: "Foundry",
 	type: "document",
 	icon: BookIcon,
+	groups: [
+		{
+			name: "information",
+			title: "Information",
+			default: true,
+		},
+		{
+			name: "media",
+			title: "Media",
+		},
+	],
 	fields: [
 		{
 			name: "name",
 			title: "Name",
 			type: "string",
+			group: "information",
 		},
 		{
 			name: "slug",
 			title: "Slug",
 			type: "slug",
+			group: "information",
 			options: {
 				source: "name",
 				maxLength: 96,
@@ -24,16 +37,19 @@ export default defineType({
 			name: "founded",
 			title: "Founded",
 			type: "number",
+			group: "information",
 		},
 		{
 			name: "information",
 			title: "Information",
 			type: "blockContent",
+			group: "information",
 		},
 		{
 			name: "mainImage",
 			title: "Main image",
 			type: "image",
+			group: "media",
 			options: {
 				hotspot: true,
 			},
@@ -42,11 +58,13 @@ export default defineType({
 			name: "mainFontImage",
 			title: "Main Font image",
 			type: "image",
+			group: "media",
 		},
 		{
 			title: "Location",
 			name: "location",
 			type: "array",
+			group: "information",
 			of: [
 				{
 					type: "reference",

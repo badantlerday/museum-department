@@ -29,7 +29,7 @@ export default function MasonryGridLeftRight({ data }) {
                 ))}	
                 {/* {item.name} */}
                 </h2>
-            <div className="font-medium italic">{item.title}</div>
+            <div className="font-medium italic">in {item.title} by {item.studio.name}</div>
           </div>
         </Link>
       </div>

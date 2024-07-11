@@ -8,7 +8,7 @@ export default defineType({
 	groups: [
 		{ title: "Information", name: "information", default: true },
 		{ title: "Media", name: "media" },
-		{ title: "Index", name: "index" },
+		// { title: "Index", name: "index" },
 	],
 	fields: [
 		{
@@ -59,25 +59,25 @@ export default defineType({
 			type: "blockContent",
 			group: "information",
 		},
-		defineField({
-			title: "Index",
-			name: "index",
-			type: "array",
-			group: "index",
-			of: [
-				{
-					title: "Refrence",
-					type: "object",
-					fields: [
-						{
-							title: "Text",
-							name: "text",
-							type: "string",
-						},
-					],
-				},
-			],
-		}),
+		// defineField({
+		// 	title: "Index",
+		// 	name: "index",
+		// 	type: "array",
+		// 	group: "index",
+		// 	of: [
+		// 		{
+		// 			title: "Refrence",
+		// 			type: "object",
+		// 			fields: [
+		// 				{
+		// 					title: "Text",
+		// 					name: "text",
+		// 					type: "string",
+		// 				},
+		// 			],
+		// 		},
+		// 	],
+		// }),
 	],
 
 	preview: {

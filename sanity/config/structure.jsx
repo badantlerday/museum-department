@@ -47,6 +47,7 @@ export const structure = (S, _context) =>
         S.documentList()
           .filter('_type == "project" && ondisplay == true')
           .title("On Display")
+          .defaultOrdering([{field: 'publishedAt', direction: 'desc'}])
       );
 
     const SettingsItem = (S) =>

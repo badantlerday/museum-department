@@ -185,6 +185,7 @@ export default defineType({
 		}),
 		defineField({
 			title: "Explore More",
+			description: "Not fully completed in frontend yet.",
 			name: "exploreMore",
 			type: "object",
 			group: "explore",
