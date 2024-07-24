@@ -61,7 +61,7 @@ export default defineType({
 			to: [{ type: "foundry" }],
 			weak: true,
 			options: {
-				disableNew: true,
+				disableNew: false,
 			},
 		},
 		defineField({

@@ -180,7 +180,7 @@ export default defineType({
 					type: "reference",
 					to: [{ type: "typeface" }],
 					options: {
-						disableNew: true,
+						disableNew: false,
 					},
 				},
 			],
@@ -203,7 +203,7 @@ export default defineType({
 							type: "reference",
 							to: [{ type: "category" }],
 							options: {
-								disableNew: true,
+								disableNew: false,
 							},
 						},
 						{

@@ -28,7 +28,7 @@ export default defineType({
 			to: [{ type: "country" }],
 			weak: true,
 			options: {
-				disableNew: true,
+				disableNew: false,
 			},
 		},
 	],

@@ -135,7 +135,7 @@ export default defineType({
 					type: "reference",
 					to: [{ type: "city" }],
 					options: {
-						disableNew: true,
+						disableNew: false,
 					},
 				},
 			],

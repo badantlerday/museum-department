@@ -186,7 +186,7 @@ export default async function Page({ params }) {
       <ul className=" space-y-1 font-mono text-xs mb-4">
                 {project.category?.map((cat, index) => (
                   <li key={index}>
-                      {cat.title}
+                      <Link href={`/category/${cat.slug.current}`} className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600">{cat.title}</Link>
                   </li>
                 ))}
               </ul>

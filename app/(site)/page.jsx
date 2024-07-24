@@ -13,6 +13,7 @@ import BecomeAPatron from "../../components/BecomeAPatron"
 import ItemsRow from "@/components/ItemsRow"
 import NewFonts from "@/components/NewFonts";
 // import Image from "next/image";
+import FeaturedInterview from "@/components/FeaturedInterview"
 
 export async function generateMetadata({ params }) {
   const query = `{
@@ -37,41 +38,7 @@ export default function IndexPage() {
     <>
     <SiteTitleHeader />
     <OnDisplay />
-    <section className="px-18 mt-40 mx-auto">
-      <div className=" uppercase text-center mb-4">Interview</div>
-      <h2 className="mx-auto uppercase text-3xl font-serif text-center mb-4">Daniel Carlsten</h2>
-      <div className="font-serif font-light text-3xl tracking-[-2%] leading-[120%]">
-        <div className="grid grid-cols-24">
-          <div className="col-start-8 col-span-full">Varens finaste detaljer ar aviga.</div>
-        </div>
-        <div className="grid grid-cols-24">
-          <div className="col-start-6 col-span-full">Med respekt for den avancerade</div>
-        </div>
-        <div className="grid grid-cols-24">
-          <div className="col-start-10 col-span-full">skraddarkonsten kastas villkoren om.</div>
-        </div>
-        <div className="grid grid-cols-24">
-          <div className="col-start-9 col-span-full">Former forvrids och smyckas precist.</div>
-        </div>
-        <div className="grid grid-cols-24">
-          <div className="col-start-6 col-span-full">Det skapas nagot nytt, parla for parla.</div>
-        </div>
-        <div className="grid grid-cols-24">
-          <div className="col-start-5 col-span-full">Kanslan ar lekfull och inspirationen granslos</div>
-        </div>
-        <div className="grid grid-cols-24">
-          <div className="col-start-7 col-span-full"> — den hamtas i havet, pa himlen och fran din.</div>
-        </div>
-        <div className="grid grid-cols-24">
-          <div className="col-start-6 col-span-full">vardagssrumsmatta.</div>
-        </div>
-      </div>
-      <div className="grid grid-cols-24 mt-20">
-        <div className="col-start-10 col-span-6">
-            <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
-        </div>
-      </div>
-    </section>
+    <FeaturedInterview />
     <NewFonts secondrow={false} title="New fonts" />
     <section className="px-18 mt-40 mx-auto">
       <ItemsRow title="Fonts Gallery" />
