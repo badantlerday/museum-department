@@ -13,8 +13,13 @@ import '../globals.css'
 const serif = localFont({
 	src: [
 		{
-			path: "../../public/fonts/Plantin/PlantinMTProLight.ttf",
+			path: "../../public/fonts/Caslon/CaslonIonic-Light-Trial.woff2",
 			weight: "300",
+			style: "normal",
+		},
+		{
+			path: "../../public/fonts/Caslon/CaslonIonic-Regular-Trial.woff2",
+			weight: "400",
 			style: "normal",
 		},
 	],

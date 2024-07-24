@@ -68,7 +68,7 @@ const footnoteBlocks = interview.body.filter(block =>
         <div className="px-18 mx-auto text-center font-black uppercase text-3xl mb-4">
             {interview.title}
         </div>
-        <div className="max-w-xl mx-auto text-center">
+        <div className="max-w-xl mx-auto text-center font-serif font-light">
             <p>Mollit laborum voluptate tempor ea sit sunt quis irure ullamco consequat quis ea amet dolore. Ullamco cupidatat consequat qui tempor id aute ex duis excepteur ut cillum. Sunt mollit nostrud aute qui voluptate laborum elit cillum commodo sit ea adipisicing tempor in. Aute reprehenderit fugiat fugiat enim. Deserunt sit esse id qui consequat enim veniam fugiat.</p>
         </div>
         <div className="grid grid-cols-24 place-content-center my-14">
@@ -76,13 +76,13 @@ const footnoteBlocks = interview.body.filter(block =>
                 <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
             </div>
         </div>
-        <div className="px-18 text-center">
+        <div className="px-18 text-center font-serif font-light">
         A conversation between Veniam do magna ullamco aliqua anim fugiat irure et non veniam. Eiusmod nisi incididunt magna aute proident.
         </div>
     </section>
     <section className="py-40">
         <div className="px-18 mx-auto grid grid-cols-24">
-            <div className="col-start-5 col-span-16 text-2xl">
+            <div className="col-start-5 col-span-16 text-2xl font-serif font-light">
             Est laboris dolore excepteur labore adipisicing consequat veniam eiusmod. Deserunt tempor aute sunt eiusmod proident id. Ex velit ea veniam incididunt laboris et mollit est veniam exercitation sit. Quis nulla qui culpa consequat esse.
             </div>
         </div>
@@ -112,9 +112,9 @@ const footnoteBlocks = interview.body.filter(block =>
                 </div>
 
             </div>
-            <div className="col-start-6 col-span-14 space-y-10">
+            <div className="col-start-6 col-span-14 space-y-10 font-serif [&>p]:px-18 font-light">
                 <PortableText value={interview.body} components={components} />
-                ----
+                {/* ----
                 <div className="px-18 space-y-10">
                 <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
                 <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
@@ -137,8 +137,7 @@ const footnoteBlocks = interview.body.filter(block =>
                 <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
                 <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
                 <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                </div>
-
+                </div> */}
                 <div className="text-center">***</div>
             </div>
             </div>
