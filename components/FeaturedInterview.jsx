@@ -83,6 +83,12 @@ export default async function FeaturedInterview({id}) {
                                 </div>
 							)}
 
+                            <div>
+                                <div className="text-center mt-8">
+                                    <button className="uppercase text-xs tracking-wider border border-black py-3 px-4">Read the Interview</button>
+                                </div>
+                            </div>
+
                     </section>
 					{/* {item.posterImage || item.posterImage ? (							
 								<Image

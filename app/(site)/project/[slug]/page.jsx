@@ -241,31 +241,37 @@ export default async function Page({ params }) {
     </div>
   </section>
   <section>
-    <div className="px-18 mx-auto grid grid-cols-2 gap-y-20">
-        {project?.pageBlocks ? <Blocks data={project?.pageBlocks} /> : null}
-    </div>
-  </section>
-  <section>
-    <div className="mx-auto px-16 space-y-20">
-    {project.content?.map((item, outerIndex) => (
-      <div key={outerIndex} className={`grid ${item.image && item.image.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
-        {item.image?.map((image, innerIndex) => (
-          <div key={image._key}>
-            <Image
-              src={builder.image(image).width(2000).url()}
-              width={2000}
-              height={1500}
-              blurDataURL={image.asset.metadata.lqip}
-              placeholder="blur"
-              alt="alt"
-              
-            />
-          </div>
-        ))}
+    <div className="grid grid-cols-24">
+      <div className="col-start-3 col-span-20">
+
+        <div className="px-18 mx-auto grid grid-cols-2 gap-y-20">
+            {project?.pageBlocks ? <Blocks data={project?.pageBlocks} /> : null}
+        </div>
+        
       </div>
-    ))}
     </div>
   </section>
+  {/* <section>
+    <div className="mx-auto px-16 space-y-20">
+      {project.content?.map((item, outerIndex) => (
+        <div key={outerIndex} className={`grid ${item.image && item.image.length === 1 ? 'grid-cols-1' : 'grid-cols-2'} gap-4`}>
+          {item.image?.map((image, innerIndex) => (
+            <div key={image._key}>
+              <Image
+                src={builder.image(image).width(2000).url()}
+                width={2000}
+                height={1500}
+                blurDataURL={image.asset.metadata.lqip}
+                placeholder="blur"
+                alt="alt"
+                
+              />
+            </div>
+          ))}
+        </div>
+      ))}
+    </div>
+  </section> */}
 
   {/* <section className="mx-auto px-16">
     <div className=" order-2 col-span-4 grid grid-cols-2 gap-4 md:order-none">

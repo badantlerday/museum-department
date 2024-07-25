@@ -1,7 +1,7 @@
 import { client } from "@/lib/sanity.client";
 import { sanityFetch } from "@/lib/sanity.fetch";
 import Link from "next/link";
-// import Image from "next/image";
+import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
 // import { format } from 'date-fns';
@@ -48,6 +48,7 @@ export default async function Page({ params }) {
     slug,
     body,
     excerpt,
+    posterImage{crop,hotspot,asset->},
     }`;
   const interview = await sanityFetch({ query, params, tags: ["interview"] });
 
@@ -72,9 +73,35 @@ const footnoteBlocks = interview.body.filter(block =>
             <p>Mollit laborum voluptate tempor ea sit sunt quis irure ullamco consequat quis ea amet dolore. Ullamco cupidatat consequat qui tempor id aute ex duis excepteur ut cillum. Sunt mollit nostrud aute qui voluptate laborum elit cillum commodo sit ea adipisicing tempor in. Aute reprehenderit fugiat fugiat enim. Deserunt sit esse id qui consequat enim veniam fugiat.</p>
         </div>
         <div className="grid grid-cols-24 place-content-center my-14">
-            <div className=" col-start-11 col-span-4">
+            {/* <div className=" col-start-11 col-span-4">
                 <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
-            </div>
+            </div> */}
+            {interview.posterImage || interview.posterImage ? (
+                    <div className="col-start-8 md:col-start-11 col-span-10 md:col-span-4">
+                        {/* <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div> */}
+                        <Image
+                        className="aspect-[3/4] mb-2 object-cover"
+                        src={builder
+                            .image(interview.posterImage || interview.posterImage)
+                            .width(1000)
+                            .url()}
+                        width={800}
+                        height={665}
+                        blurDataURL={
+                            (interview.posterImage || interview.posterImage).asset
+                                .metadata.lqip
+                        }
+                        placeholder="blur"
+                        alt={interview.name}
+                    />
+                    </div>								
+							) : (
+								<div className="grid grid-cols-24 mt-20">
+                                    <div className="col-start-10 col-span-6">
+                                        <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
+                                    </div>
+                                </div>
+							)}
         </div>
         <div className="px-18 text-center font-serif font-light">
         A conversation between Veniam do magna ullamco aliqua anim fugiat irure et non veniam. Eiusmod nisi incididunt magna aute proident.

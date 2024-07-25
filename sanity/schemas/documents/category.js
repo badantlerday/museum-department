@@ -58,7 +58,7 @@ export default defineType({
 		prepare({ title, slug }) {
 			return {
 				title: title,
-				subtitle: `/${slug.current}`,
+				// subtitle: `/${slug.current}`,
 			};
 		},
 	},

@@ -31,8 +31,19 @@ export function generateStaticParams() {
   return ["/"];
 }
 
-export default function IndexPage() {
-  // const data = await sanityFetch({ query, tags: ["page"] })
+export default async function IndexPage() {
+
+const queryFontsGallery = `*[_type == "project" && defined(fontsInUse)] {
+    _id, 
+    title, 
+    slug,
+    publishedAt, 
+    studio->{name,slug}, 
+    fontsInUse[]->{name,_id,slug},
+    posterImage{crop,hotspot,asset->},
+}`;
+
+  const dataFontsGallery = await sanityFetch({ query: queryFontsGallery, tags: ["project"] })
 
   return (
     <>
@@ -41,7 +52,7 @@ export default function IndexPage() {
     <FeaturedInterview />
     <NewFonts secondrow={false} title="New fonts" />
     <section className="px-18 mt-40 mx-auto">
-      <ItemsRow title="Fonts Gallery" />
+      <ItemsRow title="Fonts Gallery" data={dataFontsGallery} link="/fonts-gallery" />
     </section>
     <BecomeAPatron />
     {/* <SellWithUs /> */}

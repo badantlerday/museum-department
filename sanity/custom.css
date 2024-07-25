@@ -1,7 +1,7 @@
 /* Increase the default font size */
-:root {
+/* :root {
     font-size: 17px;
-  }
+  } */
   
   /* Make the checked checkbox background green instead of black */
   [data-ui='Switch'] input:checked + span {
@@ -20,6 +20,6 @@
   }
   
   /* Reduce spacing between the field name/description container and the field input  */
-  [data-ui='Stack'][data-testid^='field-'] {
+  /* [data-ui='Stack'][data-testid^='field-'] {
     grid-gap: 0rem;
-  }
+  } */
