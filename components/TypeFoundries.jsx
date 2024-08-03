@@ -51,11 +51,11 @@ export async function NewTypeFoundries() {
 							) : (
 								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
 							)}
-						<span className="text-xs font-medium tracking-wide block uppercase">
+						<span className="font-medium tracking-wide block uppercase -mb-1">
 						{item.name}
 						</span>
 						{item.location && (
-						<span className="text-xs font-medium italic block">
+						<span className="font-medium italic block">
 							{item.location[0].name}, {item.location[0].country?.name}
 						</span>
 						)}

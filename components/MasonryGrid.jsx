@@ -27,8 +27,8 @@ export default function MasonryGrid({data}) {
               >
               
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="text-sm mt-2">
-                    <h2 className="font-medium uppercase tracking-wide">{item.studio?.name}</h2>
+                <div className="mt-2">
+                    <h2 className="font-medium uppercase tracking-wide -mb-1">{item.studio?.name}</h2>
                     <div className="font-medium italic">{item.title}</div>
                 </div>
               
@@ -45,9 +45,9 @@ export default function MasonryGrid({data}) {
                   className="w-3/4"
                 >
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="text-sm mt-2">
-                <h2 className="font-medium uppercase tracking-wide">{item.title}</h2>
-                  <div className="font-medium italic">by {item.studio?.name}</div>
+                <div className="mt-2">
+                <h2 className="font-medium uppercase tracking-wide -mb-1">{item.title}</h2>
+                  <div className="font-medium italic">{item.studio?.name}</div>
                 </div>
               </Link>
               </div>
@@ -62,9 +62,9 @@ export default function MasonryGrid({data}) {
                 className="w-3/4"
               >
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="text-sm mt-2">
-                  <h2 className="font-medium uppercase tracking-wide">{item.title}</h2>
-                  <div className="font-medium italic">by {item.studio?.name}</div>
+                <div className="mt-2">
+                  <h2 className="font-medium uppercase tracking-wide -mb-1">{item.title}</h2>
+                  <div className="font-medium italic">{item.studio?.name}</div>
                 </div>
                 </Link>
               </div>
@@ -95,9 +95,9 @@ export default function MasonryGrid({data}) {
                     />
                   )
                 )}                  
-                <div className="text-sm mt-2">
-                <h2 className="font-medium uppercase tracking-wide">{item.title}</h2>
-                  <div className="font-medium italic">by {item.studio?.name}</div>
+                <div className="mt-2">
+                <h2 className="font-medium uppercase tracking-wide -mb-1">{item.title}</h2>
+                  <div className="font-medium italic">{item.studio?.name}</div>
                   </div>
                   </Link>
                 </div>
@@ -107,8 +107,8 @@ export default function MasonryGrid({data}) {
             content = (
               <>
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="text-sm mt-2">
-                    <h2 className="font-medium uppercase tracking-wide">{item.studio?.name}</h2>
+                <div className="mt-2">
+                    <h2 className="font-medium uppercase tracking-wide -mb-1">{item.studio?.name}</h2>
                     <div className="font-medium italic">{item.title}</div>
                 </div>
               </>
@@ -145,7 +145,7 @@ export default function MasonryGrid({data}) {
         {jsxItems}
         <div className='masonry-grid--item '>
           <div className='bg-[#F6F5F3] p-28'>
-          <h2 className='uppercase font-medium'>JOIN OUR COMMUNITY</h2>
+          <h2 className='uppercase font-medium tracking-wide'>JOIN OUR COMMUNITY</h2>
           <p>Receive our weekly curated roundup newsletter. Get news about interviews, fonts, new products, and new features.</p>
           </div>
         </div>

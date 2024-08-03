@@ -42,7 +42,6 @@ export default defineConfig({
     }),
     media(),
     cloudinarySchemaPlugin(),
-    // assist(),
     visionTool(),
     // presentationTool({
     //   locate,

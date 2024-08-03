@@ -57,6 +57,9 @@ const config: Config = {
       mono: "var(--font-mono)",
       serif: "var(--font-serif)",
     },
+    letterSpacing: {
+      wide: '3%',
+    },
     extend: {
       ...generateGrid(24),
       colors: {

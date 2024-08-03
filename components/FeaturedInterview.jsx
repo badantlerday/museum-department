@@ -25,7 +25,7 @@ export default async function FeaturedInterview({id}) {
 					href={`/interviews/${item.slug.current}`}
 				>
                     <section className="px-18 mt-40 mx-auto">
-                        <div className=" uppercase text-center mb-4">Interview</div>
+                        <div className="uppercase text-center mb-4 font-medium tracking-wide">Interview</div>
                         <h2 className="mx-auto uppercase text-3xl font-serif text-center mb-4">{item.studio.name}</h2>
                         <div className="font-serif font-light text-xl text-center md:text-left md:text-3xl tracking-[-2%] leading-[120%]">
                             <div className="md:grid grid-cols-24">
@@ -70,7 +70,7 @@ export default async function FeaturedInterview({id}) {
                                                 .metadata.lqip
                                         }
                                         placeholder="blur"
-                                        alt={item.name}
+                                        alt={item.title}
                                     />
                                     </div>
                                 </div>							
