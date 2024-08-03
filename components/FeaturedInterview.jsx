@@ -2,6 +2,7 @@ import { client } from "@/lib/sanity.client";
 import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
+import Button from "@/components/Button";
 const builder = imageUrlBuilder(client);
 
 
@@ -20,11 +21,7 @@ export default async function FeaturedInterview({id}) {
 	return (
 		<>
 				{interviews.slice(0, 1).map((item) => (
-					<Link
-					key={item._id}
-					href={`/interviews/${item.slug.current}`}
-				>
-                    <section className="px-18 mt-40 mx-auto">
+                    <section className="px-18 mt-40 mx-auto" key={item._id}>
                         <div className="uppercase text-center mb-4 font-medium tracking-wide">Interview</div>
                         <h2 className="mx-auto uppercase text-3xl font-serif text-center mb-4">{item.studio.name}</h2>
                         <div className="font-serif font-light text-xl text-center md:text-left md:text-3xl tracking-[-2%] leading-[120%]">
@@ -54,71 +51,39 @@ export default async function FeaturedInterview({id}) {
                             </div>
                         </div>
                         {item.posterImage || item.posterImage ? (
-                                <div className="grid grid-cols-24 mt-20">
-                                    <div className="col-start-8 md:col-start-10 col-span-10 md:col-span-6">
-                                        {/* <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div> */}
-                                        <Image
-                                        className="aspect-[3/4] mb-2 object-cover"
-                                        src={builder
-                                            .image(item.posterImage || item.posterImage)
-                                            .width(1000)
-                                            .url()}
-                                        width={800}
-                                        height={665}
-                                        blurDataURL={
-                                            (item.posterImage || item.posterImage).asset
-                                                .metadata.lqip
-                                        }
-                                        placeholder="blur"
-                                        alt={item.title}
-                                    />
-                                    </div>
-                                </div>							
-								
-							) : (
-								<div className="grid grid-cols-24 mt-20">
-                                    <div className="col-start-10 col-span-6">
-                                        <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
-                                    </div>
+                            <div className="grid grid-cols-24 mt-20">
+                                <div className="col-start-8 md:col-start-10 col-span-10 md:col-span-6">
+                                    {/* <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div> */}
+                                    <Image
+                                    className="aspect-[3/4] mb-2 object-cover"
+                                    src={builder
+                                        .image(item.posterImage || item.posterImage)
+                                        .width(1000)
+                                        .url()}
+                                    width={800}
+                                    height={665}
+                                    blurDataURL={
+                                        (item.posterImage || item.posterImage).asset
+                                            .metadata.lqip
+                                    }
+                                    placeholder="blur"
+                                    alt={item.title}
+                                />
                                 </div>
-							)}
-
-                            <div>
-                                <div className="text-center mt-8">
-                                    <button className="uppercase text-xs tracking-wider border border-black py-3 px-4">Read the Interview</button>
+                            </div>							
+                            
+                        ) : (
+                            <div className="grid grid-cols-24 mt-20">
+                                <div className="col-start-10 col-span-6">
+                                    <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
                                 </div>
                             </div>
-
+                        )}
+                        
+                        <div className="text-center mt-8">
+                            <Button href={`/interviews/${item.slug.current}`} >Read the Interview</Button>
+                        </div>
                     </section>
-					{/* {item.posterImage || item.posterImage ? (							
-								<Image
-								className="aspect-[4/3] mb-2 object-cover"
-								src={builder
-									.image(item.posterImage || item.posterImage)
-									.width(1000)
-									.url()}
-								width={800}
-								height={665}
-								blurDataURL={
-									(item.posterImage || item.posterImage).asset
-										.metadata.lqip
-								}
-								placeholder="blur"
-								alt={item.name}
-							/>
-							) : (
-								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
-							)}
-						<span className="text-xs font-medium tracking-wide block uppercase">
-						{item.name}
-						</span>
-						{item.studio && (
-						<span className="text-xs font-medium italic block">
-							{item.studio.name}
-						</span>
-						)} */}
-    
-					</Link>
 					))}
 			
 		</>

@@ -21,7 +21,7 @@ export default function MasonryGridLeftRight({ data }) {
         <Link href={`/project/${item.slug.current}`} passHref className="w-3/4">
           {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
           <div className="mt-2">
-            <h2 className="font-medium uppercase tracking-wide">
+            <h2 className="font-medium uppercase tracking-wide -mb-1">
                 {item.fontsInUse.map((font) => (
                     <span key={font._id} className='block'>
                         {font.name}
@@ -29,7 +29,7 @@ export default function MasonryGridLeftRight({ data }) {
                 ))}	
                 {/* {item.name} */}
                 </h2>
-            <div className="font-medium italic">in {item.title} by {item.studio.name}</div>
+            <div className="font-medium italic _mt-1">{item.title} by {item.studio.name}</div>
           </div>
         </Link>
       </div>

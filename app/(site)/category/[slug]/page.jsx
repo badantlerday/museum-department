@@ -2,6 +2,7 @@ import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/lib/sanity.client";
 import Link from "next/link";
+import GridListing from "@/components/GridListing";
 
 const builder = imageUrlBuilder(client);
 
@@ -24,9 +25,30 @@ export default async function Category({ params }) {
 		_id,
 		title,
 		slug,
-		"items": *[_type in ["studio", "project"] && references(^._id)]{
+		"projects": *[_type == "project" && references(^._id)]{
 			_id,
 			title,
+			_type,
+			slug,
+			posterImage {
+				crop,
+				hotspot,
+				asset->
+			},
+			studio->{
+				_id,
+				name,
+				slug,
+				location[]->{
+					_id,
+					name,
+					country->{name}
+				},
+				posterImage{crop,hotspot,asset->},
+			},
+		},
+		"studios": *[_type == "studio" && references(^._id)]{
+			_id,
 			name,
 			_type,
 			slug,
@@ -34,35 +56,37 @@ export default async function Category({ params }) {
 				crop,
 				hotspot,
 				asset->
-			}
+			},
+			location[]->{
+				_id,
+				name,
+				country->{name}
+			},
+		},
+		"fonts": *[_type == "project" && defined(fontsInUse) && references(^._id)]{
+			_id, 
+			title, 
+			slug,
+			publishedAt, 
+			studio->{name,slug}, 
+			fontsInUse[]->{name,_id,slug,foundry->},
+			posterImage{crop,hotspot,asset->},
 		}
 	}`;
 
 	const category = await client.fetch(query, { slug });
+	// console.log(category);
 
 	return (
 		<>
-			<h1>{category.title}</h1>
-			<div className="grid grid-cols-6 gap-4">
-				{category.items.map(item => (
-					<div key={item._id} className="bg-md-grey-100">
-						<Link href={`/${item._type}/${item.slug.current}`}>
-							
-								{item.posterImage && (
-									<Image
-										src={builder.image(item.posterImage.asset).url()}
-										alt={item.title || item.name}
-										width={300}
-										height={200}
-										layout="responsive"
-									/>
-								)}
-								<h2>{item.title || item.name}</h2>
-							
-						</Link>
-					</div>
-				))}
-			</div>
+			<section className="my-32 text-center">
+				<h1 className="font-black uppercase text-5xl">{category.title}</h1>
+				<div className="font-medium text-xl mt-4">is referenced in the following places</div>
+			</section>
+
+			<GridListing data={category.studios} title={`${category.studios.length} Studios`} limit={18} />
+			<GridListing data={category.projects} title={`${category.projects.length} Projects`} limit={18} />
+			<GridListing data={category.fonts} title={`${category.fonts.length} Fonts`} limit={18} />
 		</>
 	);
 }
