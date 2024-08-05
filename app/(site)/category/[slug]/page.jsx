@@ -63,7 +63,7 @@ export default async function Category({ params }) {
 				country->{name}
 			},
 		},
-		"fonts": *[_type == "project" && defined(fontsInUse) && references(^._id)]{
+		"fontProjects": *[_type == "project" && defined(fontsInUse) && references(^._id)]{
 			_id, 
 			title, 
 			slug,
@@ -77,6 +77,19 @@ export default async function Category({ params }) {
 	const category = await client.fetch(query, { slug });
 	// console.log(category);
 
+		// Extract all fonts from fontProjects
+		const fonts = category.fontProjects.flatMap(project =>
+			project.fontsInUse.map(font => ({
+				...font,
+				projectTitle: project.title,
+				projectSlug: project.slug,
+				studioName: project.studio?.name,
+				studioSlug: project.studio?.slug
+			}))
+		);
+
+	// console.log(fonts);
+
 	return (
 		<>
 			<section className="my-32 text-center">
@@ -86,7 +99,7 @@ export default async function Category({ params }) {
 
 			<GridListing data={category.studios} title={`${category.studios.length} Studios`} limit={18} />
 			<GridListing data={category.projects} title={`${category.projects.length} Projects`} limit={18} />
-			<GridListing data={category.fonts} title={`${category.fonts.length} Fonts`} limit={18} />
+			<GridListing data={fonts} title={`${fonts.length} Fonts`} limit={18} />
 		</>
 	);
 }

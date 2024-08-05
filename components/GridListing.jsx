@@ -1,5 +1,11 @@
 import PosterCard from './PosterCard'
 export default function GridListing({data,title,limit=18,columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"}) {
+
+    // Check if data is falsy or empty
+    if (!data || data.length === 0) {
+        return null;  // Return nothing if data is empty or 0
+    }
+
 	return (
         <div className="px-10 lg:px-18 mx-auto mb-40 ">
 				<div className="flex gap-10 border-t border-md-grey-200 pt-4">

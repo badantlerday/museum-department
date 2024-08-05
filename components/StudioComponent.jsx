@@ -139,14 +139,14 @@ export default async function StudioComponent({ data }) {
 								{studio.location?.map((item, index) => (
 									<li key={item._id} className="">
 										<Link
-											href={`/city/${item?.slug.current}`}
+											href={`/reference/${item?.slug.current}`}
 											className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
 										>
 											{item?.name}
 										</Link>
 										,{" "}
 										<Link
-											href={`/country/${item?.country.slug.current}`}
+											href={`/reference/${item?.country.slug.current}`}
 											className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
 										>
 											{item?.country.name}
@@ -163,7 +163,7 @@ export default async function StudioComponent({ data }) {
 							<ul className=" space-y-2 font-mono text-xs">
 							{studio.category?.map((cat, index) => (
                   <li key={index}>
-					<Link href={`/category/${cat.slug.current}`} className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors">
+					<Link href={`/reference/${cat.slug.current}`} className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors">
 
                       {cat.title}
 						

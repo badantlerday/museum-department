@@ -148,7 +148,7 @@ export default async function Page({ params }) {
             {project.studio.name}
           </Link>{" "}
           </span><span>from <Link
-            href={`/city/${project.studio.location[0].slug.current}`}
+            href={`/reference/${project.studio.location[0].slug.current}`}
             className="transition-colors hover:text-md-grey-300"
           >
              {project.studio.location[0].name}
@@ -186,7 +186,7 @@ export default async function Page({ params }) {
       <ul className=" space-y-1 font-mono text-xs mb-4">
                 {project.category?.map((cat, index) => (
                   <li key={index}>
-                      <Link href={`/category/${cat.slug.current}`} className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600">{cat.title}</Link>
+                      <Link href={`/reference/${cat.slug.current}`} className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600">{cat.title}</Link>
                   </li>
                 ))}
               </ul>
@@ -222,7 +222,7 @@ export default async function Page({ params }) {
                   {credit.people?.map((person, index) => (
                     <li key={person._id}>
                       <Link
-                        href={`/person/${person.slug.current}`}
+                        href={`/reference/${person.slug.current}`}
                         className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600"
                       >
                         {person.name}

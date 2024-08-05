@@ -94,10 +94,10 @@ export default function Postercard({data}) {
         </div>
         </>
         )}
-        {item.fontsInUse && (
+        {item.foundry && (
                 <>
         <Link
-            href={`/project/${item.slug.current}`}
+            href={`/font/${item.slug.current}`}
         >
             {item?.posterImage || item?.posterImage ? (
                 
@@ -121,19 +121,18 @@ export default function Postercard({data}) {
             )}
             </Link> 
         <div className="flex">
-            <Link
-        href={`/project/${item.slug.current}`} className=" flex-1">
+            <div className=" flex-1">
+                <Link href={`/project/${item.slug.current}`} className="">
                 <span className="text-xs font-medium tracking-wide block uppercase">
-                {item.fontsInUse.map((font) => (
-                    <span key={font._id} className='block'>
-                        {font.name}
-                    </span>
-                ))}	
+                {item.name}
                 </span>
+                </Link>
+                <Link href={`/foundry/${item.foundry.slug.current}`} className="">
                 <span className="text-xs font-medium italic block">
-                    {item.studio.name}
+                    {item.foundry.name}
                 </span>
-            </Link>
+                </Link>
+            </div>
             <div>
                 <BookmarkButton documentId={item._id} variant="icon" />
             </div>
