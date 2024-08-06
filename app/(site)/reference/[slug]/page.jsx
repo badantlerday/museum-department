@@ -126,6 +126,82 @@ const referenceFieldsCountry = `
 	},
 `;
 
+const referenceFieldsCity = `
+	"projects": *[_type == "project" && studio->location[]->_id match ^._id]{
+		_id,
+		title,
+		_type,
+		slug,
+		posterImage {
+			crop,
+			hotspot,
+			asset->
+		},
+		studio->{
+			_id,
+			name,
+			slug,
+			location[]->{
+				_id,
+				name,
+				country->{
+				_id,
+				name
+				}
+			},
+			posterImage{crop,hotspot,asset->},
+		},
+	},
+	"studios": *[_type == "studio" && location[]->_id match ^._id]{
+		_id,
+		name,
+		_type,
+		slug,
+		posterImage {
+			crop,
+			hotspot,
+			asset->
+		},
+		location[]->{
+			_id,
+			name,
+			country->{
+			_id,
+			name
+			}
+      	}
+	},
+	"foundries": *[_type == "foundry" && location[]->_id match ^._id]{
+		_id,
+		name,
+		_type,
+		slug,
+		posterImage {
+			crop,
+			hotspot,
+			asset->
+		},
+		location[]->{
+			_id,
+			name,
+			country->{
+			_id,
+			name
+			}
+      	}
+	},
+	"fontProjects": *[_type == "project" && defined(fontsInUse) && location[]->_id match ^._id]{
+		_id, 
+		title, 
+		slug,
+		publishedAt, 
+		studio->{name,slug}, 
+		fontsInUse[]->{name,_id,slug,foundry->},
+		posterImage{crop,hotspot,asset->},
+	},
+`;
+
+
 // Function to determine the document type based on the slug
 async function getDocumentType( slug ) {
     const query = `*[_type in ["category", "city", "country", "person"] && slug.current == $slug][0]._type`;
@@ -151,7 +227,7 @@ async function fetchDataByType(type, slug) {
 			query = `*[_type == "city" && slug.current == $slug][0]{
 				_id,
 				name,
-				${referenceFields}
+				${referenceFieldsCity}
 			}`;
 			break;
 
@@ -209,8 +285,8 @@ export default async function Reference({ params }) {
 
             <GridListing data={data.studios} title={`${data.studios?.length} Studios`} limit={18} />
             <GridListing data={data.projects} title={`${data.projects?.length} Projects`} limit={18} />
-            <GridListing data={fonts} title={`${fonts?.length} Fonts`} limit={18} />
-            <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} />
+            {/* <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} /> */}
+            {/* <GridListing data={fonts} title={`${fonts?.length} Fonts`} limit={18} /> */}
 
 
 		</>

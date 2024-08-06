@@ -47,7 +47,9 @@ export default async function NewFonts({firstrow = true, secondrow = true, title
 								alt={item.name}
 							/>
 							) : (
-								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
+								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2 flex items-center">
+									<div className="text-center w-full font-black uppercase text-5xl">{item.name}</div>
+								</div>
 							)}
 						<span className="font-medium tracking-wide block uppercase -mb-1">
 						{item.name}
@@ -74,7 +76,7 @@ export default async function NewFonts({firstrow = true, secondrow = true, title
 							key={item._id}
 							href={`/font/${item.slug.current}`}
 						
-							className="py-1 font-medium"
+							className="py-1"
 						>
 					{item.mainImage || item.mainImage ? (
 								
@@ -94,7 +96,9 @@ export default async function NewFonts({firstrow = true, secondrow = true, title
 								alt={item.name}
 							/>
 							) : (
-								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
+								<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2 flex items-center">
+									<div className="text-center w-full font-black uppercase">{item.name}</div>
+								</div>
 							)}
 					<span className="text-xs font-medium tracking-wide block uppercase">
 					{item.name}
