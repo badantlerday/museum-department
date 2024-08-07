@@ -15,7 +15,7 @@ export const query = `*[_type == "settings"][0]{
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import {LoginLink, LogoutLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import { sanityFetch } from "@/lib/sanity.fetch"
-// import { client } from "@/lib/sanity.client";
+import { client } from "@/lib/sanity.client";
 // import CustomLink from "@/components/CustomLink"
 import AnimatedLink from "@/components/AnimatedLink"
 import Link from "next/link";
@@ -52,6 +52,16 @@ const queryPageTitles = `*[_type in ["project","studio","typeface","foundry","in
 		slug,
 	  }`;
 const allPageTitles = await sanityFetch({ query: queryPageTitles, tags: ["project"] })
+
+const latestProjects = await client.fetch(`*[_type == "project"] | order(_createdAt desc)[0]{
+  _id,
+title,
+slug,
+mainImage{crop,hotspot,asset->},
+  studio->{name},
+}`);
+
+
 // console.log(allPageTitles)
 
 return (
@@ -129,7 +139,7 @@ return (
 				alt="Search"
 			/>
       </Link> */}
-      <MenuSidebar />
+      <MenuSidebar projects={latestProjects} />
       </div>
     </nav>
   </header>

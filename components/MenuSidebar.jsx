@@ -2,14 +2,18 @@
 
 import React, { useState, useEffect } from "react";
 import ReactDOM from "react-dom";
+import { client } from "@/lib/sanity.client";
+import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
+const builder = imageUrlBuilder(client);
 import Link from "next/link";
 import { X } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink"
 import Button from "./Button";
 
 
-export default function MenuSidebar({ src }) {
+export default function MenuSidebar({ src, projects }) {
+  const project = projects;
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
 
@@ -68,10 +72,31 @@ export default function MenuSidebar({ src }) {
           <div className="col-span-5 flex items-end">
             <div className=" bg-red-200_ w-full pb-6">
 
-              <div className="text-xs uppercase tracking-wide">Latest Project</div>
-              <div className="bg-md-grey-200 aspect-[4/3] my-2 "></div>
-              <div className="text-xs uppercase tracking-wide">Project Name</div>
-              <div className="text-xs tracking-wide">Studio Name</div>
+            <div className="text-xs uppercase tracking-wide">Latest Project</div>
+            <Link href={`/project/${project.slug.current}`} onClick={handleClose}>
+            {project?.mainImage || project?.mainImage ? (							
+                <Image
+                className="aspect-[4/3] my-2 object-cover"
+                src={builder
+                    .image(project?.mainImage || project?.mainImage)
+                    .width(1000)
+                    .url()}
+                width={800}
+                height={665}
+                blurDataURL={
+                    (project?.mainImage || project?.mainImage).asset
+                        .metadata.lqip
+                }
+                placeholder="blur"
+                alt={project.title}
+            />
+            ) : (
+                <div className="bg-md-grey-200 aspect-[4/3] my-2 "></div>
+            )}
+            </Link>
+            <div className="text-xs uppercase tracking-wide">{project.title}</div>
+            <div className="text-xs tracking-wide">{project.studio.name}</div>
+
 
             </div>
           </div>
