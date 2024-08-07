@@ -80,7 +80,7 @@ export default function MenuSidebar({ src }) {
             <div className=" flex flex-col gap-1 font-mono text-3xl">
               <Link href="/" onClick={handleClose}>On Display</Link>
               <Link href="/studios" onClick={handleClose}>Design Studios</Link>
-              <Link href="/projects" onClick={handleClose}>Projects</Link>
+              {/* <Link href="/projects" onClick={handleClose}>Projects</Link> */}
               <Link href="/fonts-gallery" onClick={handleClose}>Fonts Gallery</Link>
               <Link href="/fonts-in-use" onClick={handleClose}>Fonts In Use</Link>
               <Link href="/interviews" onClick={handleClose}>Interviews</Link>
