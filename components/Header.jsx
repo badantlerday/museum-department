@@ -45,7 +45,7 @@ const { headerMenu } = data || {}
 const user = await getUser();
 
 
-const queryPageTitles = `*[_type in ["project","studio","typeface","foundry","interview"]]{
+const queryPageTitles = `*[_type in ["project","studio","typeface","foundry","interview","city","country","person","category"]]{
     _type,
 		title,
     name,

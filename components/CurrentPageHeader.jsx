@@ -10,16 +10,27 @@ export default function CurrentPageHeader({ data }) {
     const items = data.map(item => {
         // const prefix = item._type === 'typeface' ? 'font' : item._type;
         let prefix;
+        let type = item._type;
+        let name = item.name || item.title
         if (item._type === 'typeface') {
             prefix = 'font';
         } else if (item._type === 'interview') {
             prefix = 'interviews';
+        } else if (item._type === 'city') {
+            prefix = 'reference';
+        } else if (item._type === 'country') {
+            prefix = 'reference';
+        } else if (item._type === 'person') {
+            prefix = 'reference';
+        } else if (item._type === 'category') {
+            prefix = 'reference';
+            name = "Reference";
         } else {
             prefix = item._type;
         }
         return {
-            type: item._type,
-            name: item.name || item.title,
+            type: type,
+            name: name,
             slug: `/${prefix}/${item.slug.current}`
         };
     });
@@ -49,7 +60,13 @@ export default function CurrentPageHeader({ data }) {
         else {
             const matchedItem = items.find(item => item.slug === pathname);
             if (matchedItem) {
-                setCurrentHeader(`${matchedItem.type.charAt(0).toUpperCase() + matchedItem.type.slice(1)}: ${matchedItem.name}`);
+                if (matchedItem.type === 'category' || matchedItem.type === 'city' || matchedItem.type === 'country' || matchedItem.type === 'person') {
+                    setCurrentHeader(`Reference`);
+                }
+                else {
+                    setCurrentHeader(`${matchedItem.type.charAt(0).toUpperCase() + matchedItem.type.slice(1)}: ${matchedItem.name}`);
+                }
+                
             } else {
                 setCurrentHeader(`Current Slug: ${pathname}`);
             }

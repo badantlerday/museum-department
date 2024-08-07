@@ -16,6 +16,7 @@ const referenceFields = `
 			_id,
 			name,
 			slug,
+			_type,
 			location[]->{
 				_id,
 				name,
@@ -141,6 +142,7 @@ const referenceFieldsCity = `
 			_id,
 			name,
 			slug,
+			_type,
 			location[]->{
 				_id,
 				name,
@@ -219,6 +221,7 @@ async function fetchDataByType(type, slug) {
 				_id,
 				title,
 				slug,
+				_type,
 				${referenceFields}
 			}`;
 			break;
@@ -227,6 +230,7 @@ async function fetchDataByType(type, slug) {
 			query = `*[_type == "city" && slug.current == $slug][0]{
 				_id,
 				name,
+				_type,
 				${referenceFieldsCity}
 			}`;
 			break;
@@ -235,6 +239,7 @@ async function fetchDataByType(type, slug) {
 			query = `*[_type == "country" && slug.current == $slug][0]{
 				_id,
 				name,
+				_type,
 				${referenceFieldsCountry}
 			}`;
 			break;
@@ -243,6 +248,7 @@ async function fetchDataByType(type, slug) {
 			query = `*[_type == "person" && slug.current == $slug][0]{
 				_id,
 				name,
+				_type,
 				${referenceFields}
 			}`;
 			break;
@@ -266,15 +272,20 @@ export default async function Reference({ params }) {
     // console.log(data);
 
     // Extract all fonts from fontProjects
-    const fonts = data.fontProjects?.flatMap(project =>
-        project.fontsInUse.map(font => ({
-            ...font,
-            projectTitle: project.title,
-            projectSlug: project.slug,
-            studioName: project.studio?.name,
-            studioSlug: project.studio?.slug
-        }))
-    );
+    // const fonts = data.fontProjects?.flatMap(project =>
+    //     project.fontsInUse.map(font => ({
+    //         ...font,
+    //         projectTitle: project.title,
+    //         projectSlug: project.slug,
+    //         studioName: project.studio?.name,
+    //         studioSlug: project.studio?.slug
+    //     }))
+    // );
+
+	// Extract all studios from projects
+	const studios = data.projects?.flatMap(project => ({
+		...project.studio,
+	}));
 
 	return (
 		<>
@@ -283,6 +294,9 @@ export default async function Reference({ params }) {
 				<div className="font-medium text-xl mt-4">is referenced in the following places</div>
 			</section>
 
+			{documentType === 'person' && (
+				<GridListing data={studios} title={`${studios?.length} Studios`} limit={18} />
+			)}
             <GridListing data={data.studios} title={`${data.studios?.length} Studios`} limit={18} />
             <GridListing data={data.projects} title={`${data.projects?.length} Projects`} limit={18} />
             {/* <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} /> */}
