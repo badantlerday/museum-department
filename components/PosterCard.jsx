@@ -47,7 +47,7 @@ export default function Postercard({data}) {
                 </span>
             </Link>
             <div>
-                <BookmarkButton documentId={item._id} variant="icon" />
+                <BookmarkButton documentId={item._id} variant="icon" message={`${item?.title}`} />
             </div>
         </div>
         </>
@@ -89,7 +89,7 @@ export default function Postercard({data}) {
                 </span>
             </Link>
             <div>
-                <BookmarkButton documentId={item._id} variant="icon" />
+                <BookmarkButton documentId={item._id} variant="icon" message={`${item?.name}`} />
             </div>
         </div>
         </>
@@ -134,7 +134,7 @@ export default function Postercard({data}) {
                 </Link>
             </div>
             <div>
-                <BookmarkButton documentId={item._id} variant="icon" />
+                <BookmarkButton documentId={item._id} variant="icon" message={`${item?.name}`} />
             </div>
         </div>
         </>

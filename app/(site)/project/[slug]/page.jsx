@@ -143,13 +143,13 @@ export default async function Page({ params }) {
     <h1 className="text-center text-[56px]/[50px] font-black mx-auto flex flex-col my-20 uppercase tracking-tight px-28">
           <span>{project?.title}</span><span>by <Link
             href={`/studio/${project.studio.slug.current}`}
-            className="transition-colors hover:text-md-grey-300"
+            className="transition-colors hover:text-md-grey-500"
           >
             {project.studio.name}
           </Link>{" "}
           </span><span>from <Link
             href={`/reference/${project.studio.location[0].slug.current}`}
-            className="transition-colors hover:text-md-grey-300"
+            className="transition-colors hover:text-md-grey-500"
           >
              {project.studio.location[0].name}
           </Link>
@@ -234,7 +234,7 @@ export default async function Page({ params }) {
             ))}
 
       </div>
-      <div className="article col-start-13 col-span-10 font-medium ">
+      <div className="article col-start-13 col-span-10 font-light tracking-[2%] leading-tight [&>p]:indent-8">
       <PortableText value={project?.information} />
       </div>
     </div>

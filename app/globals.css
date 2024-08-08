@@ -17,8 +17,8 @@ body {
 }
 .article p {
   margin-bottom: 1.5rem;
-  font-weight: 500;
-  line-height: 1.2;
+  /* font-weight: 500; */
+  /* line-height: 1.2; */
   /* font-size: 1rem; */
 }
 .article--footer h2 {

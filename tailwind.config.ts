@@ -67,6 +67,8 @@ const config: Config = {
         'md-grey-200': '#E6E6E6',
         'md-grey-300': '#AAAAAA',
         'md-grey-400': '#666666',
+        'md-grey-500': '#555555',
+        'md-grey-600': '#1B1B1B',
         'md-black': '#1B1B1B',
       },
       spacing: {
