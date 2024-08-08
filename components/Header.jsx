@@ -93,7 +93,7 @@ return (
       )}
 			</div>
       {/* Right */}
-      <div className="hidden lg:flex lg:flex-1 lg:justify-end text-[13px] space-x-3 _font-medium items-center text-[#999999]">
+      <div className="hidden lg:flex lg:flex-1 lg:justify-end text-[13px] space-x-2 _font-medium items-center text-[#999999]">
       
       {/* <Link href="/search">Search</Link> */}
       {/* {headerMenu?.menuItems.map((menuItem, key) => {
@@ -101,7 +101,7 @@ return (
         }
       )} */}
       {user ? (
-        <div className="space-x-4">
+        <div>
         <Link href="/dashboard">
         <Image
 				src="/icon-bookmark-menu.svg"
@@ -118,19 +118,19 @@ return (
 				src="/icon-bookmark-menu.svg"
 				width={24}
 				height={24}
-				alt="Search"
+				alt="Bookmarks"
 			/>
           </LoginLink>
         )
       }
-      <Link href="/search">
+      {/* <Link href="/search">
       <Image
 				src="/icon-search.svg"
 				width={24}
 				height={24}
 				alt="Search"
 			/>
-      </Link>
+      </Link> */}
       {/* <Link href="/search">
       <Image
 				src="/icon-bookmark-menu.svg"

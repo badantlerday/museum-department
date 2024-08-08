@@ -11,7 +11,6 @@ import { X } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink"
 import Button from "./Button";
 
-
 export default function MenuSidebar({ src, projects }) {
   const project = projects;
   const [isOpen, setIsOpen] = useState(false);

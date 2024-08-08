@@ -2,7 +2,8 @@
 // import dynamic from 'next/dynamic'
 // import {draftMode} from 'next/headers'
 // import {token} from '@/lib/sanity.fetch'
-import Footer from "@/components/Footer";
+// import Footer from "@/components/Footer";
+import FooterSmall from "@/components/FooterSmall";
 import Header from "@/components/Header";
 import { Toaster } from 'sonner';
 // import { VisualEditing } from "next-sanity";
@@ -76,7 +77,7 @@ export default function RootLayout({children}) {
 		<body className={`${sans.variable} ${mono.variable} ${serif.variable}`}>
 		  <Header />
 			{children}
-		  <Footer />
+		  <FooterSmall />
 		  <Toaster
 		  toastOptions={{
 		  }}

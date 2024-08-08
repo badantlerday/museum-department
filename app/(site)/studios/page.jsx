@@ -26,6 +26,7 @@ export default async function Studios() {
 	const recentlyUpdatedProjects = await client.fetch(`*[_type == "project" ] | order(updatedAt asc){
         _id,
 		title,
+		_type,
 		slug,
 		posterImage{crop,hotspot,asset->},
 		studio->{
@@ -58,7 +59,6 @@ export default async function Studios() {
 		return uniqueProjects;
 	}
 	const uniqueProjects = filterProjects(recentlyUpdatedProjects);
-
 
 	return (
 		<main className="mt-48">
