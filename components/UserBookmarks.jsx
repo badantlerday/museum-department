@@ -2,12 +2,13 @@
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
 import { createClient } from '@supabase/supabase-js'
 import { client } from "@/lib/sanity.client";
-import Link from "next/link";
-import Image from "next/image";
+// import Link from "next/link";
+// import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
-import SectionHeader from "@/components/SectionHeader";
+// import SectionHeader from "@/components/SectionHeader";
+import GridListing from "@/components/GridListing";
 // import BecomeAPatron from "@/components/BecomeAPatron";
-const builder = imageUrlBuilder(client);
+// const builder = imageUrlBuilder(client);
 
 export default async function UserBookmarks({ params }) {
 	const {getUser,isAuthenticated} = getKindeServerSession();
@@ -130,7 +131,13 @@ export default async function UserBookmarks({ params }) {
 
 return (
 <>
+<GridListing data={bookmarkDocuments.studios} title={`${studioCount} Studios`} limit={18} />
+<GridListing data={bookmarkDocuments.projects} title={`${projectCount} Projects`} limit={18} />
+<GridListing data={bookmarkDocuments.foundries} title={`${foundryCount} Type Foundries`} limit={18} />
+<GridListing data={bookmarkDocuments.typfaces} title={`${fontsCount} Fonts`} limit={18} />
 
+
+{/* 
 <SectionHeader title={`${projectCount} Design Projects`} border={false} />
 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8 mb-20">
 					{bookmarkDocuments.projects.map((item) => (
@@ -167,7 +174,6 @@ return (
 									</span>
 									<span className="text-xs font-medium italic block">
                   						{item.studio.name}
-										{/* {item.location[0].name}, {item.location[0].country?.name} */}
 									</span>
 								</div>
 								<div>
@@ -182,7 +188,7 @@ return (
 						</Link>
 					))}
 					
-				</div>
+</div>
 
 <SectionHeader title={`${studioCount} Design Studios`} border={true} />
 <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8 mb-20">
@@ -219,7 +225,6 @@ return (
 										{item.name}{item.title}
 									</span>
 									<span className="text-xs font-medium italic block">
-                  {/* {item._type} */}
 										{item.location[0].name}, {item.location[0].country?.name}
 									</span>
 								</div>
@@ -323,7 +328,6 @@ return (
 									</span>
 									<span className="text-xs font-medium italic block">
                   {item._type}
-										{/* {item.location[0].name}, {item.location[0].country?.name} */}
 									</span>
 								</div>
 								<div>
@@ -388,7 +392,7 @@ return (
 			</div>
 		</Link>
 	))}
-	</div>
+	</div> */}
 	</>
 	);
 }

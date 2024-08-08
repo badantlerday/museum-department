@@ -168,14 +168,15 @@ export default async function Page({ params }) {
     <div className="px-10 lg:px-20 mx-auto">
     <div className="grid grid-cols-24 gap-4">
       <div className="col-start-3 col-span-4">
-      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Published</h2>
-        <ul className=" space-y-2 font-mono text-xs mb-4">               
-        <li>{publishedAt}</li>
-        </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Bookmark Project</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
         <li><BookmarkButton documentId={project._id} variant="icon" /></li>
         </ul>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Published</h2>
+        <ul className=" space-y-2 font-mono text-xs mb-4">               
+        <li>{publishedAt}</li>
+        </ul>
+
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
         {/* <li>{project.studio.name}</li> */}

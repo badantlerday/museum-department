@@ -61,11 +61,9 @@ export default async function Dashboard() {
 	: null}
 		
 		{ user ? <section className="pt-20 space-y-40">
-			<div className="px-8 md:px-18 mx-auto">
-				<Suspense fallback={<div>Loading...</div>}>
-					<UserBookmarks />
-				</Suspense>
-			</div>
+			<Suspense fallback={<div className="px-8 md:px-18 mx-auto">Loading...</div>}>
+				<UserBookmarks />
+			</Suspense>
 		</section>
 		:
 		<div>

@@ -6,8 +6,16 @@ import { client } from "@/lib/sanity.client";
 
 const builder = imageUrlBuilder(client);
 
-export default function Postercard({data}) {
+export default function Postercard({data,aspect,image}) {
     const {item} = data || {}
+    let aspectRatio;
+
+    if(aspect=="landscape"){
+        aspectRatio = "aspect-[4/3]"
+    }else{
+        aspectRatio = "aspect-[3/4]"
+    }
+
 	return (
     <div key={item._id} className="relative group">
         {item._type == "project" && (
@@ -18,7 +26,8 @@ export default function Postercard({data}) {
             {item?.posterImage || item?.posterImage ? (
                 
                 <Image
-                className="aspect-[3/4] mb-2 object-cover"
+                className={` ${aspectRatio} mb-2 object-cover`}
+                // className="aspect-[3/4] mb-2 object-cover"
                 src={builder
                     .image(item?.posterImage || item?.posterImage)
                     .width(1000)
@@ -33,7 +42,7 @@ export default function Postercard({data}) {
                 alt={item.name}
             />
             ) : (
-                <div className="w-full aspect-[3/4] bg-md-grey-100 mb-2"></div>
+                <div className={` ${aspectRatio} w-full bg-md-grey-100 mb-2`}></div>
             )}
             </Link> 
         <div className="flex">

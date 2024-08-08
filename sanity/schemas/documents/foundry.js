@@ -39,6 +39,12 @@ export default defineType({
 			type: "number",
 			group: "information",
 		},
+		defineField({
+			title: "Size",
+			name: "size",
+			type: "number",
+			group: "information",
+		}),
 		{
 			name: "information",
 			title: "Information",
@@ -78,6 +84,25 @@ export default defineType({
 				layout: "list",
 			},
 		},
+		defineField({
+			title: "Studio Sounds",
+			name: "studioSoundsPlaylist",
+			type: "string",
+			description: "Spotify Playlist URI",
+			group: "information",
+		}),
+		defineField({
+			title: "Studio Interview",
+			name: "interview",
+			type: "reference",
+			description: "Connect an interview to this Studio",
+			group: "information",
+			to: [{ type: "interview" }],
+			weak: false,
+			options: {
+				disableNew: true,
+			},
+		}),
 		{
 			title: "Staff",
 			name: "staff",

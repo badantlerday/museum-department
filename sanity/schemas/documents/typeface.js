@@ -33,12 +33,41 @@ export default defineType({
 				maxLength: 96,
 			},
 		},
+		defineField({
+			name: "information",
+			title: "Information",
+			type: "blockContent",
+			group: "information",
+		}),
 		{
 			name: "realaseYear",
 			title: "Release Year",
 			type: "number",
 			group: "information",
 		},
+		defineField({
+			title: "URL",
+			name: "fontUrl",
+			type: "object",
+			group: "information",
+			options: {
+				columns: 2,
+			},
+			fields: [
+				{
+					name: "url",
+					type: "url",
+					title: "URL",
+					description: "Link to buy or download the font",
+				},
+				{
+					name: "label",
+					type: "string",
+					title: "Label",
+					description: "Label of the link",
+				},
+			],
+		}),
 		defineField({
 			title: "Style",
 			name: "style",

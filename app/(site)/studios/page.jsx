@@ -65,7 +65,7 @@ export default async function Studios() {
 			<section className="pb-20">
 			<NewStudios />
 			</section>
-			<GridListing data={uniqueProjects} title="Recently updated" limit={18} />
+			<GridListing data={uniqueProjects} title="Recently updated" limit={18} aspect="portrait" />
 			<SummaryCallout data={studios} />
 			<HoverListing data={studios} sectionHeader="Design Studios" />
 		</main>

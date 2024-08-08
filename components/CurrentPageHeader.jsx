@@ -64,7 +64,7 @@ export default function CurrentPageHeader({ data }) {
                     setCurrentHeader(`Reference`);
                 }
                 else {
-                    setCurrentHeader(`${matchedItem.type.charAt(0).toUpperCase() + matchedItem.type.slice(1)}: ${matchedItem.name}`);
+                    setCurrentHeader(`${matchedItem.type.charAt(0).toUpperCase() + matchedItem.type.slice(1)} – ${matchedItem.name}`);
                 }
                 
             } else {

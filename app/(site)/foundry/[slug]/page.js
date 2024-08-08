@@ -8,6 +8,7 @@ import TypefaceBy from "@/components/TypefaceBy";
 import FontsInUseBy from "@/components/FontsInUseBy";
 import TextCallout from "@/components/TextCallout";
 import BookmarkButton from "@/components/BookmarkButton";
+import GridListing from "@/components/GridListing";
 const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
@@ -29,6 +30,8 @@ export default async function Foundry({ params }) {
 		_id,
 		name,
 		slug,
+		_type,
+		size,
 		founded,
 		information,
 		mainImage{crop,hotspot,asset->},
@@ -45,6 +48,7 @@ export default async function Foundry({ params }) {
 		"projects": *[_type == "project" && fontsInUse[]->foundry->_id match ^._id]{
 			_id,
 			slug,
+			_type,
 			title,
 			name,
 			posterImage{crop,hotspot,asset->},
@@ -96,6 +100,20 @@ export default async function Foundry({ params }) {
 					<div className="col-span-3">
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Bookmark Foundry
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>
+									<BookmarkButton
+										documentId={foundry._id}
+										variant="icon"
+										message={`${foundry?.name}`}
+									/>
+								</li>
+							</ul>
+						</div>
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Type Foundry
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
@@ -117,30 +135,37 @@ export default async function Foundry({ params }) {
 								<li>{foundry?.founded}</li>
 							</ul>
 						</div>
-
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Size
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>{foundry?.size}</li>
+							</ul>
+						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Location
 							</h2>
-							{/* <ul className=" space-y-1 font-mono text-sm">
+							<ul className=" space-y-1 font-mono text-sm">
 								{foundry.location?.map((item, index) => (
 									<li key={item._id}>
 										<Link
-											href={`/city/${item?.slug.current}`}
+											href={`/reference/${item?.slug.current}`}
 											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
 										>
 											{item?.name}
 										</Link>
 										,{" "}
 										<Link
-											href={`/country/${item?.country.slug.current}`}
+											href={`/reference/${item?.country.slug.current}`}
 											className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
 										>
 											{item?.country.name}
 										</Link>
 									</li>
 								))}
-							</ul> */}
+							</ul>
 						</div>
 
 						{foundry.staff?.map((item, index) => (
@@ -176,16 +201,6 @@ export default async function Foundry({ params }) {
 								</li>
 							</ul>
 						</div>
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Bookmark Foundry
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>
-									<BookmarkButton documentId={foundry._id} />
-								</li>
-							</ul>
-						</div>
 					</div>
 
 					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
@@ -201,8 +216,15 @@ export default async function Foundry({ params }) {
 					</div>
 				</div>
 			</section>
-			<TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
+			<GridListing
+				title={`Fonts in use by ${foundry?.name}`}
+				data={foundry?.projects}
+				columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
+			/>
 			<FontsInUseBy name={foundry?.name} projects={foundry?.projects} />
+			<section className="mt-40">
+				<TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
+			</section>
 			<section className="mt-48">
 				<TextCallout
 					title={titleExplore}

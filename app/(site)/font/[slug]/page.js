@@ -5,6 +5,7 @@ import Link from "next/link";
 import SectionHeader from "@/components/SectionHeader";
 import TypefacesByFoundry from "@/components/TypefacesByFoundry";
 import BookmarkButton from "@/components/BookmarkButton";
+import { PortableText } from "@portabletext/react";
 
 const builder = imageUrlBuilder(client);
 
@@ -15,6 +16,10 @@ export default async function Foundry({ params }) {
     _id,
     name,
     slug,
+	style,
+	realaseYear,
+	fontUrl,
+	information,
 	specimenPoster{
 		crop,
 		hotspot,
@@ -48,13 +53,23 @@ export default async function Foundry({ params }) {
 	return (
 		<>
 			<section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
-				<h1 className="text-[28px] tracking-wide uppercase mb-1">
+				<h1 className="text-5xl font-black tracking-wide uppercase mb-1">
 					{typeface?.name}
 				</h1>
 			</section>
 			<section className="pb-36">
 				<div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
 					<div className="col-span-3">
+						<div className="mb-5">
+							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+								Bookmark
+							</h2>
+							<ul className=" space-y-2 font-mono text-sm">
+								<li>
+									<BookmarkButton documentId={typeface._id} variant="icon" />
+								</li>
+							</ul>
+						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Font
@@ -65,18 +80,10 @@ export default async function Foundry({ params }) {
 						</div>
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Classification
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
-							</ul>
-						</div>
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Style
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+								<li>{typeface?.style}</li>
 							</ul>
 						</div>
 						<div className="mb-5">
@@ -97,13 +104,13 @@ export default async function Foundry({ params }) {
 
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Release Date
+								Release
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
+								<li>{typeface?.realaseYear}</li>
 							</ul>
 						</div>
-						<div className="mb-5">
+						{/* <div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Designer
 							</h2>
@@ -118,47 +125,25 @@ export default async function Foundry({ params }) {
 							<ul className=" space-y-2 font-mono text-sm">
 								<li>-</li>
 							</ul>
-						</div>
+						</div> */}
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Buy
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
-							</ul>
-						</div>
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Bookmark
+								Buy font
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
 								<li>
-									<BookmarkButton documentId={typeface._id} />
+									<a href={typeface?.fontUrl?.url} target="_blank">
+										{typeface?.fontUrl?.label}
+									</a>
 								</li>
 							</ul>
 						</div>
 					</div>
 					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
-						<p>
-							Laborum ut fugiat in et occaecat ad est est amet proident enim
-							labore. Culpa tempor elit quis nisi sunt. Eu elit consequat sint
-							elit culpa labore qui reprehenderit non sint proident dolore sint
-							ea dolore. Qui est tempor veniam sit dolor sunt. Incididunt
-							exercitation anim excepteur non. Eiusmod commodo velit ut elit
-							elit ex pariatur duis. Ex enim ea eiusmod aliqua mollit deserunt
-							amet ullamco commodo deserunt sint sunt elit ullamco cupidatat.
-						</p>
-						<p>
-							Cillum deserunt irure ex officia amet. Reprehenderit tempor magna
-							proident. Velit eiusmod ad esse ea est reprehenderit velit id
-							magna. Eu sit eu do mollit culpa laborum tempor reprehenderit sunt
-							laboris. Labore ut amet id veniam aute eiusmod in aliquip fugiat
-							enim qui laboris nulla Lorem dolor. Velit mollit quis amet eu
-							aliquip dolore aliqua.
-						</p>
+						<PortableText value={typeface?.information} />
 					</div>
 					<div className="article mb-10 md:mb-0 col-start-10 col-span-3">
-						<div>
+						{/* <div>
 							{typeface?.specimenPoster ? (
 								<Image
 									className="_aspect-[3/4] mb-2 object-contain"
@@ -175,7 +160,7 @@ export default async function Foundry({ params }) {
 							<div className="text-xs font-mono block text-left mt-2">
 								Specimen
 							</div>
-						</div>
+						</div> */}
 					</div>
 				</div>
 			</section>
