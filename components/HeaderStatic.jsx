@@ -11,10 +11,10 @@ export default async function HeaderStatic() {
 
     const queryPageTitles = `*[_type in ["project","studio","typeface","foundry","interview","city","country","person","category"]]{
         _type,
-            title,
+        title,
         name,
-            slug,
-          }`;
+        slug,
+    }`;
     const allPageTitles = await sanityFetch({ query: queryPageTitles, tags: ["project"] })
 
     const latestProjects = await client.fetch(`*[_type == "project"] | order(_createdAt desc)[0]{
