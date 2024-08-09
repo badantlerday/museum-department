@@ -27,7 +27,7 @@ export default function MasonryGrid({data}) {
               >
               
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="mt-2">
+                <div className="mt-4">
                     <h2 className="font-medium uppercase tracking-wide -mb-1">{item.studio?.name}</h2>
                     <div className="font-medium italic">{item.title}</div>
                 </div>
@@ -45,7 +45,7 @@ export default function MasonryGrid({data}) {
                   className="w-3/4"
                 >
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="mt-2">
+                <div className="mt-4">
                 <h2 className="font-medium uppercase tracking-wide -mb-1">{item.title}</h2>
                   <div className="font-medium italic">{item.studio?.name}</div>
                 </div>
@@ -62,7 +62,7 @@ export default function MasonryGrid({data}) {
                 className="w-3/4"
               >
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="mt-2">
+                <div className="mt-4">
                   <h2 className="font-medium uppercase tracking-wide -mb-1">{item.title}</h2>
                   <div className="font-medium italic">{item.studio?.name}</div>
                 </div>
@@ -95,7 +95,7 @@ export default function MasonryGrid({data}) {
                     />
                   )
                 )}                  
-                <div className="mt-2">
+                <div className="mt-4">
                 <h2 className="font-medium uppercase tracking-wide -mb-1">{item.title}</h2>
                   <div className="font-medium italic">{item.studio?.name}</div>
                   </div>
@@ -107,7 +107,7 @@ export default function MasonryGrid({data}) {
             content = (
               <>
                 {item.posterImage && <Image src={builder.image(item.posterImage).width(1500).url()} alt="" width={1500} height={1500} />}
-                <div className="mt-2">
+                <div className="mt-4">
                     <h2 className="font-medium uppercase tracking-wide -mb-1">{item.studio?.name}</h2>
                     <div className="font-medium italic">{item.title}</div>
                 </div>

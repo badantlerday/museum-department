@@ -20,7 +20,7 @@ export default function MasonryGridLeftRight({ data }) {
       <div className={`flex ${justifyClass}`}>
         <Link href={`/project/${item.slug.current}`} passHref className="w-3/4">
           {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
-          <div className="mt-2">
+          <div className="mt-4">
             <h2 className="font-medium uppercase tracking-wide -mb-1">
                 {item.fontsInUse.map((font) => (
                     <span key={font._id} className='block'>
