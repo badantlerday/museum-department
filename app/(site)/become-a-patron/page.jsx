@@ -1,19 +1,26 @@
 import BecomeAPatron from '@/components/BecomeAPatron';
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
 export async function generateMetadata({ params, searchParams }, parent) {
-	
 	return {
-		title: "Search",
+		title: "Become a Patron",
 	};
 }
 
+// export function generateStaticParams() {
+// 	// return ["/become-a-patron"];
+// 	const pageSlug = "become-a-patron";
+// 	return [
+// 		{
+// 		  slug: pageSlug,
+// 		},
+// 	  ];
+//   }
+
 export function generateStaticParams() {
-	return ["/search"];
+	return ["/become-a-patron"];
   }
 
-export default async function BecomAPatron({ params }) {
-	// const { slug } = params;
-	
+export default function BecomAPatron() {	
 
 	return (
 		<>

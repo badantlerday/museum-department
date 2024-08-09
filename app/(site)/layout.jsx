@@ -5,6 +5,9 @@
 // import Footer from "@/components/Footer";
 import FooterSmall from "@/components/FooterSmall";
 import Header from "@/components/Header";
+import HeaderStatic from "@/components/HeaderStatic";
+// import dynamic from "next/dynamic";
+// const Header = dynamic(() => import("@/components/Header"));
 import { Toaster } from 'sonner';
 // import { VisualEditing } from "next-sanity";
 
@@ -71,11 +74,12 @@ const sans = localFont({
 });
 
 
-export default function RootLayout({children}) {
+export default async function RootLayout({children}) {
 	return (
 	  <html lang="en">
 		<body className={`${sans.variable} ${mono.variable} ${serif.variable}`}>
-		  <Header />
+		  {/* <Header /> */}
+		  <HeaderStatic />
 			{children}
 		  <FooterSmall />
 		  <Toaster

@@ -50,15 +50,15 @@ export default async function StudioComponent({ data }) {
 	// const playlistData = await getPlaylist(playlistUrl);
 	// const { name, images, tracks } = await playlistData.json();
 
-    const callOutTitleExplore = "Exploration Redefined";
-	const calloutTextExplore = (
-		<p>
-			At Museum Department, every element is intricately interwoven. Whether a
-			studio, foundry, or individual is linked to a project, typeface,
-			interview, or artifact, our sophisticated search mechanism ensures
-			effortless discovery.
-		</p>
-	);
+    // const callOutTitleExplore = "Exploration Redefined";
+	// const calloutTextExplore = (
+	// 	<p>
+	// 		At Museum Department, every element is intricately interwoven. Whether a
+	// 		studio, foundry, or individual is linked to a project, typeface,
+	// 		interview, or artifact, our sophisticated search mechanism ensures
+	// 		effortless discovery.
+	// 	</p>
+	// );
 
     return (
 	<>
