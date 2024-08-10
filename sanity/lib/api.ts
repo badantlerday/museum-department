@@ -21,6 +21,9 @@ function assertValue<T>(v: T | undefined, errorMessage: string): T {
     "Missing environment variable: NEXT_PUBLIC_SANITY_PROJECT_ID",
   );
   
+  // See the app/api/revalidate/route.ts for how this is used
+  export const revalidateSecret = process.env.SANITY_REVALIDATE_SECRET
+
   /**
    * see https://www.sanity.io/docs/api-versioning for how versioning works
    */

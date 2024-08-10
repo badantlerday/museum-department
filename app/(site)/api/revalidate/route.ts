@@ -21,42 +21,40 @@
  * 15. Add the secret to Vercel: `npx vercel env add SANITY_REVALIDATE_SECRET`
  * 16. Redeploy with `npx vercel --prod` to apply the new environment variable
  */
-// ./src/app/api/revalidate-tag/route.ts
 
-import {revalidateTag} from 'next/cache'
-import {type NextRequest, NextResponse} from 'next/server'
-import {parseBody} from 'next-sanity/webhook'
+import { revalidateTag } from 'next/cache'
+import { type NextRequest, NextResponse } from 'next/server'
+import { parseBody } from 'next-sanity/webhook'
 
-type WebhookPayload = {
-  _type: string
-}
+import { revalidateSecret } from '@/sanity/lib/api'
 
 export async function POST(req: NextRequest) {
   try {
-    if (!process.env.SANITY_REVALIDATE_SECRET) {
-      return new Response('Missing environment variable SANITY_REVALIDATE_SECRET', {status: 500})
-    }
-
-    const {isValidSignature, body} = await parseBody<WebhookPayload>(
-      req,
-      process.env.SANITY_REVALIDATE_SECRET,
-    )
-
+    const { body, isValidSignature } = await parseBody<{
+      _type: string
+      slug?: string | undefined
+    }>(req, revalidateSecret)
     if (!isValidSignature) {
       const message = 'Invalid signature'
-      return new Response(JSON.stringify({message, isValidSignature, body}), {status: 401})
-    } else if (!body?._type) {
-      const message = 'Bad Request'
-      return new Response(JSON.stringify({message, body}), {status: 400})
+      return new Response(message, { status: 401 })
     }
 
-    // If the `_type` is `post`, then all `client.fetch` calls with
-    // `{next: {tags: ['post']}}` will be revalidated
-    revalidateTag(body._type)
+    if (!body?._type) {
+      return new Response('Bad Request', { status: 400 })
+    }
 
-    return NextResponse.json({body})
-  } catch (err) {
+    revalidateTag(body._type)
+    if (body.slug) {
+      revalidateTag(`${body._type}:${body.slug}`)
+    }
+    return NextResponse.json({
+      status: 200,
+      revalidated: true,
+      now: Date.now(),
+      body,
+    })
+  } catch (err: any) {
     console.error(err)
-    return new Response(err.message, {status: 500})
+    return new Response(err.message, { status: 500 })
   }
 }
