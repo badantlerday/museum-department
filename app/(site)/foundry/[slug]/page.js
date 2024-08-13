@@ -221,7 +221,7 @@ export default async function Foundry({ params }) {
 				data={foundry?.projects}
 				columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
 			/>
-			<FontsInUseBy name={foundry?.name} projects={foundry?.projects} />
+			{/* <FontsInUseBy name={foundry?.name} projects={foundry?.projects} /> */}
 			<section className="mt-40">
 				<TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
 			</section>

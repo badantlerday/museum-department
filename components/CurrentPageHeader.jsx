@@ -49,7 +49,7 @@ export default function CurrentPageHeader({ data }) {
             setCurrentHeader('Fonts Gallery');
         }
         else if (pathname === '/fonts-in-use') {
-            setCurrentHeader('Fonts in Use');
+            setCurrentHeader('Fonts Gallery — In Use');
         }
         else if (pathname === '/projects') {
             setCurrentHeader('Projects');

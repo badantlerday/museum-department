@@ -4,6 +4,9 @@ import { addBookmark, removeBookmark } from '@/app/actions'
 import { toast } from 'sonner';
 import Image from 'next/image'; // Make sure this import is correct based on your setup
 
+// Video about how to enable RLS in supabase with Kinde as auth.
+// https://www.youtube.com/watch?v=E9sN9Wol3GI
+
 const Bookmark = ({ documentId, isBookmarked: initialIsBookmarked, userid, variant = "text", message }) => {
   const [isBookmarked, setIsBookmarked] = useState(initialIsBookmarked);
   const [isLoading, setIsLoading] = useState(false);
