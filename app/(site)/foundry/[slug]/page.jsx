@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import { LaunchIcon } from "@sanity/icons";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
@@ -9,6 +10,9 @@ import FontsInUseBy from "@/components/FontsInUseBy";
 import TextCallout from "@/components/TextCallout";
 import BookmarkButton from "@/components/BookmarkButton";
 import GridListing from "@/components/GridListing";
+import StudioInterview from "@/components/StudioInterview";
+import StudioSounds from "@/components/StudioSounds";
+import { Suspense } from "react";
 const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
@@ -39,6 +43,13 @@ export default async function Foundry({ params }) {
 		location[]->{
 			_id, name, country->{name,slug},slug
 		  },
+		studioSoundsPlaylist,
+		interview->{
+			_id,
+			title,
+			slug,
+			posterImage{crop,hotspot,asset->},
+		},
 		staff[]{title,people[]->{_id,name,slug}},
 		"typefaces": *[_type == "typeface" && references(^._id)]{
 			_id,
@@ -54,6 +65,18 @@ export default async function Foundry({ params }) {
 			posterImage{crop,hotspot,asset->},
 			studio->{name},
 			fontsInUse[]->{name,_id}
+		},
+		"foundries": *[_type == "foundry"] | order(_createdAt desc){
+			_id,
+			slug,
+			_type,
+			title,
+			name,
+			posterImage{crop,hotspot,asset->},
+			mainImage{crop,hotspot,asset->},
+			location[]->{
+			_id, name, country->{name,slug},slug
+		  },
 		}
 	  }`;
 	const foundry = await client.fetch(query, { slug });
@@ -225,7 +248,18 @@ export default async function Foundry({ params }) {
 			<section className="mt-40">
 				<TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
 			</section>
-			<section className="mt-48">
+			{foundry.interview && <StudioInterview data={foundry} />}
+			{foundry.studioSoundsPlaylist && (
+				<Suspense fallback={<div>Loading...</div>}>
+					<StudioSounds playlistUrl={foundry.studioSoundsPlaylist} />
+				</Suspense>
+			)}
+			<GridListing
+				title={`Explore other TYPE FOUNDRIES`}
+				data={foundry?.foundries}
+				limit={6}
+			/>
+			{/* <section className="mt-48">
 				<TextCallout
 					title={titleExplore}
 					text={textExplore}
@@ -234,7 +268,7 @@ export default async function Foundry({ params }) {
 					buttonLink="/search"
 					key={titleExplore}
 				/>
-			</section>
+			</section> */}
 		</>
 	);
 }

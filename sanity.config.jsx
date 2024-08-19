@@ -7,10 +7,9 @@ import { structure } from './sanity/config/structure';
 import {media} from 'sanity-plugin-media'
 import {cloudinarySchemaPlugin} from 'sanity-plugin-cloudinary'
 // import { assist } from '@sanity/assist'
-// import {presentationTool} from 'sanity/presentation'
-// import { locate } from "@/sanity/plugins/locate";
-import "./sanity/custom.css";
 
+
+// https://www.sanity.io/guides/nextjs-app-router-live-preview
 // We recommend configuring the preview location base URL using
 // environment variables to support multiple environments
 // const SANITY_STUDIO_PREVIEW_URL = (
@@ -18,6 +17,8 @@ import "./sanity/custom.css";
 // 	|| 'http://localhost:3000'
 // )
 
+// Modify Sanitys deafault CSS in the Studio
+import "./sanity/custom.css";
 
 export default defineConfig({
   basePath: '/admin',

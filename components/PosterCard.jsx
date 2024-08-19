@@ -148,6 +148,49 @@ export default function Postercard({data,aspect,image}) {
         </div>
         </>
         )}
+        {item._type == "foundry" && (
+        <>
+        <Link
+            href={`/foundry/${item.slug.current}`}
+        >
+            {item?.posterImage || item?.posterImage ? (
+                
+                <Image
+                className="aspect-[3/4] mb-2 object-cover"
+                src={builder
+                    .image(item?.posterImage || item?.posterImage)
+                    .width(1000)
+                    .url()}
+                width={800}
+                height={665}
+                blurDataURL={
+                    (item?.posterImage || item?.posterImage).asset
+                        .metadata.lqip
+                }
+                placeholder="blur"
+                alt={item.name}
+            />
+            ) : (
+                <div className="w-full aspect-[3/4] bg-md-grey-100 mb-2"></div>
+            )}
+            </Link> 
+        <div className="flex">
+            <Link
+        href={`/foundry/${item.slug.current}`} className=" flex-1">
+                <span className="text-xs font-medium tracking-wide block uppercase">
+                    {item.name}
+                </span>
+                <span className="text-xs font-medium italic block">
+                    {item.location[0].name}, {item.location[0].country?.name}
+                </span>
+            </Link>
+            <div>
+                <BookmarkButton documentId={item._id} variant="icon" message={`${item?.name}`} />
+            </div>
+        </div>
+        </>
+        )}
+
     </div>
     )
 };

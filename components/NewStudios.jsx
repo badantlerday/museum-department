@@ -14,7 +14,7 @@ export default async function NewStudios() {
 		name,
 		slug,
 		location[]->{
-			_id, name, country->{name}
+			_id, name, _type, slug, country->{name,_type,slug}
 		},
 		  mainImage{crop,hotspot,asset->},
 		  posterImage{crop,hotspot,asset->},
@@ -60,7 +60,13 @@ export default async function NewStudios() {
 								<Link href={`/studio/${item.slug?.current}`} className="hover:text-md-grey-500"> {item.name} ({item.projects.length})</Link>
 							</span>
 							<span className="font-medium italic block">
-									{item.location[0].name}, {item.location[0].country?.name}
+									{/* {item.location[0].name}, {item.location[0].country?.name} */}
+									<Link href={`/reference/${item.location[0].slug.current}`} className="hover:text-md-grey-500">
+										{item.location[0].name}
+									</Link>, { } 
+									<Link href={`/reference/${item.location[0].country?.slug.current}`} className="hover:text-md-grey-500">
+										{item.location[0].country?.name}
+									</Link>
 							</span>
 						</div>
 						<div>
@@ -68,47 +74,7 @@ export default async function NewStudios() {
 						</div>
 					</div>
 				</div>
-                    // <Link
-					// 		key={item._id}
-					// 		href={`/studio/${item.slug?.current}`}
-					// 		passHref
-					// 		className="_relative group"
-					// 	>    
-					// 	<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2 relative" >
-                    //         {item.mainImage || item.mainImage ? (
-								
-					// 			<Image
-					// 			className="aspect-[4/3] mb-2 object-cover w-full"
-					// 			src={builder
-					// 				.image(item.mainImage || item.mainImage)
-					// 				.width(2000)
-					// 				.url()}
-					// 			width={1200}
-					// 			height={1200}
-					// 			blurDataURL={
-					// 				(item.mainImage || item.mainImage).asset
-					// 					.metadata.lqip
-					// 			}
-					// 			placeholder="blur"
-					// 			alt={item.name}
-					// 		/>
-					// 		) : (
-					// 			<div className="w-full aspect-[4/3] bg-md-grey-100 mb-2"></div>
-					// 		)}
-                    //     </div>
-					// 	</Link>
-					// 	<div>
-					// 	<span className="font-medium tracking-wide block uppercase -mb-1">
-					// 		{item.name} ({item.projects.length})
-					// 	</span>
-					// 	<span className="font-medium italic block">
-					// 			{item.location[0].name}, {item.location[0].country?.name}
-					// 	</span>
-                        
-					// 	<div>
-					// 		<BookmarkButton documentId={item._id} variant="icon" message={`${item?.name}`} />
-					// 	</div>
-					// 	</div>
+                   
 				))}
 
 				</div>

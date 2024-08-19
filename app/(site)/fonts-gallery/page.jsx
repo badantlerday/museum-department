@@ -8,6 +8,7 @@ import NewFonts from "@/components/NewFonts";
 import HoverListing from "@/components/HoverListing";
 import MasonryGridLeftRight from "@/components/MasonryGridLeftRight";
 import SectionHeader from "@/components/SectionHeader";
+import NewFoundries from "@/components/NewFoundries";
 
 export default async function FontsGallery() {
 
@@ -49,7 +50,8 @@ export default async function FontsGallery() {
 			</div>
 			<MasonryGridLeftRight data={fontsinuse} />
 		</section>
-		<NewTypeFoundries />
+		{/* <NewTypeFoundries /> */}
+		<NewFoundries title="Type Foundries" />
 		<section className=" py-60">
 			<TextCallout title={title} text={text} button={true} buttonLink="/" buttonText="SUBMIT A TYPE PROJECT" />
 		</section>		
