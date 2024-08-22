@@ -5,7 +5,7 @@ import type {QueryOptions, QueryParams} from 'next-sanity'
 
 import {client} from './sanity.client'
 
-export const token = process.env.SANITY_API_READ_TOKEN
+export const token = process.env.SANITY_READ_TOKEN
 
 
 export async function sanityFetch<QueryResponse>({
