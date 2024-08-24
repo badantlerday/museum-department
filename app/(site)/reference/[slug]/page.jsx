@@ -20,7 +20,8 @@ const referenceFields = `
 			location[]->{
 				_id,
 				name,
-				country->{name}
+				slug,
+				country->{name,slug}
 			},
 			posterImage{crop,hotspot,asset->},
 		},
@@ -38,15 +39,16 @@ const referenceFields = `
 		location[]->{
 			_id,
 			name,
-			country->{name}
+			slug,
+			country->{name,slug}
 		},
 	},
 	"fontProjects": *[_type == "project" && defined(fontsInUse) && references(^._id)]{
-		_id, 
-		title, 
+		_id,
+		title,
 		slug,
-		publishedAt, 
-		studio->{name,slug}, 
+		publishedAt,
+		studio->{name,slug},
 		fontsInUse[]->{name,_id,slug,foundry->},
 		posterImage{crop,hotspot,asset->},
 	}
@@ -70,9 +72,11 @@ const referenceFieldsCountry = `
 			location[]->{
 				_id,
 				name,
+				slug,
 				country->{
 				_id,
-				name
+				name,
+				slug
 				}
 			},
 			posterImage{crop,hotspot,asset->},
@@ -91,9 +95,11 @@ const referenceFieldsCountry = `
 		location[]->{
 			_id,
 			name,
+			slug,
 			country->{
 			_id,
-			name
+			name,
+			slug
 			}
       	}
 	},
@@ -110,18 +116,20 @@ const referenceFieldsCountry = `
 		location[]->{
 			_id,
 			name,
+			slug,
 			country->{
 			_id,
-			name
+			name,
+			slug
 			}
       	}
 	},
 	"fontProjects": *[_type == "project" && defined(fontsInUse) && studio->location[]->country->_id match ^._id]{
-		_id, 
-		title, 
+		_id,
+		title,
 		slug,
-		publishedAt, 
-		studio->{name,slug}, 
+		publishedAt,
+		studio->{name,slug},
 		fontsInUse[]->{name,_id,slug,foundry->},
 		posterImage{crop,hotspot,asset->},
 	},
@@ -146,9 +154,11 @@ const referenceFieldsCity = `
 			location[]->{
 				_id,
 				name,
+				slug,
 				country->{
 				_id,
-				name
+				name,
+				slug
 				}
 			},
 			posterImage{crop,hotspot,asset->},
@@ -167,9 +177,11 @@ const referenceFieldsCity = `
 		location[]->{
 			_id,
 			name,
+			slug,
 			country->{
 			_id,
-			name
+			name,
+			slug
 			}
       	}
 	},
@@ -186,123 +198,138 @@ const referenceFieldsCity = `
 		location[]->{
 			_id,
 			name,
+			slug,
 			country->{
 			_id,
-			name
+			name,
+			slug
 			}
       	}
 	},
 	"fontProjects": *[_type == "project" && defined(fontsInUse) && location[]->_id match ^._id]{
-		_id, 
-		title, 
+		_id,
+		title,
 		slug,
-		publishedAt, 
-		studio->{name,slug}, 
+		publishedAt,
+		studio->{name,slug},
 		fontsInUse[]->{name,_id,slug,foundry->},
 		posterImage{crop,hotspot,asset->},
 	},
 `;
 
-
 // Function to determine the document type based on the slug
-async function getDocumentType( slug ) {
-    const query = `*[_type in ["category", "city", "country", "person"] && slug.current == $slug][0]._type`;
-    const documentType = await client.fetch(query, { slug });
-    return documentType;
+async function getDocumentType(slug) {
+  const query = `*[_type in ["category", "city", "country", "person"] && slug.current == $slug][0]._type`;
+  const documentType = await client.fetch(query, { slug });
+  return documentType;
 }
 
 // Function to fetch data based on document type
 async function fetchDataByType(type, slug) {
-	let query = '';
+  let query = "";
 
-	switch (type) {
-		case 'category':
-			query = `*[_type == "category" && slug.current == $slug][0]{
+  switch (type) {
+    case "category":
+      query = `*[_type == "category" && slug.current == $slug][0]{
 				_id,
 				title,
 				slug,
 				_type,
 				${referenceFields}
 			}`;
-			break;
+      break;
 
-		case 'city':
-			query = `*[_type == "city" && slug.current == $slug][0]{
+    case "city":
+      query = `*[_type == "city" && slug.current == $slug][0]{
 				_id,
 				name,
 				_type,
 				${referenceFieldsCity}
 			}`;
-			break;
+      break;
 
-		case 'country':
-			query = `*[_type == "country" && slug.current == $slug][0]{
+    case "country":
+      query = `*[_type == "country" && slug.current == $slug][0]{
 				_id,
 				name,
 				_type,
 				${referenceFieldsCountry}
 			}`;
-			break;
+      break;
 
-		case 'person':
-			query = `*[_type == "person" && slug.current == $slug][0]{
+    case "person":
+      query = `*[_type == "person" && slug.current == $slug][0]{
 				_id,
 				name,
 				_type,
 				${referenceFields}
 			}`;
-			break;
+      break;
 
-		default:
-			throw new Error(`Unsupported type: ${type}`);
-	}
+    default:
+      throw new Error(`Unsupported type: ${type}`);
+  }
 
-	const data = await client.fetch(query, { slug });
-	return data;
+  const data = await client.fetch(query, { slug });
+  return data;
 }
 
 export default async function Reference({ params }) {
-    const { slug } = params;
+  const { slug } = params;
 
-	// Get the document type based on the slug
-	const documentType = await getDocumentType(slug);
+  // Get the document type based on the slug
+  const documentType = await getDocumentType(slug);
 
-    // Fetch the data based on the document type
-	const data = await fetchDataByType(documentType, slug);
-    // console.log(data);
+  // Fetch the data based on the document type
+  const data = await fetchDataByType(documentType, slug);
+  // console.log(data);
 
-    // Extract all fonts from fontProjects
-    // const fonts = data.fontProjects?.flatMap(project =>
-    //     project.fontsInUse.map(font => ({
-    //         ...font,
-    //         projectTitle: project.title,
-    //         projectSlug: project.slug,
-    //         studioName: project.studio?.name,
-    //         studioSlug: project.studio?.slug
-    //     }))
-    // );
+  // Extract all fonts from fontProjects
+  // const fonts = data.fontProjects?.flatMap(project =>
+  //     project.fontsInUse.map(font => ({
+  //         ...font,
+  //         projectTitle: project.title,
+  //         projectSlug: project.slug,
+  //         studioName: project.studio?.name,
+  //         studioSlug: project.studio?.slug
+  //     }))
+  // );
 
-	// Extract all studios from projects
-	const studios = data.projects?.flatMap(project => ({
-		...project.studio,
-	}));
+  // Extract all studios from projects
+  const studios = data.projects?.flatMap((project) => ({
+    ...project.studio,
+  }));
 
-	return (
-		<>
-			<section className="my-32 text-center">
-				<h1 className="font-black uppercase text-5xl">{data.name ? data.name : data.title}</h1>
-				<div className="font-medium text-xl mt-4">is referenced in the following places</div>
-			</section>
+  return (
+    <>
+      <section className="my-32 text-center">
+        <h1 className="font-black uppercase text-5xl">
+          {data.name ? data.name : data.title}
+        </h1>
+        <div className="font-medium text-xl mt-4">
+          is referenced in the following places
+        </div>
+      </section>
 
-			{documentType === 'person' && (
-				<GridListing data={studios} title={`${studios?.length} Studios`} limit={18} />
-			)}
-            <GridListing data={data.studios} title={`${data.studios?.length} Studios`} limit={18} />
-            <GridListing data={data.projects} title={`${data.projects?.length} Projects`} limit={18} />
-            {/* <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} /> */}
-            {/* <GridListing data={fonts} title={`${fonts?.length} Fonts`} limit={18} /> */}
-
-
-		</>
-	);
+      {documentType === "person" && (
+        <GridListing
+          data={studios}
+          title={`${studios?.length} Studios`}
+          limit={18}
+        />
+      )}
+      <GridListing
+        data={data.studios}
+        title={`${data.studios?.length} Studios`}
+        limit={18}
+      />
+      <GridListing
+        data={data.projects}
+        title={`${data.projects?.length} Projects`}
+        limit={18}
+      />
+      {/* <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} /> */}
+      {/* <GridListing data={fonts} title={`${fonts?.length} Fonts`} limit={18} /> */}
+    </>
+  );
 }

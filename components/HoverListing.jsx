@@ -96,7 +96,7 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                     {items.map((item) => (
                         <div
                             key={item._id}
-                            className="group grid grid-cols-4 text-xs text-md-grey-300 hover:text-black _mb-6 py-[3px] _hover:bg-md-grey-100"
+                            className="group grid grid-cols-4 text-xs text-md-grey-300 hover:text-md-black _mb-6 py-[3px] _hover:bg-md-grey-100"
                             onMouseEnter={() => handleMouseEnter(item.mainImage)}
                             onMouseLeave={handleMouseLeave}
                         >
@@ -139,7 +139,7 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                     {items.map((item) => (
                         <div
                             key={item._id}
-                            className="group grid grid-cols-12 text-xs text-md-grey-300 hover:text-black _mb-6 py-[3px] _hover:bg-md-grey-100"
+                            className="group grid grid-cols-12 text-xs text-md-grey-300 hover:text-md-black _mb-6 py-[3px] _hover:bg-md-grey-100"
                             onMouseEnter={() => handleMouseEnter(item.specimenPoster)}
                             onMouseLeave={handleMouseLeave}
                         >

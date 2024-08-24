@@ -43,7 +43,7 @@ const {
 			{buttonLink && (
 				<a
 					href={buttonLink}
-					className="mt-4 inline-block border border-black p-3 text-xs uppercase tracking-wide hover:bg-black hover:text-white transition-all"
+					className="mt-4 inline-block border border-md-black p-3 text-xs uppercase tracking-wide hover:bg-md-black hover:text-white transition-all"
 				>
 					{buttonText}
 				</a>

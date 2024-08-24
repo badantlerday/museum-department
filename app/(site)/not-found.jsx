@@ -8,7 +8,7 @@ export default function NotFound() {
       Could not find requested resource
       <Link
           href="/"
-          className="inline-block border border-black mt-4 p-3 text-xs uppercase tracking-wide hover:bg-black hover:text-white transition-all"
+          className="inline-block border border-md-black mt-4 p-3 text-xs uppercase tracking-wide hover:bg-md-black hover:text-white transition-all"
         >
         Return home
         </Link>

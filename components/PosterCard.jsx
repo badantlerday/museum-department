@@ -26,7 +26,16 @@ export default function Postercard({ data, aspect }) {
     );
   };
 
-  const renderDetails = (mainLink, mainText, subLink, subText) => (
+  const renderDetails = (
+    mainLink,
+    mainText,
+    cityLink,
+    cityText,
+    countryLink,
+    countryText,
+    studioLink,
+    studioText,
+  ) => (
     <div className="flex">
       <div className="flex-1">
         <Link href={mainLink} className="hover:text-md-grey-500">
@@ -34,11 +43,24 @@ export default function Postercard({ data, aspect }) {
             {mainText}
           </span>
         </Link>
-        <span className="text-xs font-medium italic block">
-          <Link href={subLink} className="hover:text-md-grey-500">
-            {subText}
-          </Link>
-        </span>
+        {cityLink && countryLink && (
+          <span className="text-xs font-medium italic block">
+            <Link href={cityLink} className="hover:text-md-grey-500">
+              {cityText}
+            </Link>
+            ,{" "}
+            <Link href={countryLink} className="hover:text-md-grey-500">
+              {countryText}
+            </Link>
+          </span>
+        )}
+        {studioLink && (
+          <span className="text-xs font-medium italic block">
+            <Link href={studioLink} className="hover:text-md-grey-500">
+              {studioText}
+            </Link>
+          </span>
+        )}
       </div>
       <div>
         <BookmarkButton
@@ -64,7 +86,11 @@ export default function Postercard({ data, aspect }) {
           {renderDetails(
             `/project/${item.slug.current}`,
             item.title,
-            `/studio/${item.studio.slug.current}`,
+            null,
+            null,
+            null,
+            null,
+            `/studio/${item.studio.slug?.current}`,
             item.studio.name,
           )}
         </>
@@ -79,8 +105,14 @@ export default function Postercard({ data, aspect }) {
           {renderDetails(
             `/studio/${item.slug.current}`,
             item.name,
-            `/reference/${item.location[0].slug.current}`,
-            `${item.location[0].name}, ${item.location[0].country?.name}`,
+            item.location?.[0]?.slug?.current
+              ? `/reference/${item.location[0].slug.current}`
+              : null,
+            item.location?.[0]?.name,
+            item.location?.[0]?.country?.slug?.current
+              ? `/reference/${item.location[0].country.slug.current}`
+              : null,
+            item.location?.[0]?.country?.name,
           )}
         </>
       );
@@ -94,8 +126,14 @@ export default function Postercard({ data, aspect }) {
           {renderDetails(
             `/foundry/${item.slug.current}`,
             item.name,
-            `/foundry/${item.location[0].slug.current}`,
-            `${item.location[0].name}, ${item.location[0].country?.name}`,
+            item.location?.[0]?.slug?.current
+              ? `/reference/${item.location[0].slug.current}`
+              : null,
+            item.location?.[0]?.name,
+            item.location?.[0]?.country?.slug?.current
+              ? `/reference/${item.location[0].country.slug.current}`
+              : null,
+            item.location?.[0]?.country?.name,
           )}
         </>
       );
@@ -110,8 +148,14 @@ export default function Postercard({ data, aspect }) {
             {renderDetails(
               `/project/${item.slug.current}`,
               item.name,
-              `/foundry/${item.foundry.slug.current}`,
-              item.foundry.name,
+              item.location?.[0]?.slug?.current
+                ? `/reference/${item.location[0].slug.current}`
+                : null,
+              item.location?.[0]?.name,
+              item.location?.[0]?.country?.slug?.current
+                ? `/reference/${item.location[0].country.slug.current}`
+                : null,
+              item.location?.[0]?.country?.name,
             )}
           </>
         );

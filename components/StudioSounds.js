@@ -63,7 +63,7 @@ export default async function StudioSounds({ playlistUrl }) {
 							</ul>
 							<Link
 								href={playlistUrl}
-								className="  inline-block border border-black p-3 text-xs uppercase tracking-wide"
+								className="  inline-block border border-md-black p-3 text-xs uppercase tracking-wide"
 							>
 								<div className="flex">
 									<Image

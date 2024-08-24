@@ -60,7 +60,7 @@ export default function ItemsRow({ title = "Title", link, data }) {
                 </div>
               ))}
             </div>
-            <div className=" text-black">
+            <div className=" text-md-black">
               <Link
                 href={`/project/${item.slug?.current}`}
                 className="hover:text-md-grey-500"

@@ -49,7 +49,7 @@ export default function MenuBig({ src, projects }) {
 
   const lightboxContent = (
   <div
-    className={`fixed inset-0 bg-black bg-opacity-80 flex z-50 duration-200 ${isVisible ? "opacity-1" : "opacity-0 _delay-200"}`}
+    className={`fixed inset-0 bg-md-black bg-opacity-80 flex z-50 duration-200 ${isVisible ? "opacity-1" : "opacity-0 _delay-200"}`}
     onClick={handleClose}
   >
     <div
@@ -126,7 +126,7 @@ export default function MenuBig({ src, projects }) {
               <div className="text-xs tracking-wide mb-1">Newsletter</div>
               <div className="flex gap-4">
                 <div className="flex-1">
-                  <input type="text" className="border border-black bg-md-grey-100 text-base w-full p-2" />
+                  <input type="text" className="border border-md-black bg-md-grey-100 text-base w-full p-2" />
                 </div>
                 <div>
                   <Button>Subscribe</Button>

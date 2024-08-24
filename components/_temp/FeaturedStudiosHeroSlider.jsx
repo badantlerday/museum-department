@@ -85,7 +85,7 @@ export default function FeaturedStudiosHeroSlider({data}) {
 							A Design Studio from {item.location[0].name},{" "}
 							{item.location[0].country.name}
 						</div>
-						<div className="absolute top-0 left-0 right-0 bottom-0 bg-black opacity-[0.15] z-10"></div>
+						<div className="absolute top-0 left-0 right-0 bottom-0 bg-md-black opacity-[0.15] z-10"></div>
 						{item.mainImage &&
 						<Image
 							className="aspect-video object-cover absolute z-0"
