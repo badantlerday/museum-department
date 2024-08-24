@@ -7,10 +7,10 @@ export default function ItemsRow({ title = "Title", link, data }) {
   return (
     <div className="grid grid-cols-6 gap-4 my-10">
       <div className="border-t border-b border-md-grey-200 py-2 grid grid-cols-2 relative">
-        <h2 className="uppercase font-light text-3xl leading-9 ">{title}</h2>
+        <h2 className="uppercase font-light text-3xl leading-[120%] ">{title}</h2>
         <Link
           href={link}
-          className="uppercase font-medium col-span-2 absolute bottom-2 text-xs tracking-[3%]"
+          className="uppercase font-medium col-span-2 absolute bottom-2 text-[11px] tracking-[3%]"
         >
           Explore more
         </Link>
@@ -47,7 +47,7 @@ export default function ItemsRow({ title = "Title", link, data }) {
               </Link>
             )}
           </div>
-          <div className="flex flex-col text-xs">
+          <div className="flex flex-col text-[11px]">
             <div className="grow uppercase font-medium tracking-[3%] flex flex-col">
               {item.fontsInUse.map((font) => (
                 <div key={font._id}>

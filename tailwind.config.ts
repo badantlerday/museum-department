@@ -57,11 +57,11 @@ const config: Config = {
       mono: "var(--font-mono)",
       serif: "var(--font-serif)",
     },
-    letterSpacing: {
-      wide: '3%',
-    },
     extend: {
       ...generateGrid(24),
+      letterSpacing: {
+        wide: '3%',
+      },
       colors: {
         'md-grey-100': '#FAFBF7',
         'md-grey-200': '#E6E6E6',
