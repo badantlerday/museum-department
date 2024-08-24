@@ -54,16 +54,16 @@ export default async function StudioSounds({ playlistUrl }) {
 							<div className="italic text-2xl">{name.includes("Studio Sounds -") ? name.replace("Studio Sounds -", "") : name}</div>
 						</div>
 						<div className="justify-self-end">
-							<ul className="mb-6 text-xl space-y-1 font-medium italic">
+							<ul className="mb-6 text-xl space-y-1 font-medium">
 								{tracks.items?.map((item) => (
 									<li key={item.track.id}>
-										{item.track.artists[0].name} - {item.track.name}
+										{item.track.artists[0].name} - <span className="italic">{item.track.name}</span>
 									</li>
 								))}
 							</ul>
 							<Link
 								href={playlistUrl}
-								className="  inline-block border border-md-black p-3 text-xs uppercase tracking-wide"
+								className="inline-block border border-md-black p-3 text-xs uppercase tracking-[10%]"
 							>
 								<div className="flex">
 									<Image
