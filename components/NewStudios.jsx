@@ -61,8 +61,8 @@ export default async function NewStudios() {
                       {item.name}
                     </Link>
                   </span>
+
                   <span className="font-medium italic block">
-                    {/* {item.location[0].name}, {item.location[0].country?.name} */}
                     <Link
                       href={`/reference/${item.location[0].slug.current}`}
                       className="hover:text-md-grey-500"
@@ -77,6 +77,7 @@ export default async function NewStudios() {
                       {item.location[0].country?.name}
                     </Link>
                   </span>
+                  
                 </div>
                 <div>
                   <BookmarkButton
