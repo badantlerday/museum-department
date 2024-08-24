@@ -9,7 +9,7 @@ import SummaryCallout from "@/components/SummaryCallout";
 import GridListing from "@/components/GridListing";
 
 export default async function Studios() {
-	const studios = await client.fetch(`*[_type == "studio" ] | order(name asc){
+  const studios = await client.fetch(`*[_type == "studio" ] | order(name asc){
         _id,
 		_type,
 		_createdAt,
@@ -23,7 +23,8 @@ export default async function Studios() {
 		posterImage{crop,hotspot,asset->}
       }`);
 
-	const recentlyUpdatedProjects = await client.fetch(`*[_type == "project" ] | order(updatedAt asc){
+  const recentlyUpdatedProjects =
+    await client.fetch(`*[_type == "project" ] | order(updatedAt asc){
         _id,
 		title,
 		_type,
@@ -36,42 +37,47 @@ export default async function Studios() {
 			location[]->{
 				_id,
 				name,
-				country->{name}
+				slug,
+				country->{name,slug}
 			},
 			posterImage{crop,hotspot,asset->},
 			"countProjects": count(*[_type == "project" && references(^._id)])
 		},
     }`);
 
-	// Filter out projects to ensure only one project per studio
-	function filterProjects(projects) {
-		const studioMap = new Map();
-		const uniqueProjects = [];
-	
-		projects.forEach(project => {
-			const studioId = project.studio._id;
-			if (!studioMap.has(studioId)) {
-				studioMap.set(studioId, true);
-				uniqueProjects.push(project);
-			}
-		});
-	
-		return uniqueProjects;
-	}
-	const uniqueProjects = filterProjects(recentlyUpdatedProjects);
+  // Filter out projects to ensure only one project per studio
+  function filterProjects(projects) {
+    const studioMap = new Map();
+    const uniqueProjects = [];
 
-	return (
-		<main className="mt-48">
-			<section className="pb-20">
-			<NewStudios />
-			</section>
-			<GridListing data={uniqueProjects} title="Recently updated" limit={18} aspect="portrait" />
-			<SummaryCallout data={studios} />
-			<HoverListing data={studios} sectionHeader="Design Studios" />
-		</main>
-	);
+    projects.forEach((project) => {
+      const studioId = project.studio._id;
+      if (!studioMap.has(studioId)) {
+        studioMap.set(studioId, true);
+        uniqueProjects.push(project);
+      }
+    });
+
+    return uniqueProjects;
+  }
+  const uniqueProjects = filterProjects(recentlyUpdatedProjects);
+
+  return (
+    <main className="mt-48">
+      <section className="pb-20">
+        <NewStudios />
+      </section>
+      <GridListing
+        data={uniqueProjects}
+        title="Recently updated"
+        limit={18}
+        aspect="portrait"
+      />
+      <SummaryCallout data={studios} />
+      <HoverListing data={studios} sectionHeader="Design Studios" />
+    </main>
+  );
 }
-
 
 // // Initialize Sets to store unique locations and countries
 // const uniqueLocations = new Set();

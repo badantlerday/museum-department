@@ -6,6 +6,7 @@ import SectionHeader from "@/components/SectionHeader";
 import TypefacesByFoundry from "@/components/TypefacesByFoundry";
 import BookmarkButton from "@/components/BookmarkButton";
 import { PortableText } from "@portabletext/react";
+import GridListing from "@/components/GridListing";
 
 const builder = imageUrlBuilder(client);
 
@@ -42,7 +43,8 @@ export default async function Foundry({ params }) {
 	const fontinuseQuery = `*[_type == "project" && defined(fontsInUse) && $typefaceId in fontsInUse[]->_id] {
     _id, 
     title, 
-    slug, 
+    slug,
+	_type, 
     studio->{name,slug}, 
     fontsInUse[]->{name,_id,slug}
   }`;
@@ -62,11 +64,15 @@ export default async function Foundry({ params }) {
 					<div className="col-span-3">
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Bookmark
+								Bookmark font
 							</h2>
 							<ul className=" space-y-2 font-mono text-sm">
 								<li>
-									<BookmarkButton documentId={typeface._id} variant="icon" />
+									<BookmarkButton
+										documentId={typeface._id}
+										variant="icon"
+										message={`${typeface?.name}`}
+									/>
 								</li>
 							</ul>
 						</div>
@@ -78,14 +84,16 @@ export default async function Foundry({ params }) {
 								<li>{typeface?.name}</li>
 							</ul>
 						</div>
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Style
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>{typeface?.style}</li>
-							</ul>
-						</div>
+						{typeface?.style && (
+							<div className="mb-5">
+								<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+									Style
+								</h2>
+								<ul className=" space-y-2 font-mono text-sm">
+									<li>{typeface?.style}</li>
+								</ul>
+							</div>
+						)}
 						<div className="mb-5">
 							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
 								Type Foundry
@@ -101,43 +109,30 @@ export default async function Foundry({ params }) {
 								</li>
 							</ul>
 						</div>
-
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Release
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>{typeface?.realaseYear}</li>
-							</ul>
-						</div>
-						{/* <div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Designer
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
-							</ul>
-						</div>
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Font Engieneering
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>-</li>
-							</ul>
-						</div> */}
-						<div className="mb-5">
-							<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-								Buy font
-							</h2>
-							<ul className=" space-y-2 font-mono text-sm">
-								<li>
-									<a href={typeface?.fontUrl?.url} target="_blank">
-										{typeface?.fontUrl?.label}
-									</a>
-								</li>
-							</ul>
-						</div>
+						{typeface?.realaseYear && (
+							<div className="mb-5">
+								<h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+									Release
+								</h2>
+								<ul className=" space-y-2 font-mono text-sm">
+									<li>{typeface?.realaseYear}</li>
+								</ul>
+							</div>
+						)}
+						{typeface?.fontUrl && (
+							<div className="mb-5">
+								<h2 className="text-xs uppercase tracking-wide font-medium mb-2">
+									Buy font
+								</h2>
+								<ul className="space-y-2 font-mono text-sm">
+									<li>
+										<a href={typeface.fontUrl.url} target="_blank">
+											{typeface.fontUrl.label}
+										</a>
+									</li>
+								</ul>
+							</div>
+						)}
 					</div>
 					<div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
 						<PortableText value={typeface?.information} />
@@ -165,6 +160,13 @@ export default async function Foundry({ params }) {
 				</div>
 			</section>
 			<section>
+				<GridListing
+					title={`${typeface?.name || ""} in use`}
+					data={fontinuse}
+					columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
+				/>
+			</section>
+			{/* <section>
 				<div className="px-6 md:px-20 mx-auto">
 					<div className="border-t border-[#E6E6E6] mb-4"></div>
 					<div className="flex items-center">
@@ -191,11 +193,11 @@ export default async function Foundry({ params }) {
 						))}
 					</div>
 				</div>
-			</section>
-			<TypefacesByFoundry
+			</section> */}
+			{/* <TypefacesByFoundry
 				name={`Fonts by ${typeface?.foundry.name.toUpperCase()}`}
 				typefaces={typeface.foundryTypfaces}
-			/>
+			/> */}
 		</>
 	);
 }
