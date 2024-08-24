@@ -225,7 +225,8 @@ export default async function StudioComponent({ data }) {
           <StudioSounds playlistUrl={studio.studioSoundsPlaylist} />
         </Suspense>
       )}
-      <ExploreMore data={studio.exploreMore} />
+      <section className="text-center">[EXPLORE MORE SECTION - TO BE IMPLEMENTED]</section>
+      {/* <ExploreMore data={studio.exploreMore} /> */}
     </>
   );
 }
