@@ -144,9 +144,11 @@ export default function MasonryGrid({data}) {
 				columnClassName="masonry-grid--column">
         {jsxItems}
         <div className='masonry-grid--item '>
-          <div className='bg-[#F6F5F3] p-28'>
-          <h2 className='uppercase font-medium tracking-wide'>JOIN OUR COMMUNITY</h2>
-          <p>Receive our weekly curated roundup newsletter. Get news about interviews, fonts, new products, and new features.</p>
+          <div className='bg-md-grey-100 px-14 py-28'>
+          <h2 className='uppercase font-medium tracking-wide mb-4'>Stay up to date</h2>
+          <div className='text-xl'>
+          <p>Receive our curated weekly roundup newsletter. Get news about projects, interviews, fonts, new products, and new features.</p>
+          </div>
           </div>
         </div>
 		    </Masonry>
