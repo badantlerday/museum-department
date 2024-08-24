@@ -49,9 +49,9 @@ export default async function StudioSounds({ playlistUrl }) {
 			<section className="px-4 lg:px-20 mx-auto mb-32">
 				<div className="border-t border-[#E6E6E6] pt-6 pb-4 grid grid-cols-2">
 					<div className="flex flex-col  aspect-square">
-						<div className=" flex-auto  text-2xl font-medium ">
+						<div className=" flex-auto text-xl font-medium ">
 							<h2 className="">Studio Sounds</h2>
-							<div className="italic">{name}</div>
+							<div className="italic text-2xl">{name.includes("Studio Sounds -") ? name.replace("Studio Sounds -", "") : name}</div>
 						</div>
 						<div className="justify-self-end">
 							<ul className="mb-6 text-xl space-y-1 font-medium italic">
@@ -73,7 +73,7 @@ export default async function StudioSounds({ playlistUrl }) {
 										className="mr-2"
 										alt="Cover"
 									/>
-									<span>Listen to STUDIO SOUNDS BY daniel carlsten</span>
+									<span>Listen</span>
 								</div>
 							</Link>
 						</div>

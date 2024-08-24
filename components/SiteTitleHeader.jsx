@@ -13,7 +13,7 @@ export default function SiteTitleHeader() {
         viewport={{ once: true }}
        
     >
-        <h1 className="text-center text-7xl font-black mx-auto flex flex-col mt-56 mb-40 tracking-[-1%] leading-[68px]">
+        <h1 className="text-center text-md-black text-[80px] font-black mx-auto flex flex-col mt-56 mb-40 tracking-[-1%] leading-[85%]">
           <span>CURATING</span><span>CONTEMPORARY</span><span>CULTURE</span>
         </h1>
       </motion.div>
