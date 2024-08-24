@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { addBookmark, removeBookmark } from "@/app/actions";
 import { toast } from "sonner";
-import Image from "next/image"; // Make sure this import is correct based on your setup
+// import Image from "next/image"; // Make sure this import is correct based on your setup
 
 // Video about how to enable RLS in supabase with Kinde as auth.
 // https://www.youtube.com/watch?v=E9sN9Wol3GI
@@ -96,19 +96,25 @@ const Bookmark = ({
             ></path>
           </svg>
         ) : isBookmarked ? (
-          <Image
-            src="/icon-bookmark-added.svg"
-            width={10}
-            height={15}
-            alt="Remove Bookmark"
-          />
+          <svg width="10" height="15" alt="Remove bookmark" viewBox="0 0 10 15" fill="none" className="fill-md-black hover:fill-md-grey-200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 15L5 10.7531L10 15V0H0V15Z"/>
+          </svg>
+          // <Image
+          //   src="/icon-bookmark-added.svg"
+          //   width={10}
+          //   height={15}
+          //   alt="Remove Bookmark"
+          // />
         ) : (
-          <Image
-            src="/icon-bookmark.svg"
-            width={10}
-            height={15}
-            alt="Add Bookmark"
-          />
+          // <Image
+          //   src="/icon-bookmark.svg"
+          //   width={10}
+          //   height={15}
+          //   alt="Add Bookmark"
+          // />
+          <svg width="10" height="15" alt="Add bookmark" viewBox="0 0 10 15" fill="none" className="fill-md-grey-200 hover:fill-md-black" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 15L5 10.7531L10 15V0H0V15Z"/>
+          </svg>
         ))}
     </button>
   );

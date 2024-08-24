@@ -34,13 +34,16 @@ export default async function BookmarkButton({ documentId,variant="text",message
 
 return (
     <Suspense fallback={<div>
-            <Image
+            {/* <Image
               src="/icon-bookmark.svg"
               width={10}
               height={15}
               alt="Add Bookmark"
               className="animate-pulse"
-            />
+            /> */}
+        <svg width="10" height="15" alt="Remove bookmark" viewBox="0 0 10 15" fill="none" className="animate-pulse fill-md-grey-200" xmlns="http://www.w3.org/2000/svg">
+          <path d="M0 15L5 10.7531L10 15V0H0V15Z"/>
+          </svg>
     </div>}>
         <Bookmark documentId={documentId} isBookmarked={isBookmarked} userid={user.id} variant={variant} message={message} />
     </Suspense>
