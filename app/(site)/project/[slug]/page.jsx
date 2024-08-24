@@ -140,7 +140,7 @@ export default async function Page({ params }) {
 			</div>
 		</section>
     <section className="mx-auto px-16 ">
-    <h1 className="text-center text-[56px]/[50px] font-black mx-auto flex flex-col my-20 uppercase tracking-tight px-28">
+    <h1 className="text-center text-[56px] leading-[85%] text-md-black font-black mx-auto flex flex-col my-20 uppercase tracking-[-1%] px-28">
           <span>{project?.title}</span><span>by <Link
             href={`/studio/${project.studio.slug.current}`}
             className="transition-colors hover:text-md-grey-500"
