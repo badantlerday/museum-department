@@ -27,7 +27,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 //  (SSG) prerendered as static HTML
 export async function generateStaticParams() {
   const query = `*[_type == "project" ]`
-  const projects = await client.fetch(query);
+  const projects = await client.fetch(query,{ next: { revalidate: 60 } });
  
   return projects.map((project) => ({
     slug: project.slug.current,

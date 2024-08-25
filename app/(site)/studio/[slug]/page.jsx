@@ -16,7 +16,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
 //  (SSG) prerendered as static HTML
 export async function generateStaticParams() {
   const queryAllStudios = `*[_type == "studio" ]`
-  const studios = await client.fetch(queryAllStudios);
+  const studios = await client.fetch(queryAllStudios,{ next: { revalidate: 60 } });
  
   return studios.map((studio) => ({
     slug: studio.slug.current,

@@ -27,7 +27,7 @@ export default function ItemsRow({ title = "Title", link, data }) {
             {item.posterImage || item.posterImage ? (
               <Link href={`/project/${item.slug?.current}`}>
                 <Image
-                  className="aspect-[4/5] object-cover"
+                  className="aspect-[3/4] object-cover"
                   src={builder
                     .image(item.posterImage || item.posterImage)
                     .width(500)
@@ -43,7 +43,7 @@ export default function ItemsRow({ title = "Title", link, data }) {
               </Link>
             ) : (
               <Link href={`/project/${item.slug?.current}`}>
-                <div className="aspect-[4/5] bg-md-grey-200 mr-2"></div>
+                <div className="aspect-[3/4] bg-md-grey-200 mr-2"></div>
               </Link>
             )}
           </div>
