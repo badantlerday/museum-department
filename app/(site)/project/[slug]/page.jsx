@@ -79,9 +79,9 @@ export default async function Page({ params }) {
   const project = await sanityFetch({ query, params, tags: ["project"] });
   const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
   const uniqueFoundries = Array.from(
-    new Set(project.fontsInUse.map((font) => font.foundry.name))
+    new Set(project.fontsInUse?.map((font) => font.foundry.name))
   ).map((foundryName) =>
-    project.fontsInUse.find((font) => font.foundry.name === foundryName).foundry
+    project.fontsInUse?.find((font) => font.foundry.name === foundryName).foundry
   );
   // console.log(project.credits);
 
@@ -173,22 +173,22 @@ export default async function Page({ params }) {
     <div className="px-10 lg:px-20 mx-auto">
     <div className="grid grid-cols-24 gap-4">
       <div className="col-start-3 col-span-4">
-      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Bookmark Project</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Bookmark Project</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
         <li><BookmarkButton documentId={project._id} variant="icon" /></li>
         </ul>
-      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Published</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Published</h2>
         <ul className=" space-y-2 font-mono text-xs mb-4">               
         <li className="text-md-grey-400">{publishedAt}</li>
         </ul>
 
-      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Design Studio</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
         {/* <li>{project.studio.name}</li> */}
         <li><Link href={`/studio/${project.studio.slug.current}`} className="text-md-grey-400 transition-colors hover:text-md-grey-600">{project.studio.name}</Link></li>
         
         </ul>
-      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Categories</h2>
+      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Categories</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">
                 {project.category?.map((cat, index) => (
                   <li key={index}>
@@ -196,7 +196,7 @@ export default async function Page({ params }) {
                   </li>
                 ))}
               </ul>
-        <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Fonts in use</h2>
+        <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Fonts in use</h2>
               <ul className="space-y-1 font-mono text-xs ">
               {project.fontsInUse?.map((font, index) => (
                   <li key={index}>
@@ -226,9 +226,9 @@ export default async function Page({ params }) {
                   </li>
                 ))} */}
               </ul>
-              <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide mt-4">Fonts Foundries</h2>
+              <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider mt-4">Fonts Foundries</h2>
               <ul className="space-y-1 font-mono text-xs ">
-              {uniqueFoundries.map((foundry, index) => (
+              {uniqueFoundries?.map((foundry, index) => (
                 <li key={index}>
                   <Link
                     href={`/foundry/${foundry.slug.current}`}
@@ -243,7 +243,7 @@ export default async function Page({ params }) {
       <div className=" col-span-4">
       {project.credits?.map((credit, index) => (
               <div key={index} className="">
-                <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">
+                <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">
                   {credit.category?.title}
                   {/* {credit.title} */}
                 </h2>
@@ -263,7 +263,7 @@ export default async function Page({ params }) {
             ))}
 
       </div>
-      <div className="article col-start-13 col-span-10 font-light tracking-[2%] leading-tight [&>p]:indent-8">
+      <div className="article text-md-black col-start-13 col-span-10 font-light tracking-[2%] leading-[120%] text-xl [&>p:first-of-type]:indent-8">
       <PortableText value={project?.information} />
       </div>
     </div>
@@ -273,7 +273,7 @@ export default async function Page({ params }) {
     <div className="grid grid-cols-24">
       <div className="col-start-3 col-span-20">
 
-        <div className="px-18 mx-auto grid grid-cols-2 gap-y-20">
+        <div className="px-18 mx-auto grid grid-cols-2 gap-y-10">
             {project?.pageBlocks ? <Blocks data={project?.pageBlocks} /> : null}
         </div>
         

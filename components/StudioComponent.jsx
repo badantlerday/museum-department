@@ -102,7 +102,7 @@ export default async function StudioComponent({ data }) {
         <div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
           <div className="col-span-3">
             <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Bookmark studio
               </h2>
               <ul className=" space-y-2 font-mono text-xs">
@@ -115,47 +115,46 @@ export default async function StudioComponent({ data }) {
                 </li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Studio
               </h2>
-              <ul className=" space-y-2 font-mono text-xs">
+              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 <li>{studio.name}</li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Founded
               </h2>
-              <ul className=" space-y-2 font-mono text-xs">
+              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 <li>{studio.founded}</li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Size
               </h2>
-              <ul className=" space-y-2 font-mono text-xs">
+              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 <li>{studio.size}</li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Location
               </h2>
-              <ul className=" space-y-1 font-mono text-xs">
+              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 {studio.location?.map((item, index) => (
-                  <li key={item._id} className="">
+                  <li key={item._id} className="flex flex-col">
                     <Link
                       href={`/reference/${item?.slug.current}`}
-                      className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
+                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                     >
                       {item?.name}
                     </Link>
-                    ,{" "}
                     <Link
                       href={`/reference/${item?.country.slug.current}`}
-                      className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
+                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                     >
                       {item?.country.name}
                     </Link>
@@ -164,16 +163,16 @@ export default async function StudioComponent({ data }) {
               </ul>
             </div>
 
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-2">
                 Categories
               </h2>
-              <ul className=" space-y-2 font-mono text-xs">
+              <ul className=" space-y-1 font-mono text-xs">
                 {studio.category?.map((cat, index) => (
                   <li key={index}>
                     <Link
                       href={`/reference/${cat.slug.current}`}
-                      className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
+                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                     >
                       {cat.title}
                     </Link>
@@ -182,16 +181,16 @@ export default async function StudioComponent({ data }) {
               </ul>
             </div>
 
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-2">
                 Visit
               </h2>
-              <ul className=" space-y-2 font-mono text-xs">
+              <ul className=" space-y-1 font-mono text-xs">
                 <li>
                   <a
                     href={studio.website}
                     target="_blank"
-                    className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
+                    className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                   >
                     Website
                   </a>
@@ -200,7 +199,7 @@ export default async function StudioComponent({ data }) {
                   <a
                     href={studio.instagram}
                     target="_blank"
-                    className="underline decoration-md-grey-300 underline-offset-[6px] hover:decoration-md-grey-400 transition-colors"
+                    className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                   >
                     Instagram
                   </a>
