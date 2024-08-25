@@ -31,7 +31,8 @@ export const getPlaylist = async (playlistUrl) => {
 	// Extracting the playlist ID from the URL
 	const playlistId = playlistUrl.split("playlist/")[1].split("?")[0];
 
-	const PLAYLIST = `https://api.spotify.com/v1/playlists/${playlistId}?fields=name%2Cimages%2Ctracks`;
+	// const PLAYLIST = `https://api.spotify.com/v1/playlists/${playlistId}?fields=name%2Cimages%2Ctracks`;
+	const PLAYLIST = `https://api.spotify.com/v1/playlists/${playlistId}?fields=name%2Cimages%2Ctracks(items(track(id,name%2Cartists%2Calbum(images))))`;
 
 	return fetch(PLAYLIST, {
 		headers: {
@@ -85,7 +86,6 @@ export default async function StudioSounds({ playlistUrl }) {
 							className=" object-cover aspect-square"
 							width={640}
 							height={640}
-							unoptimized={true}
 						/>
 					</div>
 				</div>

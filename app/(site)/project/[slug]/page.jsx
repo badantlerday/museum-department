@@ -78,6 +78,11 @@ export default async function Page({ params }) {
 	  }`;
   const project = await sanityFetch({ query, params, tags: ["project"] });
   const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
+  const uniqueFoundries = Array.from(
+    new Set(project.fontsInUse.map((font) => font.foundry.name))
+  ).map((foundryName) =>
+    project.fontsInUse.find((font) => font.foundry.name === foundryName).foundry
+  );
   // console.log(project.credits);
 
 
@@ -174,26 +179,36 @@ export default async function Page({ params }) {
         </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Published</h2>
         <ul className=" space-y-2 font-mono text-xs mb-4">               
-        <li>{publishedAt}</li>
+        <li className="text-md-grey-400">{publishedAt}</li>
         </ul>
 
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Design Studio</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
         {/* <li>{project.studio.name}</li> */}
-        <li><Link href={`/studio/${project.studio.slug.current}`} className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600">{project.studio.name}</Link></li>
+        <li><Link href={`/studio/${project.studio.slug.current}`} className="text-md-grey-400 transition-colors hover:text-md-grey-600">{project.studio.name}</Link></li>
         
         </ul>
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Categories</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">
                 {project.category?.map((cat, index) => (
                   <li key={index}>
-                      <Link href={`/reference/${cat.slug.current}`} className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600">{cat.title}</Link>
+                      <Link href={`/reference/${cat.slug.current}`} className="text-md-grey-400 transition-colors hover:text-md-grey-600">{cat.title}</Link>
                   </li>
                 ))}
               </ul>
         <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">Fonts in use</h2>
-              <ul className=" space-y-2 font-mono text-xs">
-                {project.fontsInUse?.map((font, index) => (
+              <ul className="space-y-1 font-mono text-xs ">
+              {project.fontsInUse?.map((font, index) => (
+                  <li key={index}>
+                    <Link
+                      href={`/font/${font.slug.current}`}
+                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                    >
+                      {font.name}
+                    </Link>
+                  </li>
+                ))}
+                {/* {project.fontsInUse?.map((font, index) => (
                   <li key={index}>
                     <Link
                       href={`/font/${font.slug.current}`}
@@ -209,12 +224,25 @@ export default async function Page({ params }) {
                       {font.foundry.name}
                     </Link>
                   </li>
-                ))}
+                ))} */}
+              </ul>
+              <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide mt-4">Fonts Foundries</h2>
+              <ul className="space-y-1 font-mono text-xs ">
+              {uniqueFoundries.map((foundry, index) => (
+                <li key={index}>
+                  <Link
+                    href={`/foundry/${foundry.slug.current}`}
+                    className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                  >
+                    {foundry.name}
+                  </Link>
+                </li>
+              ))}
               </ul>
       </div>
       <div className=" col-span-4">
       {project.credits?.map((credit, index) => (
-              <div key={index} className=" pb-5">
+              <div key={index} className="">
                 <h2 className=" mb-1 text-xs font-medium uppercase tracking-wide">
                   {credit.category?.title}
                   {/* {credit.title} */}
@@ -224,7 +252,7 @@ export default async function Page({ params }) {
                     <li key={person._id}>
                       <Link
                         href={`/reference/${person.slug.current}`}
-                        className="underline decoration-slate-300 underline-offset-[6px] transition-colors hover:decoration-slate-600"
+                        className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                       >
                         {person.name}
                       </Link>
