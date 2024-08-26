@@ -9,7 +9,7 @@ export default function GridListing({data,title,aspect,image,limit=18,columns="g
 	return (
         <div className="px-10 lg:px-18 mx-auto mb-40 ">
 			<div className="flex gap-10 border-t border-md-grey-200 pt-4">
-				<h3 className=" text-xl font-medium mb-4">{title}</h3>
+				<h3 className=" text-xl font-medium mb-4 capitalize">{title}</h3>
 				{/* <h3 className=" text-xl font-medium mb-4 text-md-grey-300">Shuffle</h3> */}
 			</div>
 			<div className={`grid ${columns} gap-x-4 gap-y-8`}>

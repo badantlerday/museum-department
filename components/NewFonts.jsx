@@ -75,7 +75,7 @@ export default async function NewFonts({ firstrow = true, secondrow = true, titl
       {firstrow && (
         <section>
           <div className="mx-auto px-18 pt-48 pb-10">
-            <h2 className="text-xl font-medium mb-4">{title}</h2>
+            <h2 className="text-xl font-medium mb-4 capitalize">{title}</h2>
             <div className="grid grid-cols-2 gap-4">
               {fonts.slice(0, 2).map((item) => (
                 <FontCard key={item._id} item={item} layout="large" />

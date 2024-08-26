@@ -252,6 +252,22 @@ export default defineType({
 		},
 		// MEDIA
 		defineField({
+			title: "Size for Main Image/Video",
+			name: "sizeMedia",
+			type: "string",
+			group: "media",
+			options: {
+				list: [
+					{ title: "X-Large", value: "xl" },
+					{ title: "Large", value: "lg" },
+					{ title: "Medium", value: "md" },
+					{ title: "Small", value: "sm" },
+				],
+				layout: "radio", // <-- defaults to 'dropdown'
+				direction: "horizontal", // <-- defaults to 'vertical'
+			},
+		}),
+		defineField({
 			name: "mainImage",
 			title: "Main image",
 			type: "image",
@@ -259,26 +275,26 @@ export default defineType({
 			options: {
 				hotspot: true,
 			},
-			fields: [
-				defineField({
-					title: "Size",
-					name: "size",
-					type: "string",
-					options: {
-						list: [
-							{ title: "X-Large", value: "xl" },
-							{ title: "Large", value: "lg" },
-							{ title: "Medium", value: "md" },
-							{ title: "Small", value: "sm" },
-						],
-						layout: "radio", // <-- defaults to 'dropdown'
-						direction: "horizontal", // <-- defaults to 'vertical'
-					},
-				}),
-			],
-			initialValue: {
-				size: "lg",
-			},
+			// fields: [
+			// 	defineField({
+			// 		title: "Size",
+			// 		name: "size",
+			// 		type: "string",
+			// 		options: {
+			// 			list: [
+			// 				{ title: "X-Large", value: "xl" },
+			// 				{ title: "Large", value: "lg" },
+			// 				{ title: "Medium", value: "md" },
+			// 				{ title: "Small", value: "sm" },
+			// 			],
+			// 			layout: "radio", // <-- defaults to 'dropdown'
+			// 			direction: "horizontal", // <-- defaults to 'vertical'
+			// 		},
+			// 	}),
+			// ],
+			// initialValue: {
+			// 	size: "lg",
+			// },
 		}),
 		{
 			name: "mainVideo",
@@ -343,7 +359,9 @@ export default defineType({
 		// 	],
 		// },
 	],
-
+	initialValue: {
+		sizeMedia: "lg",
+	},
 	preview: {
 		select: {
 			title: "title",

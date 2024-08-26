@@ -50,10 +50,11 @@ export default function ItemsRow({ title = "Title", link, data }) {
           <div className="flex flex-col text-[11px]">
             <div className="grow uppercase font-medium tracking-[3%] flex flex-col">
               {item.fontsInUse.map((font) => (
-                <div key={font._id}>
+                <div key={font._id} className="truncate">
                   <Link
                     href={`/font/${font.slug?.current}`}
                     className="hover:text-md-grey-500"
+                    alt={font.name}
                   >
                     {font.name}
                   </Link>

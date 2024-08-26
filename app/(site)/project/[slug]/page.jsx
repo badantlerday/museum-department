@@ -43,6 +43,7 @@ export default async function Page({ params }) {
     publishedAt,
     pageBlocks,
     category[]->,
+    sizeMedia,
     mainImage{
       ${queries.imageMeta}
     },
@@ -101,7 +102,8 @@ export default async function Page({ params }) {
           return 'col-start-3 col-span-20'; // Default to xl if size is not recognized
       }
     };
-    const imageClasses = project?.mainImage?.size ? getImageClasses(project.mainImage.size) : 'col-start-3 col-span-20';
+    // const imageClasses = project?.mainImage?.size ? getImageClasses(project.mainImage.size) : 'col-start-3 col-span-20';
+    const imageClasses = project?.sizeMedia ? getImageClasses(project.sizeMedia) : 'col-start-3 col-span-20';
 
 
     // Hero
@@ -119,27 +121,28 @@ export default async function Page({ params }) {
 			<div className="mx-auto px-18">
 				<div className="grid grid-cols-24 gap-4">
             {project?.mainImage && !project?.mainVideo &&
-            <div className={`animate-in fade-in duration-1000 ${imageClasses} mb-2 aspect-video`} style={dominantBgStyle}>
+            <div className={`animate-in fade-in duration-1000 ${imageClasses} mb-2 _aspect-video`} style={dominantBgStyle}>
                 <Image
                   className=""
                   src={builder.image(project.mainImage).width(1500).quality(100).url()}
                   width={1500}
-                  height={1500}
+                  height={2000}
                   blurDataURL={project.mainImage.lqip}
 								  placeholder="blur"
                   alt={project.mainImage?.alt || ""}
                 />
             </div>
             }
-            {project?.mainVideo &&
-            <div className={`mb-2 col-span-24`}>
+            {project?.mainVideo &&           
+              <div className={`animate-in fade-in duration-1000 ${imageClasses} mb-2 _aspect-video bg-slate-300`} style={dominantBgStyle}>
                     <VideoCloudinary
                     data={project.mainVideo}
                     transformation="video-project"
                     autoPlay={true}
                     blockref={project._id}
+                    className="w-full"
                     />
-            </div>
+              </div>
             }
 				</div>
 			</div>
