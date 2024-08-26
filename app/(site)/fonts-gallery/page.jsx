@@ -33,7 +33,9 @@ export default async function FontsGallery() {
 			_id,
 			name,
 			slug,
-			country->{name}
+			location[]->{
+			_id,name,_type,slug,country->{name,slug,_type}
+			},
 		},
 		specimenPoster{crop,hotspot,asset->},
       }`);
@@ -55,7 +57,7 @@ export default async function FontsGallery() {
 		<section className=" py-60">
 			<TextCallout title={title} text={text} button={true} buttonLink="/" buttonText="SUBMIT A TYPE PROJECT" />
 		</section>		
-		{/* <HoverListing data={typefaces} sectionHeader="Fonts and Foundries" /> */}
+		<HoverListing data={typefaces} sectionHeader="Fonts and Foundries" />
 		</>
 	);
 }
