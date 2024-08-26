@@ -45,14 +45,29 @@ const FontCard = ({ item, layout = "small" }) => {
               {name}
             </Link>
           </span>
-            <span className={foundryClass}>
-                <Link href={`/reference/${item.location[0].slug.current}`} className="hover:text-md-grey-500">
-                    {item.location[0].name}
-                </Link>, { } 
-                <Link href={`/reference/${item.location[0].country?.slug.current}`} className="hover:text-md-grey-500">
-                    {item.location[0].country?.name}
+          
+          <span className={foundryClass}>
+            {item.location?.[0] && (
+              <>
+                <Link
+                  href={`/reference/${item.location[0].slug.current}`}
+                  className="hover:text-md-grey-500"
+                >
+                  {item.location[0].name}
                 </Link>
-            </span>
+                ,{' '}
+                {item.location[0].country && (
+                  <Link
+                    href={`/reference/${item.location[0].country.slug.current}`}
+                    className="hover:text-md-grey-500"
+                  >
+                    {item.location[0].country.name}
+                  </Link>
+                )}
+              </>
+            )}
+          </span>
+          
         </div>
         <div>
           <BookmarkButton documentId={_id} variant="icon" message={name} />
@@ -69,9 +84,9 @@ export default async function NewFoundries({ firstrow = true, secondrow = true, 
     slug,
     _type,
     mainImage{ crop, hotspot, asset-> },
-    	location[]->{
-		_id, name,_type,slug, country->{name,slug,_type}
-	},
+    location[]->{
+		_id,name,_type,slug,country->{name,slug,_type}
+	  },
   }`);
 
   return (

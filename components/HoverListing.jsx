@@ -154,7 +154,7 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                                 </div>
                                 <Link href={`/studio/${item.slug.current}`}>{item.name}</Link>
                             </div>
-                            <div className="col-span-3">{item.foundry.name}</div>
+                            <div className="col-span-3">{item.foundry?.name}</div>
                             <div className="col-span-3">{item.style}</div>
                             <div className="col-span-1">{item.realaseYear}</div>
                         </div>
