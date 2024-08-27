@@ -1,5 +1,35 @@
 "use server";
 import { createClient } from "@supabase/supabase-js";
+import querystring from "querystring";
+
+// Spotify API setup
+const client_id = process.env.SPOTIFY_CLIENT_ID;
+const client_secret = process.env.SPOTIFY_CLIENT_SECRET;
+const refresh_token = process.env.SPOTIFY_REFRESH_TOKEN;
+
+const basic = Buffer.from(`${client_id}:${client_secret}`).toString("base64");
+const TOKEN_ENDPOINT = `https://accounts.spotify.com/api/token`;
+
+// Function to get Spotify access token
+const getAccessToken = async () => {
+	const response = await fetch(TOKEN_ENDPOINT, {
+		method: "POST",
+		headers: {
+			Authorization: `Basic ${basic}`,
+			"Content-Type": "application/x-www-form-urlencoded",
+		},
+		body: querystring.stringify({
+			grant_type: "refresh_token",
+			refresh_token,
+		}),
+	});
+
+	if (!response.ok) {
+		throw new Error("Failed to retrieve Spotify access token");
+	}
+
+	return response.json();
+};
 
 export async function addBookmark({ userid, docid }) {
 	const supabase = createClient(
@@ -24,4 +54,41 @@ export async function removeBookmark({ userid, docid }) {
 		.delete()
 		.eq("kinde_user_id", userid)
 		.eq("document_id", docid);
+}
+
+// Function to fetch Spotify playlist data
+export async function fetchPlaylistData(playlistUrl) {
+	try {
+		const { access_token } = await getAccessToken();
+		// console.log("Access Token:", access_token);
+
+		const playlistId = playlistUrl.split("playlist/")[1]?.split("?")[0];
+		// console.log("Playlist ID:", playlistId);
+
+		const PLAYLIST = `https://api.spotify.com/v1/playlists/${playlistId}?fields=name%2Cimages%2Ctracks(items(track(id,name%2Cartists%2Calbum(images))))`;
+		// const PLAYLIST = `https://api.spotify.com/v1/playlists/${playlistId}?fields=name`;
+
+		const playlistResponse = await fetch(PLAYLIST, {
+			headers: {
+				Authorization: `Bearer ${access_token}`,
+			},
+		});
+
+		if (!playlistResponse.ok) {
+			console.error(
+				"Failed to fetch playlist data:",
+				playlistResponse.status,
+				playlistResponse.statusText
+			);
+			throw new Error("Failed to fetch playlist data");
+		}
+
+		const data = await playlistResponse.json();
+		// console.log("Playlist Data:", data);
+
+		return data;
+	} catch (error) {
+		console.error("Internal Server Error:", error.message);
+		throw new Error("Internal Server Error: " + error.message);
+	}
 }

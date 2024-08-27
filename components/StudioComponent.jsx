@@ -46,9 +46,28 @@ import Link from "next/link";
 import GridListing from "./GridListing";
 const builder = imageUrlBuilder(client);
 import SpotifyPlaylist from '@/components/SpotifyPlaylist';
+import { fetchPlaylistData } from "@/app/actions";
+import StudioPlaylist from "./StudioPlaylist";
 
 export default async function StudioComponent({ data }) {
   const { studio } = data || {};
+
+  let dataStudioSounds = null;
+
+  if (studio.studioSoundsPlaylist) {
+    const playlistUrl = studio.studioSoundsPlaylist;
+    try {
+      // Directly assign the result of fetchPlaylistData to dataStudioSounds
+      dataStudioSounds = await fetchPlaylistData(playlistUrl);
+  
+      // Now dataStudioSounds contains the playlist data
+      // console.log("Playlist Data:", dataStudioSounds);
+      
+      // Process dataStudioSounds or use it in your component
+    } catch (error) {
+      console.error("Failed to fetch playlist data:", error);
+    }
+  }
 
   // console.log(studio);
   // const playlistData = await getPlaylist(playlistUrl);
@@ -225,8 +244,9 @@ export default async function StudioComponent({ data }) {
           <StudioSounds playlistUrl={studio.studioSoundsPlaylist} />
         </Suspense>
       )} */}
-      {studio.studioSoundsPlaylist && (
-      <SpotifyPlaylist playlistUrl={studio.studioSoundsPlaylist} />
+      {dataStudioSounds && (
+      // <SpotifyPlaylist playlistUrl={studio.studioSoundsPlaylist} />
+      <StudioPlaylist data={dataStudioSounds} playlistUrl={studio.studioSoundsPlaylist} />
       )}
       <section className="text-center">[EXPLORE MORE SECTION - TO BE IMPLEMENTED]</section>
       {/* <ExploreMore data={studio.exploreMore} /> */}

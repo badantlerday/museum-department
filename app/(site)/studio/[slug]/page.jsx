@@ -1,4 +1,4 @@
-export const revalidate = 120;
+export const revalidate = 60;
 
 import { client } from "@/lib/sanity.client";
 import StudioComponent, { query } from "@/components/StudioComponent";
