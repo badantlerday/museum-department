@@ -1,4 +1,5 @@
 // import { client } from "../../../../sanity/lib/client";
+export const revalidate = 60;
 import { client } from "@/lib/sanity.client";
 import { sanityFetch } from "@/lib/sanity.fetch";
 import * as queries from "@/lib/sanity.queries";

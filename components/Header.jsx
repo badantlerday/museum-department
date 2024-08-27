@@ -1,3 +1,4 @@
+export const revalidate = 60;
 export const query = `*[_type == "settings"][0]{
   headerMenu->{
       title,
@@ -54,15 +55,14 @@ const queryPageTitles = `*[_type in ["project","studio","typeface","foundry","in
 const allPageTitles = await sanityFetch({ query: queryPageTitles, tags: ["project"] })
 
 const latestProjects = await client.fetch(`*[_type == "project"] | order(_createdAt desc)[0]{
-  _id,
+_id,
 title,
 slug,
 mainImage{crop,hotspot,asset->},
-  studio->{name},
+mainVideo,
+studio->{name},
 }`);
 
-
-// console.log(allPageTitles)
 
 return (
   <header className="_fixed top-0 left-0 w-full z-50 bg-white">

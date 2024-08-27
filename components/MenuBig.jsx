@@ -10,11 +10,14 @@ import Link from "next/link";
 import { X } from "lucide-react";
 import AnimatedLink from "@/components/AnimatedLink"
 import Button from "./Button";
+import VideoCloudinary from "@/components/VideoCloudinary";
 
 export default function MenuBig({ src, projects }) {
   const project = projects;
   const [isOpen, setIsOpen] = useState(false);
   const [isVisible, setIsVisible] = useState(false);
+// console.log(project)
+
 
   const handleOpen = () => setIsOpen(true);
 
@@ -73,22 +76,25 @@ export default function MenuBig({ src, projects }) {
 
             <div className="text-xs uppercase tracking-wide">Latest Project</div>
             <Link href={`/project/${project.slug.current}`} onClick={handleClose}>
-            {project?.mainImage || project?.mainImage ? (							
+            {project?.mainImage ? (							
                 <Image
-                className="aspect-[4/3] my-2 object-cover"
-                src={builder
-                    .image(project?.mainImage || project?.mainImage)
-                    .width(1000)
-                    .url()}
-                width={800}
-                height={665}
-                blurDataURL={
-                    (project?.mainImage || project?.mainImage).asset
-                        .metadata.lqip
-                }
-                placeholder="blur"
-                alt={project.title}
-            />
+                    className="aspect-[4/3] my-2 object-cover"
+                    src={builder.image(project.mainImage).width(1000).url()}
+                    width={800}
+                    height={665}
+                    blurDataURL={project.mainImage.asset.metadata.lqip}
+                    placeholder="blur"
+                    alt={project.title}
+                />
+            ) : project?.mainVideo ? (
+              <div className="my-2">
+                <VideoCloudinary
+                data={project.mainVideo}
+                transformation="video-project"
+                autoPlay={true}
+                blockref={project._id}
+                />
+                </div>
             ) : (
                 <div className="bg-md-grey-200 aspect-[4/3] my-2 "></div>
             )}

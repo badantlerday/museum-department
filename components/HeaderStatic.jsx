@@ -22,6 +22,7 @@ export default async function HeaderStatic() {
         title,
         slug,
         mainImage{crop,hotspot,asset->},
+        mainVideo,
         studio->{name},
     }`);
 
