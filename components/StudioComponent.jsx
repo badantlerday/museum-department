@@ -26,7 +26,7 @@ export const query = `{
 			_type,
 			slug,
 			title,
-			studio->{name,slug},
+			studio->{name},
 			posterImage{crop,hotspot,asset->},
 		},
 	}
@@ -45,6 +45,7 @@ import BookmarkButton from "@/components/BookmarkButton";
 import Link from "next/link";
 import GridListing from "./GridListing";
 const builder = imageUrlBuilder(client);
+import SpotifyPlaylist from '@/components/SpotifyPlaylist';
 
 export default async function StudioComponent({ data }) {
   const { studio } = data || {};
@@ -219,10 +220,13 @@ export default async function StudioComponent({ data }) {
       />
       {/* <StudioFeaturedWork name={studio.name} featuredWork={studio.works} /> */}
       {studio.interview && <StudioInterview data={studio} />}
-      {studio.studioSoundsPlaylist && (
+      {/* {studio.studioSoundsPlaylist && (
         <Suspense fallback={<div>Loading...</div>}>
           <StudioSounds playlistUrl={studio.studioSoundsPlaylist} />
         </Suspense>
+      )} */}
+      {studio.studioSoundsPlaylist && (
+      <SpotifyPlaylist playlistUrl={studio.studioSoundsPlaylist} />
       )}
       <section className="text-center">[EXPLORE MORE SECTION - TO BE IMPLEMENTED]</section>
       {/* <ExploreMore data={studio.exploreMore} /> */}
