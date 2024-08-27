@@ -90,7 +90,7 @@ export default function Postercard({ data, aspect }) {
             null,
             null,
             null,
-            `/studio/${item.studio.slug?.current}`,
+            item.studio.slug?.current ? `/studio/${item.studio.slug.current}` : null,
             item.studio.name,
           )}
         </>
