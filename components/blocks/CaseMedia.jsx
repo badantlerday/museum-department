@@ -40,7 +40,7 @@ export default function CaseMedia({ data }) {
                 />
             )}
             {caption && (
-                <div className="font-mono text-xs mt-4 leading-[140%] text-md-grey-400 max-w-[50%]">
+                <div className="font-mono text-xs mt-4 leading-[140%] text-md-grey-400 max-w-[80%]">
                     <PortableText value={caption} />
                 </div>
             )}
