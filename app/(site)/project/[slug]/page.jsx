@@ -19,23 +19,24 @@ export async function generateMetadata({ params, searchParams }, parent) {
   const query = `*[_type == "project" && slug.current == $slug][0]{
 		title,
 	  }`;
-  const project = await sanityFetch({ query, params, tags: ["project"] });
+  const project = await sanityFetch({ query, params, tags: ["project"] },{ next: { revalidate: 60 } });
 
   return {
     title: project.title,
   };
 }
 //  (SSG) prerendered as static HTML
-export async function generateStaticParams() {
-  const query = `*[_type == "project" ]`
-  const projects = await client.fetch(query,{ next: { revalidate: 60 } });
+// export async function generateStaticParams() {
+//   const query = `*[_type == "project" ]`
+//   const projects = await client.fetch(query,{ next: { revalidate: 60 } });
  
-  return projects.map((project) => ({
-    slug: project.slug.current,
-  }))
-}
+//   return projects.map((project) => ({
+//     slug: project.slug.current,
+//   }))
+// }
 
 export default async function Page({ params }) {
+  const { slug } = params;
   const query = `*[_type == "project" && slug.current == $slug][0]{
     _id,
 		title,
@@ -78,8 +79,15 @@ export default async function Page({ params }) {
 		},
 		credits[]{category->{title},title,people[]->{_id,name,slug}},
 	  }`;
-  const project = await sanityFetch({ query, params, tags: ["project"] });
-  const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
+  // const project = await sanityFetch({ query, params, revalidate:60, tags: ["project"] });
+  const project = await client.fetch(query, { slug });
+  if (!project) {
+    // Handle missing project
+    return <div>Project not found</div>;
+  }
+  // const title = project?.title || 'Default Title';
+  const publishedAt = project?.publishedAt ? format(new Date(project.publishedAt), 'd MMMM yyyy') : 'Unknown';
+  // const publishedAt = format(new Date(project.publishedAt), 'd MMMM yyyy');
   const uniqueFoundries = Array.from(
     new Set(project.fontsInUse?.map((font) => font.foundry.name))
   ).map((foundryName) =>
@@ -181,10 +189,14 @@ export default async function Page({ params }) {
       <ul className=" space-y-1 font-mono text-xs mb-4">               
         <li><BookmarkButton documentId={project._id} variant="icon" /></li>
         </ul>
-      <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Published</h2>
-        <ul className=" space-y-2 font-mono text-xs mb-4">               
-        <li className="text-md-grey-400">{publishedAt}</li>
-        </ul>
+        {publishedAt && (
+          <>
+          <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Published</h2>
+          <ul className=" space-y-2 font-mono text-xs mb-4">               
+          <li className="text-md-grey-400">{publishedAt}</li>
+          </ul>
+          </>
+        )}
 
       <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Design Studio</h2>
       <ul className=" space-y-1 font-mono text-xs mb-4">               
