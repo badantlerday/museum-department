@@ -31,7 +31,7 @@ export const query = `{
 		},
 	}
   }`;
-import { Suspense } from "react";
+// import { Suspense } from "react";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/lib/sanity.client";
@@ -39,13 +39,13 @@ import StudioFeaturedWork from "@/components/StudioFeaturedWork";
 import StudioInterview from "@/components/StudioInterview";
 import { PortableText } from "@portabletext/react";
 // import TextCallout from "@/components/TextCallout";
-import StudioSounds from "@/components/StudioSounds";
-import ExploreMore from "@/components/ExploreMore";
+// import StudioSounds from "@/components/StudioSounds";
+// import ExploreMore from "@/components/ExploreMore";
 import BookmarkButton from "@/components/BookmarkButton";
 import Link from "next/link";
 import GridListing from "./GridListing";
 const builder = imageUrlBuilder(client);
-import SpotifyPlaylist from '@/components/SpotifyPlaylist';
+// import SpotifyPlaylist from '@/components/SpotifyPlaylist';
 import { fetchPlaylistData } from "@/app/actions";
 import StudioPlaylist from "./StudioPlaylist";
 
