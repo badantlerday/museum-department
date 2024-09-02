@@ -130,7 +130,8 @@ export default async function Page({ params }) {
 			<div className="mx-auto px-18">
 				<div className="grid grid-cols-24 gap-4">
             {project?.mainImage && !project?.mainVideo &&
-            <div className={`animate-in fade-in duration-1000 ${imageClasses} mb-2 _aspect-video`} style={dominantBgStyle}>
+            // <div className={`animate-in fade-in duration-1000 ${imageClasses} mb-2`} style={dominantBgStyle}>
+            <div className={`animate-in fade-in duration-1000 ${imageClasses} mb-2`}>
                 <Image
                   className=""
                   src={builder.image(project.mainImage).width(1500).quality(100).url()}
@@ -288,11 +289,9 @@ export default async function Page({ params }) {
   <section>
     <div className="grid grid-cols-24">
       <div className="col-start-3 col-span-20">
-
         <div className="px-18 mx-auto grid grid-cols-2 gap-y-10">
             {project?.pageBlocks ? <Blocks data={project?.pageBlocks} /> : null}
         </div>
-        
       </div>
     </div>
   </section>

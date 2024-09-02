@@ -85,7 +85,7 @@ export default async function StudioComponent({ data }) {
 
   return (
     <>
-      <section className=" px-18 mx-auto my-20">
+      <section className=" px-18 mx-auto mt-20 mb-10">
         {studio?.mainImage ? (
           <div className="aspect-video relative flex items-center">
             <h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono text-white max-w-xl text-center">

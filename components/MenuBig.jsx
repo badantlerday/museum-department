@@ -78,7 +78,7 @@ export default function MenuBig({ src, projects }) {
             <Link href={`/project/${project.slug.current}`} onClick={handleClose}>
             {project?.mainImage ? (							
                 <Image
-                    className="aspect-[4/3] my-2 object-cover"
+                    className="aspect-[4/3]_ my-2 _object-fit"
                     src={builder.image(project.mainImage).width(1000).url()}
                     width={800}
                     height={665}
