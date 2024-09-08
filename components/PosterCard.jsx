@@ -6,9 +6,15 @@ import { client } from "@/lib/sanity.client";
 
 const builder = imageUrlBuilder(client);
 
-export default function Postercard({ data, aspect }) {
+export default function Postercard({ data, aspect, columns }) {
   const { item } = data || {};
   const aspectRatio = aspect === "landscape" ? "aspect-[4/3]" : "aspect-[3/4]";
+
+  // Determine text size based on columns prop
+  // Define text size object with different sizes for header and text
+  const textSize = columns.includes("grid-cols-6")
+    ? { header: "text-xs uppercase tracking-wider", text: "text-xs" }
+    : { header: "text-base", text: "text-base" };
 
   const renderImage = (imageSrc, altText) => {
     return imageSrc ? (
@@ -37,14 +43,14 @@ export default function Postercard({ data, aspect }) {
     studioText,
   ) => (
     <div className="flex">
-      <div className="flex-1">
+      <div className={`flex-1`}>
         <Link href={mainLink} className="hover:text-md-grey-500">
-          <span className="text-xs font-medium tracking-wide block uppercase">
+          <span className={`font-medium block ${textSize.header}`}>
             {mainText}
           </span>
         </Link>
         {cityLink && countryLink && (
-          <span className="text-xs font-medium italic block">
+          <span className={`font-medium block italic ${textSize.text}`}>
             <Link href={cityLink} className="hover:text-md-grey-500">
               {cityText}
             </Link>
@@ -55,7 +61,7 @@ export default function Postercard({ data, aspect }) {
           </span>
         )}
         {studioLink && (
-          <span className="text-xs font-medium italic block">
+          <span className={`font-medium block italic ${textSize.text}`}>
             <Link href={studioLink} className="hover:text-md-grey-500">
               {studioText}
             </Link>
@@ -90,7 +96,9 @@ export default function Postercard({ data, aspect }) {
             null,
             null,
             null,
-            item.studio.slug?.current ? `/studio/${item.studio.slug.current}` : null,
+            item.studio.slug?.current
+              ? `/studio/${item.studio.slug.current}`
+              : null,
             item.studio.name,
           )}
         </>
