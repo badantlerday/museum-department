@@ -1,4 +1,4 @@
-"use client"; 
+"use client";
 import Image from "next/image";
 import Link from "next/link";
 import { useState, useEffect } from "react";
@@ -25,7 +25,9 @@ export default function StudioPlaylist({ data, playlistUrl }) {
           <div className="flex-auto text-xl font-medium">
             <h2 className="">Studio Sounds</h2>
             <div className="italic text-2xl">
-              {name.includes("Studio Sounds -") ? name.replace("Studio Sounds -", "") : name}
+              {name.includes("Studio Sounds -")
+                ? name.replace("Studio Sounds -", "")
+                : name}
             </div>
           </div>
           <div className="justify-self-end">
@@ -41,9 +43,14 @@ export default function StudioPlaylist({ data, playlistUrl }) {
                     setCurrentCover(tracks.items[0].track.album.images[0].url);
                     setActiveTrackId(data.tracks.items[0].track.id); // Reset to first track
                   }}
-                  className={activeTrackId === item.track.id ? "text-md-grey-300 py-1" : "py-1"}
+                  className={
+                    activeTrackId === item.track.id
+                      ? "text-md-grey-300 py-1"
+                      : "py-1"
+                  }
                 >
-                  {item.track.artists[0].name} - <span className="italic">{item.track.name}</span>
+                  {item.track.artists[0].name} -{" "}
+                  <span className="italic">{item.track.name}</span>
                 </li>
               ))}
             </ul>
@@ -64,13 +71,13 @@ export default function StudioPlaylist({ data, playlistUrl }) {
             </Link>
           </div>
         </div>
-        <div className="aspect-square relative">
+        <div className="aspect-square relative bg-red-100">
           <Image
             src={currentCover || images[0].url}
             alt={name}
-            className="object-cover aspect-square"
-            width={640}
-            height={640}
+            className="object-cover aspect-square wi-full"
+            width={1000}
+            height={1000}
           />
         </div>
       </div>
