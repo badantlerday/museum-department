@@ -314,18 +314,18 @@ export default async function Reference({ params }) {
       {documentType === "person" && (
         <GridListing
           data={studios}
-          title={`${studios?.length} Studios`}
+          title={`${studios?.length} Studio${studios?.length > 1 ? "s" : ""}`}
           limit={18}
         />
       )}
       <GridListing
         data={data.studios}
-        title={`${data.studios?.length} Studios`}
+        title={`${data.studios?.length} Studio${studios?.length > 1 ? "s" : ""}`}
         limit={18}
       />
       <GridListing
         data={data.projects}
-        title={`${data.projects?.length} Projects`}
+        title={`${data.projects?.length} Project${studios?.length > 1 ? "s" : ""}`}
         limit={18}
       />
       {/* <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} /> */}
