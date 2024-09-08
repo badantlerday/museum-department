@@ -241,21 +241,25 @@ export default async function Page({ params }) {
                   </Link>
                 </li>
               </ul>
-              <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">
-                Categories
-              </h2>
-              <ul className=" space-y-1 font-mono text-xs mb-4">
-                {project.category?.map((cat, index) => (
-                  <li key={index}>
-                    <Link
-                      href={`/reference/${cat.slug.current}`}
-                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
-                    >
-                      {cat.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
+              {project.category && (
+                <>
+                  <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">
+                    Categories
+                  </h2>
+                  <ul className=" space-y-1 font-mono text-xs mb-4">
+                    {project.category?.map((cat, index) => (
+                      <li key={index}>
+                        <Link
+                          href={`/reference/${cat.slug.current}`}
+                          className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                        >
+                          {cat.title}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </>
+              )}
               {project.fontsInUse && (
                 <>
                   <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">
