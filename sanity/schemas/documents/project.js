@@ -331,7 +331,10 @@ export default defineType({
 			// options: {
 			// 	layout: "grid",
 			// },
-			of: [{ type: "casemedia" }],
+			of: [
+				{ type: "casemedia" },
+				// { type: "slideshow" }
+			],
 		},
 		// {
 		// 	title: "Gallery",

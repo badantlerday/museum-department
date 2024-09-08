@@ -6,6 +6,7 @@ import ExploreMore from "./blocks/ExploreMore"
 import CallOut from "./blocks/CallOut"
 import BecomeASupporter from "./blocks/BecomeASupporter"
 import CaseMedia from "./blocks/CaseMedia"
+import Slideshow from "./blocks/Slideshow"
 
 export default function Blocks({ data = [] }) {
   return (
@@ -28,6 +29,8 @@ export default function Blocks({ data = [] }) {
               return <BecomeASupporter key={`section-${key}`} data={block} />
           case "casemedia":
               return <CaseMedia key={`section-${key}`} data={block} />
+          case "slideshow":
+              return <Slideshow key={`section-${key}`} data={block} />
         }
       })}
     </>

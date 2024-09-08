@@ -18,6 +18,10 @@ export default defineType({
 			type: "casemedia",
 		}),
 		defineArrayMember({
+			name: "slideshow",
+			type: "slideshow",
+		}),
+		defineArrayMember({
 			name: "ondisplay",
 			type: "ondisplay",
 		}),

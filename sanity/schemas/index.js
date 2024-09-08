@@ -36,40 +36,42 @@ import callout from "./blocks/callout";
 import becomeasupporter from "./blocks/becomeasupporter";
 import media from "./blocks/media";
 import casemedia from "./blocks/casemedia";
+import slideshow from "./blocks/slideshow";
 
 export const schemaTypes = [
-	// Documents
-	page,
-	person,
-	studio,
-	city,
-	country,
-	typeface,
-	foundry,
-	project,
-	interview,
-	settings,
-	menu,
-	category,
-	advertise,
-	// Objects
-	seo,
-	gallery,
-	siteSeo,
-	blockContent,
-	blockContentSmall,
-	link,
-	media,
-	// Arrays
-	blocks,
-	menuItems,
-	// Blocks
-	hero,
-	split,
-	ondisplay,
-	manifest,
-	exploremore,
-	callout,
-	becomeasupporter,
-	casemedia,
+  // Documents
+  page,
+  person,
+  studio,
+  city,
+  country,
+  typeface,
+  foundry,
+  project,
+  interview,
+  settings,
+  menu,
+  category,
+  advertise,
+  // Objects
+  seo,
+  gallery,
+  siteSeo,
+  blockContent,
+  blockContentSmall,
+  link,
+  media,
+  // Arrays
+  blocks,
+  menuItems,
+  // Blocks
+  hero,
+  split,
+  ondisplay,
+  manifest,
+  exploremore,
+  callout,
+  becomeasupporter,
+  casemedia,
+  slideshow,
 ];
