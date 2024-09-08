@@ -59,10 +59,10 @@ export default async function StudioComponent({ data }) {
     try {
       // Directly assign the result of fetchPlaylistData to dataStudioSounds
       dataStudioSounds = await fetchPlaylistData(playlistUrl);
-  
+
       // Now dataStudioSounds contains the playlist data
       // console.log("Playlist Data:", dataStudioSounds);
-      
+
       // Process dataStudioSounds or use it in your component
     } catch (error) {
       console.error("Failed to fetch playlist data:", error);
@@ -85,7 +85,7 @@ export default async function StudioComponent({ data }) {
 
   return (
     <>
-      <section className=" px-18 mx-auto mt-20 mb-10">
+      <section className=" px-6 md:px-20 mx-auto mt-20 mb-10">
         {studio?.mainImage ? (
           <div className="aspect-video relative flex items-center">
             <h1 className=" text-7xl tracking-wide uppercase mb-1 z-20 mx-auto font-mono text-white max-w-xl text-center">
@@ -143,22 +143,26 @@ export default async function StudioComponent({ data }) {
                 <li>{studio.name}</li>
               </ul>
             </div>
-            <div className="mb-4">
-              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
-                Founded
-              </h2>
-              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
-                <li>{studio.founded}</li>
-              </ul>
-            </div>
-            <div className="mb-4">
-              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
-                Size
-              </h2>
-              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
-                <li>{studio.size}</li>
-              </ul>
-            </div>
+            {studio.founded && (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
+                  Founded
+                </h2>
+                <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
+                  <li>{studio.founded}</li>
+                </ul>
+              </div>
+            )}
+            {studio.size && (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
+                  Size
+                </h2>
+                <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
+                  <li>{studio.size}</li>
+                </ul>
+              </div>
+            )}
             <div className="mb-4">
               <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Location
@@ -182,50 +186,56 @@ export default async function StudioComponent({ data }) {
                 ))}
               </ul>
             </div>
-
-            <div className="mb-4">
-              <h2 className=" text-xs uppercase tracking-wider font-medium mb-2">
-                Categories
-              </h2>
-              <ul className=" space-y-1 font-mono text-xs">
-                {studio.category?.map((cat, index) => (
-                  <li key={index}>
-                    <Link
-                      href={`/reference/${cat.slug.current}`}
-                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
-                    >
-                      {cat.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <div className="mb-4">
-              <h2 className=" text-xs uppercase tracking-wider font-medium mb-2">
-                Visit
-              </h2>
-              <ul className=" space-y-1 font-mono text-xs">
-                <li>
-                  <a
-                    href={studio.website}
-                    target="_blank"
-                    className="text-md-grey-400 transition-colors hover:text-md-grey-600"
-                  >
-                    Website
-                  </a>
-                </li>
-                <li>
-                  <a
-                    href={studio.instagram}
-                    target="_blank"
-                    className="text-md-grey-400 transition-colors hover:text-md-grey-600"
-                  >
-                    Instagram
-                  </a>
-                </li>
-              </ul>
-            </div>
+            {studio.category && (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wider font-medium mb-2">
+                  Categories
+                </h2>
+                <ul className=" space-y-1 font-mono text-xs">
+                  {studio.category?.map((cat, index) => (
+                    <li key={index}>
+                      <Link
+                        href={`/reference/${cat.slug.current}`}
+                        className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                      >
+                        {cat.title}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {studio.website || studio.instagram ? (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wider font-medium mb-2">
+                  Visit
+                </h2>
+                <ul className=" space-y-1 font-mono text-xs">
+                  {studio.website && (
+                    <li>
+                      <a
+                        href={studio.website}
+                        target="_blank"
+                        className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                      >
+                        Website
+                      </a>
+                    </li>
+                  )}
+                  {studio.instagram && (
+                    <li>
+                      <a
+                        href={studio.instagram}
+                        target="_blank"
+                        className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                      >
+                        Instagram
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            ) : null}
           </div>
           <div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
             <PortableText value={studio.description} />
@@ -245,10 +255,15 @@ export default async function StudioComponent({ data }) {
         </Suspense>
       )} */}
       {dataStudioSounds && (
-      // <SpotifyPlaylist playlistUrl={studio.studioSoundsPlaylist} />
-      <StudioPlaylist data={dataStudioSounds} playlistUrl={studio.studioSoundsPlaylist} />
+        // <SpotifyPlaylist playlistUrl={studio.studioSoundsPlaylist} />
+        <StudioPlaylist
+          data={dataStudioSounds}
+          playlistUrl={studio.studioSoundsPlaylist}
+        />
       )}
-      <section className="text-center">[EXPLORE MORE SECTION - TO BE IMPLEMENTED]</section>
+      <section className="text-center">
+        [EXPLORE MORE SECTION - TO BE IMPLEMENTED]
+      </section>
       {/* <ExploreMore data={studio.exploreMore} /> */}
     </>
   );

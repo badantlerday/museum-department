@@ -14,7 +14,7 @@ export default async function OnDisplay() {
 		posterImage{crop,hotspot,asset->},
 		mainImage{crop,hotspot,asset->},
 		displaySettings,
-		studio->{name}
+		studio->{name,slug}
 	  }`;
 	  const ondisplay = await client.fetch(query);
 	

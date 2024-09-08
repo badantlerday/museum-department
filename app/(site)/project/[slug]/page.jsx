@@ -213,6 +213,8 @@ export default async function Page({ params }) {
                   </li>
                 ))}
               </ul>
+              {project.fontsInUse && (
+              <>
         <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider">Fonts in use</h2>
               <ul className="space-y-1 font-mono text-xs ">
               {project.fontsInUse?.map((font, index) => (
@@ -243,6 +245,10 @@ export default async function Page({ params }) {
                   </li>
                 ))} */}
               </ul>
+              </>
+              )}
+              {uniqueFoundries.length > 0 && (
+              <>
               <h2 className=" mb-1 text-xs font-medium uppercase tracking-wider mt-4">Fonts Foundries</h2>
               <ul className="space-y-1 font-mono text-xs ">
               {uniqueFoundries?.map((foundry, index) => (
@@ -256,6 +262,8 @@ export default async function Page({ params }) {
                 </li>
               ))}
               </ul>
+              </>
+              )}
       </div>
       <div className=" col-span-4">
       {project.credits?.map((credit, index) => (
