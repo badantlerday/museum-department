@@ -233,7 +233,7 @@ export default function MasonryGrid({ data }) {
       columnClassName="masonry-grid--column"
     >
       {jsxItems}
-      <div className="masonry-grid--item ">
+      <div className="masonry-grid--item hidden ">
         <div className="bg-md-grey-100 px-14 py-28">
           <h2 className="uppercase font-medium tracking-wide mb-4">
             Stay up to date
