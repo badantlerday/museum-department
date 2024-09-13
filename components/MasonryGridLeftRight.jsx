@@ -24,12 +24,19 @@ export default function MasonryGridLeftRight({ data }) {
             <h2 className="font-medium uppercase tracking-wide -mb-1">
                 {item.fontsInUse.map((font) => (
                     <span key={font._id} className='block'>
-                        {font.name}
+                        <Link href={`/font/${font.slug.current}`} className="hover:text-md-grey-500">{font.name}</Link>
                     </span>
                 ))}	
                 {/* {item.name} */}
                 </h2>
-            <div className="font-medium italic _mt-1">{item.title} by {item.studio.name}</div>
+            <div className="font-medium italic _mt-1">
+              <Link
+                href={`/studio/${item.studio.slug.current}`}
+                className="hover:text-md-grey-500"
+              >
+                {item.title}
+              </Link>
+              </div>
           </div>
         </Link>
       </div>

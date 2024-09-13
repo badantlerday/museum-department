@@ -28,6 +28,18 @@ const builder = imageUrlBuilder(client);
 // 	};
 // }
 
+//  (SSG) prerendered as static HTML
+export async function generateStaticParams() {
+  const query = `*[_type == "foundry"]{slug}`;
+  const foundries = await client.fetch(query, {
+    next: { revalidate: 60 },
+  });
+
+  return foundries.map((item) => ({
+    slug: item.slug.current,
+  }));
+}
+
 export default async function Foundry({ params }) {
   const { slug } = params;
   const query = `*[_type == "foundry" && slug.current == $slug][0]{
@@ -121,7 +133,7 @@ export default async function Foundry({ params }) {
       <section className="pb-36">
         <div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
           <div className="col-span-3">
-            <div className="mb-5">
+            <div className="mb-4">
               <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
                 Bookmark Foundry
               </h2>
@@ -135,54 +147,54 @@ export default async function Foundry({ params }) {
                 </li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Type Foundry
               </h2>
-              <ul className=" space-y-2 font-mono text-sm">
+              <ul className="space-y-1 font-mono text-xs text-md-grey-400">
                 <li>
                   <Link
                     href="/"
-                    className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+                    className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                   >
                     {foundry?.name}
                   </Link>
                 </li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Founded
               </h2>
-              <ul className=" space-y-2 font-mono text-sm">
+              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 <li>{foundry?.founded}</li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Size
               </h2>
-              <ul className=" space-y-2 font-mono text-sm">
+              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 <li>{foundry?.size}</li>
               </ul>
             </div>
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Location
               </h2>
-              <ul className=" space-y-1 font-mono text-sm">
+              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 {foundry.location?.map((item, index) => (
                   <li key={item._id}>
                     <Link
                       href={`/reference/${item?.slug.current}`}
-                      className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                     >
                       {item?.name}
                     </Link>
                     ,{" "}
                     <Link
                       href={`/reference/${item?.country.slug.current}`}
-                      className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+                      className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                     >
                       {item?.country.name}
                     </Link>
@@ -192,7 +204,7 @@ export default async function Foundry({ params }) {
             </div>
 
             {foundry.staff?.map((item, index) => (
-              <div key={index} className="mb-5">
+              <div key={index} className="mb-4">
                 <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
                   {item.title}
                 </h2>
@@ -210,7 +222,7 @@ export default async function Foundry({ params }) {
                 </ul>
               </div>
             ))}
-            <div className="mb-5">
+            <div className="mb-4">
               <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
                 Buy Fonts
               </h2>
@@ -229,14 +241,7 @@ export default async function Foundry({ params }) {
           <div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
             <PortableText value={foundry?.information} />
           </div>
-          <div className="article mb-10 md:mb-0 col-start-10 col-span-3">
-            {/* <div>
-							<div className=" aspect-[3/4] bg-slate-200"></div>
-							<div className="text-xs font-mono block text-left mt-2">
-								Kris Sowersby
-							</div>
-						</div> */}
-          </div>
+          <div className="article mb-10 md:mb-0 col-start-10 col-span-3"></div>
         </div>
       </section>
       <GridListing
@@ -248,27 +253,11 @@ export default async function Foundry({ params }) {
       <section className="mt-40">
         <TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
       </section>
-      {foundry.interview && <StudioInterview data={foundry} />}
-      {foundry.studioSoundsPlaylist && (
-        <Suspense fallback={<div>Loading...</div>}>
-          <StudioSounds playlistUrl={foundry.studioSoundsPlaylist} />
-        </Suspense>
-      )}
       <GridListing
         title={`Explore other TYPE FOUNDRIES`}
         data={foundry?.foundries}
         limit={6}
       />
-      {/* <section className="mt-48">
-				<TextCallout
-					title={titleExplore}
-					text={textExplore}
-					button={true}
-					buttonText="Search"
-					buttonLink="/search"
-					key={titleExplore}
-				/>
-			</section> */}
     </>
   );
 }
