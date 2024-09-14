@@ -35,7 +35,7 @@ export const query = `{
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/lib/sanity.client";
-import StudioFeaturedWork from "@/components/StudioFeaturedWork";
+// import StudioFeaturedWork from "@/components/StudioFeaturedWork";
 import StudioInterview from "@/components/StudioInterview";
 import { PortableText } from "@portabletext/react";
 // import TextCallout from "@/components/TextCallout";

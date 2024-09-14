@@ -16,17 +16,17 @@ import { Suspense } from "react";
 const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
-// export async function generateMetadata({ params, searchParams }, parent) {
-// 	const { slug } = params;
-// 	const query = `*[_type == "foundry" && slug.current == $slug][0]{
-// 		name,
-// 	  }`;
-// 	const project = await client.fetch(query, { slug });
+export async function generateMetadata({ params, searchParams }, parent) {
+  const { slug } = params;
+  const query = `*[_type == "foundry" && slug.current == $slug][0]{
+		name,
+	  }`;
+  const foundry = await client.fetch(query, { slug });
 
-// 	return {
-// 		title: project.name,
-// 	};
-// }
+  return {
+    title: foundry.name,
+  };
+}
 
 //  (SSG) prerendered as static HTML
 export async function generateStaticParams() {
@@ -93,22 +93,22 @@ export default async function Foundry({ params }) {
 	  }`;
   const foundry = await client.fetch(query, { slug });
 
-  const titleExplore = "Exploration Redefined";
-  const textExplore = (
-    <>
-      <p>
-        At Museum Department, every element is intricately interwoven. Whether a
-        studio, foundry, or individual is linked to a project, typeface,
-        interview, or artifact, our sophisticated search mechanism ensures
-        effortless discovery.
-      </p>
-      <p>
-        Delve into categories, probe free text, or trace individuals, and
-        navigate the rich network of connections and narratives that our
-        platform offers.
-      </p>
-    </>
-  );
+  // const titleExplore = "Exploration Redefined";
+  // const textExplore = (
+  //   <>
+  //     <p>
+  //       At Museum Department, every element is intricately interwoven. Whether a
+  //       studio, foundry, or individual is linked to a project, typeface,
+  //       interview, or artifact, our sophisticated search mechanism ensures
+  //       effortless discovery.
+  //     </p>
+  //     <p>
+  //       Delve into categories, probe free text, or trace individuals, and
+  //       navigate the rich network of connections and narratives that our
+  //       platform offers.
+  //     </p>
+  //   </>
+  // );
 
   return (
     <>
@@ -184,14 +184,13 @@ export default async function Foundry({ params }) {
               </h2>
               <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
                 {foundry.location?.map((item, index) => (
-                  <li key={item._id}>
+                  <li key={item._id} className="flex flex-col">
                     <Link
                       href={`/reference/${item?.slug.current}`}
                       className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                     >
                       {item?.name}
                     </Link>
-                    ,{" "}
                     <Link
                       href={`/reference/${item?.country.slug.current}`}
                       className="text-md-grey-400 transition-colors hover:text-md-grey-600"
@@ -222,20 +221,6 @@ export default async function Foundry({ params }) {
                 </ul>
               </div>
             ))}
-            <div className="mb-4">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-                Buy Fonts
-              </h2>
-              <ul className=" space-y-2 font-mono text-sm">
-                <li className="flex items-center">
-                  [LINK]{" "}
-                  <LaunchIcon
-                    className="h-4 w-4 text-md-black"
-                    aria-hidden="true"
-                  />
-                </li>
-              </ul>
-            </div>
           </div>
 
           <div className="article mb-10 md:mb-0 col-span-6 text-xl font-medium">
