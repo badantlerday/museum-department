@@ -50,6 +50,12 @@ export default async function Foundry({ params }) {
 		size,
 		founded,
 		information,
+		typeDesigners[]->{
+		  _id,
+  		name,
+  		_type,
+  		slug
+		},
 		mainImage{crop,hotspot,asset->},
 		mainFontImage{asset->},
 		location[]->{
@@ -92,6 +98,8 @@ export default async function Foundry({ params }) {
 		}
 	  }`;
   const foundry = await client.fetch(query, { slug });
+
+  // console.log(foundry.typeDesigners);
 
   // const titleExplore = "Exploration Redefined";
   // const textExplore = (
@@ -201,6 +209,56 @@ export default async function Foundry({ params }) {
                 ))}
               </ul>
             </div>
+            {foundry.typeDesigners && (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+                  Type Designers
+                </h2>
+                <ul className="space-y-1 font-mono text-xs text-md-grey-400">
+                  {foundry.typeDesigners?.map((person, index) => (
+                    <li key={person._id}>
+                      <Link
+                        href={`/reference/${person.slug.current}`}
+                        className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                      >
+                        {person.name}
+                      </Link>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            )}
+            {foundry.website || foundry.instagram ? (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wider font-medium mb-2">
+                  Visit
+                </h2>
+                <ul className=" space-y-1 font-mono text-xs">
+                  {foundry.website && (
+                    <li>
+                      <a
+                        href={foundry.website}
+                        target="_blank"
+                        className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                      >
+                        Website
+                      </a>
+                    </li>
+                  )}
+                  {foundry.instagram && (
+                    <li>
+                      <a
+                        href={foundry.instagram}
+                        target="_blank"
+                        className="text-md-grey-400 transition-colors hover:text-md-grey-600"
+                      >
+                        Instagram
+                      </a>
+                    </li>
+                  )}
+                </ul>
+              </div>
+            ) : null}
 
             {foundry.staff?.map((item, index) => (
               <div key={index} className="mb-4">

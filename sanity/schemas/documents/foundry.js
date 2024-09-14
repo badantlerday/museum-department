@@ -41,6 +41,18 @@ export default defineType({
       group: "information",
     },
     defineField({
+      title: "Website",
+      name: "website",
+      type: "url",
+      group: "information",
+    }),
+    defineField({
+      title: "Instagram",
+      name: "instagram",
+      type: "url",
+      group: "information",
+    }),
+    defineField({
       title: "Size",
       name: "size",
       type: "number",
