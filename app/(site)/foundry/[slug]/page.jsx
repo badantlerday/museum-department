@@ -133,7 +133,7 @@ export default async function Foundry({ params }) {
             unoptimized
           />
         ) : (
-          <h1 className="text-[28px] tracking-wide uppercase mb-1">
+          <h1 className="text-5xl font-black tracking-wide uppercase mb-1">
             {foundry?.name}
           </h1>
         )}
@@ -170,22 +170,26 @@ export default async function Foundry({ params }) {
                 </li>
               </ul>
             </div>
-            <div className="mb-4">
-              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
-                Founded
-              </h2>
-              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
-                <li>{foundry?.founded}</li>
-              </ul>
-            </div>
-            <div className="mb-4">
-              <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
-                Size
-              </h2>
-              <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
-                <li>{foundry?.size}</li>
-              </ul>
-            </div>
+            {foundry.founded && (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
+                  Founded
+                </h2>
+                <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
+                  <li>{foundry?.founded}</li>
+                </ul>
+              </div>
+            )}
+            {foundry.size && (
+              <div className="mb-4">
+                <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
+                  Size
+                </h2>
+                <ul className=" space-y-1 font-mono text-xs text-md-grey-400">
+                  <li>{foundry?.size}</li>
+                </ul>
+              </div>
+            )}
             <div className="mb-4">
               <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Location
