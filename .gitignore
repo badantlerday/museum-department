@@ -8,6 +8,7 @@
 # testing
 /coverage
 _OLD
+components/_temp
 
 # next.js
 /.next/
