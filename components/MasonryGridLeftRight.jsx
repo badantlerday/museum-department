@@ -18,8 +18,10 @@ export default function MasonryGridLeftRight({ data }) {
 
     const content = (
       <div className={`flex ${justifyClass}`}>
-        <Link href={`/project/${item.slug.current}`} passHref className="w-3/4">
+        <div className="w-3/4">
+        <Link href={`/project/${item.slug.current}`}>
           {item.posterImage && <Image src={builder.image(item.posterImage).width(1000).url()} alt="" width={1000} height={1000} />}
+          </Link>
           <div className="mt-4">
             <h2 className="font-medium uppercase tracking-wide -mb-1">
                 {item.fontsInUse.map((font) => (
@@ -27,18 +29,18 @@ export default function MasonryGridLeftRight({ data }) {
                         <Link href={`/font/${font.slug.current}`} className="hover:text-md-grey-500">{font.name}</Link>
                     </span>
                 ))}	
-                {/* {item.name} */}
                 </h2>
             <div className="font-medium italic _mt-1">
               <Link
-                href={`/studio/${item.studio.slug.current}`}
+                href={`/project/${item.slug.current}`}
                 className="hover:text-md-grey-500"
               >
                 {item.title}
               </Link>
               </div>
           </div>
-        </Link>
+        
+        </div>
       </div>
     );
 

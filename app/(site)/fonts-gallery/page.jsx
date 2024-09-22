@@ -9,37 +9,11 @@ import HoverListing from "@/components/HoverListing";
 import MasonryGridLeftRight from "@/components/MasonryGridLeftRight";
 import SectionHeader from "@/components/SectionHeader";
 import NewFoundries from "@/components/NewFoundries";
+import { getTypefaces, getFontsInUse } from "@/lib/sanity.queries";
 
 export default async function FontsGallery() {
-  const fontsinuse =
-    await client.fetch(`*[_type == "project" && defined(fontsInUse)] {
-        _id,
-        title,
-        slug,
-		publishedAt,
-        studio->{name,slug},
-        fontsInUse[]->{name,_id,slug},
-        posterImage{crop,hotspot,asset->},
-    }`);
-
-  const typefaces =
-    await client.fetch(`*[_type == "typeface" ] | order(name asc){
-        _id,
-		_type,
-		name,
-		slug,
-		realaseYear,
-		style,
-		foundry->{
-			_id,
-			name,
-			slug,
-			location[]->{
-			_id,name,_type,slug,country->{name,slug,_type}
-			},
-		},
-		specimenPoster{crop,hotspot,asset->},
-      }`);
+  const fontsinuse = await client.fetch(getFontsInUse);
+  const typefaces = await client.fetch(getTypefaces);
 
   const title = "Fonts Gallery";
   const text = (
@@ -72,7 +46,7 @@ export default async function FontsGallery() {
           buttonText="SUBMIT A TYPE PROJECT"
         />
       </section>
-      <HoverListing data={typefaces} sectionHeader="Fonts and Foundries" />
+      <HoverListing data={typefaces} sectionHeader="Fonts + Foundries" />
     </>
   );
 }

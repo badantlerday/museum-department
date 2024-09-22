@@ -5,6 +5,7 @@ import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
 import Link from "next/link";
 // import BookmarkButton from "./BookmarkButton";
+import BookmarkButtonClient from "./BookmarkButtonClient";
 
 const builder = imageUrlBuilder(client);
 
@@ -16,7 +17,12 @@ function getNestedValue(obj, path) {
     return path.split('.').reduce((acc, part) => acc && acc[part], obj);
 }
 
-export default function HoverListing({ data, sectionHeader = "Section Header"}) {
+export default function HoverListing({
+    data,
+    userBookmarks,
+    user,
+    sectionHeader = "Section Header"
+    }) {
     const [hoveredImage, setHoveredImage] = useState('');
     const [items, setItems] = useState(data);
     const [sortConfig, setSortConfig] = useState({ key: 'name', direction: 'asc' });
@@ -104,11 +110,12 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                             <div></div>
                             <div className="relative">
                                 <div className="absolute -left-6 top-[1.5px] hidden group-hover:block">
-                                    <Image
-                                        src="/icon-bookmark.svg"
-                                        width={10}
-                                        height={15}
-                                        alt="Sign in to bookmark"
+                                    <BookmarkButtonClient
+                                        documentId={item._id}
+                                        variant="icon"
+                                        userBookmarks={userBookmarks}
+                                        user={user}
+                                        message={item.name}
                                     />
                                 </div>
                                 <Link href={`/studio/${item.slug.current}`}>{item.name}</Link>
@@ -145,16 +152,19 @@ export default function HoverListing({ data, sectionHeader = "Section Header"}) 
                         >
                             <div className="relative col-start-3 col-span-3">
                                 <div className="absolute -left-6 top-[1.5px] hidden group-hover:block">
-                                    <Image
-                                        src="/icon-bookmark.svg"
-                                        width={10}
-                                        height={15}
-                                        alt="Sign in to bookmark"
+                                    <BookmarkButtonClient
+                                        documentId={item._id}
+                                        variant="icon"
+                                        userBookmarks={userBookmarks}
+                                        user={user}
+                                        message={item.name}
                                     />
                                 </div>
-                                <Link href={`/studio/${item.slug.current}`}>{item.name}</Link>
+                                <Link href={`/font/${item.slug.current}`}>{item.name}</Link>
                             </div>
-                            <div className="col-span-3">{item.foundry?.name}</div>
+                            <div className="col-span-3">
+                                <Link href={`/foundry/${item.foundry?.slug.current}`}>{item.foundry?.name}</Link>
+                            </div>
                             <div className="col-span-3">{item.style}</div>
                             <div className="col-span-1">{item.realaseYear}</div>
                         </div>

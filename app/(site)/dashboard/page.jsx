@@ -1,43 +1,30 @@
 import { Suspense } from "react";
 import {getKindeServerSession} from "@kinde-oss/kinde-auth-nextjs/server";
-import TextCallout from "@/components/TextCallout";
+// import TextCallout from "@/components/TextCallout";
 import UserBookmarks from "@/components/UserBookmarks";
 import {LogoutLink,LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import BecomeAPatron from "@/components/BecomeAPatron";
-import Counter from "@/components/Counter";
+// import Counter from "@/components/Counter";
 
 export default async function Dashboard() {
-    const {
-        getAccessToken,
-        getBooleanFlag,
-        getFlag,
-        getIdToken,
-        getIntegerFlag,
-        getOrganization,
-        getPermission,
-        getPermissions,
-        getStringFlag,
-        getUser,
-        getUserOrganizations,
-        isAuthenticated
-    } = getKindeServerSession();
-    const user = await getUser();
-	const title = user ? `${user.given_name}` : "Welcome to Museum Department";
-	const text = (
-			<p>
-				Here are all of your bookmarks.
-				<span className="mt-4 block">
-				{user ? <LogoutLink className="inline-block border border-black p-3 text-xs uppercase tracking-wide hover:bg-black hover:text-white transition-all">Log out</LogoutLink> :	"Login" }
-				</span>
-			</p>
-	);
+	const {isAuthenticated} = getKindeServerSession();
+	const isUserAuthenticated = await isAuthenticated();
+	// const title = user ? `${user.given_name}` : "Welcome to Museum Department";
+	// const text = (
+	// 		<p>
+	// 			Here are all of your bookmarks.
+	// 			<span className="mt-4 block">
+	// 			{user ? <LogoutLink className="inline-block border border-black p-3 text-xs uppercase tracking-wide hover:bg-black hover:text-white transition-all">Log out</LogoutLink> :	"Login" }
+	// 			</span>
+	// 		</p>
+	// );
 
 	return (
 		<>
 		{/* <section className="mx-auto mt-56 ">
     	<h1 className="text-center text-[56px]/[50px] font-black mx-auto flex flex-col my-20 uppercase tracking-tight px-28">Bookmarks</h1>
 		</section> */}
-		{ user ?
+		{ !isUserAuthenticated ?
 		<section className="px-18 mx-auto sticky top-0 bg-white pb-2 z-10">
 		<nav className="border-t border-md-grey-200 flex">
 			<div className=" flex-1">
@@ -60,7 +47,7 @@ export default async function Dashboard() {
 	</section>
 	: null}
 		
-		{ user ? <section className="pt-20 space-y-40">
+		{ isUserAuthenticated ? <section className="pt-20 space-y-40">
 			<Suspense fallback={<div className="px-8 md:px-18 mx-auto">Loading...</div>}>
 				<UserBookmarks />
 			</Suspense>

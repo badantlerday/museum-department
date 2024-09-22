@@ -6,44 +6,16 @@ import NewStudios from "@/components/NewStudios";
 import HoverListing from "@/components/HoverListing";
 import SummaryCallout from "@/components/SummaryCallout";
 // import { Book, Grid } from "lucide-react";
+import { getPageDesignStudios } from "@/lib/sanity.queries";
+import {getUserBookmarks} from "@/app/actions";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import GridListing from "@/components/GridListing";
 
 export default async function Studios() {
-  const studios = await client.fetch(`*[_type == "studio" ] | order(name asc){
-        _id,
-		_type,
-		_createdAt,
-		_type,
-		name,
-		slug,
-		location[]->{
-			_id, name, country->{name}
-		},
-		mainImage{crop,hotspot,asset->},
-		posterImage{crop,hotspot,asset->}
-      }`);
-
-  const recentlyUpdatedProjects =
-    await client.fetch(`*[_type == "project" ] | order(updatedAt asc){
-        _id,
-		title,
-		_type,
-		slug,
-		posterImage{crop,hotspot,asset->},
-		studio->{
-			_id,
-			name,
-			slug,
-			location[]->{
-				_id,
-				name,
-				slug,
-				country->{name,slug}
-			},
-			posterImage{crop,hotspot,asset->},
-			"countProjects": count(*[_type == "project" && references(^._id)])
-		},
-    }`);
+  const { getUser } = getKindeServerSession();
+	const user = await getUser();
+  const { studios, recentlyUpdatedProjects } = await client.fetch(getPageDesignStudios);
+  const userBookmarks = await getUserBookmarks();
 
   // Filter out projects to ensure only one project per studio
   function filterProjects(projects) {
@@ -74,7 +46,7 @@ export default async function Studios() {
         aspect="portrait"
       />
       <SummaryCallout data={studios} />
-      <HoverListing data={studios} sectionHeader="Design Studios" />
+      <HoverListing data={studios} sectionHeader="Design Studios" userBookmarks={userBookmarks} user={user} />
     </main>
   );
 }

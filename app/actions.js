@@ -1,5 +1,6 @@
 "use server";
 import { createClient } from "@supabase/supabase-js";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import querystring from "querystring";
 
 // Spotify API setup
@@ -31,7 +32,9 @@ const getAccessToken = async () => {
 	return response.json();
 };
 
-export async function addBookmark({ userid, docid }) {
+export async function addBookmark({ docid }) {
+	const { getUser } = getKindeServerSession();
+	const user = await getUser();
 	const supabase = createClient(
 		process.env.SUPABASE_URL,
 		process.env.SUPABASE_PUBLIC_KEY
@@ -39,11 +42,13 @@ export async function addBookmark({ userid, docid }) {
 
 	return await supabase
 		.from("Bookmarks")
-		.insert([{ kinde_user_id: userid, document_id: docid }])
+		.insert([{ kinde_user_id: user.id, document_id: docid }])
 		.select();
 }
 
-export async function removeBookmark({ userid, docid }) {
+export async function removeBookmark({ docid }) {
+	const { getUser } = getKindeServerSession();
+	const user = await getUser();
 	const supabase = createClient(
 		process.env.SUPABASE_URL,
 		process.env.SUPABASE_PUBLIC_KEY
@@ -52,8 +57,26 @@ export async function removeBookmark({ userid, docid }) {
 	return await supabase
 		.from("Bookmarks")
 		.delete()
-		.eq("kinde_user_id", userid)
+		.eq("kinde_user_id", user.id)
 		.eq("document_id", docid);
+}
+
+export async function getUserBookmarks() {
+	const { getUser } = getKindeServerSession();
+	const user = await getUser();
+	// Return false if no user is found
+	if (!user) {
+		return false;
+	}
+	const supabase = createClient(
+		process.env.SUPABASE_URL,
+		process.env.SUPABASE_PUBLIC_KEY
+	);
+
+	return await supabase
+		.from("Bookmarks")
+		.select("*")
+		.eq("kinde_user_id", user.id);
 }
 
 // Function to fetch Spotify playlist data
