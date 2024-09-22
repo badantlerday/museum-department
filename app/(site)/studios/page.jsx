@@ -1,4 +1,5 @@
 export const revalidate = 60;
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 // import TextCallout from "@/components/TextCallout";
 import { client } from "@/lib/sanity.client";
 // import Counter from "@/components/Counter"
@@ -8,14 +9,15 @@ import SummaryCallout from "@/components/SummaryCallout";
 // import { Book, Grid } from "lucide-react";
 import { getPageDesignStudios } from "@/lib/sanity.queries";
 import {getUserBookmarks} from "@/app/actions";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+
 import GridListing from "@/components/GridListing";
 
 export default async function Studios() {
   const { getUser } = getKindeServerSession();
 	const user = await getUser();
-  const { studios, recentlyUpdatedProjects } = await client.fetch(getPageDesignStudios);
   const userBookmarks = await getUserBookmarks();
+  const { studios, recentlyUpdatedProjects } = await client.fetch(getPageDesignStudios);
+  
 
   // Filter out projects to ensure only one project per studio
   function filterProjects(projects) {

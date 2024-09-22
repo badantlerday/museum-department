@@ -27,7 +27,7 @@ export default function BookmarkButtonClient({
     // Check if the document is bookmarked when component mounts or userBookmarks changes
     setIsBookmarked(checkIsBookmarked());
     }
-  }, [checkIsBookmarked]);
+  }, [user,checkIsBookmarked]);
 
   const handleBookmarkClick = async () => {
     setIsLoading(true);

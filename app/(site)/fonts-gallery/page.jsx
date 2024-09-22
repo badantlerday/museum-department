@@ -1,5 +1,7 @@
 export const revalidate = 60;
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { client } from "@/lib/sanity.client";
+// import dynamic from 'next/dynamic';
 // import FontsGalleryGrid from "@/components/FontsGalleryGrid";
 // import HighlightsFonts from "@/components/HighlightsFonts";
 import TextCallout from "@/components/TextCallout";
@@ -10,8 +12,13 @@ import MasonryGridLeftRight from "@/components/MasonryGridLeftRight";
 import SectionHeader from "@/components/SectionHeader";
 import NewFoundries from "@/components/NewFoundries";
 import { getTypefaces, getFontsInUse } from "@/lib/sanity.queries";
+import { getUserBookmarks } from "@/app/actions";
+import Button from "@/components/Button";
 
 export default async function FontsGallery() {
+  const { getUser } = getKindeServerSession();
+	const user = await getUser();
+  const userBookmarks = await getUserBookmarks();
   const fontsinuse = await client.fetch(getFontsInUse);
   const typefaces = await client.fetch(getTypefaces);
 
@@ -34,8 +41,10 @@ export default async function FontsGallery() {
           <SectionHeader title="Fonts in Use" border={false} />
         </div>
         <MasonryGridLeftRight data={fontsinuse} />
+        <div className="flex items-center flex-col">
+        <Button href="/fonts-in-use">View all in use</Button>
+        </div>
       </section>
-      {/* <NewTypeFoundries /> */}
       <NewFoundries title="Type Foundries" />
       <section className=" py-60">
         <TextCallout
@@ -46,7 +55,7 @@ export default async function FontsGallery() {
           buttonText="SUBMIT A TYPE PROJECT"
         />
       </section>
-      <HoverListing data={typefaces} sectionHeader="Fonts + Foundries" />
+      <HoverListing data={typefaces} sectionHeader="Fonts + Foundries" userBookmarks={userBookmarks} user={user} />
     </>
   );
 }

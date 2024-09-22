@@ -1,16 +1,18 @@
 "use client"
 import { useState } from "react";
-import Link from "next/link";
 import { client } from "@/lib/sanity.client";
 import imageUrlBuilder from "@sanity/image-url";
+import Link from "next/link";
 import Image from "next/image";
+import BookmarkButtonClient from "@/components/BookmarkButtonClient";
+
 const builder = imageUrlBuilder(client);
 
 function getNestedValue(obj, path) {
     return path.split('.').reduce((acc, part) => acc && acc[part], obj);
 }
 
-export default function FontsInUseListing({data}) {
+export default function FontsInUseListing({data,userBookmarks,user}) {
     const [items, setItems] = useState(data);
     const [sortConfig, setSortConfig] = useState({ key: 'publishedAt', direction: 'asc' });
 
@@ -65,10 +67,9 @@ return (
 		</div>
         <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-x-4 gap-y-8">
             {items.slice(0,18).map((item) => (
+                <div key={item._id}>
                 <Link
-                    key={item._id}
                     href={`/project/${item.slug.current}`}
-                    passHref
                     className="relative group"
                 >
                     {item.posterImage || item.posterImage ? (
@@ -91,30 +92,32 @@ return (
                     ) : (
                         <div className="w-full aspect-[3/4] bg-md-grey-200 mb-2"></div>
                     )}
+                    </Link>
                     <div className="flex">
                         <div className=" grow">
                             <span className="text-xs font-medium tracking-wide block uppercase">
                             {item.fontsInUse.map((font) => (
                                 <div key={font._id}>
-                                    {font.name}
+                                    <Link href={`/font/${font.slug.current}`} className="hover:text-md-grey-500">{font.name}</Link>
                                 </div>
                             ))}	
                                 
                             </span>
                             <span className="text-xs font-medium italic block">
-                            {item.title}
+                            <Link href={`/project/${item.slug.current}`} className="hover:text-md-grey-500">{item.title}</Link>
                             </span>
                         </div>
                         <div>
-                            <Image
-                                src="/icon-bookmark.svg"
-                                width={10}
-                                height={15}
-                                alt="Bookmark"
+                            <BookmarkButtonClient
+                                documentId={item._id}
+                                variant="icon"
+                                userBookmarks={userBookmarks}
+                                user={user}
+                                message={item.title}
                             />
                         </div>
                     </div>
-                </Link>
+                </div>
             ))}				
         </div>
     </div>

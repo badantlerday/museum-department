@@ -1,18 +1,21 @@
 export const revalidate = 60;
-import { LaunchIcon } from "@sanity/icons";
+import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+import {getUserBookmarks} from "@/app/actions";
+// import { LaunchIcon } from "@sanity/icons";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/lib/sanity.client";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
 import TypefaceBy from "@/components/TypefaceBy";
-import FontsInUseBy from "@/components/FontsInUseBy";
-import TextCallout from "@/components/TextCallout";
+// import FontsInUseBy from "@/components/FontsInUseBy";
+// import TextCallout from "@/components/TextCallout";
 import BookmarkButton from "@/components/BookmarkButton";
 import GridListing from "@/components/GridListing";
-import StudioInterview from "@/components/StudioInterview";
-import StudioSounds from "@/components/StudioSounds";
-import { Suspense } from "react";
+import HoverListing from "@/components/HoverListing";
+// import StudioInterview from "@/components/StudioInterview";
+// import StudioSounds from "@/components/StudioSounds";
+// import { Suspense } from "react";
 const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
@@ -40,13 +43,17 @@ export async function generateStaticParams() {
   }));
 }
 
+
 export default async function Foundry({ params }) {
+  const { getUser } = getKindeServerSession();
+	const user = await getUser();
+  const userBookmarks = await getUserBookmarks();
   const { slug } = params;
   const query = `*[_type == "foundry" && slug.current == $slug][0]{
 		_id,
+    _type,
 		name,
 		slug,
-		_type,
 		size,
 		founded,
 		information,
@@ -71,8 +78,23 @@ export default async function Foundry({ params }) {
 		staff[]{title,people[]->{_id,name,slug}},
 		"typefaces": *[_type == "typeface" && references(^._id)]{
 			_id,
+      _type,
 			slug,
 			name,
+      realaseYear,
+      style,
+      foundry->{
+        _id,
+          _type,
+        name,
+        slug,
+        location[]->{
+          _id,name,_type,slug,country->{name,slug,_type}
+        },
+      },
+      posterImage{crop,hotspot,asset->},
+      specimenPoster{crop,hotspot,asset->},
+      mainImage{crop,hotspot,asset->},
 		},
 		"projects": *[_type == "project" && fontsInUse[]->foundry->_id match ^._id]{
 			_id,
@@ -123,12 +145,11 @@ export default async function Foundry({ params }) {
       <section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
         {foundry?.mainFontImage ? (
           <Image
-            className=""
-            src={builder.image(foundry.mainFontImage).width(2400).url()}
+            src={builder.image(foundry.mainFontImage).url()}
             width={3000}
             height={900}
-            blurDataURL={foundry.mainFontImage.asset.metadata.lqip}
-            placeholder="blur"
+            // blurDataURL={foundry.mainFontImage.asset.metadata.lqip}
+            // placeholder="blur"
             alt={foundry?.name}
             unoptimized
           />
@@ -297,8 +318,9 @@ export default async function Foundry({ params }) {
         columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
       />
       {/* <FontsInUseBy name={foundry?.name} projects={foundry?.projects} /> */}
-      <section className="mt-40">
-        <TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} />
+      <section className="my-40">
+        {/* <TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} /> */}
+        <HoverListing data={foundry?.typefaces} sectionHeader="Fonts" userBookmarks={userBookmarks} user={user} />
       </section>
       <GridListing
         title={`Explore other TYPE FOUNDRIES`}
