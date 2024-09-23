@@ -1,11 +1,11 @@
 export const revalidate = 60;
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { client } from "@/lib/sanity.client";
 // import dynamic from 'next/dynamic';
 // import FontsGalleryGrid from "@/components/FontsGalleryGrid";
 // import HighlightsFonts from "@/components/HighlightsFonts";
 import TextCallout from "@/components/TextCallout";
-import { NewTypeFoundries } from "@/components/TypeFoundries";
+// import { NewTypeFoundries } from "@/components/TypeFoundries";
 import NewFonts from "@/components/NewFonts";
 import HoverListing from "@/components/HoverListing";
 import MasonryGridLeftRight from "@/components/MasonryGridLeftRight";
@@ -16,9 +16,7 @@ import { getUserBookmarks } from "@/app/actions";
 import Button from "@/components/Button";
 
 export default async function FontsGallery() {
-  const { getUser } = getKindeServerSession();
-	const user = await getUser();
-  const userBookmarks = await getUserBookmarks();
+  const {user, userBookmarks} = await getUserBookmarks();
   const fontsinuse = await client.fetch(getFontsInUse);
   const typefaces = await client.fetch(getTypefaces);
 

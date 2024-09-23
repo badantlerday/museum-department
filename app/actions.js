@@ -73,10 +73,15 @@ export async function getUserBookmarks() {
 		process.env.SUPABASE_PUBLIC_KEY
 	);
 
-	return await supabase
+	const userBookmarks = await supabase
 		.from("Bookmarks")
 		.select("*")
 		.eq("kinde_user_id", user.id);
+
+	return {
+		user,
+		userBookmarks,
+	};
 }
 
 // Function to fetch Spotify playlist data

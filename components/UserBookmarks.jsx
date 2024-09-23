@@ -1,12 +1,14 @@
 
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { createClient } from "@supabase/supabase-js";
+// import { createClient } from "@supabase/supabase-js";
 import { client } from "@/lib/sanity.client";
 import GridListing from "@/components/GridListing";
+import { getUserBookmarks } from "@/app/actions";
 
 export default async function UserBookmarks({ params }) {
-  const { getUser, isAuthenticated } = getKindeServerSession();
-  const user = await getUser();
+//   const { getUser, isAuthenticated } = getKindeServerSession();
+//   const user = await getUser();
+const { user, userBookmarks } = await getUserBookmarks();
 
   if (!user || !user.id) {
     // Updated check
@@ -15,22 +17,15 @@ export default async function UserBookmarks({ params }) {
 
   // https://medium.com/creditas-tech/react-suspense-swr-skeleton-e1979e9f32f0
 
-  // Create a single supabase client for interacting with your database
-  const supabase = createClient(
-    process.env.SUPABASE_URL,
-    process.env.SUPABASE_PUBLIC_KEY,
-  );
-  const bookmarks = await supabase
-    .from("Bookmarks")
-    .select("*")
-    .eq("kinde_user_id", user.id);
+  // Get the user's bookmarks from supabase
+//   const bookmarks = await getUserBookmarks();
 
   // Extracting just the IDs into a new array
-  const documentIds = bookmarks.data?.map((obj) => obj.document_id);
+  const documentIds = userBookmarks.data?.map((obj) => obj.document_id);
 
   // If there are no bookmarks, return early
   if (!documentIds || documentIds.length === 0) {
-    return <div>Lost connection to Supabase.</div>;
+    return <div>No bookmarks yet.</div>;
   }
 
   // Fetch the documents from Sanity

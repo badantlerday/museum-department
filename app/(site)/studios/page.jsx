@@ -1,21 +1,19 @@
 export const revalidate = 60;
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 // import TextCallout from "@/components/TextCallout";
 import { client } from "@/lib/sanity.client";
 // import Counter from "@/components/Counter"
 import NewStudios from "@/components/NewStudios";
 import HoverListing from "@/components/HoverListing";
 import SummaryCallout from "@/components/SummaryCallout";
-// import { Book, Grid } from "lucide-react";
 import { getPageDesignStudios } from "@/lib/sanity.queries";
-import {getUserBookmarks} from "@/app/actions";
-
+import { getUserBookmarks } from "@/app/actions";
 import GridListing from "@/components/GridListing";
 
 export default async function Studios() {
-  const { getUser } = getKindeServerSession();
-	const user = await getUser();
-  const userBookmarks = await getUserBookmarks();
+  // const { getUser } = getKindeServerSession();
+	// const user = await getUser();
+  const {user,userBookmarks} = await getUserBookmarks();
   const { studios, recentlyUpdatedProjects } = await client.fetch(getPageDesignStudios);
   
 
