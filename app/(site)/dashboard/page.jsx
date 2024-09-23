@@ -24,7 +24,7 @@ export default async function Dashboard() {
 		{/* <section className="mx-auto mt-56 ">
     	<h1 className="text-center text-[56px]/[50px] font-black mx-auto flex flex-col my-20 uppercase tracking-tight px-28">Bookmarks</h1>
 		</section> */}
-		{ !isUserAuthenticated ?
+		{ isUserAuthenticated ?
 		<section className="px-18 mx-auto sticky top-0 bg-white pb-2 z-10">
 		<nav className="border-t border-md-grey-200 flex">
 			<div className=" flex-1">

@@ -146,6 +146,27 @@ export default function Postercard({ data, aspect, columns }) {
         </>
       );
       break;
+    case "typeface":
+        content = (
+          <>
+            <Link href={`/font/${item.slug.current}`}>
+              {renderImage(item.posterImage, item.name)}
+            </Link>
+            {renderDetails(
+            `/font/${item.slug.current}`,
+            item.name,
+            null,
+            null,
+            null,
+            null,
+            item.foundry.slug?.current
+              ? `/foundry/${item.foundry.slug.current}`
+              : null,
+            item.foundry.name,
+          )}
+          </>
+        );
+        break;
     default:
       if (item.foundry) {
         content = (

@@ -1,14 +1,8 @@
-// import React, { useState } from 'react';
+
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import { createClient } from "@supabase/supabase-js";
 import { client } from "@/lib/sanity.client";
-// import Link from "next/link";
-// import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
-// import SectionHeader from "@/components/SectionHeader";
 import GridListing from "@/components/GridListing";
-// import BecomeAPatron from "@/components/BecomeAPatron";
-// const builder = imageUrlBuilder(client);
 
 export default async function UserBookmarks({ params }) {
   const { getUser, isAuthenticated } = getKindeServerSession();
@@ -158,7 +152,7 @@ export default async function UserBookmarks({ params }) {
         limit={18}
       />
       <GridListing
-        data={bookmarkDocuments.typfaces}
+        data={bookmarkDocuments.typefaces}
         title={`${fontsCount} Fonts`}
         limit={18}
       />
