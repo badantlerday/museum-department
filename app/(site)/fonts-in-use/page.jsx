@@ -3,14 +3,12 @@ import FontsInUseListing from '@/components/FontsInUseListing';
 import { client } from "@/lib/sanity.client";
 import { getFontsInUse } from "@/lib/sanity.queries";
 import {getUserBookmarks} from "@/app/actions";
-import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import GridListing from "@/components/GridListing";
+// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
+// import GridListing from "@/components/GridListing";
 
 
 export default async function FontsInUse() {
-    const { getUser } = getKindeServerSession();
-	const user = await getUser();
-    const userBookmarks = await getUserBookmarks();
+    const { user, userBookmarks } = await getUserBookmarks();
 	const fonts = await client.fetch(getFontsInUse);
 
 	return (
