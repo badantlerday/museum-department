@@ -77,8 +77,13 @@ export default defineType({
 				list: [
 					{ title: "Sans Serif", value: "Sans Serif" },
 					{ title: "Serif", value: "Serif" },
+					{ title: "Script", value: "Script" },
+					{ title: "Display", value: "Display" },
+					{ title: "Monospace", value: "Monospace" },
+					{ title: "Handwritten", value: "Handwritten" },
+					{ title: "Decorative", value: "Decorative" },
 				],
-				layout: "radio", // <-- defaults to 'dropdown'
+				layout: "dropdown", // <-- defaults to 'dropdown'
 				direction: "horizontal", // <-- defaults to 'vertical'
 			},
 		}),
