@@ -45,7 +45,7 @@ export default function Postercard({ data, aspect, columns }) {
     <div className="flex">
       <div className={`flex-1`}>
         <Link href={mainLink} className="hover:text-md-grey-500">
-          <span className={`font-medium block ${textSize.header}`}>
+          <span className={`font-medium block pr-1 ${textSize.header}`}>
             {mainText}
           </span>
         </Link>

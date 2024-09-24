@@ -19,8 +19,18 @@ export default async function StudiosArchive() {
 
   return (
     <main>
-        <div className="pt-60 pb-32"><SummaryCallout data={studios} /></div>
-        <HoverListing data={studios} sectionHeader="Design Studios" userBookmarks={userBookmarks} user={user} />
+        <div className="pt-60 pb-8"><SummaryCallout data={studios} /></div>
+        <div className="flex uppercase text-xs tracking-[1%] items-center flex-col pb-32 text-md-grey-300">
+            <div className="space-x-2">
+            <span>View as</span>
+            <button className="uppercase text-xs tracking-[1%]">List</button>
+            <button className="uppercase text-xs tracking-[1%]">Grid</button>
+            </div>
+        </div>
+        <HoverListing data={studios} sectionHeader=" " userBookmarks={userBookmarks} user={user} />
+        <div className="py-40">
+        <GridListing data={studios} title="Design Studios" limit={18} aspect="portrait" />
+        </div>
     </main>
   );
 }
