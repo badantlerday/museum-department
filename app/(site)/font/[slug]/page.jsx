@@ -23,6 +23,9 @@ export default async function Font({ params }) {
 	realaseYear,
 	fontUrl,
 	information,
+  mainImage{
+    ${queries.imageMeta}
+  },
 	specimenPoster{
 		crop,
 		hotspot,
@@ -59,17 +62,33 @@ export default async function Font({ params }) {
 
   return (
     <>
-      <section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
-        <h1 className="text-5xl font-black tracking-wide uppercase mb-1">
+      <section className="px-20 mx-auto my-10 text-center justify-center flex flex-col h-[500px]">
+      {typeface?.mainImage ? (
+        <div className="grid grid-cols-24">
+          <Image
+            src={builder.image(typeface.mainImage).url()}
+            width={3000}
+            height={900}
+            // blurDataURL={foundry.mainFontImage.asset.metadata.lqip}
+            // placeholder="blur"
+            alt={typeface?.name}
+            unoptimized
+            className="col-span-10 col-start-8"
+          />
+          </div>
+        ) : (
+          <h1 className="text-5xl font-black tracking-wide uppercase mb-1">
           {typeface?.name}
-        </h1>
+          </h1>
+        )}
+
       </section>
       <section className="pb-36">
         <div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
           <div className="col-span-3">
-            <div className="mb-5">
+          <div className="mb-4">
               <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
-                Bookmark font
+                Bookmark Font
               </h2>
               <ul className=" space-y-2 font-mono text-sm">
                 <li>
@@ -81,33 +100,33 @@ export default async function Font({ params }) {
                 </li>
               </ul>
             </div>
-            <div className="mb-5">
+            <div className="mb-4">
               <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
                 Font
               </h2>
-              <ul className=" space-y-2 font-mono text-sm">
+              <ul className="space-y-1 font-mono text-xs text-md-grey-400">
                 <li>{typeface?.name}</li>
               </ul>
             </div>
             {typeface?.style && (
-              <div className="mb-5">
+              <div className="mb-4">
                 <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
                   Style
                 </h2>
-                <ul className=" space-y-2 font-mono text-sm">
+                <ul className="space-y-1 font-mono text-xs text-md-grey-400">
                   <li>{typeface?.style}</li>
                 </ul>
               </div>
             )}
-            <div className="mb-5">
-              <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+            <div className="mb-4">
+              <h2 className="text-xs uppercase tracking-wide font-medium mb-2">
                 Type Foundry
               </h2>
-              <ul className=" space-y-2 font-mono text-sm">
+              <ul className="space-y-1 font-mono text-xs text-md-grey-400">
                 <li>
                   <Link
                     href={`/foundry/${typeface?.foundry.slug.current}`}
-                    className="underline decoration-slate-300 underline-offset-[6px] hover:decoration-slate-600 transition-colors"
+                    className="text-md-grey-400 transition-colors hover:text-md-grey-600"
                   >
                     {typeface?.foundry.name}
                   </Link>
@@ -115,11 +134,11 @@ export default async function Font({ params }) {
               </ul>
             </div>
             {typeface?.realaseYear && (
-              <div className="mb-5">
-                <h2 className=" text-xs uppercase tracking-wide font-medium mb-2">
+              <div className="mb-4">
+                <h2 className="text-xs uppercase tracking-wide font-medium mb-2">
                   Release
                 </h2>
-                <ul className=" space-y-2 font-mono text-sm">
+                <ul className="space-y-1 font-mono text-xs text-md-grey-400">
                   <li>{typeface?.realaseYear}</li>
                 </ul>
               </div>
@@ -129,9 +148,9 @@ export default async function Font({ params }) {
                 <h2 className="text-xs uppercase tracking-wide font-medium mb-2">
                   Buy font
                 </h2>
-                <ul className="space-y-2 font-mono text-sm">
+                <ul className="space-y-1 font-mono text-xs text-md-grey-400">
                   <li>
-                    <a href={typeface.fontUrl.url} target="_blank">
+                    <a href={typeface.fontUrl.url} target="_blank" className="text-md-grey-400 transition-colors hover:text-md-grey-600">
                       {typeface.fontUrl.label}
                     </a>
                   </li>

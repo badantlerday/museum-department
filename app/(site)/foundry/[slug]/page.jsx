@@ -1,15 +1,12 @@
 export const revalidate = 60;
 import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 import {getUserBookmarks} from "@/app/actions";
-// import { LaunchIcon } from "@sanity/icons";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/lib/sanity.client";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
-import TypefaceBy from "@/components/TypefaceBy";
-// import FontsInUseBy from "@/components/FontsInUseBy";
-// import TextCallout from "@/components/TextCallout";
+// import TypefaceBy from "@/components/TypefaceBy";
 import BookmarkButton from "@/components/BookmarkButton";
 import GridListing from "@/components/GridListing";
 import HoverListing from "@/components/HoverListing";
@@ -139,6 +136,16 @@ export default async function Foundry({ params }) {
   //     </p>
   //   </>
   // );
+
+  function getColumnClasses(projectCount) {
+    if (projectCount <= 3) {
+      return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
+    } else if (projectCount <= 5) {
+      return "grid-cols-2 sm:grid-cols-4 lg:grid-cols-4"
+    } else {
+      return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
+    }
+  }
 
   return (
     <>
@@ -315,7 +322,7 @@ export default async function Foundry({ params }) {
       <GridListing
         title={`Fonts in use by ${foundry?.name}`}
         data={foundry?.projects}
-        columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
+        columns={getColumnClasses(foundry?.projects.length)}
       />
       {/* <FontsInUseBy name={foundry?.name} projects={foundry?.projects} /> */}
       <section className="my-40">
