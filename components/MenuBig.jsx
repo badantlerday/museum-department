@@ -105,7 +105,7 @@ export default function MenuBig({ src, projects }) {
 
             </div>
           </div>
-          <div className="col-start-17 col-span-full bg-emerald-100_ relative">
+          <div className="menu-links col-start-17 col-span-full bg-emerald-100_ relative">
 
             <div className=" flex flex-col gap-1 font-mono text-3xl">
               <Link href="/" onClick={handleClose}>On Display</Link>
