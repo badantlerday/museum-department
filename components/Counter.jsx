@@ -26,7 +26,7 @@ export default function Counter({ number = 50,id }) {
     <motion.span
       ref={ref}
       key={id}
-      className="text-center inline-block w-[50px] bg-md-grey-100 rounded-sm mx-[2px]"
+      className="_text-center inline-block _w-[50px] bg-md-grey-100_ _rounded-sm _mx-[2px]"
     >
       {rounded}
     </motion.span>

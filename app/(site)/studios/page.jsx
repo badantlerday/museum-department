@@ -45,8 +45,10 @@ export default async function Studios() {
         limit={18}
         aspect="portrait"
       />
-      <SummaryCallout data={studios} />
-      <HoverListing data={studios} sectionHeader="Design Studios" userBookmarks={userBookmarks} user={user} />
+      <div className="py-60">
+      <SummaryCallout data={studios} button={true} />
+      </div>
+      {/* <HoverListing data={studios} sectionHeader="Design Studios" userBookmarks={userBookmarks} user={user} /> */}
     </main>
   );
 }

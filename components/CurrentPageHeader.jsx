@@ -51,6 +51,9 @@ export default function CurrentPageHeader({ data }) {
         else if (pathname === '/fonts-in-use') {
             setCurrentHeader('Fonts Gallery — In Use');
         }
+        else if (pathname === '/studios/archive') {
+            setCurrentHeader('Design Studios Archive');
+        }
         else if (pathname === '/projects') {
             setCurrentHeader('Projects');
         }
