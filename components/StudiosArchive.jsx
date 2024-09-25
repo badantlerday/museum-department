@@ -41,7 +41,7 @@ export default function StudiosArchive({ studios, userBookmarks, user }) {
 
   return (
     <main className="">
-      <div className="pt-60 pb-8">
+      <div className="pt-40 pb-8">
         <SummaryCallout data={studios} />
       </div>
       <div className="flex uppercase text-xs tracking-[1%] items-center flex-col pb-32 text-md-grey-300">
