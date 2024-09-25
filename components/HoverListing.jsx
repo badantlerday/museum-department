@@ -21,7 +21,7 @@ export default function HoverListing({
     data,
     userBookmarks,
     user,
-    sectionHeader = "Section Header"
+    sectionHeader
     }) {
     const [hoveredImage, setHoveredImage] = useState('');
     const [items, setItems] = useState(data);
