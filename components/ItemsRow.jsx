@@ -16,6 +16,22 @@ export default function ItemsRow({ title = "Title", link, data }) {
         </Link>
       </div>
 
+      {data?.length === 0 && (
+      <div>
+        <div className="border-t border-b border-md-grey-200 py-2 grid grid-cols-2">
+          <div className="mr-2">
+            <div className="aspect-[3/4] bg-md-grey-100 mr-2"></div>
+          </div>
+          <div className="flex flex-col text-[11px]">
+            <div className="grow uppercase font-medium tracking-[3%]">
+              <div className="truncate">No projects</div>
+            </div>
+            <div className=" text-md-black">All projects is On Display or not published</div>
+          </div>
+        </div>
+      </div>
+      )}
+
       {/* {[...Array(5)].map((_, index) => ( */}
       {data?.slice(0, 5).map((item, index) => (
         <div
