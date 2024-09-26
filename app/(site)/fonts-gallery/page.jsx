@@ -1,6 +1,7 @@
-export const revalidate = 60;
+// export const revalidate = 60;
 // import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { client } from "@/lib/sanity.client";
+// import { client } from "@/lib/sanity.client";
+import { sanityFetch } from "@/lib/sanity.fetch"
 // import dynamic from 'next/dynamic';
 // import FontsGalleryGrid from "@/components/FontsGalleryGrid";
 // import HighlightsFonts from "@/components/HighlightsFonts";
@@ -11,14 +12,17 @@ import HoverListing from "@/components/HoverListing";
 import MasonryGridLeftRight from "@/components/MasonryGridLeftRight";
 import SectionHeader from "@/components/SectionHeader";
 import NewFoundries from "@/components/NewFoundries";
-import { getTypefaces, getFontsInUse } from "@/lib/sanity.queries";
+import { getTypefaces, getFontsInUse, getPageFontsGallery } from "@/lib/sanity.queries";
 import { getUserBookmarks } from "@/app/actions";
 import Button from "@/components/Button";
 
 export default async function FontsGallery() {
   const {user, userBookmarks} = await getUserBookmarks();
-  const fontsinuse = await client.fetch(getFontsInUse);
-  const typefaces = await client.fetch(getTypefaces);
+  // const fontsinuse = await client.fetch(getFontsInUse);
+  // const typefaces = await client.fetch(getTypefaces);
+
+  const {fontsinuse,typefaces} = await sanityFetch({ query: getPageFontsGallery, tags: ["project","typeface"] })
+  // const typefaces = await sanityFetch({ query: getTypefaces, tags: ["typeface"] })
 
   const title = "Fonts Gallery";
   const text = (

@@ -1,7 +1,8 @@
-export const revalidate = 60;
+// export const revalidate = 60;
 // import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
 // import TextCallout from "@/components/TextCallout";
 import { client } from "@/lib/sanity.client";
+import { sanityFetch } from "@/lib/sanity.fetch"
 // import Counter from "@/components/Counter"
 import NewStudios from "@/components/NewStudios";
 import HoverListing from "@/components/HoverListing";
@@ -14,7 +15,9 @@ export default async function Studios() {
   // const { getUser } = getKindeServerSession();
 	// const user = await getUser();
   const {user,userBookmarks} = await getUserBookmarks();
-  const { studios, recentlyUpdatedProjects } = await client.fetch(getPageDesignStudios);
+  // const { studios, recentlyUpdatedProjects } = await client.fetch(getPageDesignStudios);
+  const { studios, recentlyUpdatedProjects } = await sanityFetch({ query: getPageDesignStudios, tags: ["studio","project"] })
+  
   
 
   // Filter out projects to ensure only one project per studio
