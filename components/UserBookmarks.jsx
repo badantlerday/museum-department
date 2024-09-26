@@ -95,6 +95,7 @@ const { user, userBookmarks } = await getUserBookmarks();
 		slug,
 		_type,
 		posterImage{crop,hotspot,asset->},
+		mainImage{crop,hotspot,asset->},
 		specimenPoster{crop,hotspot,asset->},
 		foundry->{name,slug},
 		}

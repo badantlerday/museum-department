@@ -14,7 +14,7 @@ const FontCard = ({ item, layout = "small" }) => {
   const imageWidth = isLarge ? 1200 : 800;
   const imageHeight = isLarge ? 1200 : 665;
 
-  const imageClass = `aspect-[4/3] _object-cover bg-md-grey-100 block px-24 mb-2 ${isLarge ? "w-full" : ""}`;
+  const imageClass = `aspect-[4/3] _object-cover bg-md-grey-100 block px-24 mb-2 opacity-70 ${isLarge ? "w-full" : ""}`;
   const namePlaceholderClass = `text-center w-full font-black uppercase ${isLarge ? "text-5xl" : ""}`;
   const nameClass = `${isLarge ? "text-base" : "text-xs"} font-medium tracking-wide block uppercase`;
   const foundryClass = `${isLarge ? "text-base" : "text-xs"} font-medium italic block`;

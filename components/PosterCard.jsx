@@ -16,21 +16,30 @@ export default function Postercard({ data, aspect, columns }) {
     ? { header: "text-xs uppercase tracking-wider", text: "text-xs" }
     : { header: "text-base", text: "text-base" };
 
-  const renderImage = (imageSrc, altText) => {
-    return imageSrc ? (
-      <Image
-        className={`${aspectRatio} mb-2 object-cover`}
-        src={builder.image(imageSrc).width(1000).url()}
-        width={800}
-        height={665}
-        blurDataURL={imageSrc.asset.metadata.lqip}
-        placeholder="blur"
-        alt={altText}
-      />
-    ) : (
-      <div className={`${aspectRatio} w-full bg-md-grey-100 mb-2`}></div>
-    );
-  };
+    const renderImage = (imageSrc, altText, documentType) => {
+      return imageSrc && documentType === 'typeface' ? (
+        <Image
+          className={`${aspectRatio} mb-2 bg-md-grey-100 px-8 opacity-70`}
+          src={builder.image(imageSrc).width(500).url()}
+          width={800}
+          height={665}
+          unoptimized
+          alt={altText}
+        />
+      ) : imageSrc ? (
+        <Image
+          className={`${aspectRatio} mb-2 object-cover`}
+          src={builder.image(imageSrc).width(1000).url()}
+          width={800}
+          height={665}
+          blurDataURL={imageSrc?.asset.metadata.lqip}
+          placeholder="blur"
+          alt={altText}
+        />
+      ) : (
+        <div className={`${aspectRatio} w-full bg-md-grey-100 mb-2`}></div>
+      );
+    };
 
   const renderDetails = (
     mainLink,
@@ -150,7 +159,7 @@ export default function Postercard({ data, aspect, columns }) {
         content = (
           <>
             <Link href={`/font/${item.slug.current}`}>
-              {renderImage(item.posterImage, item.name)}
+              {renderImage(item.posterImage, item.name, item._type)}
             </Link>
             {renderDetails(
             `/font/${item.slug.current}`,

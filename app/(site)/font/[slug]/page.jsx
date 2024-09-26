@@ -1,10 +1,11 @@
 import { client } from "@/lib/sanity.client";
+import { sanityFetch } from "@/lib/sanity.fetch"
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import * as queries from "@/lib/sanity.queries";
 import Link from "next/link";
-import SectionHeader from "@/components/SectionHeader";
-import TypefacesByFoundry from "@/components/TypefacesByFoundry";
+// import SectionHeader from "@/components/SectionHeader";
+// import TypefacesByFoundry from "@/components/TypefacesByFoundry";
 import BookmarkButton from "@/components/BookmarkButton";
 import { PortableText } from "@portabletext/react";
 import GridListing from "@/components/GridListing";
@@ -42,7 +43,8 @@ export default async function Font({ params }) {
 		slug,
 	  },
   }`;
-  const typeface = await client.fetch(typefaceQuery, { slug }); // Provide the value for $slug
+  // const typeface = await client.fetch(typefaceQuery, { slug }); // Provide the value for $slug
+  const typeface = await sanityFetch({ query: typefaceQuery, params: { slug }, tags: ["typeface"] })
 
   // Assuming typeface._id contains the ID of the typeface, you can now fetch projects that use this typeface
   const fontinuseQuery = `*[_type == "project" && defined(fontsInUse) && $typefaceId in fontsInUse[]->_id] {
