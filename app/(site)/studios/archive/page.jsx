@@ -1,11 +1,11 @@
 import { client } from "@/lib/sanity.client";
-import { getPageDesignStudios } from "@/lib/sanity.queries";
+import { getStudios } from "@/lib/sanity.queries";
 import { getUserBookmarks } from "@/app/actions";
 import StudiosArchive from "@/components/StudiosArchive";
 
 export default async function StudiosArchivePage() {
   const {user,userBookmarks} = await getUserBookmarks();
-  const { studios } = await client.fetch(getPageDesignStudios);
+  const studios  = await client.fetch(getStudios);
 
   return (
     <main>
@@ -13,5 +13,3 @@ export default async function StudiosArchivePage() {
     </main>
   );
 }
-
-{/* <GridListing data={studios} title="Design Studios" limit={18} aspect="portrait" /> */}
