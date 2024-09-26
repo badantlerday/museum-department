@@ -14,7 +14,7 @@ const FontCard = ({ item, layout = "small" }) => {
   const imageWidth = isLarge ? 1200 : 800;
   const imageHeight = isLarge ? 1200 : 665;
 
-  const imageClass = `aspect-[4/3] object-cover ${isLarge ? "w-full" : ""}`;
+  const imageClass = `aspect-[4/3] _object-cover bg-md-grey-100 block px-24 mb-2 ${isLarge ? "w-full" : ""}`;
   const namePlaceholderClass = `text-center w-full font-black uppercase ${isLarge ? "text-5xl" : ""}`;
   const nameClass = `${isLarge ? "text-base" : "text-xs"} font-medium tracking-wide block uppercase`;
   const foundryClass = `${isLarge ? "text-base" : "text-xs"} font-medium italic block`;
@@ -23,15 +23,18 @@ const FontCard = ({ item, layout = "small" }) => {
     <div key={_id} className={isLarge ? "flex-1" : "py-1"}>
       <Link href={`/font/${slug?.current}`} className="block">
         {mainImage ? (
+          
           <Image
             className={imageClass}
             src={imageUrl}
             width={imageWidth}
             height={imageHeight}
-            blurDataURL={mainImage.asset.metadata.lqip}
-            placeholder="blur"
+            unoptimized={mainImage?.asset?.extension === 'svg'}
+            // blurDataURL={mainImage.asset.metadata.lqip}
+            // placeholder="blur"
             alt={name}
           />
+          
         ) : (
           <div className="w-full aspect-[4/3] bg-md-grey-100 flex items-center justify-center mb-2">
             <div className={namePlaceholderClass}>{name}</div>
