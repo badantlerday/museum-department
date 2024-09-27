@@ -65,7 +65,7 @@ const FontCard = ({ item, layout = "small" }) => {
 };
 
 export default async function NewFonts({ firstrow = true, secondrow = true, title = "Fonts" }) {
-  const fonts = await client.fetch(`*[_type == "typeface"]{
+  const fonts = await client.fetch(`*[_type == "typeface"] | order(_createdAt desc) {
     _id,
     name,
     slug,

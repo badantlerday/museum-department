@@ -22,10 +22,9 @@ const nextConfig = {
 	},
 	// logging: {
 	// 	fetches: {
-	// 		fullUrl: true,
+	// 		fullUrl: false,
 	// 	},
 	// },
-	// ...other config settings
 };
 
 module.exports = nextConfig;
