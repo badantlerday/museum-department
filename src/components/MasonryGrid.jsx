@@ -35,7 +35,7 @@ export default function MasonryGrid({ data }) {
                       href={`/projects/${item.slug.current}`}
                       className="hover:text-md-grey-500"
                     >
-                      {item.title} ({item.displaySettings.ondisplayAlignment})
+                      {item.title}
                     </Link>
                   </h2>
                   <div className="font-medium italic">
@@ -72,7 +72,7 @@ export default function MasonryGrid({ data }) {
                       href={`/projects/${item.slug.current}`}
                       className="hover:text-md-grey-500"
                     >
-                      {item.title} ({item.displaySettings.ondisplayAlignment})
+                      {item.title}
                     </Link>
                   </h2>
                   <div className="font-medium italic">
@@ -109,7 +109,7 @@ export default function MasonryGrid({ data }) {
                       href={`/projects/${item.slug.current}`}
                       className="hover:text-md-grey-500"
                     >
-                      {item.title} ({item.displaySettings.ondisplayAlignment})
+                      {item.title}
                     </Link>
                   </h2>
                   <div className="font-medium italic">
@@ -158,7 +158,7 @@ export default function MasonryGrid({ data }) {
                       href={`/projects/${item.slug.current}`}
                       className="hover:text-md-grey-500"
                     >
-                      {item.title} ({item.displaySettings.ondisplayAlignment})
+                      {item.title}
                     </Link>
                   </h2>
                   <div className="font-medium italic">
@@ -194,7 +194,7 @@ export default function MasonryGrid({ data }) {
                     href={`/projects/${item.slug.current}`}
                     className="hover:text-md-grey-500"
                   >
-                    {item.title} (Default)
+                    {item.title}
                   </Link>
                 </h2>
                 <div className="font-medium italic">
