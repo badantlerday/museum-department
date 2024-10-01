@@ -72,7 +72,7 @@ export default async function Font({ params }) {
             // placeholder="blur"
             alt={typeface?.name}
             unoptimized
-            className="col-span-10 col-start-8"
+            className="col-span-16 col-start-5"
           />
           </div>
         ) : (

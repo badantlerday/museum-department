@@ -82,6 +82,7 @@ export default defineType({
 					{ title: "Monospace", value: "Monospace" },
 					{ title: "Handwritten", value: "Handwritten" },
 					{ title: "Decorative", value: "Decorative" },
+					{ title: "Typewriter", value: "Typewriter" },
 				],
 				layout: "dropdown", // <-- defaults to 'dropdown'
 				direction: "horizontal", // <-- defaults to 'vertical'
