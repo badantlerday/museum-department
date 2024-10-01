@@ -1,3 +1,4 @@
+export const revalidate = 60;
 import { client,sanityFetch } from "@/sanity/lib/client";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
