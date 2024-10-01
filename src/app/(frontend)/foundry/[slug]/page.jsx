@@ -73,7 +73,7 @@ export default async function Foundry({ params }) {
 			posterImage{crop,hotspot,asset->},
 		},
 		staff[]{title,people[]->{_id,name,slug}},
-		"typefaces": *[_type == "typeface" && references(^._id)]{
+		"typefaces": *[_type == "typeface" && references(^._id)] | order(name asc){
 			_id,
       _type,
 			slug,
