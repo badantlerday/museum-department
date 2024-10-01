@@ -70,7 +70,7 @@ return (
             {items.slice(0,18).map((item) => (
                 <div key={item._id}>
                 <Link
-                    href={`/project/${item.slug.current}`}
+                    href={`/projects/${item.slug.current}`}
                     className="relative group"
                 >
                     {item.posterImage || item.posterImage ? (
@@ -106,7 +106,7 @@ return (
                                 
                             </span>
                             <span className="text-xs font-medium italic block">
-                            <Link href={`/project/${item.slug.current}`} className="hover:text-md-grey-500">{item.title}</Link>
+                            <Link href={`/projects/${item.slug.current}`} className="hover:text-md-grey-500">{item.title}</Link>
                             </span>
                         </div>
                         <div>
