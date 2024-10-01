@@ -66,6 +66,7 @@ export default function CurrentPageTitle({ data }) {
         }
         else {
             const matchedItem = items.find(item => item.slug === pathname);
+            console.log(matchedItem);
             if (matchedItem) {
                 if (matchedItem.type === 'category' || matchedItem.type === 'city' || matchedItem.type === 'country' || matchedItem.type === 'person') {
                     setCurrentHeader(`Reference`);

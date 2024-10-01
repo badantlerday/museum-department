@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const UserIcon = dynamic(() => import("@/components/UserIcon"));
 
 export default async function Header() {
-    const allPageTitles = await sanityFetch({ query: getAllPageTitles, tags: ["project","studio","typeface","foundry","interview","city","country","person","category"] })
+    const allPageTitles = await sanityFetch({ query: getAllPageTitles })
     const latestProjects = await sanityFetch({ query: getLatestProject, tags: ["project"] })
 
     return (
