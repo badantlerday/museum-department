@@ -65,8 +65,22 @@ export default function HoverListing({
                             Filter
                         </div>
                         {hoveredImage ? (
+                            <div className="bg-md-grey-100">
+                            {items[0]._type === 'typeface' && (
                             <Image
-                                className="mb-2 object-cover animate-fadeIn _aspect-[4/3]"
+                                className="mb-2 object-cover animate-fadeIn aspect-[4/3] "
+                                src={urlFor(hoveredImage).width(1000).url()}
+                                width={800}
+                                height={665}
+                                unoptimized={hoveredImage?.asset?.extension === 'svg'}
+                                // blurDataURL={hoveredImage.asset.metadata.lqip}
+                                // placeholder="blur"
+                                alt="Hovered Item"
+                            />
+                            )}
+                            {items[0]._type === 'studio' && (
+                            <Image
+                                className="mb-2 object-cover animate-fadeIn"
                                 src={urlFor(hoveredImage).width(1000).url()}
                                 width={800}
                                 height={665}
@@ -74,8 +88,10 @@ export default function HoverListing({
                                 placeholder="blur"
                                 alt="Hovered Item"
                             />
+                            )}
+                            </div>
                         ) : (
-                            <div className="bg-md-grey-100 aspect-[1500/1000]"></div>
+                            <div className="bg-md-grey-100_ aspect-[1500/1000]"></div>
                         )}
                     </div>
                 </div>
@@ -120,7 +136,7 @@ export default function HoverListing({
                 </div>
             )}
             {items[0]._type === 'typeface' && (
-                <div className="col-span-8 pl-6">
+                <div className="col-span-8 pl-6 pb-60">
                     <div className="grid grid-cols-12 text-xs uppercase mb-10 sticky top-0 bg-white z-10">
                         <div className="cursor-pointer col-start-3 col-span-3" onClick={() => sortBy('name')}>
                             Name {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
@@ -139,7 +155,7 @@ export default function HoverListing({
                         <div
                             key={item._id}
                             className="group grid grid-cols-12 text-xs text-md-grey-300 hover:text-md-black _mb-6 py-[3px] _hover:bg-md-grey-100"
-                            onMouseEnter={() => handleMouseEnter(item.specimenPoster)}
+                            onMouseEnter={() => handleMouseEnter(item.mainImage)}
                             onMouseLeave={handleMouseLeave}
                         >
                             <div className="relative col-start-3 col-span-3">
