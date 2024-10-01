@@ -1,0 +1,98 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+::selection {
+    color: gray;
+    background: transparent;
+  }
+  
+  body {
+    background-color: #FFFFFF;
+      font-family: var(--font-sans);
+        text-rendering: optimizeLegibility;
+        -webkit-font-smoothing: antialiased;
+  }
+
+  .menu-links a:hover {
+    color: #555555;
+  }
+  
+  .article h2 {
+    text-transform: uppercase;
+    font-weight: 500;
+    margin-bottom: 1rem;
+    line-height: 1.2;
+  }
+  .article p {
+    margin-bottom: 1.5rem;
+    /* font-weight: 500; */
+    /* line-height: 1.2; */
+    /* font-size: 1rem; */
+  }
+  .article--footer h2 {
+    text-transform: uppercase;
+    font-weight: 300;
+    margin-bottom: 4px;
+  }
+  .article--footer p {
+    margin-bottom: 1.5rem;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .article--footer li {
+    margin-bottom: 0.25rem;
+    font-weight: 300;
+    line-height: 1.5;
+  }
+  .md-grid {
+    display: grid;
+    grid-template-columns: repeat(24, 1fr);
+    grid-gap: 1rem;
+  }
+
+  /* MASONARY GRID */
+
+.masonry-grid {
+  display: flex;
+  margin-left: 0px; /* gutter size offset */
+  width: auto;
+}
+.masonry-grid--column {
+  padding-left: 0px; /* gutter size */
+  background-clip: padding-box;
+}
+.masonry-grid--item {
+  padding-top:25vh;
+  margin-bottom: 5vw;
+  padding: 32px 64px;
+}
+.masonry-grid--column:last-of-type .masonry-grid--item:first-child{
+  padding-top: 160px;
+}
+.masonry-grid--column:first-of-type .masonry-grid--item:first-child{
+  padding-top: 0px;
+}
+/* Style your items */
+.my-masonry-grid_column > div { /* change div to reference your elements you put in <Masonry> */
+  /* background: grey; */
+  /* margin-bottom: 30px; */
+}
+
+.masonry-item-left {
+  /* justify-content: flex-start; */
+  
+}
+.masonry-item-right {
+  /* justify-content: flex-end; */
+}
+
+.img--portrait {
+
+}
+.img--square {
+
+}
+.img--landscape {
+
+}
