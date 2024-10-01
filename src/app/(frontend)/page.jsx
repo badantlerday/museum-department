@@ -1,3 +1,4 @@
+export const revalidate = 60
 import { getFontGalleryItems,getOnDisplay } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import SiteTitleHeader from "@/components/SiteTitleHeader";

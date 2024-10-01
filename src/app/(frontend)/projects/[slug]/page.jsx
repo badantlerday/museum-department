@@ -1,3 +1,4 @@
+export const revalidate = 60
 import { client, sanityFetch } from "@/sanity/lib/client";
 import {getProject} from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
