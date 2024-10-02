@@ -77,7 +77,7 @@ export default async function Studio({ params }) {
               className="aspect-video object-cover absolute z-0"
             //   src={builder.image(studio.mainImage).width(2400).url()}
               src={urlFor(studio.mainImage).width(2400).url()}
-              width={3000}
+              width={2400}
               height={900}
               blurDataURL={studio.mainImage.asset.metadata.lqip}
               placeholder="blur"

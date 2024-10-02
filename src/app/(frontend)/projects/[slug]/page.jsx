@@ -41,6 +41,7 @@ export async function generateStaticParams() {
 export default async function Page({ params }) {
   const { slug } = params;
   const project  = await sanityFetch({ query: getProject, params:{ slug }, tags: ["project"] })
+  // console.log(project);
   
 //   const project = await sanityFetch({ query, params, revalidate:60, tags: ["project"] });
 //   const project = await client.fetch(query, { slug });

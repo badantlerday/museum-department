@@ -106,10 +106,15 @@ export const getProject = `
     slug,
     information,
     publishedAt,
-    pageBlocks,
+    pageBlocks[]{
+		_type,
+		_key,
+		image{${imageMeta}},
+		layoutoptions
+	},
     category[]->,
     sizeMedia,
-   mainImage{${imageMeta}},
+   	mainImage{${imageMeta}},
     mainVideo,
 		fontsInUse[]->{
 			name,
