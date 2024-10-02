@@ -1,6 +1,6 @@
 // export const revalidate = 60;
 // import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import {getUserBookmarks} from "@/app/actions";
+import { fetchPlaylistData, getUserBookmarks} from "@/app/actions";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { client } from "@/sanity/lib/client";
@@ -10,8 +10,9 @@ import Link from "next/link";
 import BookmarkButton from "@/components/BookmarkButton";
 import GridListing from "@/components/GridListing";
 import HoverListing from "@/components/HoverListing";
-// import StudioInterview from "@/components/StudioInterview";
-// import StudioSounds from "@/components/StudioSounds";
+import StudioPlaylist from "@/components/StudioPlaylist";
+import StudioInterview from "@/components/StudioInterview";
+
 // import { Suspense } from "react";
 const builder = imageUrlBuilder(client);
 
@@ -118,24 +119,22 @@ export default async function Foundry({ params }) {
 	  }`;
   const foundry = await client.fetch(query, { slug });
 
-  // console.log(foundry.typeDesigners);
+  let dataStudioSounds = null;
 
-  // const titleExplore = "Exploration Redefined";
-  // const textExplore = (
-  //   <>
-  //     <p>
-  //       At Museum Department, every element is intricately interwoven. Whether a
-  //       studio, foundry, or individual is linked to a project, typeface,
-  //       interview, or artifact, our sophisticated search mechanism ensures
-  //       effortless discovery.
-  //     </p>
-  //     <p>
-  //       Delve into categories, probe free text, or trace individuals, and
-  //       navigate the rich network of connections and narratives that our
-  //       platform offers.
-  //     </p>
-  //   </>
-  // );
+  if (foundry.studioSoundsPlaylist) {
+    const playlistUrl = foundry.studioSoundsPlaylist;
+    try {
+      // Directly assign the result of fetchPlaylistData to dataStudioSounds
+      dataStudioSounds = await fetchPlaylistData(playlistUrl);
+
+      // Now dataStudioSounds contains the playlist data
+      // console.log("Playlist Data:", dataStudioSounds);
+
+      // Process dataStudioSounds or use it in your component
+    } catch (error) {
+      console.error("Failed to fetch playlist data:", error);
+    }
+  }
 
   function getColumnClasses(projectCount) {
     if (projectCount <= 3) {
@@ -329,6 +328,13 @@ export default async function Foundry({ params }) {
         {/* <TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} /> */}
         <HoverListing data={foundry?.typefaces} sectionHeader="Fonts" userBookmarks={userBookmarks} user={user} />
       </section>
+      {foundry.interview && <StudioInterview data={foundry} />}
+      {dataStudioSounds && (
+        <StudioPlaylist
+          data={dataStudioSounds}
+          playlistUrl={foundry.studioSoundsPlaylist}
+        />
+      )}
       <GridListing
         title={`Explore other TYPE FOUNDRIES`}
         data={foundry?.foundries}

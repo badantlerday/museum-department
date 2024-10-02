@@ -1,16 +1,15 @@
 import { client, sanityFetch } from "@/sanity/lib/client";
-import Image from "next/image";
+import { getCurrentStudio } from "@/sanity/lib/queries";
+import { fetchPlaylistData, getUserBookmarks } from "@/app/actions";
 import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
+import Image from "next/image";
 
 import BookmarkButton from "@/components/BookmarkButton";
 import Link from "next/link";
 import GridListing from "@/components/GridListing";
-import { getCurrentStudio } from "@/sanity/lib/queries";
-import { fetchPlaylistData, getUserBookmarks } from "@/app/actions";
 import StudioPlaylist from "@/components/StudioPlaylist";
-
-// import StudioInterview from "@/components/StudioInterview";
+import StudioInterview from "@/components/StudioInterview";
 // import ExploreMore from "@/components/ExploreMore";
 
 
@@ -40,7 +39,7 @@ export async function generateMetadata({ params, searchParams }, parent) {
   }
 
 export default async function Studio({ params }) {
-    const {user,userBookmarks} = await getUserBookmarks();
+    // const {user,userBookmarks} = await getUserBookmarks();
     const { slug } = params;
     const { studio } = await sanityFetch({ query: getCurrentStudio,params:{ slug }, tags: ["studio","project"] })
 
@@ -226,7 +225,7 @@ export default async function Studio({ params }) {
         title="Featured Work"
         columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
       />
-      {/* {studio.interview && <StudioInterview data={studio} />} */}
+      {studio.interview && <StudioInterview data={studio} />}
       {dataStudioSounds && (
         <StudioPlaylist
           data={dataStudioSounds}
