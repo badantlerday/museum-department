@@ -49,6 +49,12 @@ export default function CurrentPageTitle({ data }) {
         else if (pathname === '/studios') {
             setCurrentHeader('Design Studios');
         }
+        else if (pathname === '/about') {
+            setCurrentHeader('About');
+        }
+        else if (pathname === '/advertise') {
+            setCurrentHeader('Advertise');
+        }
         else if (pathname === '/fonts-gallery') {
             setCurrentHeader('Fonts Gallery');
         }

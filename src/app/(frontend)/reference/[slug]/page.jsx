@@ -328,7 +328,7 @@ export default async function Reference({ params }) {
         title={`${data.projects?.length} Project${studios?.length > 1 ? "s" : ""}`}
         limit={18}
       />
-      {/* <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} /> */}
+      <GridListing data={data.foundries} title={`${data.foundries?.length} Foundries`} limit={18} />
       {/* <GridListing data={fonts} title={`${fonts?.length} Fonts`} limit={18} /> */}
     </>
   );
