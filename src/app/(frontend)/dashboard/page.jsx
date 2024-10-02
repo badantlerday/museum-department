@@ -29,10 +29,11 @@ export default async function Dashboard() {
 				</ul>
 			</div>
 		</nav>
-	</section>
+		</section>
 	: null}
 		
-		{ isUserAuthenticated ? <section className="pt-20 space-y-40">
+		{ isUserAuthenticated ?
+		<section className="pt-48 space-y-40">
 			<Suspense fallback={<div className="px-8 md:px-18 mx-auto">Loading...</div>}>
 				<UserBookmarks />
 			</Suspense>

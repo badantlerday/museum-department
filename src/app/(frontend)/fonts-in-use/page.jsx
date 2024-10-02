@@ -8,7 +8,7 @@ export default async function FontsInUse() {
 	const fonts = await client.fetch(getFontsInUse);
 
 	return (
-		<main className="mt-48">
+		<main className="mt-48 pt-[35px]">
 		    <FontsInUseListing data={fonts} userBookmarks={userBookmarks} user={user} />
 		</main>
 	);
