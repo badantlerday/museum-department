@@ -4,17 +4,14 @@ import { urlFor } from "@/sanity/lib/image";
 import { PortableText } from "@portabletext/react";
 
 import BookmarkButton from "@/components/BookmarkButton";
-// import BookmarkButtonClient from "@/components/BookmarkButtonClient";
 import Link from "next/link";
 import GridListing from "@/components/GridListing";
 import { getCurrentStudio } from "@/sanity/lib/queries";
 import { fetchPlaylistData, getUserBookmarks } from "@/app/actions";
+import StudioPlaylist from "@/components/StudioPlaylist";
 
 // import StudioInterview from "@/components/StudioInterview";
 // import ExploreMore from "@/components/ExploreMore";
-
-// REMOVE
-// import StudioPlaylist from "./StudioPlaylist";
 
 
 
@@ -229,20 +226,12 @@ export default async function Studio({ params }) {
         title="Featured Work"
         columns="grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
       />
-      {/* <StudioFeaturedWork name={studio.name} featuredWork={studio.works} /> */}
       {/* {studio.interview && <StudioInterview data={studio} />} */}
-      {/* {studio.studioSoundsPlaylist && (
-        <Suspense fallback={<div>Loading...</div>}>
-          <StudioSounds playlistUrl={studio.studioSoundsPlaylist} />
-        </Suspense>
-      )} */}
       {dataStudioSounds && (
-        <div>Sounds</div>
-        // <SpotifyPlaylist playlistUrl={studio.studioSoundsPlaylist} />
-        // <StudioPlaylist
-        //   data={dataStudioSounds}
-        //   playlistUrl={studio.studioSoundsPlaylist}
-        // />
+        <StudioPlaylist
+          data={dataStudioSounds}
+          playlistUrl={studio.studioSoundsPlaylist}
+        />
       )}
       <section className="text-center">
         [EXPLORE MORE SECTION - TO BE IMPLEMENTED]
