@@ -1,5 +1,6 @@
 "use client";
 import Masonry from "react-masonry-css";
+import {stegaClean} from '@sanity/client/stega'
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Link from "next/link";
@@ -10,10 +11,11 @@ export default function MasonryGrid({ data }) {
   // Convert array to JSX items
   const jsxItems = items.map((item) => {
     let content = null; // Default content
+    const ondisplayAlignment = stegaClean(item.displaySettings?.ondisplayAlignment);
 
     // Check if displaySettings and ondisplayAlignment exist
-    if (item.displaySettings && item.displaySettings.ondisplayAlignment) {
-      switch (item.displaySettings.ondisplayAlignment) {
+    if (item.displaySettings && ondisplayAlignment) {
+      switch (ondisplayAlignment) {
         case "left":
           content = (
             <div className="flex justify-start">

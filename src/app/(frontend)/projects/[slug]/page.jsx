@@ -1,5 +1,6 @@
 // export const revalidate = 60
 import { client, sanityFetch } from "@/sanity/lib/client";
+import {stegaClean} from '@sanity/client/stega'
 import {getProject} from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
 // import * as queries from "@/lib/sanity.queries";
@@ -81,14 +82,14 @@ export default async function Page({ params }) {
     }
   };
   // const imageClasses = project?.mainImage?.size ? getImageClasses(project.mainImage.size) : 'col-start-3 col-span-20';
-  const imageClasses = project?.sizeMedia
-    ? getImageClasses(project.sizeMedia)
+  const imageClasses = stegaClean(project?.sizeMedia)
+    ? getImageClasses(stegaClean(project.sizeMedia))
     : "col-start-3 col-span-20";
 
   // Hero
   let dominantColor = "#FAFBF7";
   if (project.mainImage?.dominant) {
-    dominantColor = project.mainImage?.dominant;
+    dominantColor = stegaClean(project.mainImage?.dominant);
   }
   const dominantBgStyle = {
     backgroundColor: dominantColor,

@@ -1,6 +1,7 @@
 "use client";
 
 import Image from "next/image";
+import {stegaClean} from '@sanity/client/stega'
 import { PortableText } from "@portabletext/react";
 import VideoCloudinary from "@/components/VideoCloudinary";
 import { urlFor } from "@/sanity/lib/image";
@@ -8,16 +9,17 @@ import { motion } from "framer-motion";
 
 export default function CaseMedia({ data }) {
     const { caption, image, video, layoutoptions, sticky, _key } = data ?? {}
+    const layout = stegaClean(layoutoptions)
 	return (
         <>
         {layoutoptions =="50_space_left" && (
             <div></div>
         )}
         <div className={`
-        ${layoutoptions =="50_gutter_right" ? 'pr-2' : 'pr-0'} 
-        ${layoutoptions =="50_gutter_left" ? 'pl-2' : 'pl-0'} 
-        ${layoutoptions =="full_width" ? 'col-span-2' : ''} 
-        ${layoutoptions =="half_width" ? '' : ''} 
+        ${layout =="50_gutter_right" ? 'pr-2' : 'pr-0'} 
+        ${layout =="50_gutter_left" ? 'pl-2' : 'pl-0'} 
+        ${layout =="full_width" ? 'col-span-2' : ''} 
+        ${layout =="half_width" ? '' : ''} 
         `}>
         <motion.div
             className={`${sticky ? 'sticky top-0' : ''}`}
@@ -55,7 +57,7 @@ export default function CaseMedia({ data }) {
             )}
         </motion.div>
         </div>
-        {layoutoptions =="50_space_right" && (
+        {layout =="50_space_right" && (
             <div></div>
         )}
         </>
