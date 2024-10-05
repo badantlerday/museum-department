@@ -1,0 +1,25 @@
+/* Increase the default font size */
+/* :root {
+    font-size: 17px;
+  } */
+
+/* Make the checked checkbox background green instead of black */
+/* [data-ui='Switch'] input:checked + span {
+    --switch-bg-color: var(--card-badge-positive-dot-color) !important;
+  } */
+
+/* Reduce the gap between fields */
+[data-as="form"] > [data-ui="Stack"],
+[data-as="fieldset"] > [data-ui="Box"] > [data-ui="Grid"] > [data-ui="Stack"] {
+  grid-gap: 1.5rem;
+}
+
+/* Reduce spacing between the field name and the field description */
+[data-ui="Stack"]:has(> [data-ui="Flex"] > label) {
+  grid-gap: 0.25rem;
+}
+
+/* Reduce spacing between the field name/description container and the field input  */
+/* [data-ui='Stack'][data-testid^='field-'] {
+    grid-gap: 0rem;
+  } */

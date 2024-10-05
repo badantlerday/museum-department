@@ -1,4 +1,4 @@
-import { sanityFetch } from "@/sanity/lib/client"
+import { sanityFetch } from "@/sanity/lib/client";
 import { getPageFontsGallery } from "@/sanity/lib/queries";
 import { getUserBookmarks } from "@/app/actions";
 import TextCallout from "@/components/TextCallout";
@@ -10,8 +10,11 @@ import NewFoundries from "@/components/NewFoundries";
 import Button from "@/components/Button";
 
 export default async function FontsGallery() {
-  const {user, userBookmarks} = await getUserBookmarks();
-  const {fontsinuse,typefaces} = await sanityFetch({ query: getPageFontsGallery, tags: ["project","typeface"] })
+  const { user, userBookmarks } = await getUserBookmarks();
+  const { fontsinuse, typefaces } = await sanityFetch({
+    query: getPageFontsGallery,
+    tags: ["project", "typeface"],
+  });
 
   const title = "Fonts Gallery";
   const text = (
@@ -33,7 +36,7 @@ export default async function FontsGallery() {
         </div>
         <MasonryGridLeftRight data={fontsinuse} />
         <div className="flex items-center flex-col">
-        <Button href="/fonts-in-use">View all in use</Button>
+          <Button href="/fonts-in-use">View all in use</Button>
         </div>
       </section>
       <NewFoundries title="Type Foundries" />
@@ -46,7 +49,12 @@ export default async function FontsGallery() {
           buttonText="SUBMIT A TYPE PROJECT"
         />
       </section>
-      <HoverListing data={typefaces} sectionHeader="Fonts + Foundries" userBookmarks={userBookmarks} user={user} />
+      <HoverListing
+        data={typefaces}
+        sectionHeader="Fonts + Foundries"
+        userBookmarks={userBookmarks}
+        user={user}
+      />
     </>
   );
 }

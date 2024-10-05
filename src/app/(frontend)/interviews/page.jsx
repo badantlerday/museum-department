@@ -1,37 +1,24 @@
 // export const revalidate = 60;
-import { client,sanityFetch } from "@/sanity/lib/client";
+import { sanityFetch } from "@/sanity/lib/client";
 import { getInterviews } from "@/sanity/lib/queries";
 import Link from "next/link";
 
 export default async function Interviews() {
-  // const interviews =
-  //   await client.fetch(`*[_type == "interview" ] | order(name asc){
-  //     _id,
-  //     _type,
-  //     title,
-  //     slug,
-  //   }`);
-    const interviews = await sanityFetch({ query: getInterviews, tags: ["interview"] });
-  
-
-  // const projects = await client.fetch(`*[_type == "project" ] | order(name asc){
-  //     _id,
-  //     _type,
-  // 		title,
-  // 		slug,
-  // 		posterImage{crop,hotspot,asset->},
-  // 		studio->{name,_type,slug}
-  //   }`);
+  const interviews = await sanityFetch({
+    query: getInterviews,
+    tags: ["interview"],
+  });
 
   return (
-    <>
-      <section className="mt-40 text-center">
+    <section className="mt-40 text-center">
       {interviews.map((interview) => {
         const minutes = Math.ceil(interview.readTime);
-        
+
         return (
           <div key={interview._id} className="px-18 mx-auto">
-            <p className="text-xs font-mono text-md-grey-400 uppercase mb-2">{minutes} min read</p>
+            <p className="text-xs font-mono text-md-grey-400 uppercase mb-2">
+              {minutes} min read
+            </p>
             <Link href={`/interviews/${interview.slug.current}`}>
               <div className="text-5xl font-serif font-light uppercase">
                 {interview.title}
@@ -43,7 +30,6 @@ export default async function Interviews() {
           </div>
         );
       })}
-      </section>
-    </>
+    </section>
   );
 }

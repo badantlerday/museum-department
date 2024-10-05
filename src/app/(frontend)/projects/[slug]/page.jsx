@@ -1,19 +1,15 @@
 // export const revalidate = 60
 import { client, sanityFetch } from "@/sanity/lib/client";
-import {stegaClean} from '@sanity/client/stega'
-import {getProject} from "@/sanity/lib/queries";
+import { stegaClean } from "@sanity/client/stega";
+import { getProject } from "@/sanity/lib/queries";
 import { urlFor } from "@/sanity/lib/image";
-// import * as queries from "@/lib/sanity.queries";
 import Link from "next/link";
 import Image from "next/image";
-// import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
 import { format } from "date-fns";
 import Blocks from "@/components/Blocks";
 import BookmarkButton from "@/components/BookmarkButton";
 import VideoCloudinary from "@/components/VideoCloudinary";
-
-// const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -41,12 +37,12 @@ export async function generateStaticParams() {
 
 export default async function Page({ params }) {
   const { slug } = params;
-  const project  = await sanityFetch({ query: getProject, params:{ slug }, tags: ["project"] })
+  const project = await sanityFetch({
+    query: getProject,
+    params: { slug },
+    tags: ["project"],
+  });
   // console.log(project);
-  
-//   const project = await sanityFetch({ query, params, revalidate:60, tags: ["project"] });
-//   const project = await client.fetch(query, { slug });
-
 
   if (!project) {
     // Handle missing project
@@ -107,11 +103,6 @@ export default async function Page({ params }) {
               >
                 <Image
                   src={urlFor(project.mainImage).width(1500).url()}
-                //   src={builder
-                //     .image(project.mainImage)
-                //     .width(1500)
-                //     .quality(100)
-                //     .url()}
                   width={1500}
                   height={2000}
                   blurDataURL={project.mainImage.lqip}
@@ -303,14 +294,14 @@ export default async function Page({ params }) {
               ))}
             </div>
             <div className="article text-md-black col-start-13 col-span-10 font-light tracking-[2%] leading-[120%] text-xl [&>p:first-of-type]:indent-8">
-            {/* <input type="checkbox" id="toggle" className="peer hidden" /> */}
-            {/* <div className="max-h-[20em] overflow-hidden peer-checked:max-h-fit"> */}
+              {/* <input type="checkbox" id="toggle" className="peer hidden" /> */}
+              {/* <div className="max-h-[20em] overflow-hidden peer-checked:max-h-fit"> */}
               <PortableText value={project?.information} />
-            {/* </div> */}
-            {/* <label htmlFor="toggle" className="text-birger-red text-base md:text-lg font-serif cursor-pointer mt-2 inline-block _peer-checked:hidden">
+              {/* </div> */}
+              {/* <label htmlFor="toggle" className="text-birger-red text-base md:text-lg font-serif cursor-pointer mt-2 inline-block _peer-checked:hidden">
               <span className="peer-checked:hidden">Visa mer</span>
             </label> */}
-          </div>
+            </div>
           </div>
         </div>
       </section>

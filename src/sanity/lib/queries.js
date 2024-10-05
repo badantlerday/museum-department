@@ -1,4 +1,4 @@
-// Construct our "image meta" GROQ
+// FRAGMENTS
 export const imageMeta = `
     crop,
     hotspot,
@@ -13,6 +13,7 @@ export const locationMeta = `
 		},
 `;
 
+// GLOBAL
 export const getAllPageTitles = `
   	*[_type in ["project","studio","typeface","foundry","interview","city","country","person","category"]]{
         _type,
@@ -22,19 +23,7 @@ export const getAllPageTitles = `
     }
 `;
 
-export const getOnDisplay = `
-  *[_type == "project" && ondisplay == true] | order(publishedAt desc){
-		_id,
-		_type,
-		title,
-		slug,
-		mainImage{${imageMeta}},
-		posterImage{${imageMeta}},
-		displaySettings,
-		studio->{name,slug}
-	}
-`;
-
+// SINGLE
 export const getCurrentStudio = `{
 	"studio": *[_type == "studio" && slug.current == $slug][0]{
 		_id,
@@ -68,6 +57,79 @@ export const getCurrentStudio = `{
 		},
 	}
   }`;
+
+export const getFoundry = `
+  *[_type == "foundry" && slug.current == $slug][0]{
+  _id,
+    _type,
+  name,
+  slug,
+  size,
+  founded,
+  information,
+  typeDesigners[]->{
+    _id,
+  		name,
+  		_type,
+  		slug
+  },
+  mainImage{crop,hotspot,asset->},
+  mainFontImage{asset->},
+  location[]->{
+  	_id, name, country->{name,slug},slug
+    },
+  studioSoundsPlaylist,
+  interview->{
+  	_id,
+  	title,
+  	slug,
+  	posterImage{crop,hotspot,asset->},
+  },
+  staff[]{title,people[]->{_id,name,slug}},
+  "typefaces": *[_type == "typeface" && references(^._id)] | order(name asc){
+  	_id,
+      _type,
+  	slug,
+  	name,
+      realaseYear,
+      style,
+      foundry->{
+        _id,
+          _type,
+        name,
+        slug,
+        location[]->{
+          _id,name,_type,slug,country->{name,slug,_type}
+        },
+      },
+      posterImage{crop,hotspot,asset->},
+      specimenPoster{crop,hotspot,asset->},
+      mainImage{crop,hotspot,asset->},
+  },
+  "projects": *[_type == "project" && fontsInUse[]->foundry->_id match ^._id]{
+  	_id,
+  	slug,
+  	_type,
+  	title,
+  	name,
+  	posterImage{crop,hotspot,asset->},
+  	studio->{name,slug},
+  	fontsInUse[]->{name,_id,slug}
+  },
+  "foundries": *[_type == "foundry"] | order(_createdAt desc){
+  	_id,
+  	slug,
+  	_type,
+  	title,
+  	name,
+  	posterImage{crop,hotspot,asset->},
+  	mainImage{crop,hotspot,asset->},
+  	location[]->{
+  	_id, name, country->{name,slug},slug
+    },
+  }
+   }
+`;
 
 export const getStudios = `
   *[_type == "studio" ] | order(name asc){
@@ -131,15 +193,15 @@ export const getProject = `
 		},
 		gallery{
 			images[]{
-                _key,
-                display,
-                asset->
+        _key,
+        display,
+        asset->
 			}
 		},
     content[]{
       image[]{
-        _key,
-        asset->
+      _key,
+      asset->
       }
     },
 		studio->{
@@ -274,6 +336,21 @@ export const getFontGalleryItems = `
         fontsInUse[]->{name,_id,slug},
         posterImage{${imageMeta}},
     }
+`;
+
+// PAGES
+
+export const getOnDisplay = `
+  *[_type == "project" && ondisplay == true] | order(publishedAt desc){
+		_id,
+		_type,
+		title,
+		slug,
+		mainImage{${imageMeta}},
+		posterImage{${imageMeta}},
+		displaySettings,
+		studio->{name,slug}
+	}
 `;
 
 export const getPageDesignStudios = `{

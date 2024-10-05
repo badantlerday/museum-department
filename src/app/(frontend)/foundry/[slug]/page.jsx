@@ -1,20 +1,16 @@
 // export const revalidate = 60;
-// import { getKindeServerSession } from "@kinde-oss/kinde-auth-nextjs/server";
-import { fetchPlaylistData, getUserBookmarks} from "@/app/actions";
+import { fetchPlaylistData, getUserBookmarks } from "@/app/actions";
+import { client, sanityFetch } from "@/sanity/lib/client";
+import { getFoundry } from "@/sanity/lib/queries";
+import { urlFor } from "@/sanity/lib/image";
 import Image from "next/image";
-import imageUrlBuilder from "@sanity/image-url";
-import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import Link from "next/link";
-// import TypefaceBy from "@/components/TypefaceBy";
 import BookmarkButton from "@/components/BookmarkButton";
 import GridListing from "@/components/GridListing";
 import HoverListing from "@/components/HoverListing";
 import StudioPlaylist from "@/components/StudioPlaylist";
 import StudioInterview from "@/components/StudioInterview";
-
-// import { Suspense } from "react";
-const builder = imageUrlBuilder(client);
 
 // https://nextjs.org/docs/app/api-reference/functions/generate-metadata#generatemetadata-function
 export async function generateMetadata({ params, searchParams }, parent) {
@@ -41,83 +37,14 @@ export async function generateStaticParams() {
   }));
 }
 
-
 export default async function Foundry({ params }) {
-  // const { getUser } = getKindeServerSession();
-	// const user = await getUser();
-  const {user,userBookmarks} = await getUserBookmarks();
+  const { user, userBookmarks } = await getUserBookmarks();
   const { slug } = params;
-  const query = `*[_type == "foundry" && slug.current == $slug][0]{
-		_id,
-    _type,
-		name,
-		slug,
-		size,
-		founded,
-		information,
-		typeDesigners[]->{
-		  _id,
-  		name,
-  		_type,
-  		slug
-		},
-		mainImage{crop,hotspot,asset->},
-		mainFontImage{asset->},
-		location[]->{
-			_id, name, country->{name,slug},slug
-		  },
-		studioSoundsPlaylist,
-		interview->{
-			_id,
-			title,
-			slug,
-			posterImage{crop,hotspot,asset->},
-		},
-		staff[]{title,people[]->{_id,name,slug}},
-		"typefaces": *[_type == "typeface" && references(^._id)] | order(name asc){
-			_id,
-      _type,
-			slug,
-			name,
-      realaseYear,
-      style,
-      foundry->{
-        _id,
-          _type,
-        name,
-        slug,
-        location[]->{
-          _id,name,_type,slug,country->{name,slug,_type}
-        },
-      },
-      posterImage{crop,hotspot,asset->},
-      specimenPoster{crop,hotspot,asset->},
-      mainImage{crop,hotspot,asset->},
-		},
-		"projects": *[_type == "project" && fontsInUse[]->foundry->_id match ^._id]{
-			_id,
-			slug,
-			_type,
-			title,
-			name,
-			posterImage{crop,hotspot,asset->},
-			studio->{name,slug},
-			fontsInUse[]->{name,_id,slug}
-		},
-		"foundries": *[_type == "foundry"] | order(_createdAt desc){
-			_id,
-			slug,
-			_type,
-			title,
-			name,
-			posterImage{crop,hotspot,asset->},
-			mainImage{crop,hotspot,asset->},
-			location[]->{
-			_id, name, country->{name,slug},slug
-		  },
-		}
-	  }`;
-  const foundry = await client.fetch(query, { slug });
+  const foundry = await sanityFetch({
+    query: getFoundry,
+    params: { slug },
+    tags: ["foundry", "typeface"],
+  });
 
   let dataStudioSounds = null;
 
@@ -138,11 +65,11 @@ export default async function Foundry({ params }) {
 
   function getColumnClasses(projectCount) {
     if (projectCount <= 3) {
-      return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-3"
+      return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-3";
     } else if (projectCount <= 5) {
-      return "grid-cols-2 sm:grid-cols-4 lg:grid-cols-4"
+      return "grid-cols-2 sm:grid-cols-4 lg:grid-cols-4";
     } else {
-      return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6"
+      return "grid-cols-2 sm:grid-cols-3 lg:grid-cols-6";
     }
   }
 
@@ -151,11 +78,9 @@ export default async function Foundry({ params }) {
       <section className="px-20 mx-auto _py-36 text-center justify-center flex flex-col h-[600px] bg-slate-300_">
         {foundry?.mainFontImage ? (
           <Image
-            src={builder.image(foundry.mainFontImage).url()}
+            src={urlFor(foundry.mainFontImage).url()}
             width={3000}
             height={900}
-            // blurDataURL={foundry.mainFontImage.asset.metadata.lqip}
-            // placeholder="blur"
             alt={foundry?.name}
             unoptimized
           />
@@ -326,7 +251,12 @@ export default async function Foundry({ params }) {
       {/* <FontsInUseBy name={foundry?.name} projects={foundry?.projects} /> */}
       <section className="my-40">
         {/* <TypefaceBy name={foundry?.name} typefaces={foundry?.typefaces} /> */}
-        <HoverListing data={foundry?.typefaces} sectionHeader="Fonts" userBookmarks={userBookmarks} user={user} />
+        <HoverListing
+          data={foundry?.typefaces}
+          sectionHeader="Fonts"
+          userBookmarks={userBookmarks}
+          user={user}
+        />
       </section>
       {foundry.interview && <StudioInterview data={foundry} />}
       {dataStudioSounds && (
