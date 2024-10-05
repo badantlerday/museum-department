@@ -182,13 +182,16 @@ export const getInterviews = `
 	_type,
     title,
     slug,
+	excerpt,
+    posterImage{${imageMeta}},
     posterImage{${imageMeta}},
 	studio->{
 		name,
 		slug,
 		_type,
 		${locationMeta}
-	}
+	},
+	'readTime': length(string::split(pt::text(body), ' ')) / 200,
     }
 `;
 

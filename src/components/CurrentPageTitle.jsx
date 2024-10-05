@@ -52,6 +52,9 @@ export default function CurrentPageTitle({ data }) {
         else if (pathname === '/about') {
             setCurrentHeader('About');
         }
+        else if (pathname === '/interviews') {
+            setCurrentHeader('Interviews');
+        }
         else if (pathname === '/advertise') {
             setCurrentHeader('Advertise');
         }
