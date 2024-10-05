@@ -303,8 +303,14 @@ export default async function Page({ params }) {
               ))}
             </div>
             <div className="article text-md-black col-start-13 col-span-10 font-light tracking-[2%] leading-[120%] text-xl [&>p:first-of-type]:indent-8">
+            {/* <input type="checkbox" id="toggle" className="peer hidden" /> */}
+            {/* <div className="max-h-[20em] overflow-hidden peer-checked:max-h-fit"> */}
               <PortableText value={project?.information} />
-            </div>
+            {/* </div> */}
+            {/* <label htmlFor="toggle" className="text-birger-red text-base md:text-lg font-serif cursor-pointer mt-2 inline-block _peer-checked:hidden">
+              <span className="peer-checked:hidden">Visa mer</span>
+            </label> */}
+          </div>
           </div>
         </div>
       </section>
