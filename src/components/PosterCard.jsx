@@ -134,7 +134,28 @@ export default function Postercard({ data, aspect, columns, userBookmarks, user 
           )}
         </>
       );
-      break;
+    break;
+    case "interview":
+      content = (
+        <>
+          <Link href={`/interviews/${item.slug.current}`}>
+            {renderImage(item.posterImage, item.title)}
+          </Link>
+          {renderDetails(
+            `/interviews/${item.studio.slug.current}`,
+            item.studio.name,
+            item.studio.location?.[0]?.slug?.current
+              ? `/reference/${item.studio.location[0].slug.current}`
+              : null,
+            item.studio.location?.[0]?.name,
+            item.studio.location?.[0]?.country?.slug?.current
+              ? `/reference/${item.studio.location[0].country.slug.current}`
+              : null,
+            item.studio.location?.[0]?.country?.name,
+          )}
+        </>
+      );
+    break;
     case "foundry":
       content = (
         <>

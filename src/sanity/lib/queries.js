@@ -7,6 +7,11 @@ export const imageMeta = `
     "lqip": asset->metadata.lqip,
     "dominant": asset->metadata.palette.dominant.background,
 `;
+export const locationMeta = `
+		location[]->{
+			_id, name, _type, slug, country->{name,_type,slug}
+		},
+`;
 
 export const getAllPageTitles = `
   	*[_type in ["project","studio","typeface","foundry","interview","city","country","person","category"]]{
@@ -147,12 +152,52 @@ export const getProject = `
 	  }
 `;
 
+export const getInterview = `
+  	*[_type == "interview" && slug.current == $slug][0]{
+    _id,
+    title,
+    slug,
+    body,
+    excerpt,
+    posterImage{${imageMeta}},
+	studio->{
+		name,
+		slug,
+		_type,
+		"projects": *[_type == "project" && references(^._id)]{
+			_id,
+			_type,
+			name,
+			slug,
+			posterImage{${imageMeta}},
+		},
+	},
+	'readTime': length(string::split(pt::text(body), ' ')) / 200,
+    }
+`;
+
+export const getInterviews = `
+  	*[_type == "interview"]{
+    _id,
+	_type,
+    title,
+    slug,
+    posterImage{${imageMeta}},
+	studio->{
+		name,
+		slug,
+		_type,
+		${locationMeta}
+	}
+    }
+`;
+
 export const getLatestProject = `
   *[_type == "project"] | order(_createdAt desc)[0]{
         _id,
         title,
         slug,
-        mainImage{crop,hotspot,asset->},
+        mainImage{${imageMeta}},
         mainVideo,
         studio->{name},
     }

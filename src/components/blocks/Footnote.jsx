@@ -1,12 +1,11 @@
 import React from "react";
 
-const Footnote = ({ children, value, index }) => {
+const Footnote = ({ children, value }) => {
 	return (
-		<span className="footnote italic">
+		<span className="footnote">
 			{children}
-			<sup>
-				{value.text}
-				{index}
+			<sup className="ml-1 text-md-grey-500">
+				{value.title}
 			</sup>
 		</span>
 	);

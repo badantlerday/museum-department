@@ -1,6 +1,7 @@
 import { defineType, defineArrayMember } from "sanity";
 import { HashIcon } from "@sanity/icons";
 import footnote from "../blocks/footnote";
+import imageBlock from "../fragments/image-block";
 
 /**
  * This is the schema type for block content used in the post document type
@@ -74,11 +75,17 @@ export default defineType({
 								name: "text",
 								type: "string",
 							},
+							{
+								title: "Image",
+								name: "footnoteImage",
+								type: "image",
+							},
 						],
 					},
 				],
 			},
 		}),
+		imageBlock,
 		// defineArrayMember(footnote),
 
 		// You can add additional types here. Note that you can't use

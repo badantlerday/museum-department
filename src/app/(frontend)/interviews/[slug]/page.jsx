@@ -1,15 +1,45 @@
+export const revalidate = 60
 import { client,sanityFetch } from "@/sanity/lib/client";
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
 import SectionHeader from "@/components/SectionHeader";
 import Footnote from "@/components/blocks/Footnote";
+import InterviewNotes from "@/components/InterviewNotes";
+import ItemsRow from "@/components/ItemsRow";
+import { getInterview,getInterviews } from "@/sanity/lib/queries";
+import GridListing from "@/components/GridListing";
+
+
+// Custom component for rendering images
+const ImageBlock = ({ value }) => {
+    if (!value?.asset?._ref) {
+      return null;
+    }
+    return (
+      <div className="py-10">
+        <Image
+          src={builder.image(value).width(800).height(600).url()}
+          alt={value.alt || ' '}
+          width={800}
+          height={600}
+          className="w-full h-auto"
+        />
+        {value.caption && (
+          <figcaption className="font-mono text-xs mt-2 text-md-grey-500">{value.caption}</figcaption>
+        )}
+      </div>
+    );
+  };
 
 // Define the components object to map the custom footnote annotation
 const components = {
     marks: {
       footnote: Footnote
-    }
+    },
+    types: {
+        image: ImageBlock
+      }
   };
 
 const builder = imageUrlBuilder(client);
@@ -36,36 +66,39 @@ export async function generateStaticParams() {
   }))
 }
 
-export default async function Page({ params }) {
-  const query = `*[_type == "interview" && slug.current == $slug][0]{
-    _id,
-    title,
-    slug,
-    body,
-    excerpt,
-    posterImage{crop,hotspot,asset->},
-    }`;
-  const interview = await sanityFetch({ query, params, tags: ["interview"] });
+export default async function Interview({ params }) {
+//   const query = `*[_type == "interview" && slug.current == $slug][0]{
+//     _id,
+//     title,
+//     slug,
+//     body,
+//     excerpt,
+//     posterImage{crop,hotspot,asset->},
+//     }`;
+  const interview = await sanityFetch({ query: getInterview, params, tags: ["interview"] });
+  const allInterviews = await sanityFetch({ query: getInterviews, tags: ["interview"] });
+  const minutes = Math.ceil(interview.readTime)
 
 // Filter out blocks with footnotes
 const footnoteBlocks = interview.body.filter(block =>
     block._type === 'block' && block.markDefs && block.markDefs.some(mark => mark._type === 'footnote')
   );
   
-  const slides = [
-    { id: 1, color: 'bg-red-500' },
-    { id: 2, color: 'bg-green-500' },
-    { id: 3, color: 'bg-blue-500' }
-  ];
+//   const slides = [
+//     { id: 1, color: 'bg-red-500' },
+//     { id: 2, color: 'bg-green-500' },
+//     { id: 3, color: 'bg-blue-500' }
+//   ];
 
   return (
     <>
     <section className="py-20">
-        <div className="px-18 mx-auto text-center font-black uppercase text-3xl mb-4">
-            {interview.title}
+        <div className="px-18 mx-auto text-center mb-4">
+            <p className="text-xs font-mono text-md-grey-400 uppercase mb-2">{minutes} min read</p>
+            <h1 className="font-serif uppercase text-3xl font-light">{interview.studio.name}</h1>
         </div>
         <div className="max-w-xl mx-auto text-center font-serif font-light">
-            <p>Mollit laborum voluptate tempor ea sit sunt quis irure ullamco consequat quis ea amet dolore. Ullamco cupidatat consequat qui tempor id aute ex duis excepteur ut cillum. Sunt mollit nostrud aute qui voluptate laborum elit cillum commodo sit ea adipisicing tempor in. Aute reprehenderit fugiat fugiat enim. Deserunt sit esse id qui consequat enim veniam fugiat.</p>
+            <p>{interview.excerpt}</p>
         </div>
         <div className="grid grid-cols-24 place-content-center my-14">
             {/* <div className=" col-start-11 col-span-4">
@@ -99,73 +132,37 @@ const footnoteBlocks = interview.body.filter(block =>
 							)}
         </div>
         <div className="px-18 text-center font-serif font-light">
+            
         A conversation between Veniam do magna ullamco aliqua anim fugiat irure et non veniam. Eiusmod nisi incididunt magna aute proident.
         </div>
     </section>
-    <section className="py-40">
+    {/* <section className="py-40">
         <div className="px-18 mx-auto grid grid-cols-24">
             <div className="col-start-5 col-span-16 text-2xl font-serif font-light">
-            Est laboris dolore excepteur labore adipisicing consequat veniam eiusmod. Deserunt tempor aute sunt eiusmod proident id. Ex velit ea veniam incididunt laboris et mollit est veniam exercitation sit. Quis nulla qui culpa consequat esse.
+            {interview.excerpt}
             </div>
         </div>
-    </section>
+    </section> */}
     <section className="pt-20">
         <div className="px-18 mx-auto">
             <div className="grid grid-cols-24 bg-slate-100_">
             <div className="col-start-2 col-span-4 bg-slate-200_ relative">
-                <div className="sticky top-0 font-mono text-xs h-screen bg-red-300_">
-                    <div className="sticky top-4 pb-60 text-md-grey-400">
-                        <div className="uppercase mb-4">References</div>
-                        {/* Loop through interview.body to find footnotes */}
-                        <ol className="">
-                        {footnoteBlocks.map((block,index) => (
-                            block.markDefs.map(mark => (
-                            mark._type === 'footnote' && (
-                                <li key={mark._key}>{mark.text}</li>
-                            )
-                            ))
-                        ))}
-                        </ol>
-                    </div>
-                    <div className="absolute bottom-4 w-full pr-4">
-                        <div className="aspect-[4/3] bg-md-grey-100"></div>
-                        <div className="mt-4">Reference Content</div>
-                    </div>
-                </div>
-
+                <InterviewNotes data={footnoteBlocks} />
             </div>
-            <div className="col-start-6 col-span-14 space-y-10 font-serif [&>p]:px-18 font-light">
+            <div className="interviewContent col-start-6 col-span-14 space-y-6 font-serif [&>p]:px-18 font-light">
                 <PortableText value={interview.body} components={components} />
-                {/* ----
-                <div className="px-18 space-y-10">
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                </div>
-
-                <div className="aspect-video relative bg-md-grey-200"></div>
-
-                <div className="px-18 space-y-10">
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                </div>
-
-                <div className=" aspect-[4/3] ">
-                    <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
-                </div>
-
-                <div className="px-18 space-y-10">
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                <p>Do anim aliqua enim qui. Laborum ut do veniam sint elit do et tempor et ut. Consectetur in nostrud proident qui exercitation. Adipisicing cillum reprehenderit occaecat reprehenderit qui cillum nostrud adipisicing.</p>
-                </div> */}
                 <div className="text-center">***</div>
             </div>
             </div>
         </div>
     </section>
-    <section className="py-40">
+    <section className="px-18 mt-40 mx-auto">
+    <ItemsRow title="Fonts Gallery" data={interview.studio?.projects} link={interview.studio?.slug.current} />
+    </section>
+    <section className="mt-40">
+    <GridListing data={allInterviews} title="More Interviews" columns="grid-cols-2 sm:grid-cols-4 lg:grid-cols-4" />
+    </section>
+    {/* <section className="py-40">
         <div className="px-18 mx-auto">
         <SectionHeader title="More Interviews" border={true} />
         <div className="grid grid-cols-4 gap-4">
@@ -182,7 +179,7 @@ const footnoteBlocks = interview.body.filter(block =>
             </div>
         </div>
         </div>
-    </section>
+    </section> */}
 
     </>
   );

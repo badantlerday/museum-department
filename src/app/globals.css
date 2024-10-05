@@ -51,6 +51,20 @@
     grid-gap: 1rem;
   }
 
+  /* INTERVIEW */
+  .interviewContent p,
+  .interviewContent h2 {
+    @apply px-18;
+  }
+
+  .interviewContent h2 {
+    @apply text-xl;
+  }
+
+  .interviewContent blockquote {
+    @apply text-4xl pl-18;
+  }
+
   /* MASONARY GRID */
 
 .masonry-grid {

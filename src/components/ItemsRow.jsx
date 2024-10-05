@@ -64,7 +64,7 @@ export default function ItemsRow({ title = "Title", link, data }) {
           </div>
           <div className="flex flex-col text-[11px]">
             <div className="grow uppercase font-medium tracking-[3%] flex flex-col">
-              {item.fontsInUse.map((font) => (
+              {item.fontsInUse?.map((font) => (
                 <div key={font._id} className="truncate">
                   <Link
                     href={`/font/${font.slug?.current}`}
