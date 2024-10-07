@@ -5,7 +5,7 @@ const Footnote = ({ children, value }) => {
 		<span className="footnote">
 			{children}
 			<sup className="ml-1 text-md-grey-500">
-				{value.title}
+				{value.number}
 			</sup>
 		</span>
 	);

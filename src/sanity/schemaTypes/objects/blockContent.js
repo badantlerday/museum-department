@@ -66,6 +66,11 @@ export default defineType({
 						icon: HashIcon,
 						fields: [
 							{
+								title: "Number",
+								name: "number",
+								type: "string",
+							},
+							{
 								title: "Title",
 								name: "title",
 								type: "string",

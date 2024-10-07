@@ -5,8 +5,7 @@ import Link from "next/link";
 
 export default async function Interviews() {
   const interviews = await sanityFetch({
-    query: getInterviews,
-    tags: ["interview"],
+    query: getInterviews
   });
 
   return (
