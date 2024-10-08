@@ -7,6 +7,7 @@ export default async function Interviews() {
   const interviews = await sanityFetch({
     query: getInterviews
   });
+  
 
   return (
     <section className="mt-40 text-center">

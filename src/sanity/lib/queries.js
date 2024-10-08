@@ -356,7 +356,6 @@ export const getOnDisplay = `
 export const getPageDesignStudios = `{
 	"studios": ${getStudios},
 	"recentlyUpdatedProjects": ${getUpdatedProjects},
-	"newStudios": ${getNewStudios}
   }`;
 
 export const getPageFontsGallery = `{
