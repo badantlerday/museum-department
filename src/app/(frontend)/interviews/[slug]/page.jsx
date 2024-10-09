@@ -75,7 +75,7 @@ export default async function Interview({ params }) {
 //     excerpt,
 //     posterImage{crop,hotspot,asset->},
 //     }`;
-  const interview = await sanityFetch({ query: getInterview, params, tags: ["interview"] });
+  const interview = await sanityFetch({ query: getInterview, params });
   const allInterviews = await sanityFetch({ query: getInterviews, tags: ["interview"] });
   const minutes = Math.ceil(interview.readTime)
 
@@ -136,20 +136,20 @@ const footnoteBlocks = interview.body.filter(block =>
         A conversation between Veniam do magna ullamco aliqua anim fugiat irure et non veniam. Eiusmod nisi incididunt magna aute proident.
         </div>
     </section>
-    {/* <section className="py-40">
+    <section className="py-40 h-screen flex items-center">
         <div className="px-18 mx-auto grid grid-cols-24">
-            <div className="col-start-5 col-span-16 text-2xl font-serif font-light">
+            <div className="col-start-5 col-span-16 text-3xl font-serif tracking-tight">
             {interview.excerpt}
             </div>
         </div>
-    </section> */}
+    </section>
     <section className="pt-20">
         <div className="px-18 mx-auto">
             <div className="grid grid-cols-24 bg-slate-100_">
-            <div className="col-start-2 col-span-4 bg-slate-200_ relative">
+            <div className="col-span-4 bg-slate-200_ relative">
                 <InterviewNotes data={footnoteBlocks} />
             </div>
-            <div className="interviewContent col-start-6 col-span-14 space-y-6 font-serif [&>p]:px-18 font-light">
+            <div className="interviewContent col-start-5 col-span-16 space-y-6 font-serif font-normal">
                 <PortableText value={interview.body} components={components} />
                 <div className="text-center">***</div>
             </div>

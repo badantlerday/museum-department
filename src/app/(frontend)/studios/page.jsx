@@ -2,6 +2,8 @@
 import { sanityFetch } from "@/sanity/lib/client"
 import { getPageDesignStudios } from "@/sanity/lib/queries";
 import { getUserBookmarks } from "@/app/actions";
+// import PageDesignStudios from "@/components/PageDesignStudios";
+// import { Suspense } from "react";
 import NewStudios from "@/components/NewStudios";
 import SummaryCallout from "@/components/SummaryCallout";
 import GridListing from "@/components/GridListing";
@@ -28,6 +30,14 @@ export default async function Studios() {
   const uniqueProjects = filterProjects(recentlyUpdatedProjects);
 
   return (
+    // <Suspense fallback={<div>Loading...</div>}>
+    // <PageDesignStudios
+    //   studios={studios}
+    //   uniqueProjects={uniqueProjects}
+    //   userBookmarks={userBookmarks}
+    //   user={user}
+    // />
+    // </Suspense>
     <main className="mt-48">
       <section className="pb-20">
         <NewStudios

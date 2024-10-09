@@ -52,17 +52,46 @@
   }
 
   /* INTERVIEW */
-  .interviewContent p,
-  .interviewContent h2 {
-    @apply px-18;
+  .interviewContent p{
+    @apply max-w-2xl text-xl mx-auto leading-[130%];
   }
+  
 
   .interviewContent h2 {
-    @apply text-xl;
+    @apply text-xl max-w-2xl mx-auto leading-[130%];
   }
 
   .interviewContent blockquote {
-    @apply text-4xl pl-18;
+    @apply text-6xl uppercase font-mono -mx-36 py-20 leading-[110%];
+  }
+
+  .interviewContent h2 {
+    text-indent: 4rem;  /* Example: Indent the paragraph */
+  }
+
+  .interviewContent p {
+    /* Apply your styles to the p tag immediately following h2 */
+    text-indent: 4rem;  /* Example: Indent the paragraph */
+  }
+
+  .interviewContent h2 + p {
+    /* Apply your styles to the p tag immediately following h2 */
+    position: relative;
+  }
+  
+  .interviewContent h2 + p::before {
+    content: "( A ) ";
+  }
+
+  .interviewContent h2::before {
+    content: "( Q ) ";
+  }
+
+  .interviewContent h2 + h2::before {
+    content: none;
+  }
+  .interviewContent h2 + h2 {
+    text-indent: 0rem;
   }
 
   /* MASONARY GRID */

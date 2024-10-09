@@ -1,10 +1,10 @@
 import { defineField, defineType } from "sanity";
-import { BlockContentIcon } from "@sanity/icons";
+import { TextIcon } from "@sanity/icons";
 export default defineType({
 	name: "typeface",
 	title: "Typeface",
 	type: "document",
-	icon: BlockContentIcon,
+	icon: TextIcon,
 	groups: [
 		{
 			name: "information",
