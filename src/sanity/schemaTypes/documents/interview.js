@@ -38,6 +38,28 @@ export default defineType({
 				disableNew: true,
 			},
 		},
+		defineField({
+			name: "textCollageIntro",
+			title: "Text Collage Intro",
+			type: "array",
+			group: "information",
+			of: [
+				{
+					title: "Text Row",
+					name: "textRow",
+					type: "object",
+					fields: [
+						{ name: "text", type: "string", title: "Text" },
+						{
+							name: "colStart",
+							type: "string",
+							title: "Padding left",
+							description: "Padding left, based in columns.",
+						},
+					],
+				},
+			],
+		}),
 		{
 			title: "Excerpt",
 			name: "excerpt",

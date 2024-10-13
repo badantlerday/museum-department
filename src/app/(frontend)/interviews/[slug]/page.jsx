@@ -11,7 +11,6 @@ import ItemsRow from "@/components/ItemsRow";
 import { getInterview,getInterviews } from "@/sanity/lib/queries";
 import GridListing from "@/components/GridListing";
 
-
 // Custom component for rendering images
 const ImageBlock = ({ value }) => {
     if (!value?.asset?._ref) {
@@ -94,14 +93,28 @@ const footnoteBlocks = interview.body.filter(block =>
   return (
     <>
     <section className="py-20 px-8 sm:px-0">
-        <div className="mx-auto text-center mb-4">
-            <p className="text-xs font-mono text-md-grey-400 uppercase mb-2">{minutes} min read</p>
+        <div className="mx-auto text-center mb-2">
+            {/* <p className="text-xs font-mono text-md-grey-400 uppercase mb-2">{minutes} min read</p> */}
             <h1 className="font-serif uppercase text-3xl">{interview.studio.name}</h1>
         </div>
-        <div className="max-w-xl mx-auto text-center font-serif">
+        {/* <div className="max-w-xl mx-auto text-center font-serif">
             <p>{interview.excerpt}</p>
+        </div> */}
+        <div className="mx-auto flex items-center flex-col">
+            <div>
+              {interview.textCollageIntro?.map((row, index) => {
+                const cleanedColStart = stegaClean(row.colStart)
+                return (
+                  <div className="md:text-2xl lg:text-[32px] font-serif lg:leading-tight" key={index}>
+                    <div className={`md-textCollageAdd-${cleanedColStart} col-span-full`}>
+                      {row.text}
+                    </div>
+                  </div>
+                )
+              })}
+          </div>
         </div>
-        <div className="grid grid-cols-24 place-content-center my-14">
+        <div className="grid grid-cols-24 place-content-center my-10">
             {/* <div className=" col-start-11 col-span-4">
                 <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
             </div> */}
@@ -138,8 +151,8 @@ const footnoteBlocks = interview.body.filter(block =>
         </div>
     </section>
   
-    <section className="mx-auto mt-20 flex items-center flex-col">
-      <div>
+    <section className="mx-auto h-screen flex items-center">
+      <div className="mx-auto">
         {interview.textCollage.map((row, index) => {
           const cleanedColStart = stegaClean(row.colStart)
           return (
