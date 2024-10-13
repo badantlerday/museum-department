@@ -12,7 +12,7 @@ export default async function FeaturedInterview({ id }) {
 	  name,
     title,
 	  slug,
-    textCollage,
+    textCollageIntro,
 	  posterImage{crop,hotspot,asset->},
     studio->{name},
   }`);
@@ -31,7 +31,7 @@ export default async function FeaturedInterview({ id }) {
           </h2>
           <div className="mx-auto flex items-center flex-col">
               <div>
-                {item.textCollage.map((row, index) => {
+                {item.textCollageIntro.map((row, index) => {
                   const cleanedColStart = stegaClean(row.colStart)
                   return (
                     <div className="md:text-2xl lg:text-[32px] font-serif lg:leading-tight" key={index}>
@@ -43,49 +43,6 @@ export default async function FeaturedInterview({ id }) {
                 })}
             </div>
           </div>
-          {/* <div className="font-serif font-light text-xl text-center md:text-left md:text-3xl tracking-[-2%] leading-[120%]">
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-8 col-span-full">
-                Varens finaste detaljer ar aviga.
-              </div>
-            </div>
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-6 col-span-full">
-                Med respekt for den avancerade
-              </div>
-            </div>
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-10 col-span-full">
-                skraddarkonsten kastas villkoren om.
-              </div>
-            </div>
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-9 col-span-full">
-                Former forvrids och smyckas precist.
-              </div>
-            </div>
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-6 col-span-full">
-                Det skapas nagot nytt, parla for parla.
-              </div>
-            </div>
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-5 col-span-full">
-                Kanslan ar lekfull och inspirationen granslos
-              </div>
-            </div>
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-7 col-span-full">
-                {" "}
-                — den hamtas i havet, pa himlen och fran din.
-              </div>
-            </div>
-            <div className="md:grid grid-cols-24">
-              <div className="col-start-6 col-span-full">
-                vardagssrumsmatta.
-              </div>
-            </div>
-          </div> */}
           {item.posterImage || item.posterImage ? (
             <div className="grid grid-cols-24 mt-20 px-18">
               <div className="col-start-8 md:col-start-10 col-span-10 md:col-span-6">

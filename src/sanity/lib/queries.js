@@ -248,6 +248,7 @@ export const getInterviews = `
     title,
     slug,
 	excerpt,
+	textCollageIntro,
     posterImage{${imageMeta}},
     posterImage{${imageMeta}},
 	studio->{
