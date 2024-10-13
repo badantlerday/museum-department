@@ -1,5 +1,6 @@
 export const revalidate = 60
 import { client,sanityFetch } from "@/sanity/lib/client";
+import {stegaClean} from '@sanity/client/stega'
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
 import { PortableText } from "@portabletext/react";
@@ -92,12 +93,12 @@ const footnoteBlocks = interview.body.filter(block =>
 
   return (
     <>
-    <section className="py-20">
-        <div className="px-18 mx-auto text-center mb-4">
+    <section className="py-20 px-8 sm:px-0">
+        <div className="mx-auto text-center mb-4">
             <p className="text-xs font-mono text-md-grey-400 uppercase mb-2">{minutes} min read</p>
-            <h1 className="font-serif uppercase text-3xl font-light">{interview.studio.name}</h1>
+            <h1 className="font-serif uppercase text-3xl">{interview.studio.name}</h1>
         </div>
-        <div className="max-w-xl mx-auto text-center font-serif font-light">
+        <div className="max-w-xl mx-auto text-center font-serif">
             <p>{interview.excerpt}</p>
         </div>
         <div className="grid grid-cols-24 place-content-center my-14">
@@ -131,25 +132,42 @@ const footnoteBlocks = interview.body.filter(block =>
                                 </div>
 							)}
         </div>
-        <div className="px-18 text-center font-serif font-light">
+        <div className="px-18 text-center font-serif">
             
         A conversation between Veniam do magna ullamco aliqua anim fugiat irure et non veniam. Eiusmod nisi incididunt magna aute proident.
         </div>
     </section>
-    <section className="py-40 h-screen flex items-center">
+  
+    <section className="mx-auto mt-20 flex items-center flex-col">
+      <div>
+        
+        {interview.textCollage.map((row, index) => {
+          const cleanedColStart = stegaClean(row.colStart)
+
+          return (
+            <div className="md:text-2xl lg:text-[32px] font-serif lg:leading-tight" key={index}>
+              <div className={`md-textCollageAdd-${cleanedColStart} col-span-full`}>
+                {row.text}
+              </div>
+            </div>
+          )
+        })}
+  </div>
+  </section>
+    {/* <section className="py-40 h-screen flex items-center">
         <div className="px-18 mx-auto grid grid-cols-24">
             <div className="col-start-5 col-span-16 text-3xl font-serif tracking-tight">
             {interview.excerpt}
             </div>
         </div>
-    </section>
+    </section> */}
     <section className="pt-20">
-        <div className="px-18 mx-auto">
-            <div className="grid grid-cols-24 bg-slate-100_">
-            <div className="col-span-4 bg-slate-200_ relative">
+        <div className="px-8 sm:px-18 mx-auto">
+            <div className="sm:grid sm:grid-cols-24">
+            <div className="hidden lg:block col-span-4 relative">
                 <InterviewNotes data={footnoteBlocks} />
             </div>
-            <div className="interviewContent col-start-5 col-span-16 space-y-6 font-serif font-normal">
+            <div className="interviewContent col-start-1 sm:col-start-3 col-span-20 lg:col-start-5 lg:col-span-16 space-y-6 font-serif font-normal">
                 <PortableText value={interview.body} components={components} />
                 <div className="text-center">***</div>
             </div>

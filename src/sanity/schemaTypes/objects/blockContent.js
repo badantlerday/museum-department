@@ -30,6 +30,25 @@ export default defineType({
 				{ title: "Normal", value: "normal" },
 				// {title: 'H1', value: 'h1'},
 				{ title: "H2", value: "h2" },
+				// {
+				// 	title: "H2",
+				// 	value: "h2",
+				// 	blockEditor: {
+				// 		// Customize how the h2 is rendered in the editor
+				// 		render: (props) => (
+				// 			<h2
+				// 				style={{
+				// 					fontSize: "1.2rem",
+				// 					fontWeight: "bold",
+				// 					marginBottom: "0rem",
+				// 					paddingBottom: "0rem",
+				// 				}}
+				// 			>
+				// 				{props.children}
+				// 			</h2>
+				// 		),
+				// 	},
+				// },
 				{ title: "H3", value: "h3" },
 				{ title: "H4", value: "h4" },
 				{ title: "H5", value: "h5" },

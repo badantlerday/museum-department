@@ -221,6 +221,7 @@ export const getInterview = `
     slug,
     body,
     excerpt,
+	textCollage,
     posterImage{${imageMeta}},
 	studio->{
 		name,

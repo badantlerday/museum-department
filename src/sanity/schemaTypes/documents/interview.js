@@ -44,6 +44,28 @@ export default defineType({
 			type: "text",
 			group: "information",
 		},
+		defineField({
+			name: "textCollage",
+			title: "Text collage",
+			type: "array",
+			group: "information",
+			of: [
+				{
+					title: "Text Row",
+					name: "textRow",
+					type: "object",
+					fields: [
+						{ name: "text", type: "string", title: "Text" },
+						{
+							name: "colStart",
+							type: "string",
+							title: "Padding left",
+							description: "Padding left, based in columns.",
+						},
+					],
+				},
+			],
+		}),
 		{
 			name: "posterImage",
 			title: "Poster image",
