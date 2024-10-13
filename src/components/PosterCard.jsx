@@ -28,7 +28,7 @@ export default function Postercard({ data, aspect, columns, userBookmarks, user 
         <Image
           className={`${aspectRatio} mb-2 object-cover`}
           // src={builder.image(imageSrc).width(1000).url()}
-          src={urlFor(imageSrc).width(500).url()}
+          src={urlFor(imageSrc).width(1000).url()}
           width={800}
           height={665}
           blurDataURL={imageSrc?.asset.metadata.lqip}
