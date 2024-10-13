@@ -139,15 +139,14 @@ const footnoteBlocks = interview.body.filter(block =>
                     </div>								
 							) : (
 								<div className="grid grid-cols-24 mt-20">
-                                    <div className="col-start-10 col-span-6">
-                                        <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
-                                    </div>
-                                </div>
+                    <div className="col-start-10 col-span-6">
+                        <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div>
+                    </div>
+                </div>
 							)}
         </div>
         <div className="px-18 text-center font-serif">
-            
-        A conversation between Veniam do magna ullamco aliqua anim fugiat irure et non veniam. Eiusmod nisi incididunt magna aute proident.
+        {interview.excerpt}
         </div>
     </section>
   

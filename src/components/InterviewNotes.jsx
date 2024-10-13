@@ -61,7 +61,7 @@ export default function InterviewNotes({data}) {
             ) : (
                 <div className="aspect-[4/3] bg-md-grey-100 hidden"></div>
             )}
-                <div className="mt-4">
+                <div className="mt-2 text-md-grey-500">
                 {hoveredImageCaption ? (
                     <div>{hoveredImageCaption}</div>
                 ) : (
