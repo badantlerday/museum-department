@@ -140,10 +140,8 @@ const footnoteBlocks = interview.body.filter(block =>
   
     <section className="mx-auto mt-20 flex items-center flex-col">
       <div>
-        
         {interview.textCollage.map((row, index) => {
           const cleanedColStart = stegaClean(row.colStart)
-
           return (
             <div className="md:text-2xl lg:text-[32px] font-serif lg:leading-tight" key={index}>
               <div className={`md-textCollageAdd-${cleanedColStart} col-span-full`}>
@@ -152,7 +150,7 @@ const footnoteBlocks = interview.body.filter(block =>
             </div>
           )
         })}
-  </div>
+    </div>
   </section>
     {/* <section className="py-40 h-screen flex items-center">
         <div className="px-18 mx-auto grid grid-cols-24">

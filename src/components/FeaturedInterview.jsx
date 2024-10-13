@@ -1,4 +1,5 @@
 import { client } from "@/sanity/lib/client";
+import {stegaClean} from '@sanity/client/stega'
 // import Link from "next/link";
 import imageUrlBuilder from "@sanity/image-url";
 import Image from "next/image";
@@ -8,10 +9,11 @@ const builder = imageUrlBuilder(client);
 export default async function FeaturedInterview({ id }) {
   const interviews = await client.fetch(`*[_type == "interview"]{
     _id,
-	name,
+	  name,
     title,
-	slug,
-	posterImage{crop,hotspot,asset->},
+	  slug,
+    textCollage,
+	  posterImage{crop,hotspot,asset->},
     studio->{name},
   }`);
 
@@ -20,14 +22,28 @@ export default async function FeaturedInterview({ id }) {
   return (
     <>
       {interviews.slice(0, 1).map((item) => (
-        <section className="px-18 mt-40 mx-auto" key={item._id}>
+        <section className="_px-18 mt-40 mx-auto" key={item._id}>
           <div className="uppercase text-center mb-4 font-medium tracking-wide">
             Interview
           </div>
           <h2 className="mx-auto uppercase text-3xl font-serif text-center mb-4">
             {item.studio.name}
           </h2>
-          <div className="font-serif font-light text-xl text-center md:text-left md:text-3xl tracking-[-2%] leading-[120%]">
+          <div className="mx-auto flex items-center flex-col">
+              <div>
+                {item.textCollage.map((row, index) => {
+                  const cleanedColStart = stegaClean(row.colStart)
+                  return (
+                    <div className="md:text-2xl lg:text-[32px] font-serif lg:leading-tight" key={index}>
+                      <div className={`md-textCollageAdd-${cleanedColStart} col-span-full`}>
+                        {row.text}
+                      </div>
+                    </div>
+                  )
+                })}
+            </div>
+          </div>
+          {/* <div className="font-serif font-light text-xl text-center md:text-left md:text-3xl tracking-[-2%] leading-[120%]">
             <div className="md:grid grid-cols-24">
               <div className="col-start-8 col-span-full">
                 Varens finaste detaljer ar aviga.
@@ -69,9 +85,9 @@ export default async function FeaturedInterview({ id }) {
                 vardagssrumsmatta.
               </div>
             </div>
-          </div>
+          </div> */}
           {item.posterImage || item.posterImage ? (
-            <div className="grid grid-cols-24 mt-20">
+            <div className="grid grid-cols-24 mt-20 px-18">
               <div className="col-start-8 md:col-start-10 col-span-10 md:col-span-6">
                 {/* <div className="aspect-[3/4] relative bg-md-grey-200 h-full mx-auto"></div> */}
                 <Image
