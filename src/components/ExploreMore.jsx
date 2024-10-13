@@ -32,6 +32,7 @@ export default async function ExploreMore({data}) {
 	title,
 	slug,
 	mainImage{crop,hotspot,asset->},
+	posterImage{crop,hotspot,asset->},
 	location[]->{
 		_id, name, country->{name}
 	},
@@ -59,13 +60,13 @@ export default async function ExploreMore({data}) {
 								passHref
 								className="py-1"
 							>
-								{item?.mainImage ? (
+								{item?.posterImage ? (
 									<Image
 										className="aspect-[3/4] mb-2 object-cover"
-										src={builder.image(item.mainImage).width(500).url()}
+										src={builder.image(item.posterImage).width(500).url()}
 										width={500}
 										height={500}
-										blurDataURL={item.mainImage.asset.metadata.lqip}
+										blurDataURL={item.posterImage.asset.metadata.lqip}
 										placeholder="blur"
 										alt={item?.name}
 									/>
