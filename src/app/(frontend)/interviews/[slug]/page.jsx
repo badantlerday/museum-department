@@ -185,7 +185,7 @@ const footnoteBlocks = interview.body.filter(block =>
         </div>
     </section>
     <section className="px-18 mt-40 mx-auto">
-    <ItemsRow title="Fonts Gallery" data={interview.studio?.projects} link={interview.studio?.slug.current} />
+    <ItemsRow data={interview.studio?.projects} link={interview.studio?.slug.current} title={interview.studio?.name} />
     </section>
     <section className="mt-40">
     <GridListing data={allInterviews} title="More Interviews" columns="grid-cols-2 sm:grid-cols-4 lg:grid-cols-4" />

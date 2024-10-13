@@ -39,7 +39,7 @@ export default function ItemsRow({ title = "Title", link, data }) {
           <div className="mr-2">
             {/* <div className="aspect-[4/5] bg-md-grey-200 mr-2"></div> */}
             {item.posterImage || item.posterImage ? (
-              <Link href={`/project/${item.slug?.current}`}>
+              <Link href={`/projects/${item.slug?.current}`}>
                 <Image
                   className="aspect-[3/4] object-cover"
                   // src={builder
@@ -75,13 +75,14 @@ export default function ItemsRow({ title = "Title", link, data }) {
                   </Link>
                 </div>
               ))}
+              {item.title}
             </div>
             <div className=" text-md-black">
               <Link
-                href={`/project/${item.slug?.current}`}
+                href={`/projects/${item.slug?.current}`}
                 className="hover:text-md-grey-500"
               >
-                {item.title}
+                {item.fontsInUse ? item.title : "View project"}
               </Link>
             </div>
           </div>

@@ -232,6 +232,7 @@ export const getInterview = `
 			_id,
 			_type,
 			name,
+			title,
 			slug,
 			posterImage{${imageMeta}},
 		},
