@@ -41,7 +41,8 @@ export async function generateMetadata({ params, searchParams }, parent) {
 export default async function Studio({ params }) {
     // const {user,userBookmarks} = await getUserBookmarks();
     const { slug } = params;
-    const { studio } = await sanityFetch({ query: getCurrentStudio,params:{ slug }, tags: ["studio","project"] })
+    const { studio } = await sanityFetch({ query: getCurrentStudio,params:{ slug } })
+    // const { studio } = await sanityFetch({ query: getCurrentStudio,params:{ slug }, tags: ["studio","project"] })
 
   let dataStudioSounds = null;
 

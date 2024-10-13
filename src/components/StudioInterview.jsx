@@ -1,5 +1,6 @@
 import Image from "next/image";
 import imageUrlBuilder from "@sanity/image-url";
+import Link from "next/link";
 import { client } from "@/sanity/lib/client";
 
 const builder = imageUrlBuilder(client);
@@ -10,7 +11,7 @@ export default function StudioInterview({ data }) {
   return (
     <section className="pb-36">
       <div className="px-20 mx-auto">
-        <div className=" h-[850px] bg-[#FAFBF7] flex flex-col py-6">
+        <Link href={`/interviews/${interview.slug.current}`} className=" h-[850px] bg-[#FAFBF7] flex flex-col py-6">
           <div className="text-center font-mono text-6xl uppercase">
             {name}
             <br />
@@ -36,7 +37,7 @@ export default function StudioInterview({ data }) {
             <br />
             Interview
           </div>
-        </div>
+        </Link>
       </div>
     </section>
   );

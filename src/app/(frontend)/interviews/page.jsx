@@ -5,18 +5,16 @@ import { stegaClean } from "@sanity/client/stega";
 import Image from "next/image";
 import { urlFor } from "@/sanity/lib/image";
 import Button from "@/components/Button";
-import Link from "next/link";
 
 export default async function Interviews() {
   const interviews = await sanityFetch({
     query: getInterviews
   });
-  
 
   return (
     <section className="text-center">
       {interviews.map((interview) => {
-        const minutes = Math.ceil(interview.readTime);
+        // const minutes = Math.ceil(interview.readTime);
 
         return (
           <section className="py-20 px-8 sm:px-0" key={interview._id}>
