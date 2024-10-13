@@ -45,10 +45,6 @@ export default async function Interviews() {
                         <Image
                         className="aspect-[3/4] mb-2 object-cover"
                         src={urlFor(interview.posterImage).width(1000).url()}
-                        // src={builder
-                        //     .image(interview.posterImage || interview.posterImage)
-                        //     .width(1000)
-                        //     .url()}
                         width={800}
                         height={665}
                         blurDataURL={

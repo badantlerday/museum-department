@@ -10,7 +10,7 @@ import Link from "next/link";
 import GridListing from "@/components/GridListing";
 import StudioPlaylist from "@/components/StudioPlaylist";
 import StudioInterview from "@/components/StudioInterview";
-// import ExploreMore from "@/components/ExploreMore";
+import ExploreMore from "@/components/ExploreMore";
 
 
 
@@ -233,10 +233,10 @@ export default async function Studio({ params }) {
           playlistUrl={studio.studioSoundsPlaylist}
         />
       )}
-      <section className="text-center">
+      {/* <section className="text-center">
         [EXPLORE MORE SECTION - TO BE IMPLEMENTED]
-      </section>
-      {/* <ExploreMore data={studio.exploreMore} /> */}
+      </section> */}
+      <ExploreMore data={studio.exploreMore} />
     </>
   );
 }
