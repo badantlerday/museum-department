@@ -131,9 +131,9 @@ export default function Menu({ src, projects }) {
                 <Link href="/fonts-gallery" onClick={handleClose}>
                   Fonts Gallery
                 </Link>
-                <Link href="/fonts-in-use" onClick={handleClose}>
+                {/* <Link href="/fonts-in-use" onClick={handleClose}>
                   Fonts In Use
-                </Link>
+                </Link> */}
                 <Link href="/interviews" onClick={handleClose}>
                   Interviews
                 </Link>

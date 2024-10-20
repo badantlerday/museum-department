@@ -19,10 +19,12 @@ export default function SummaryCallout({data ,button = false}) {
         const uniqueCountryCount = uniqueCountries.size;
 
         return (
+        <>
         <div className="uppercase font-medium text-center tracking-[1%]">
-        <h2>There are currently <Counter number={data.length} id="studio-count"/> design studios from <Counter number={uniqueCountryCount} id="country-count" /> countries and from <Counter number={uniqueLocationCount} id="city-count" /> cities</h2>
-        <h2 className=" text-md-grey-300">As a <span className="underline">patron</span> you can BOOKMARK your favorite studios, projects AND fonts</h2>
-        {button && <div className="pt-8"><Button href="/studios/archive">View design studios archive</Button></div>}
+                <h2>There are currently <Counter number={data.length} id="studio-count"/> design studios from <Counter number={uniqueCountryCount} id="country-count" /> countries and from <Counter number={uniqueLocationCount} id="city-count" /> cities</h2>
+                <h2 className=" text-md-grey-300">As a <span className="underline">patron</span> you can BOOKMARK your favorite studios, projects AND fonts</h2>
         </div>
+        {button && <div className="pt-8 text-center"><Button href="/studios/archive">View design studios archive</Button></div>}
+        </>
         );
 }

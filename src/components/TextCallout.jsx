@@ -1,4 +1,5 @@
 import React from "react";
+import Button from "./Button";
 
 export default function TextCallout({
 	title = "Exploration Redefined",
@@ -66,15 +67,12 @@ export default function TextCallout({
 		// 	viewport={{ once: true }}
 		// 	key={title}
 		// >
-		<div className="px-4 lg:px-0 article font-medium text-xl lg:text-2xl max-w-2xl mx-auto tracking-[0.5%]">
-			{modifiedTextComposed}
+		<div className="px-4 lg:px-0  max-w-2xl mx-auto">
+			<div className="article font-medium text-xl lg:text-2xl tracking-[0.5%]">
+				{modifiedTextComposed}
+			</div>
 			{button && (
-				<a
-					href={buttonLink}
-					className="inline-block border border-md-black p-3 text-xs uppercase tracking-wide hover:bg-md-black hover:text-white transition-all"
-				>
-					{buttonText}
-				</a>
+				<Button href={buttonLink}>{buttonText}</Button>
 			)}
 		</div>
 		// </motion.div>

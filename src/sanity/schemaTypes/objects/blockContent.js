@@ -29,7 +29,16 @@ export default defineType({
 			styles: [
 				{ title: "Normal", value: "normal" },
 				// {title: 'H1', value: 'h1'},
-				{ title: "H2", value: "h2" },
+				// { title: "H2", value: "h2" },
+				{
+					title: "H2",
+					value: "h2",
+					component: ({ children }) => (
+						<h2 data-interview="question" style={{ fontWeight: "bold" }}>
+							{children}
+						</h2>
+					),
+				},
 				// {
 				// 	title: "H2",
 				// 	value: "h2",

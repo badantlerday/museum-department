@@ -39,7 +39,10 @@ const components = {
     },
     types: {
         image: ImageBlock
-      }
+    },
+    block: {
+        h2: ({children}) => <h2 data-interview="question">{children}</h2>,
+    },
   };
 
 const builder = imageUrlBuilder(client);

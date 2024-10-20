@@ -3,7 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { urlFor } from "@/sanity/lib/image";
 
-export default function Postercard({ data, aspect, columns, userBookmarks, user }) {
+export default function Postercard({ data, aspect, columns, userBookmarks, user}) {
   const { item } = data || {};
   const aspectRatio = aspect === "landscape" ? "aspect-[4/3]" : "aspect-[3/4]";
 

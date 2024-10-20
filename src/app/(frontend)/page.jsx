@@ -13,8 +13,13 @@ export const metadata = {
 };
 
 export default async function Home() {
-  const fontsGallery = await sanityFetch({ query: getFontGalleryItems, tags: ["project"] })
-  const onDisplay = await sanityFetch({ query: getOnDisplay, tags: ["project"] })
+  // const fontsGallery = await sanityFetch({ query: getFontGalleryItems, tags: ["project"] })
+  // const onDisplay = await sanityFetch({ query: getOnDisplay, tags: ["project"] })
+
+  const fontsGallery = await sanityFetch({ query: getFontGalleryItems })
+  const onDisplay = await sanityFetch({ query: getOnDisplay })
+
+
     return (
       <>
         <SiteTitleHeader />

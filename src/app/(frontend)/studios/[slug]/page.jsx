@@ -99,7 +99,7 @@ export default async function Studio({ params }) {
       </section>
       <section className="pb-36">
         <div className="px-6 md:px-20 grid grid-cols-12 gap-10 w-full">
-          <div className="col-span-3">
+          <div className="col-span-3 pt-1">
             <div className="mb-4">
               <h2 className=" text-xs uppercase tracking-wider font-medium mb-1">
                 Bookmark studio

@@ -147,6 +147,13 @@
   .interviewContent h2 + p::before {
     content: "( A ) ";
   }
+  .interviewContent h2[data-interview="question"]{
+    margin-top: 120px!important;
+  }
+  .interviewContent h2[data-interview="question"]:first-child{
+    margin-top: 0px!important;
+  }
+
 
   .interviewContent h2::before {
     content: "( Q ) ";

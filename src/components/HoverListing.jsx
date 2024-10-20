@@ -97,7 +97,7 @@ export default function HoverListing({
                 </div>
             {items[0]._type === 'studio' && (
                 <div className="col-span-8 pl-6">
-                    <div className="grid grid-cols-4 text-xs uppercase mb-10 sticky top-0 bg-white z-10">
+                    <div className="grid grid-cols-4 text-[11px] tracking-[0.9px] uppercase mb-10 sticky top-0 bg-white z-10">
                         <div></div>
                         <div></div>
                         <div className="cursor-pointer" onClick={() => sortBy('name')}>
@@ -137,7 +137,7 @@ export default function HoverListing({
             )}
             {items[0]._type === 'typeface' && (
                 <div className="col-span-8 pl-6 pb-60">
-                    <div className="grid grid-cols-12 text-xs uppercase mb-10 sticky top-0 bg-white z-10">
+                    <div className="grid grid-cols-12 text-[11px] tracking-[0.9px] uppercase mb-10 sticky top-0 bg-white z-10">
                         <div className="cursor-pointer col-start-3 col-span-3" onClick={() => sortBy('name')}>
                             Name {sortConfig.key === 'name' && (sortConfig.direction === 'asc' ? '↑' : '↓')}
                         </div>
