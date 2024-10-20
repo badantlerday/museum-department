@@ -85,7 +85,7 @@ export default function Menu({ src, projects }) {
                   Latest Project
                 </div>
                 <Link
-                  href={`/project/${project.slug.current}`}
+                  href={`/projects/${project.slug.current}`}
                   onClick={handleClose}
                 >
                   {project?.mainImage ? (
