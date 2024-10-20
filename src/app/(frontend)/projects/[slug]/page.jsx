@@ -40,7 +40,6 @@ export default async function Page({ params }) {
   const project = await sanityFetch({
     query: getProject,
     params: { slug },
-    tags: ["project"],
   });
   // console.log(project);
 
