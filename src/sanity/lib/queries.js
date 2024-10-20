@@ -331,7 +331,7 @@ export const getFontsInUse = `
 `;
 
 export const getFontGalleryItems = `
-  *[_type == "project" && defined(fontsInUse) && !defined(ondisplay)] {
+  *[_type == "project" && defined(fontsInUse) && !defined(ondisplay)][0...5] {
         _id,
         title,
         slug,
@@ -345,7 +345,7 @@ export const getFontGalleryItems = `
 // PAGES
 
 export const getOnDisplay = `
-  *[_type == "project" && ondisplay == true] | order(publishedAt desc){
+  *[_type == "project" && ondisplay == true] | order(publishedAt desc)[0...15]{
 		_id,
 		_type,
 		title,
@@ -356,6 +356,11 @@ export const getOnDisplay = `
 		studio->{name,slug}
 	}
 `;
+
+export const getPageHome = `{
+	"onDisplay": ${getOnDisplay},
+	"fontsGallery": ${getFontGalleryItems},
+  }`;
 
 export const getPageDesignStudios = `{
 	"studios": ${getStudios},

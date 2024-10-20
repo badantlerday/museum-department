@@ -1,4 +1,4 @@
-import { getFontGalleryItems,getOnDisplay } from "@/sanity/lib/queries";
+import { getPageHome } from "@/sanity/lib/queries";
 import { sanityFetch } from "@/sanity/lib/client";
 import SiteTitleHeader from "@/components/SiteTitleHeader";
 import MasonryGrid from "@/components/MasonryGrid";
@@ -16,8 +16,9 @@ export default async function Home() {
   // const fontsGallery = await sanityFetch({ query: getFontGalleryItems, tags: ["project"] })
   // const onDisplay = await sanityFetch({ query: getOnDisplay, tags: ["project"] })
 
-  const fontsGallery = await sanityFetch({ query: getFontGalleryItems })
-  const onDisplay = await sanityFetch({ query: getOnDisplay })
+  // const fontsGallery = await sanityFetch({ query: getFontGalleryItems })
+  // const onDisplay = await sanityFetch({ query: getOnDisplay })
+  const {onDisplay,fontsGallery} = await sanityFetch({ query: getPageHome })
 
 
     return (
