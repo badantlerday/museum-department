@@ -16,7 +16,7 @@ export default async function Dashboard() {
 			<div className=" flex-1">
 				<ul className="flex text-xs uppercase tracking-wider text-md-grey-300 *:pt-2 *:px-2 mt-[-1px]">
 					<li className="text-md-black border-t border-md-black">Bookmarks</li>
-					<li><LoginLink>Logout</LoginLink></li>
+					<li><LogoutLink>Logout</LogoutLink></li>
 				</ul>
 			</div>
 			<div>
