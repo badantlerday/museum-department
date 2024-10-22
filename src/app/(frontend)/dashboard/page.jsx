@@ -5,12 +5,12 @@ import {LogoutLink,LoginLink} from "@kinde-oss/kinde-auth-nextjs/components";
 import BecomeAPatron from "@/components/BecomeAPatron";
 
 export default async function Dashboard() {
-	const {isAuthenticated} = getKindeServerSession();
-	const isUserAuthenticated = await isAuthenticated();
+	const {getUser} = getKindeServerSession();
+	const user = await getUser();
 
 	return (
 		<>
-		{ isUserAuthenticated ?
+		{ user ?
 		<section className="px-18 mx-auto sticky top-0 bg-white pb-2 z-10">
 		<nav className="border-t border-md-grey-200 flex">
 			<div className=" flex-1">
@@ -32,7 +32,7 @@ export default async function Dashboard() {
 		</section>
 	: null}
 		
-		{ isUserAuthenticated ?
+		{ user ?
 		<section className="pt-48 space-y-40">
 			<Suspense fallback={<div className="px-8 md:px-18 mx-auto">Loading...</div>}>
 				<UserBookmarks />
