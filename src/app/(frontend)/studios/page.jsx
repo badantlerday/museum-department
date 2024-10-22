@@ -8,16 +8,6 @@ import NewStudios from "@/components/NewStudios";
 import SummaryCallout from "@/components/SummaryCallout";
 import GridListing from "@/components/GridListing";
 
-// Force static generation
-export const dynamic = 'force-static'
-export async function generateStaticParams() {
-  // Since this page doesn't have any dynamic parameters,
-  // we'll return an empty array.
-  // If you had dynamic parameters, you would fetch them here
-  // and return an array of objects representing those parameters.
-  return []
-}
-
 
 export default async function Studios() {
   const {user,userBookmarks} = await getUserBookmarks();

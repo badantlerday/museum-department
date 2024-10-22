@@ -7,7 +7,7 @@ import dynamic from "next/dynamic";
 const UserIcon = dynamic(() => import("@/components/UserIcon"));
 
 export default async function Header() {
-    const allPageTitles = await sanityFetch({ query: getAllPageTitles })
+    // const allPageTitles = await sanityFetch({ query: getAllPageTitles })
     const latestProjects = await sanityFetch({ query: getLatestProject, tags: ["project"] })
 
     return (
@@ -22,7 +22,7 @@ export default async function Header() {
             {/* Center */}
             <div className="hidden lg:flex lg:gap-x-12 text-sm">
                 <div className="flex lg:flex-1 space-x-4 items-center">
-                    <CurrentPageTitle data={allPageTitles} />
+                    {/* <CurrentPageTitle data={allPageTitles} /> */}
                 </div>
             </div>
             {/* Right */}

@@ -12,13 +12,13 @@ export const metadata = {
 	description: "Curating Contemporary Culture.",
 };
 
-// Force static generation
-export const dynamic = 'force-static'
+// // Force static generation
+// export const dynamic = 'force-static'
 
-// Function to generate static params
-export async function generateStaticParams() {
-  return []
-}
+// // Function to generate static params
+// export async function generateStaticParams() {
+//   return []
+// }
 
 export default async function Home() {
   // const fontsGallery = await sanityFetch({ query: getFontGalleryItems, tags: ["project"] })
