@@ -8,6 +8,17 @@ import NewStudios from "@/components/NewStudios";
 import SummaryCallout from "@/components/SummaryCallout";
 import GridListing from "@/components/GridListing";
 
+// Force static generation
+export const dynamic = 'force-static'
+export async function generateStaticParams() {
+  // Since this page doesn't have any dynamic parameters,
+  // we'll return an empty array.
+  // If you had dynamic parameters, you would fetch them here
+  // and return an array of objects representing those parameters.
+  return []
+}
+
+
 export default async function Studios() {
   const {user,userBookmarks} = await getUserBookmarks();
   const { studios, recentlyUpdatedProjects } = await sanityFetch({ query: getPageDesignStudios, tags: ["studio","project"] })
@@ -30,14 +41,6 @@ export default async function Studios() {
   const uniqueProjects = filterProjects(recentlyUpdatedProjects);
 
   return (
-    // <Suspense fallback={<div>Loading...</div>}>
-    // <PageDesignStudios
-    //   studios={studios}
-    //   uniqueProjects={uniqueProjects}
-    //   userBookmarks={userBookmarks}
-    //   user={user}
-    // />
-    // </Suspense>
     <main className="mt-48">
       <section className="pb-20">
         <NewStudios
